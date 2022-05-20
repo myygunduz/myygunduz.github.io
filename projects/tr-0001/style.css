@@ -2,6 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
 
+:root{
+
+    --main_color: #ff740d;
+    --main_color_bg: #1e1a1a;
+    --main_color_bg_two: #373232;
+    
+    --link_color: rgba(255,255,255,0.8);
+    --text_color: #fff;
+    --title_bg_color: rgba(244, 244, 244,0.2);
+}
+
 *
 {
   padding: 0;
@@ -17,15 +28,15 @@ html{
     width: 15px;
 }
 ::-webkit-scrollbar-track {
-    background: #3A3535; 
+    background: var(--main_color_bg_two); 
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #FF7315; 
+    background: var(--main_color); 
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #232020; 
+    background: var(--main_color_bg); 
 }
 
 html,body{
@@ -33,7 +44,7 @@ html,body{
     height: 100%;
     width: 100%;
     align-items: center;
-    background-image: linear-gradient(to right, #232020, #3A3535);
+    background-image: linear-gradient(300deg, var(--main_color_bg), var(--main_color_bg_two));
 }
 .entrance{
     width: 100%;
@@ -41,12 +52,11 @@ html,body{
     background-image: url("assets/allwriters.png");
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: #cccccc;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
     justify-items: center;
-    border-bottom: 1px solid #FF7315;
+    border-bottom: 1px solid var(--main_color);
 }
 .entrance h1{
     margin-top: auto;
@@ -54,7 +64,7 @@ html,body{
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     font-weight: 900;
-    color: #FF7315;
+    color: var(--main_color);
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -65,7 +75,7 @@ html,body{
     height: 1px;
     margin-bottom: 1rem;
     display: block;
-    color:rgba(244, 244, 244,0.2);
+    color:var(--title_bg_color);
 }
 
 
@@ -81,10 +91,10 @@ html,body{
     height:20px;
     border-right-style: solid;
     border-right-width: 2px;
-    border-right-color: #FF7315;
+    border-right-color: var(--main_color);
     border-bottom-style: solid;
     border-bottom-width: 2px;
-    border-bottom-color: #FF7315;
+    border-bottom-color: var(--main_color);
     animation-name: arrow;
     animation-iteration-count: infinite;
     animation-duration: 3s;
@@ -96,10 +106,10 @@ html,body{
     height: 40px;
     border-right-style: solid;
     border-right-width: 2.5px;
-    border-right-color: #FF7315;
+    border-right-color: var(--main_color);
     border-bottom-style: solid;
     border-bottom-width: 2.5px;
-    border-bottom-color: #FF7315;
+    border-bottom-color: var(--main_color);
 }
 .arrow::after{
     content: "";
@@ -108,10 +118,10 @@ html,body{
     height: 60px;
     border-right-style: solid;
     border-right-width: 3px;
-    border-right-color: #FF7315;
+    border-right-color: var(--main_color);
     border-bottom-style: solid;
     border-bottom-width: 3px;
-    border-bottom-color: #FF7315;
+    border-bottom-color: var(--main_color);
 }
 
 @keyframes arrow{
@@ -137,19 +147,18 @@ html,body{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #cccccc;
     display: grid;
     grid-template-columns: 1fr;
     align-items: top;
     justify-items: center;
-    border-top: 1px solid #FF7315;
-    border-bottom: 1px solid #FF7315;
+    border-top: 1px solid var(--main_color);
+    border-bottom: 1px solid var(--main_color);
 }
 .torch h1{
     font-family: 'Montserrat', sans-serif;
     font-size: 2rem;
     font-weight: 900;
-    color: #FF7315;
+    color: var(--main_color);
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -160,7 +169,7 @@ html,body{
     height: 1px;
     margin-bottom: 1rem;
     display: block;
-    color:rgba(244, 244, 244,0.2);
+    color:var(--title_bg_color);
 }
 
 .torch .content{
@@ -170,16 +179,16 @@ html,body{
     justify-items: center;
 }
 .torch .content span{
-    color:#fff;
+    color:var(--text_color);
     width: 80%;
 }
 .torch .content span a{
-    color: rgba(255,255,255,0.8);
+    color: var(--link_color);
     text-decoration: none;
 }
 
 .torch .content span p{
-    color: #FF7315;
+    color: var(--main_color);
     line-height: 1.5rem;
 }
 
@@ -289,8 +298,8 @@ html,body{
 .writer{
     display: grid;
     height: 100vh;
-    border-top: 1px solid #FF7315;
-    border-bottom: 1px solid #FF7315;
+    border-top: 1px solid var(--main_color);
+    border-bottom: 1px solid var(--main_color);
     grid-template-columns: var(--left) var(--right);
 }
 .writer .img{
@@ -299,12 +308,11 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #cccccc;
 }
 .writer img{
     width: 200px;
     height: 200px;
-    border:5px solid #FF7315;
+    border:5px solid var(--main_color);
     border-radius: 50%;
     display: none;
 }
@@ -317,37 +325,37 @@ html,body{
 .writer span .name{
     font-size: 1.5rem;
     font-weight: 500;
-    color: #FF7315;
+    color: var(--main_color);
     text-align: center;
 }
 .writer span .descriptions{
     font-size: 0.7rem;
-    color:#fff;
+    color:var(--text_color);
     text-align: center;
 }
 .writer span .biography p{
     font-size: 0.9rem;
-    color: #FF7315;
+    color: var(--main_color);
     line-height: 1.5rem;
 }
 .writer span .biography{
     font-size: 0.8rem;
-    color:#fff;
+    color:var(--text_color);
     text-align: left;
     margin-top: 5%;
 }
 .writer span a{
-    color: rgba(255,255,255,0.8);
+    color: var(--link_color);
     text-decoration: none;
 }
 .writer span .works p{
     font-size: 0.9rem;
-    color: #FF7315;
+    color: var(--main_color);
     line-height: 1.5rem;
 }
 .writer span .works{
     font-size: 0.8rem;
-    color:#fff;
+    color:var(--text_color);
     text-align: left;
     margin-top: 10%;
 }
@@ -362,7 +370,7 @@ html,body{
     grid-template-columns:1fr;
     align-items: center;
     justify-items: center;
-    border-top: 1px solid #FF7315;
+    border-top: 1px solid var(--main_color);
 }
 .exit h1{
     margin-top: auto;
@@ -370,7 +378,7 @@ html,body{
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     font-weight: 900;
-    color: #FF7315;
+    color: var(--main_color);
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -381,7 +389,7 @@ html,body{
     height: 1px;
     margin-bottom: 1rem;
     display: block;
-    color:rgba(244, 244, 244,0.2);
+    color:var(--title_bg_color);
 }
 
 .exit .about{
@@ -395,20 +403,20 @@ html,body{
 .exit .about img{
     width:300px;
     height: 300px;
-    border:5px solid #FF7315;
+    border:5px solid var(--main_color);
     border-radius: 50%;
 }
 .exit .about p.subtitle{
     margin-left: 0;
-    color:#FF7315;
+    color:var(--main_color);
 }
 .exit .about p{
     margin-left: 10px;
     font-size:15px;
-    color:#fff;
+    color:var(--text_color);
 }
 .exit .about p a{
-    color: #FF7315;
+    color: var(--main_color);
     text-decoration: none;
     font-size:12px;
 }
@@ -434,30 +442,30 @@ html,body{
 
 .sci ul li i{
     font-size: 30px;
-    background-color: #FF7315;
+    background-color: var(--main_color);
     line-height: 50px;
     text-align: center;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    color:#232020;
+    color:var(--main_color_bg);
     transition: 1s;
 }
 .sci ul li i:hover{
     transform: translateY(20px);
-    color:#fff;
+    color:var(--text_color);
     background-color: var(--color);
 }
 
 
 .copyright{
     width: 100%;
-    background-color: #FF7315;
-    color:#232020;
+    background-color: var(--main_color);
+    color:var(--main_color_bg);
     text-align: center;
 }
 .copyright a{
-    color: #3A3535;
+    color: var(--main_color_bg_two);
     text-decoration: none;
 }
 
@@ -478,33 +486,33 @@ html,body{
     .writer span .name{
         font-size: 1.4rem;
         font-weight: 400;
-        color: #FF7315;
+        color: var(--main_color);
         text-align: center;
     }
     .writer span .descriptions{
         font-size: 0.6rem;
-        color:#fff;
+        color:var(--text_color);
         text-align: center;
     }
     .writer span .biography p{
         font-size: 0.8rem;
-        color: #FF7315;
+        color: var(--main_color);
         line-height: 1.5rem;
     }
     .writer span .biography{
         font-size: 0.7rem;
-        color:#fff;
+        color:var(--text_color);
         text-align: left;
         margin-top: 5%;
     }
     .writer span .works p{
         font-size: 0.8rem;
-        color: #FF7315;
+        color: var(--main_color);
         line-height: 1.2rem;
     }
     .writer span .works{
         font-size: 0.7rem;
-        color:#fff;
+        color:var(--text_color);
         text-align: left;
         margin-top: 5%;
     }
