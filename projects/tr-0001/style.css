@@ -135,6 +135,7 @@ html,body{
     height: 100vh;
     background-image: url("assets/torchbackground.png");
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     background-color: #cccccc;
     display: grid;
@@ -297,6 +298,7 @@ html,body{
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     background-color: #cccccc;
 }
 .writer img{
@@ -411,37 +413,56 @@ html,body{
     font-size:12px;
 }
 
-.sci
-{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+.sci{
+    position: relative;
+    margin-top: 40px;
 }
-.sci a{
-  position: relative;
-  font-size: 2em;
-  text-decoration: none;
-  line-height: calc(4em / 4);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: .75px var(--color);
-  transition: .5s;
+.sci ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transform: translate(-50%,-50%);
 }
-.sci a:hover{
-  color: var(--color);
-  filter:drop-shadow(0 0 25px var(--color));
+.sci ul li{
+    list-style: none;
+    margin: 0 15px;
+    
+}
+
+.sci ul li i{
+    font-size: 30px;
+    background-color: #FF7315;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color:#232020;
+    transition: 1s;
+}
+.sci ul li i:hover{
+    transform: translateY(20px);
+    color:#fff;
+    background-color: var(--color);
+}
+
+
+.copyright{
+    width: 100%;
+    background-color: #FF7315;
+    color:#232020;
+    text-align: center;
+}
+.copyright a{
+    color: #3A3535;
+    text-decoration: none;
 }
 
 
 @media (max-width: 1000px){
-    .entrance{
-        
-        background-repeat: no-repeat;
-        background-color: #cccccc;
-    }
     .writer{
         display: grid;
         grid-template-columns: 1fr;
@@ -516,5 +537,15 @@ html,body{
     }
     .writer span .works{
         font-size: 0.6rem;
+    }
+
+    .sci ul li{
+        margin:0 10px;
+    }
+    .sci ul li i{
+        font-size: 25px;
+        line-height: 40px;
+        width: 40px;
+        height: 40px;
     }
 }
