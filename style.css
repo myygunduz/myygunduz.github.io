@@ -175,6 +175,25 @@ ul li a:hover::before{
 
 
 /*project grid*/
+
+.project_title{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #dc00d4;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.project_title::before{
+  content: var(--title);
+  font-size: 4rem;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 1rem;
+  display: block;
+  color:rgba(244, 244, 244,0.2);
+}
+
 .project_show{
   display: grid;
   grid-template-columns: repeat(3, 1fr);

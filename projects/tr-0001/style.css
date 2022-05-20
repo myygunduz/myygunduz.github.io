@@ -290,6 +290,7 @@ html,body{
     height: 100vh;
     border-top: 1px solid #FF7315;
     border-bottom: 1px solid #FF7315;
+    grid-template-columns: var(--left) var(--right);
 }
 .writer .img{
     width: 100%;
@@ -297,6 +298,13 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #cccccc;
+}
+.writer img{
+    width: 200px;
+    height: 200px;
+    border:5px solid #FF7315;
+    border-radius: 50%;
+    display: none;
 }
 .writer span{
     display: block;
@@ -394,11 +402,13 @@ html,body{
 }
 .exit .about p{
     margin-left: 10px;
+    font-size:15px;
     color:#fff;
 }
 .exit .about p a{
     color: #FF7315;
     text-decoration: none;
+    font-size:12px;
 }
 
 .sci
@@ -423,4 +433,88 @@ html,body{
 .sci a:hover{
   color: var(--color);
   filter:drop-shadow(0 0 25px var(--color));
+}
+
+
+@media (max-width: 1000px){
+    .entrance{
+        
+        background-repeat: no-repeat;
+        background-color: #cccccc;
+    }
+    .writer{
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-items: center;
+    }
+    .writer .img{
+        display: none;
+    }
+    .writer img{
+        display: block;
+    }
+    .writer span .name{
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #FF7315;
+        text-align: center;
+    }
+    .writer span .descriptions{
+        font-size: 0.6rem;
+        color:#fff;
+        text-align: center;
+    }
+    .writer span .biography p{
+        font-size: 0.8rem;
+        color: #FF7315;
+        line-height: 1.5rem;
+    }
+    .writer span .biography{
+        font-size: 0.7rem;
+        color:#fff;
+        text-align: left;
+        margin-top: 5%;
+    }
+    .writer span .works p{
+        font-size: 0.8rem;
+        color: #FF7315;
+        line-height: 1.2rem;
+    }
+    .writer span .works{
+        font-size: 0.7rem;
+        color:#fff;
+        text-align: left;
+        margin-top: 5%;
+    }
+
+    .wrapper{
+        display: none;
+    }
+
+    .exit .about img{
+        width: 200px;
+        height: 200px;
+    }
+    .exit .about p{
+        font-size: 10px;
+    }
+    .exit .about p a{
+        font-size:10px;
+    }
+}
+
+@media (max-width:550px){
+    .writer span .biography p{
+        font-size: 0.7rem;
+    }
+    .writer span .biography{
+        font-size: 0.6rem;
+    }
+    .writer span .works p{
+        font-size: 0.7rem;
+    }
+    .writer span .works{
+        font-size: 0.6rem;
+    }
 }
