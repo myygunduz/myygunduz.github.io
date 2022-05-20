@@ -534,6 +534,10 @@ html,body{
 }
 
 @media (max-width:550px){
+    .writer img{
+        width: 200px;
+        height: 200px;
+    }
     .writer span .biography p{
         font-size: 0.7rem;
     }
