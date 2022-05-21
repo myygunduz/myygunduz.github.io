@@ -207,7 +207,7 @@ html,body{
 .wrapper .button{
     height: 60px;
     width: 60px;
-    border-radius: 50%;
+    border-radius: 50px;
     margin:15px 0;
     cursor: pointer;
     box-shadow:3px 3px 3px var(--color-shadow);
@@ -225,7 +225,7 @@ html,body{
     float: left;
     height: 60px;
     width: 60px;
-    border-radius: 50%;
+    border-radius: 50px;
     box-sizing: border-box;
     line-height: 60px;
 }
