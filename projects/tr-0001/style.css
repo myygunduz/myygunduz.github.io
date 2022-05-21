@@ -536,6 +536,11 @@ html,body{
 }
 
 @media (max-width:550px){
+    .writer{
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
     .writer img{
         width: 150px;
         height: 150px;
