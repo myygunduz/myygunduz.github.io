@@ -1,0 +1,140 @@
+#app.dark{
+    /*default dark*/
+    --text-color:#F2F3F3;
+    --background-color:#1F1F1F;
+
+    /*dark calculator*/
+    --calculator-border-color:#898989;
+    
+    /*dark operation*/
+    --operation-text-color:#F2F3F3;
+    --operation-text-color-transparent:rgba(212, 212, 212, 0.5);
+    --operation-background-color:#1F1F1F;
+
+    /*dark buttons*/
+    --button-text-color:#F2F3F3;
+    --button-text-color-hover:#1F1F1F;
+    --button-background-color:#1F1F1F;
+    --button-background-color-hover:#F2F3F3;
+    --button-border-color:#898989;
+    --button-border-color-hover:#F2F3F3;
+
+    /*extra*/
+    --title-color:#F2F3F3;
+    --social-media-color:#F2F3F3;
+    --githubColor:#171515;
+    --youtubeColor:#FF0000;
+    --twitterColor:#1DA1F2;
+    --instagramColor:#E1306C;
+    --linkedinColor:#0077B5;
+
+
+    /*dark select theme*/
+    --theme-text-color:#F2F3F3;
+    --theme-background-color:#1F1F1F;
+    --theme-border-color:#898989;
+
+}
+#app.light{
+    /*default light*/
+    --text-color:#1F1F1F;
+    --background-color:#F2F3F3;
+
+    /*light calculator*/
+    --calculator-border-color:#898989;
+    
+    /*light operation*/
+    --operation-text-color:#1F1F1F;
+    --operation-text-color-transparent:rgba(242, 243, 243, 0.5);
+    --operation-background-color:#F2F3F3;
+
+    /*light buttons*/
+    --button-text-color:#1F1F1F;
+    --button-text-color-hover:#F2F3F3;
+    --button-background-color:#F2F3F3;
+    --button-background-color-hover:#1F1F1F;
+    --button-border-color:#898989;
+    --button-border-color-hover:#1F1F1F;
+
+    /*extra*/
+    --title-color:#1F1F1F;
+    --social-media-color:#1F1F1F;
+    --githubColor:#171515;
+    --youtubeColor:#FF0000;
+    --twitterColor:#1DA1F2;
+    --instagramColor:#E1306C;
+    --linkedinColor:#0077B5;
+
+    /*light select theme*/
+    --theme-text-color:#1F1F1F;
+    --theme-background-color:#F2F3F3;
+    --theme-border-color:#898989;
+}
+
+#app{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.title{
+    color:var(--title-color);
+}
+.operations{
+    color:var(operation-text-color);
+    background-color:var(--operation-background-color);
+
+    border-top: 2px solid var(--calculator-border-color);
+    border-left: 2px solid var(--calculator-border-color);
+    border-right: 2px solid var(--calculator-border-color);
+}
+.buttons{
+    border-bottom: 2px solid var(--calculator-border-color);
+    border-left: 2px solid var(--calculator-border-color);
+    border-right: 2px solid var(--calculator-border-color);
+}
+.operations .operation{
+    color: var(--operation-text-color-transparent);
+}
+.button{
+    color: var(--button-text-color);
+    background-color: var(--button-background-color);
+    border: 1px solid var(--button-border-color);
+}
+.button:hover{
+    background-color: var(--button-background-color-hover);
+    color: var(--button-text-color-hover);
+    border: 1px solid var(--button-border-color-hover);
+}
+
+
+.social_medias_area a{
+    color: var(--social-media-color);
+}
+.social_medias_area a#Github:hover{
+    color: var(--githubColor);
+}
+.social_medias_area a#Twitter:hover{
+    color: var(--twitterColor);
+}
+.social_medias_area a#Instagram:hover{
+    color: var(--instagramColor);
+}
+.social_medias_area a#Youtube:hover{
+    color: var(--youtubeColor);
+}
+.social_medias_area a#LinkedIn:hover{
+    color: var(--linkedinColor);
+}
+
+
+
+.theme{
+    color: var(--theme-text-color);
+    background-color: var(--theme-background-color);
+    border: 1px solid var(--theme-border-color);
+    border-bottom:0;
+}
+.theme .themeActived{
+    color: var(--theme-text-color);
+    background-color: var(--theme-background-color);
+    border: 1px solid var(--theme-border-color);
+}

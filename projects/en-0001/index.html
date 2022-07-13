@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator v1.0</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <link rel="stylesheet" href="./src/style/style.css">
+    <link rel="stylesheet" href="./src/style/theme.css">
+    <link rel="icon" href="./src/assets/icon.ico">
+    <link href="./src/assets/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet">
+</head>
+<body>
+    <div id="themplate">
+        <div id="app" :class="[darkOrLight,theme]">
+            <div class="title">{{title}}</div>
+            <div class="operations">
+                <p class="operation">{{operation}}</p>
+                <p class="result">{{result}}</p>
+            </div>
+            <div class="buttons">
+                <div class="button" v-for="(button,index) in buttons" :key="index" @click="clickButton(button.name)">
+                    {{button.name}}
+                </div>
+            </div>
+            <div class="social_medias_area">
+                <a target="_blank" v-for="social_media in social_medias" :href="social_media.url" :id="social_media.name">
+                    <div v-html="social_media.icon"></div>
+                </a>
+            </div>
+            <div class="theme" :class="themeActive ? 'active' : ''">
+                <div class="themeActived" @click="themeActive= !themeActive">
+                    <i class="fa-solid fa-droplet"></i> 
+                </div>
+                <div class="themeArea">
+                    <div class="themeHeader">
+                        <span>Light/Dark</span>
+                    </div>
+                    <div class="themeBodyAlone">
+                        <input type="checkbox" class="checkbox" id="checkbox" @click="changeTheme">
+                        <label for="checkbox" class="label">
+                            <i class="fa-solid fa-moon"></i>
+                            <i class="fa-solid fa-sun"></i>
+                            <div class="ball"></div>
+                        </label>
+                    </div>
+                </div>
+                <div class="themeArea">
+                    <div class="themeHeader">
+                        <span>Theme</span>
+                    </div>
+                    <div class="themeBodyGrid">
+                        <div class="themeButton" v-for="theme in themes" @click="changeColor(theme)">
+                            <i class="fa-solid fa-droplet" :style="{color:theme}"></i> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="./src/vue/main.js"></script>
