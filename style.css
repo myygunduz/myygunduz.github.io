@@ -197,7 +197,7 @@ ul li a:hover::before{
 .project_show{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
+  grid-gap: 50px;
   margin: 20px;
   cursor: pointer;
 }
