@@ -7,7 +7,7 @@ createApp({
             title:'Calculator v1.0',
             operation: '',
             result: '0',
-            theme: 'red',
+            theme: 'green',
             darkOrLight: 'dark',
             themeActive: false,
             buttons:[
@@ -66,7 +66,7 @@ createApp({
             themes:{
                 red:'#D82148',
                 blue:'#00A2FF',
-                green:'#00B849',
+                green:'#41B883',
                 yellow:'#FFCD00',
                 orange:'#FF9100',
                 purple:'#9C27B0',
@@ -169,8 +169,7 @@ createApp({
             }
         },
         percentage(){
-          var x = this.result / 100;
-            this.result = x.toString().replace('.', ',');
+            this.result = this.result +'÷100';
         },
         addNumber(button){
             if(this.result === '0'){
@@ -250,7 +249,7 @@ createApp({
             }
         }.bind(this));
         window.addEventListener("load", function(e) {
-            this.changeColor(this.themes.red)
+            this.changeColor(this.themes.green);
         }.bind(this));
     }
 }).mount('#themplate');

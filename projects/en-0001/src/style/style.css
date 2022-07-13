@@ -189,3 +189,27 @@ body{
     cursor: pointer;
     transition: 0.5s;
 }
+
+
+
+
+
+/*media size*/
+@media screen and (max-width: 600px){
+    .title{
+        left:50%;
+        transform: translateX(-50%);
+    }
+    .operations{
+        width:80%;
+    }
+    .buttons{
+        width:80%;
+    }
+    .theme{
+        display: none;
+    }
+    .social_medias_area{
+        display: none;
+    }
+}
