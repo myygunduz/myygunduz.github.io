@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attack On Beast</title>
+    <link rel="stylesheet" href="./src/style/style.css">
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://kit.fontawesome.com/6a041b0651.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="app">
+
+        <div class="names-healts">
+            <div class="name-healt" v-for="user in users">
+                <div class="name">
+                    <img :src="user.img" alt="">
+                    {{ user.name }}
+                </div>
+                <div class="healtBar" :style="{'--health':user.health+'%'}">{{ user.health }}%</div>
+            </div>
+        </div>
+        <div class="operations">
+            <button v-if="gameOver" @click="startGame()" style="--color:#A7D129;--color-transparent:#a7d12920;">
+                Play!
+            </button>
+            <template v-else>
+                <button @click="attack('Player');" style="--color:#3AB4F2;--color-transparent:#3AB4F220;">
+                    <i class="fa-solid fa-gun"></i> Attack
+                </button>
+                <button @click="heal()" style="--color:#A7D129;--color-transparent:#a7d12920;">
+                    <i class="fa-solid fa-hand-holding-medical"></i> Heal
+                </button>
+                <button @click="giveUp()" style="--color:#FF8C32;--color-transparent:#FF8C3220;">
+                    <i class="fa-solid fa-skull"></i> Gave Up
+                </button>
+            </template>
+        </div>
+        <div class="log" v-if="showLog" id="log">
+            <div class="log-item" v-for="log in gameLog" :class="log[0]" v-html="log[1]" :style="log[2]"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="./src/js/main.js"></script>

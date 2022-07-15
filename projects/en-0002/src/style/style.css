@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#app{
+    width:100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #161616;
+}
+
+.names-healts{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    justify-content: space-around;
+}
+.name-healt{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 40%;
+    margin: 10% 0;
+    background-color: #282828;
+    box-shadow: 3px 3px 5px #000;
+    color:#f5f5f5;
+}
+
+.name-healt .name{
+    font-size: 2rem;
+    display: flex;
+    height: 100px;
+    line-height: 100px;
+}
+.name-healt .name img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+.name-healt .healtBar{
+    width: var(--health);
+    max-width: 100%;
+    background-color: green;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    position: relative;
+    transition: all 0.5s;
+}
+
+.operations{
+    display: flex;
+    width: 60%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.operations button{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8px;
+    border:1px solid var(--color);
+    cursor: pointer;
+    background-color: var(--color-transparent);
+    color: var(--color);
+    position: relative;
+    transition: all 0.5s;
+    margin: 0 10px;
+}
+.operations button::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-3px,-50%);
+    width: 5px;
+    height: 30px;
+    background-color: var(--color);
+    border-radius: 8px;
+}
+.operations button::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(3px,-50%);
+    width: 5px;
+    height: 30px;
+    background-color: var(--color);
+    border-radius: 8px;
+}
+.operations button:hover{
+    transform: scale(1.1);
+}
+
+
+.log{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+    padding: 10px 0;
+    background-color: #282828;
+    box-shadow: 3px 3px 5px #000;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+.log::-webkit-scrollbar {
+    width: 0;
+}
+
+.log .log-item{
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #161616;
+}
+.log .log-item{
+    border-radius: 5px;
+    border:1px solid var(--color);
+    cursor: pointer;
+    background-color: var(--color-transparent);
+    color: var(--color);
+    position: relative;
+    transition: all 0.5s;
+    margin: 10px 0;
+}
+.log .log-item::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-3px,-50%);
+    width: 5px;
+    height: 20px;
+    background-color: var(--color);
+    border-radius: 8px;
+}
+.log .log-item::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(3px,-50%);
+    width: 5px;
+    height: 20px;
+    background-color: var(--color);
+    border-radius: 8px;
+}
+
+
+
+/*window size change*/
+@media screen and (max-width: 768px){
+    .names-healts{
+        flex-direction: column;
+        font-size: 1
+    }
+    .name-healt{
+        width: 100%;
+    }
+    .name-healt .name{
+        height: auto;
+        line-height: auto;
+        font-size: 1.5rem;
+        
+    }
+    .operations{
+        width: 100%;
+        flex-direction: column;
+        margin: 10% 0;
+    }
+    .operations button{
+        margin: 10px 0;
+    }
+    .log .log-item{
+        font-size: 0.8rem;  
+        height: auto;      
+    }
+}
+
+@media screen and (max-width: 400px){
+    .operations{
+        margin: 20% 0;
+    }
+}
