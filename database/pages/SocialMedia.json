@@ -1,0 +1,24 @@
+{
+    "socialMedias":[
+        {
+            "link":"https://github.com/myygunduz",
+            "icon":"<i class='fa-brands fa-github'></i>"
+        },
+        {
+            "link":"https://www.linkedin.com/in/myygunduz/",
+            "icon":"<i class='fa-brands fa-linkedin'></i>"
+        },
+        {
+            "link":"https://www.instagram.com/myygunduz/",
+            "icon":"<i class='fa-brands fa-instagram'></i>"
+        },
+        {
+            "link":"https://twitter.com/myygunduz",
+            "icon":"<i class='fa-brands fa-twitter'></i>"
+        },
+        {
+            "link":"https://www.youtube.com/channel/UCQGiz8XLyoBDmLRNtZt8xBQ",
+            "icon":"<i class='fa-brands fa-youtube'></i>"
+        }
+    ]
+}

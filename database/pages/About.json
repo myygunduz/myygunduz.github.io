@@ -1,0 +1,38 @@
+{
+    "TR":[
+        {
+            "text":"<p>Merhaba ben <span style='color:#f7422b;'>Mücahit Gündüz</span>. 2004 yılında Ankara'da doğdum. 2020 yılında python ile başladığım yazılım serüvenime yeni teknolojiler öğrenmekle devam ediyorum.</p>"
+            ,"title":"Ben Kimim?"
+        },
+        {
+            "text":"<p>Yazdığım ilk python kodu <a href='https://gist.github.com/myygunduz/f65df85b29b4735fbc182514b9452e66' target='_blank' style='color: #f7422b;text-decoration: none;'>alan ve çevre hesaplama</a>ya yarayan bir koddu. Şimdiyse python ile <a href='https://github.com/myygunduz/pyqtCuWi' target='_blank' style='color: #f7422b;text-decoration: none;'>modül</a> yazmaya başladım.</p>"
+            ,"title":"İlk Kodum"
+        },
+        {
+            "text":"<p>Bir dönem python hakkında eğitim içerikleri yazıp <a href='https://mertmekatronik.com/profil/mucahit-gunduz' target='_blank' style='color: #f7422b;text-decoration: none;'>mertmekatronik.com</a> sitesinde paylaştım. Eğitim içeriklerini yazmak araştırma geretiren birşey olduğu için öğrenmek istediğim konu hakkında içerik çıkardım. Kendi sitemde eğitim içerikleri çıkarmaya devam ediyorum.</p>"
+            ,"title":"Eğitim İçerikleri"
+        },
+        {
+            "text":"<p>Son zamanlarda zamanımı web teknolojileriyle geçiriyorum ve kendimi geliştirmeye devam ediyorum.</p>"
+            ,"title":"Şuanki Alanım"
+        }
+    ],
+    "EN":[
+        {
+            "text":"<p>Hello, I'm <span style='color:#f7422b;'>Mücahit Gündüz</span>. I was born in Ankara in 2004. I continue my software adventure, which I started with python in 2020, by learning new technologies.</p>"
+            ,"title":"Who Am I?"
+        },
+        {
+            "text":"<p>The first python code I wrote was a cod for <a href='https://gist.github.com/myygunduz/f65df85b29b4735fbc182514b9452e66' target='_blank' style='color: #f7422b;text-decoration: none;'>calculating environment and area.</a> Now I have started to write <a href='https://github.com/myygunduz/pyqtCuWi' target='_blank' style='color: #f7422b;text-decoration: none;'>modules</a> with python.</p>"
+            ,"title":"My First Code"
+        },
+        {
+            "text":"<p>For a while, I wrote educational content about python and shared it on <a href='https://mertmekatronik.com/profil/mucahit-gunduz' target='_blank' style='color: #f7422b;text-decoration: none;'>mertmekatronik.com</a>. Since writing educational content is something that requires research, I produced content about the subject I wanted to learn. I continue to publish educational content on my own site.</p>"
+            ,"title":"My Tutorials"
+        },
+        {
+            "text":"<p>Lately ı spend my time with web technology and i keep improving myself.</p>"
+            ,"title":"My Current Area"
+        }
+    ]
+}

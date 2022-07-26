@@ -1,0 +1,48 @@
+{
+    "navBarItemsEN":[
+        {
+            "title":"ABOUT",
+            "index":0
+        },
+        {
+            "title":"CONTACT",
+            "index":1
+        },
+        {
+            "title":"HOME",
+            "index":2
+        },
+        {
+            "title":"BLOG",
+            "index":3
+        },
+        {
+            "title":"PROJECTS",
+            "index":4
+        }
+    ],
+    "navBarItemsTR":[
+        {
+            "title":"HAKKIMDA",
+            "index":0
+        },
+        {
+            "title":"İLETİŞİM",
+            "index":1
+        },
+        {
+            "title":"ANASAYFA",
+            "index":2
+        },
+        {
+            "title":"BLOG",
+            "index":3
+        },
+        {
+            "title":"PROJELER",
+            "index":4
+        }
+    ]
+}
+
+
