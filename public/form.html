@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EDEDED;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        iframe {
+            max-width: 100%; /* İsteğe bağlı olarak genişliği sınırlayabilirsiniz */
+            width: 100%;
+            min-height: 80vh;
+            height:auto;
+            border: none;
+        }
+        
+        .github-logo {
+            position: fixed;
+            bottom: -102px;
+            right: -102px;
+            z-index: 9999;
+            width: 200px;
+            height: 200px;
+            transform:  rotate(45deg); /* Logo'yu 45 derece döndürün */
+            background-color: #DA0037; /* Arka plan rengi ekleyin */
+            display: flex;
+            align-items: center;
+            transition:all .2s ;
+            border:2px solid #DA0037;
+        }
+        .github-logo:hover{
+            background-color: #EDEDED;
+        }
+        .github-logo:hover a{
+            color:#DA0037;
+        }
+        
+        .github-logo a {
+            text-decoration: none;
+            color: #EDEDED;
+        }
+        .github-logo a svg{
+            transform: rotate(-45deg);
+            margin-left:20px;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeZFqzFX9kLrclAyPpJua6ApTRMuQyPQtLl498ukm9u9aYiuw/viewform?embedded=true" width="640" height="1264" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
+    <!-- GitHub logosunu ekleyin -->
+    <div class="github-logo">
+        <a href="https://github.com/myygunduz">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.20-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.20-.82 2.20-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.20 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+        </a>
+    </div>
+</body>
+</html>
