@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -47,14 +46,17 @@
                 </div>
                 
                 <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="shuffleQuestions()" class="bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition shadow">
+                        🔀 Soruları Karıştır
+                    </button>
                     <button onclick="showResults()" class="bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition shadow">
-                        Sonuçları Göster (Manuel)
+                        ✅ Sonuçları Göster
                     </button>
                     <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition shadow">
-                        PDF Olarak Kaydet
+                        📄 PDF Olarak Kaydet
                     </button>
                     <button onclick="location.reload()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-bold py-2 px-4 rounded-lg transition">
-                        Sıfırla
+                        🔄 Sıfırla
                     </button>
                 </div>
             </div>
@@ -74,7 +76,7 @@
     </div>
 
     <script>
-        const questions = [
+        let questions = [
             { q: "Gıdaların raf ömrünü uzatmak veya besin değerini iyileştirmek için eklenen maddelere ne ad verilir?", a: ["Gıda Kirleticileri", "Gıda Katkı Maddeleri", "Gıda Hammaddeleri", "Gıda Atıkları"], c: 1, h: "Doğal veya sentetik olarak eklenen iyileştiricilerdir." },
             { q: "'E200-E299' aralığındaki kodlar hangi katkı maddesi sınıfını temsil eder?", a: ["Renklendiriciler", "Antioksidanlar", "Koruyucular", "Tatlandırıcılar"], c: 2, h: "Mikrobiyal bozulmayı önleyen grup." },
             { q: "Aşağıdakilerden hangisi bir antioksidandır?", a: ["Sodyum benzoat", "Askorbik asit (C vitamini)", "Tartrazin", "Aspartam"], c: 1, h: "Oksidasyonu engelleyen C vitamini formudur." },
@@ -156,7 +158,7 @@
             { q: "Karotenoidler neyin öncüsüdür?", a: ["C", "D", "A Vitamini", "E"], c: 2, h: "Görme sağlığı için gereken vitamin." },
             { q: "D2 Vitamini kaynağı?", a: ["Hayvanlar", "Bitki sterolleri + UV Işığı", "Tuz", "Hava"], c: 1, h: "Ergokalsiferol." },
             { q: "Hangisi iz elementtir?", a: ["Magnezyum", "Selenyum", "Sodyum", "Potasyum"], c: 1, h: "Mikro miktarda ihtiyaç duyulan mineral." },
-            {q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1, h: "Elektron alıcısıdırlar." },
+            { q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1, h: "Elektron alıcısıdırlar." },
             { q: "Anemi hangi eksikliktedir?", a: ["Ca", "Demir (Fe)", "Mg", "K"], c: 1, h: "Kansızlık denince akla gelen mineral." },
             { q: "Filokinon (K1) en çok nerededir?", a: ["Süt", "Yeşil Yapraklı Sebzeler", "Meyve", "Kırmızı Et"], c: 1, h: "Ispanak ve lahana zengin kaynaklardır." },
             { q: "Annatto rengi?", a: ["Mavi", "Yeşil", "Sarı-Turuncu", "Beyaz"], c: 2, h: "Peynirlere turuncu renk vermek için kullanılır." },
@@ -182,6 +184,25 @@
         const instantToggle = document.getElementById('instantToggle');
         let userAnswers = new Array(questions.length).fill(null);
         let completedQuestions = new Set();
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function shuffleQuestions() {
+            // Soruları karıştır
+            shuffleArray(questions);
+            // Sınav durumunu sıfırla
+            userAnswers = new Array(questions.length).fill(null);
+            completedQuestions = new Set();
+            scoreDisplay.classList.add('hidden');
+            // Arayüzü yeniden oluştur
+            initQuiz();
+        }
 
         function initQuiz() {
             quizContainer.innerHTML = '';
@@ -243,22 +264,18 @@
         }
 
         function selectOption(qIdx, optIdx) {
-            // Eğer soru daha önce anında geri bildirim ile tamamlanmışsa tıklamayı reddet
             if (completedQuestions.has(qIdx)) return;
 
             userAnswers[qIdx] = optIdx;
             const buttons = document.querySelectorAll(`[id^="btn-${qIdx}-"]`);
             
-            // UI Update for selection
             buttons.forEach(b => b.classList.remove('selected', 'bg-blue-100', 'border-blue-500'));
             const selectedBtn = document.getElementById(`btn-${qIdx}-${optIdx}`);
             selectedBtn.classList.add('selected', 'bg-blue-100', 'border-blue-500');
 
-            // Anında Geri Bildirim Modu Açıksa
             if (instantToggle.checked) {
                 applyResultToQuestion(qIdx);
                 completedQuestions.add(qIdx);
-                // Diğer şıkları pasifleştir
                 buttons.forEach(b => b.classList.add('disabled-btn'));
             }
         }
@@ -290,7 +307,6 @@
                 applyResultToQuestion(index);
                 if(userAnswers[index] === q.c) score++;
                 
-                // Tüm butonları pasifleştir
                 const buttons = document.querySelectorAll(`[id^="btn-${index}-"]`);
                 buttons.forEach(b => b.classList.add('disabled-btn'));
                 completedQuestions.add(index);
