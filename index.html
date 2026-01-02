@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -17,37 +18,58 @@
         .wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
         .selected { border-width: 2px; border-color: #3b82f6; background-color: #eff6ff; }
         .hint-text { color: #6b7280; font-style: italic; font-size: 0.875rem; }
+        .disabled-btn { pointer-events: none; opacity: 0.8; }
+        
+        /* Toggle Switch Styling */
+        .switch { position: relative; display: inline-block; width: 50px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #2563eb; }
+        input:checked + .slider:before { transform: translateX(26px); }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-900">
 
     <div class="max-w-4xl mx-auto py-8 px-4">
         <!-- Header -->
-        <div class="bg-white rounded-xl shadow-md p-6 mb-8 text-center border-t-4 border-blue-600">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">Gıda Kimyası Sınav Simülasyonu</h1>
-            <p class="text-gray-600">PPTX ve PDF kaynaklarına göre hazırlanmış 100 Çoktan Seçmeli Soru</p>
-            <div class="mt-6 flex flex-wrap justify-center gap-4 no-print">
-                <button onclick="showResults()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition shadow-lg">
-                    Sonuçları Göster
-                </button>
-                <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition shadow-lg">
-                    Sınavı Yazdır / PDF Yap
-                </button>
-                <button onclick="location.reload()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-6 rounded-lg transition">
-                    Temizle / Yeniden Başla
-                </button>
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 border-t-4 border-blue-600">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2 text-center">Gıda Kimyası Sınav Simülasyonu</h1>
+            <p class="text-gray-600 text-center mb-6">PPTX ve PDF kaynaklarına göre hazırlanmış 100 Çoktan Seçmeli Soru</p>
+            
+            <div class="bg-blue-50 p-4 rounded-lg flex flex-col md:flex-row items-center justify-between gap-4 no-print">
+                <div class="flex items-center gap-3">
+                    <label class="switch">
+                        <input type="checkbox" id="instantToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="text-sm font-medium text-blue-800">Anında Geri Bildirim Modu</span>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-2">
+                    <button onclick="showResults()" class="bg-green-600 hover:bg-green-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition shadow">
+                        Sonuçları Göster (Manuel)
+                    </button>
+                    <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded-lg transition shadow">
+                        PDF Olarak Kaydet
+                    </button>
+                    <button onclick="location.reload()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm font-bold py-2 px-4 rounded-lg transition">
+                        Sıfırla
+                    </button>
+                </div>
             </div>
-            <div id="scoreDisplay" class="hidden mt-4 text-xl font-bold text-blue-700"></div>
+            
+            <div id="scoreDisplay" class="hidden mt-4 text-xl font-bold text-blue-700 text-center p-2 bg-blue-100 rounded"></div>
         </div>
 
         <!-- Quiz Container -->
         <div id="quiz-container" class="space-y-6">
-            <!-- Sorular Buraya JS ile Gelecek -->
+            <!-- Sorular JS ile buraya yüklenecek -->
         </div>
 
         <!-- Footer -->
-        <div class="mt-12 text-center text-gray-500 pb-12 no-print border-t pt-6">
-            <p>© 2024 Gıda Kimyası Çalışma Modülü - Başarılar Dileriz.</p>
+        <div class="mt-12 text-center text-gray-400 pb-12 no-print border-t pt-6 text-sm italic">
+            <p>Bu sınav interaktif olarak hazırlanmıştır. PDF alırken "İpuçları" gizlenecektir.</p>
         </div>
     </div>
 
@@ -113,7 +135,7 @@
             { q: "Betalainler hangi sebzeden elde edilir?", a: ["Havuç", "Pancar", "Ispanak", "Domates"], c: 1, h: "Kırmızı pancardaki pigmenttir." },
             { q: "Likopen hangi gıdaya kırmızı rengini verir?", a: ["Havuç", "Domates", "Vişne", "Marul"], c: 1, h: "Domatesin ana karotenoididir." },
             { q: "Allura Red nerede çok kullanılır?", a: ["Peynirler", "Şekerlemeler / İçecekler", "Zeytinyağı", "Ekmek"], c: 1, h: "Red 40 olarak da bilinir." },
-            { q: "FTIR yöntemi neyi analiz eder?", a: ["Sadece pH", "Fonksiyonel gruplar ve kimyasal bağlar", "Sadece renk", "Sadece kalori"], c: 1, h: "Kızılötesi spektrumunu kullanır." },
+            { q: "FTIR yöntemi neyi analiz eder?", a: ["Sadece pH", "Fonksiyonel gruplar ve kimyasal bağlar", "Sadece renk", "Sadece kalori"], c: 1, h: "Kızılötesi spektrumunu kullanira." },
             { q: "Cıva kirliliği hangi organı en çok etkiler?", a: ["Mide", "Sinir Sistemi / Beyin", "Akciğer", "Kemik"], c: 1, h: "Nörotoksik bir ağır metaldir." },
             { q: "Kadmiyum (Cd) kaynağı nedir?", a: ["Hava", "Gübre ve Sanayi Atıkları", "Su boruları", "Kıyafet"], c: 1, h: "Endüstriyel atıklardan toprağa geçer." },
             { q: "Akrilamid azaltma yolu nedir?", a: ["Sıcaklığı artırmak", "Sıcaklığı düşürmek (hafif pişirmek)", "Şeker artırmak", "Kurutmak"], c: 1, h: "Yüksek ısıda (120C+) oluşumu hızlanır." },
@@ -134,7 +156,7 @@
             { q: "Karotenoidler neyin öncüsüdür?", a: ["C", "D", "A Vitamini", "E"], c: 2, h: "Görme sağlığı için gereken vitamin." },
             { q: "D2 Vitamini kaynağı?", a: ["Hayvanlar", "Bitki sterolleri + UV Işığı", "Tuz", "Hava"], c: 1, h: "Ergokalsiferol." },
             { q: "Hangisi iz elementtir?", a: ["Magnezyum", "Selenyum", "Sodyum", "Potasyum"], c: 1, h: "Mikro miktarda ihtiyaç duyulan mineral." },
-            { q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1, h: "Elektron alıcısıdırlar." },
+            {q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1, h: "Elektron alıcısıdırlar." },
             { q: "Anemi hangi eksikliktedir?", a: ["Ca", "Demir (Fe)", "Mg", "K"], c: 1, h: "Kansızlık denince akla gelen mineral." },
             { q: "Filokinon (K1) en çok nerededir?", a: ["Süt", "Yeşil Yapraklı Sebzeler", "Meyve", "Kırmızı Et"], c: 1, h: "Ispanak ve lahana zengin kaynaklardır." },
             { q: "Annatto rengi?", a: ["Mavi", "Yeşil", "Sarı-Turuncu", "Beyaz"], c: 2, h: "Peynirlere turuncu renk vermek için kullanılır." },
@@ -157,12 +179,15 @@
 
         const quizContainer = document.getElementById('quiz-container');
         const scoreDisplay = document.getElementById('scoreDisplay');
+        const instantToggle = document.getElementById('instantToggle');
         let userAnswers = new Array(questions.length).fill(null);
+        let completedQuestions = new Set();
 
         function initQuiz() {
+            quizContainer.innerHTML = '';
             questions.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
-                questionDiv.className = "question-card bg-white p-6 rounded-xl shadow-sm border border-gray-200";
+                questionDiv.className = "question-card bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-all duration-300";
                 questionDiv.id = `q-card-${index}`;
 
                 const qTitle = document.createElement('h3');
@@ -172,6 +197,7 @@
 
                 const optionsGrid = document.createElement('div');
                 optionsGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-3";
+                optionsGrid.id = `options-${index}`;
 
                 q.a.forEach((opt, optIndex) => {
                     const btn = document.createElement('button');
@@ -190,11 +216,11 @@
                 
                 const hintBtn = document.createElement('button');
                 hintBtn.className = "text-xs text-blue-500 hover:text-blue-700 underline flex items-center gap-1 no-print";
-                hintBtn.innerHTML = "🔍 İpucu";
+                hintBtn.innerHTML = "🔍 İpucu Görüntüle";
                 hintBtn.onclick = () => toggleHint(index);
                 
                 const hintContent = document.createElement('p');
-                hintContent.className = "hint-text hidden mt-2 italic text-gray-500 bg-gray-50 p-2 rounded border border-dashed border-gray-200";
+                hintContent.className = "hint-text hidden mt-2 italic text-gray-500 bg-gray-50 p-3 rounded border border-dashed border-gray-200";
                 hintContent.id = `hint-${index}`;
                 hintContent.innerText = q.h;
                 
@@ -203,7 +229,7 @@
                 questionDiv.appendChild(hintDiv);
 
                 const feedback = document.createElement('p');
-                feedback.className = "hidden mt-4 font-bold result-text";
+                feedback.className = "hidden mt-4 font-bold result-text p-2 rounded text-center";
                 feedback.id = `feedback-${index}`;
                 questionDiv.appendChild(feedback);
 
@@ -217,43 +243,61 @@
         }
 
         function selectOption(qIdx, optIdx) {
+            // Eğer soru daha önce anında geri bildirim ile tamamlanmışsa tıklamayı reddet
+            if (completedQuestions.has(qIdx)) return;
+
             userAnswers[qIdx] = optIdx;
-            
             const buttons = document.querySelectorAll(`[id^="btn-${qIdx}-"]`);
-            buttons.forEach(b => b.classList.remove('selected', 'bg-blue-100', 'border-blue-500'));
             
+            // UI Update for selection
+            buttons.forEach(b => b.classList.remove('selected', 'bg-blue-100', 'border-blue-500'));
             const selectedBtn = document.getElementById(`btn-${qIdx}-${optIdx}`);
             selectedBtn.classList.add('selected', 'bg-blue-100', 'border-blue-500');
+
+            // Anında Geri Bildirim Modu Açıksa
+            if (instantToggle.checked) {
+                applyResultToQuestion(qIdx);
+                completedQuestions.add(qIdx);
+                // Diğer şıkları pasifleştir
+                buttons.forEach(b => b.classList.add('disabled-btn'));
+            }
+        }
+
+        function applyResultToQuestion(index) {
+            const q = questions[index];
+            const feedback = document.getElementById(`feedback-${index}`);
+            const correctIdx = q.c;
+            const userIdx = userAnswers[index];
+            
+            feedback.classList.remove('hidden');
+            const correctBtn = document.getElementById(`btn-${index}-${correctIdx}`);
+            correctBtn.classList.add('correct');
+
+            if (userIdx !== null && userIdx !== correctIdx) {
+                const wrongBtn = document.getElementById(`btn-${index}-${userIdx}`);
+                wrongBtn.classList.add('wrong');
+                feedback.innerText = "❌ Yanlış Cevap!";
+                feedback.className = "mt-4 font-bold text-red-700 bg-red-50 p-2 rounded text-center border border-red-200";
+            } else if (userIdx === correctIdx) {
+                feedback.innerText = "✅ Doğru!";
+                feedback.className = "mt-4 font-bold text-green-700 bg-green-50 p-2 rounded text-center border border-green-200";
+            }
         }
 
         function showResults() {
             let score = 0;
             questions.forEach((q, index) => {
-                const isCorrect = userAnswers[index] === q.c;
-                if(isCorrect) score++;
-
-                const feedback = document.getElementById(`feedback-${index}`);
-                feedback.classList.remove('hidden');
-
-                const correctBtn = document.getElementById(`btn-${index}-${q.c}`);
-                correctBtn.classList.add('correct');
-
-                if (userAnswers[index] !== null && !isCorrect) {
-                    const wrongBtn = document.getElementById(`btn-${index}-${userAnswers[index]}`);
-                    wrongBtn.classList.add('wrong');
-                    feedback.innerText = "❌ Yanlış Cevap!";
-                    feedback.className = "mt-4 font-bold text-red-600";
-                } else if (isCorrect) {
-                    feedback.innerText = "✅ Doğru!";
-                    feedback.className = "mt-4 font-bold text-green-600";
-                } else {
-                    feedback.innerText = "⚠️ Cevaplanmadı (Doğru Cevap İşaretlendi)";
-                    feedback.className = "mt-4 font-bold text-gray-500";
-                }
+                applyResultToQuestion(index);
+                if(userAnswers[index] === q.c) score++;
+                
+                // Tüm butonları pasifleştir
+                const buttons = document.querySelectorAll(`[id^="btn-${index}-"]`);
+                buttons.forEach(b => b.classList.add('disabled-btn'));
+                completedQuestions.add(index);
             });
 
             scoreDisplay.classList.remove('hidden');
-            scoreDisplay.innerText = `Sınav Tamamlandı! Toplam Puan: ${score} / ${questions.length}`;
+            scoreDisplay.innerText = `Sınav Sonucu: ${score} Doğru / ${questions.length} Soru (Başarı: %${(score/questions.length*100).toFixed(1)})`;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -261,5 +305,3 @@
     </script>
 </body>
 </html>
-
-
