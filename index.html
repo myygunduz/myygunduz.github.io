@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -12,10 +11,12 @@
             body { background: white; }
             .question-card { border: 1px solid #ccc; margin-bottom: 20px; page-break-inside: avoid; }
             .result-text { display: block !important; }
+            .hint-section { display: none !important; }
         }
         .correct { background-color: #d1fae5 !important; border-color: #10b981 !important; color: #065f46 !important; }
         .wrong { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #991b1b !important; }
         .selected { border-width: 2px; border-color: #3b82f6; background-color: #eff6ff; }
+        .hint-text { color: #6b7280; font-style: italic; font-size: 0.875rem; }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-900">
@@ -52,106 +53,106 @@
 
     <script>
         const questions = [
-            { q: "Gıdaların raf ömrünü uzatmak veya besin değerini iyileştirmek için eklenen maddelere ne ad verilir?", a: ["Gıda Kirleticileri", "Gıda Katkı Maddeleri", "Gıda Hammaddeleri", "Gıda Atıkları"], c: 1 },
-            { q: "'E200-E299' aralığındaki kodlar hangi katkı maddesi sınıfını temsil eder?", a: ["Renklendiriciler", "Antioksidanlar", "Koruyucular", "Tatlandırıcılar"], c: 2 },
-            { q: "Aşağıdakilerden hangisi bir antioksidandır?", a: ["Sodyum benzoat", "Askorbik asit (C vitamini)", "Tartrazin", "Aspartam"], c: 1 },
-            { q: "Yağ ve su gibi karışmayan bileşenleri birleştiren katkı maddelerine ne denir?", a: ["Emülgatörler", "Stabilizatörler", "Tatlandırıcılar", "Koruyucular"], c: 0 },
-            { q: "Peynir ve yoğurt gibi ürünlerde küf ve maya büyümesini engellemek için yaygın kullanılan koruyucu hangisidir?", a: ["Sülfitler", "Nitratlar", "Sorbik asit ve türevleri", "BHA"], c: 2 },
-            { q: "İşlenmiş et ürünlerine (salam, sosis) kırmızı rengini veren ve bakteri üremesini engelleyen madde hangisidir?", a: ["Sodyum benzoat", "Nitrit ve Nitratlar", "Kurkumin", "Lesitin"], c: 1 },
-            { q: "'ADI' kısaltmasının açılımı nedir?", a: ["Aktif Doz İndeksi", "Kabul Edilebilir Günlük Alım", "Analitik Değerleme İndikatörü", "Azami Doz İhtiyacı"], c: 1 },
-            { q: "Yağların acılaşmasını (oksidasyonu) önlemek için kullanılan sentetik antioksidan hangisidir?", a: ["Tokoferol", "BHA (Butilenmiş Hidroksianisol)", "Sitrik asit", "Sükraloz"], c: 1 },
-            { q: "Zerdeçaldan elde edilen doğal sarı renklendirici (E100) hangisidir?", a: ["Klorofil", "Karmoisin", "Kurkumin", "Annatto"], c: 2 },
-            { q: "Şekerden yaklaşık 200 kat daha tatlı olan ve diyet içeceklerde yaygın kullanılan tatlandırıcı hangisidir?", a: ["Sakarin", "Stevia", "Aspartam", "Sükraloz"], c: 2 },
-            { q: "Soya fasulyesi veya yumurta sarısından elde edilen doğal emülgatör hangisidir?", a: ["Karagenan", "Lesitin", "Polisorbat", "Sodyum aljinat"], c: 1 },
-            { q: "Kırmızı deniz yosunlarından elde edilen ve sütlü tatlılarda jelleştirme sağlayan emülgatör/stabilizatör hangisidir?", a: ["Mono ve digliseritler", "Lesitin", "Karagenan", "Pektin"], c: 2 },
-            { q: "Aşağıdakilerden hangisi gıdalardaki oksidasyonu hızlandıran bir 'prooksidan' gibi davranabilir?", a: ["E vitamini", "Demir veya Bakır iyonları", "EDTA", "C vitamini"], c: 1 },
-            { q: "1856 yılında keşfedilen ilk sentetik boya hangisidir?", a: ["Allura Red", "Mauveine (Mor)", "Tartrazin", "Sunset Yellow"], c: 1 },
-            { q: "'E102' koduyla bilinen, hassas bireylerde hiperaktivite ve alerjiyle ilişkilendirilen sarı boya hangisidir?", a: ["Kurkumin", "Karmoisin", "Tartrazin", "Brilliant Blue"], c: 2 },
-            { q: "Havuç ve tatlı patates gibi sebzelerden elde edilen turuncu renkli doğal boya hangisidir?", a: ["Beta-karoten", "Klorofil", "Antosiyanin", "Betalain"], c: 0 },
-            { q: "Koşnil (Cochineal) böceğinden elde edilen kırmızı doğal boya hangisidir?", a: ["Annatto", "Karmine (E120)", "Karmoisin", "Allura Red"], c: 1 },
-            { q: "Doğal boyaların analizi için kullanılan 'yüksek hassasiyetli' yöntem hangisidir?", a: ["TLC (İnce Tabaka Kromatografisi)", "HPLC (Yüksek Performanslı Sıvı Kromatografisi)", "Basit süzme", "Santrifüj"], c: 1 },
-            { q: "Bitkilerde bulunan yeşil pigment hangisidir?", a: ["Likopen", "Lutein", "Klorofil", "Karoten"], c: 2 },
-            { q: "Gıdalara üretim veya işleme sırasında dışarıdan bulaşan istenmeyen maddelere ne denir?", a: ["Katkı maddeleri", "Kirleticiler", "Mikrobesinler", "Aromalar"], c: 1 },
-            { q: "Japonya'da cıva ile kirlenmiş deniz ürünlerinin tüketimiyle ortaya çıkan hastalık hangisidir?", a: ["İtai-itai", "Minamata", "Beriberi", "Pellagra"], c: 1 },
-            { q: "Karbonhidrat içeren gıdaların yüksek sıcaklıkta kızartılması sonucu oluşan kimyasal kirletici hangisidir?", a: ["Akrilamid", "Dioksin", "Aflatoksin", "PCB"], c: 0 },
-            { q: "Küf mantarları tarafından üretilen (örneğin kuruyemişlerde oluşan) zehirli maddelere ne ad verilir?", a: ["Pestisitler", "Mikotoksinler", "Ağır metaller", "Herbisitler"], c: 1 },
-            { q: "Rachel Carson’ın 'Sessiz Bahar' kitabı hangi kirletici türünün zararlarına dikkat çekmiştir?", a: ["Ağır metaller", "Pestisitler (DDT vb.)", "Mikroplastikler", "Gıda boyaları"], c: 1 },
-            { q: "Konserve kutularının iç kaplamasında ve polikarbonat plastiklerde bulunan endokrin bozucu kimyasal hangisidir?", a: ["Ftalat", "Bisfenol A (BPA)", "Dioksin", "Kurşun"], c: 1 },
-            { q: "Deniz ürünlerinde, özellikle büyük balıklarda birikme riski en yüksek olan ağır metal hangisidir?", a: ["Demir", "Cıva", "Kalsiyum", "Magnezyum"], c: 1 },
-            { q: "Yabani otları yok etmek için kullanılan tarım ilacı alt grubu hangisidir?", a: ["İnsektisit", "Fungisit", "Herbisit", "Rodentisit"], c: 2 },
-            { q: "'MRL' terimi gıda güvenliğinde neyi ifade eder?", a: ["Minimum Reaksiyon Limiti", "Maksimum Kalıntı Limiti", "Mutlak Risk Limiti", "Mikrobiyolojik Referans Listesi"], c: 1 },
-            { q: "Aşağıdakilerden hangisi fiziksel bir kirleticidir?", a: ["Pestisit kalıntısı", "Cam kırığı", "Salmonella bakterisi", "Kurşun"], c: 1 },
-            { q: "Proteinlerin temel yapı taşları aşağıdakilerden hangisidir?", a: ["Yağ asitleri", "Glikoz", "Amino asitler", "Nükleotitler"], c: 2 },
-            { q: "Proteinlerin birincil (primer) yapısında hangi bağlar hakimdir?", a: ["Hidrojen bağları", "Peptit (Amit) bağları", "Van der Waals bağları", "İyonik bağlar"], c: 1 },
-            { q: "Aşağıdakilerden hangisi yağda çözünen bir vitamindir?", a: ["B1 Vitamini", "C Vitamini", "E Vitamini", "B12 Vitamini"], c: 2 },
-            { q: "Gece körlüğü hangi vitaminin eksikliğinde görülür?", a: ["A Vitamini", "D Vitamini", "K Vitamini", "B6 Vitamini"], c: 0 },
-            { q: "Güneş ışığı yardımıyla deride sentezlenebilen vitamin hangisidir?", a: ["C Vitamini", "E Vitamini", "D Vitamini", "A Vitamini"], c: 2 },
-            { q: "Güçlü bir antioksidan olan ve hücre zarlarını koruyan yağda çözünen vitamin hangisidir?", a: ["B2 Vitamini", "E Vitamini", "B12 Vitamini", "K Vitamini"], c: 1 },
-            { q: "Kanın pıhtılaşmasında görev alan vitamin hangisidir?", a: ["A Vitamini", "C Vitamini", "K Vitamini", "D Vitamini"], c: 2 },
-            { q: "Tiamin olarak da bilinen vitamin hangisidir?", a: ["B1", "B2", "B3", "B5"], c: 0 },
-            { q: "'Anti-pellagra' faktörü olarak bilinen vitamin hangisidir?", a: ["Riboflavin", "Niasin (B3)", "Folik asit", "Pantotenik asit"], c: 1 },
-            { q: "Gebelikte eksikliği 'nöral tüp defekti' riskini artıran vitamin hangisidir?", a: ["B12", "Folik Asit (B9)", "Biyotin", "C Vitamini"], c: 1 },
-            { q: "Sadece hayvansal gıdalarda bulunan ve kobalt içeren vitamin hangisidir?", a: ["B1", "C", "B12 (Kobalamin)", "B6"], c: 2 },
-            { q: "İskorbüt hastalığı hangi vitaminin eksikliğinde görülür?", a: ["A", "B12", "C (Askorbik Asit)", "E"], c: 2 },
-            { q: "Minerallerden hangisi vücutta 'makro element' (>50mg/gün) olarak sınıflandırılır?", a: ["Demir (Fe)", "Çinko (Zn)", "Kalsiyum (Ca)", "İyot (I)"], c: 2 },
-            { q: "Yeşil sebzelerden magnezyumun uzaklaştırılması rengi neye dönüştürür?", a: ["Parlak yeşil", "Zeytin kahverengisi", "Sarı", "Mor"], c: 1 },
-            { q: "Peynir üretiminde emülsifikasyona yardımcı olan mineral bileşiği hangisidir?", a: ["Klorürler", "Fosfatlar", "Sülfatlar", "İyodürler"], c: 1 },
-            { q: "Et ürünlerinde su bağlama kapasitesini en çok etkileyen eser element hangisidir?", a: ["Çinko (Zn)", "Bakır (Cu)", "Manganez (Mn)", "Flor"], c: 0 },
-            { q: "Guatr hastalığı hangi mineralin eksikliği ile ilişkilidir?", a: ["Demir", "İyot", "Magnezyum", "Potasyum"], c: 1 },
-            { q: "Bitkisel yağların hidrojenasyonunda katalizör olarak kullanılan metal hangisidir?", a: ["Demir", "Nikel (Ni)", "Bakır", "Altın"], c: 1 },
-            { q: "Şarap üretiminde antimikrobiyal ve esmerleşmeyi önleyici olarak kullanılan madde hangisidir?", a: ["Kalsiyum karbonat", "Kükürt dioksit (SO2)", "Sodyum klorür", "Magnezyum sülfat"], c: 1 },
-            { q: "Amino asitlerin hangi özelliği gıdanın fiziko-kimyasal yapısını belirler?", a: ["Sadece renkleri", "Yan zincirlerin (R grubu) kimyasal yapısı", "Sadece tadı", "Molekül ağırlığı"], c: 1 },
-            { q: "Gıda boyalarının E-kodu aralığı hangisidir?", a: ["E100-E199", "E200-E299", "E300-E399", "E400-E499"], c: 0 },
-            { q: "EFSA nedir?", a: ["Gıda Denetleme Birimi", "Avrupa Gıda Güvenliği Otoritesi", "Birleşik Gıda Örgütü", "Dünya Sağlık Teşkilatı"], c: 1 },
-            { q: "Sülfitler hangi gıdalarda renk korunması için kullanılır?", a: ["Taze et", "Kurutulmuş meyveler", "Süt", "Yumurta"], c: 1 },
-            { q: "BHT ve BHA tüketimi hangi riskle tartışılmaktadır?", a: ["Diş çürüğü", "Kanser riski", "Görme kaybı", "Kemik erimesi"], c: 1 },
-            { q: "Gazlı içeceklerde yaygın kullanılan lezzet asidi hangisidir?", a: ["Sülfürik", "Sitrik", "Hidroklorik", "Nitrik"], c: 1 },
-            { q: "Stevia bitkisinin en büyük özelliği nedir?", a: ["Yüksek kalorili olması", "Doğal ve sıfır kalorili olması", "Sentetik olması", "Mavi olması"], c: 1 },
-            { q: "E471 (Mono ve digliseritler) ne yapar?", a: ["Renklendirir", "Doku iyileştirir / bayatlamayı geciktirir", "Tat verir", "Vitamin artırır"], c: 1 },
-            { q: "Lesitin kaynağı hangisidir?", a: ["Soya / Yumurta", "Deniz yosunu", "Havuç", "Pancar"], c: 0 },
-            { q: "Betalainler hangi sebzeden elde edilir?", a: ["Havuç", "Pancar", "Ispanak", "Domates"], c: 1 },
-            { q: "Likopen hangi gıdaya kırmızı rengini verir?", a: ["Havuç", "Domates", "Vişne", "Marul"], c: 1 },
-            { q: "Allura Red nerede çok kullanılır?", a: ["Peynirler", "Şekerlemeler / İçecekler", "Zeytinyağı", "Ekmek"], c: 1 },
-            { q: "FTIR yöntemi neyi analiz eder?", a: ["Sadece pH", "Fonksiyonel gruplar ve kimyasal bağlar", "Sadece renk", "Sadece kalori"], c: 1 },
-            { q: "Cıva kirliliği hangi organı en çok etkiler?", a: ["Mide", "Sinir Sistemi / Beyin", "Akciğer", "Kemik"], c: 1 },
-            { q: "Kadmiyum (Cd) kaynağı nedir?", a: ["Hava", "Gübre ve Sanayi Atıkları", "Su boruları", "Kıyafet"], c: 1 },
-            { q: "Akrilamid azaltma yolu nedir?", a: ["Sıcaklığı artırmak", "Sıcaklığı düşürmek (hafif pişirmek)", "Şeker artırmak", "Kurutmak"], c: 1 },
-            { q: "Cam kırığı gıdada nedir?", a: ["Kimyasal kirletici", "Biyolojik kirletici", "Fiziksel kirletici", "Tatlandırıcı"], c: 2 },
-            { q: "Codex Alimentarius'u kim kurdu?", a: ["Türkiye", "FAO ve WHO", "AB", "NATO"], c: 1 },
-            { q: "Suda çözünen vitaminler nasıl atılır?", a: ["Karaciğerde saklanır", "İdrarla atılır", "Yağda birikir", "Kemikte saklanır"], c: 1 },
-            { q: "B2 Vitamini rengi nedir?", a: ["Kırmızı", "Mavi", "Parlak Sarı", "Renksiz"], c: 2 },
-            { q: "Pantotenik asit kodu?", a: ["B1", "B5", "B9", "C"], c: 1 },
-            { q: "Biyotin (B7) ne yapar?", a: ["Oksitler", "Karboksilasyon koenzimidir", "Hidroliz yapar", "Parçalar"], c: 1 },
-            { q: "C vitamini fonksiyonalitesi?", a: ["Tatlandırıcı", "Enzimatik esmerleşmeyi önler", "Renk verir", "Kıvam artırır"], c: 1 },
-            { q: "Elektrolit dengesi için en önemli mineral?", a: ["Sodyum (Na)", "Demir (Fe)", "Bakır (Cu)", "Flor (F)"], c: 0 },
-            { q: "Kalsiyum + Oksalat birleşirse ne olur?", a: ["Çok çözünür", "Çözünmez yapı oluşur", "Gaz çıkar", "Vitamin olur"], c: 1 },
-            { q: "Şelat (Chele) ne demek?", a: ["Halka", "Pençe", "Zincir", "Köprü"], c: 1 },
-            { q: "Peptit bağı amino asitlerde hangi yapıdadır?", a: ["Primer", "Sekonder", "Tersiyer", "Kuarterner"], c: 0 },
-            { q: "Nitrozaminler ne zaman oluşur?", a: ["Dondurulunca", "Nitritli etler yüksek ısıda pişince", "Yıkanınca", "Güneşte"], c: 1 },
-            { q: "BPA nerede bulunur?", a: ["Kağıt", "Sert plastik / Konserve iç kaplaması", "Cam", "Bez"], c: 1 },
-            { q: "En az suda çözünen 'suda çözünen vitamin'?", a: ["B1", "B12", "C", "B6"], c: 1 },
-            { q: "Karotenoidler neyin öncüsüdür?", a: ["C", "D", "A Vitamini", "E"], c: 2 },
-            { q: "D2 Vitamini kaynağı?", a: ["Hayvanlar", "Bitki sterolleri + UV Işığı", "Tuz", "Hava"], c: 1 },
-            { q: "Hangisi iz elementtir?", a: ["Magnezyum", "Selenyum", "Sodyum", "Potasyum"], c: 1 },
-            { q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1 },
-            { q: "Anemi hangi eksikliktedir?", a: ["Ca", "Demir (Fe)", "Mg", "K"], c: 1 },
-            { q: "Filokinon (K1) en çok nerededir?", a: ["Süt", "Yeşil Yapraklı Sebzeler", "Meyve", "Kırmızı Et"], c: 1 },
-            { q: "Annatto rengi?", a: ["Mavi", "Yeşil", "Sarı-Turuncu", "Beyaz"], c: 2 },
-            { q: "Fenilketonüri (PKU) hastaları neyi tüketemez?", a: ["Şeker", "Aspartam", "Tuz", "Su"], c: 1 },
-            { q: "Tartrazin kodu?", a: ["E100", "E102", "E120", "E140"], c: 1 },
-            { q: "Salmonella nedir?", a: ["Kimyasal", "Fiziksel", "Biyolojik kirletici", "Aroma"], c: 2 },
-            { q: "Aflatoksin nereye saldırır?", a: ["Göz", "Karaciğer", "Tırnak", "Saç"], c: 1 },
-            { q: "Alfa-heliks hangi protein yapısıdır?", a: ["Primer", "Sekonder", "Tersiyer", "Hiçbiri"], c: 1 },
-            { q: "Minerallerin en belirgin özelliği?", a: ["Çabuk bozulmaları", "Isıya dayanıklı olmaları (yok edilemezler)", "Sıvı olmaları", "Renkli olmaları"], c: 1 },
-            { q: "DDT ne amaçla kullanılır(dı)?", a: ["Gübre", "İnsektisit (Böcek ilacı)", "Gıda boyası", "Tatlandırıcı"], c: 1 },
-            { q: "Sakarin sentetik midir?", a: ["Evet", "Hayır (Bitkisel)", "Doğal", "Aromadır"], c: 0 },
-            { q: "Emülgatör kod aralığı?", a: ["E100s", "E200s", "E400-E499", "E900s"], c: 2 },
-            { q: "Askorbil palmitat ne amaçla kullanılır?", a: ["Yağlarda oksidasyon önleyici", "Su boyası", "Tuzluk", "Koku"], c: 0 },
-            { q: "Nitrat/Nitrit etlerde hangi rengi korur?", a: ["Mavi", "Yeşil", "Kırmızı", "Siyah"], c: 2 },
-            { q: "EDTA ne yapar?", a: ["Boyar", "Şelat oluşturur (Metalleri bağlar)", "Tat verir", "Dondurur"], c: 1 },
-            { q: "B12 yapısındaki metal?", a: ["Demir", "Magnezyum", "Kobalt", "Bakır"], c: 2 },
-            { q: "HACCP neyi ifade eder?", a: ["Yemek Tarifi", "Tehlike Analizi ve Kritik Kontrol Noktaları", "Hızlı Üretim", "Pazarlama"], c: 1 },
-            { q: "Gıda Kimyasının ana odağı nedir?", a: ["Pazarlama", "Bileşenler, reaksiyonlar ve güvenlik", "Dekorasyon", "Tarım teknikleri"], c: 1 }
+            { q: "Gıdaların raf ömrünü uzatmak veya besin değerini iyileştirmek için eklenen maddelere ne ad verilir?", a: ["Gıda Kirleticileri", "Gıda Katkı Maddeleri", "Gıda Hammaddeleri", "Gıda Atıkları"], c: 1, h: "Doğal veya sentetik olarak eklenen iyileştiricilerdir." },
+            { q: "'E200-E299' aralığındaki kodlar hangi katkı maddesi sınıfını temsil eder?", a: ["Renklendiriciler", "Antioksidanlar", "Koruyucular", "Tatlandırıcılar"], c: 2, h: "Mikrobiyal bozulmayı önleyen grup." },
+            { q: "Aşağıdakilerden hangisi bir antioksidandır?", a: ["Sodyum benzoat", "Askorbik asit (C vitamini)", "Tartrazin", "Aspartam"], c: 1, h: "Oksidasyonu engelleyen C vitamini formudur." },
+            { q: "Yağ ve su gibi karışmayan bileşenleri birleştiren katkı maddelerine ne denir?", a: ["Emülgatörler", "Stabilizatörler", "Tatlandırıcılar", "Koruyucular"], c: 0, h: "Lesitin bu grubun en bilinen örneğidir." },
+            { q: "Peynir ve yoğurt gibi ürünlerde küf ve maya büyümesini engellemek için yaygın kullanılan koruyucu hangisidir?", a: ["Sülfitler", "Nitratlar", "Sorbik asit ve türevleri", "BHA"], c: 2, h: "E200 serisinden maya/küf karşıtı madde." },
+            { q: "İşlenmiş et ürünlerine (salam, sosis) kırmızı rengini veren ve bakteri üremesini engelleyen madde hangisidir?", a: ["Sodyum benzoat", "Nitrit ve Nitratlar", "Kurkumin", "Lesitin"], c: 1, h: "Kürleme işlemlerinde kullanılır (E249-E252)." },
+            { q: "'ADI' kısaltmasının açılımı nedir?", a: ["Aktif Doz İndeksi", "Kabul Edilebilir Günlük Alım", "Analitik Değerleme İndikatörü", "Azami Doz İhtiyacı"], c: 1, h: "Acceptable Daily Intake." },
+            { q: "Yağların acılaşmasını (oksidasyonu) önlemek için kullanılan sentetik antioksidan hangisidir?", a: ["Tokoferol", "BHA (Butilenmiş Hidroksianisol)", "Sitrik asit", "Sükraloz"], c: 1, h: "Bitkisel yağlarda ve cipslerde yaygın kullanılır." },
+            { q: "Zerdeçaldan elde edilen doğal sarı renklendirici (E100) hangisidir?", a: ["Klorofil", "Karmoisin", "Kurkumin", "Annatto"], c: 2, h: "Turmeric bitkisinin pigmentidir." },
+            { q: "Şekerden yaklaşık 200 kat daha tatlı olan ve diyet içeceklerde yaygın kullanılan tatlandırıcı hangisidir?", a: ["Sakarin", "Stevia", "Aspartam", "Sükraloz"], c: 2, h: "E951 kodlu sentetik tatlandırıcı." },
+            { q: "Soya fasulyesi veya yumurta sarısından elde edilen doğal emülgatör hangisidir?", a: ["Karagenan", "Lesitin", "Polisorbat", "Sodyum aljinat"], c: 1, h: "Çikolatanın akışkanlığını sağlayan madde." },
+            { q: "Kırmızı deniz yosunlarından elde edilen ve sütlü tatlılarda jelleştirme sağlayan emülgatör/stabilizatör hangisidir?", a: ["Mono ve digliseritler", "Lesitin", "Karagenan", "Pektin"], c: 2, h: "E407 kodlu deniz yosunu ekstraktı." },
+            { q: "Aşağıdakilerden hangisi gıdalardaki oksidasyonu hızlandıran bir 'prooksidan' gibi davranabilir?", a: ["E vitamini", "Demir veya Bakır iyonları", "EDTA", "C vitamini"], c: 1, h: "Ağır metal iyonları oksidasyonu katalizler." },
+            { q: "1856 yılında keşfedilen ilk sentetik boya hangisidir?", a: ["Allura Red", "Mauveine (Mor)", "Tartrazin", "Sunset Yellow"], c: 1, h: "W. Henry Perkin tarafından kazara bulundu." },
+            { q: "'E102' koduyla bilinen, hassas bireylerde hiperaktivite ve alerjiyle ilişkilendirilen sarı boya hangisidir?", a: ["Kurkumin", "Karmoisin", "Tartrazin", "Brilliant Blue"], c: 2, h: "Yellow 5 olarak da adlandırılır." },
+            { q: "Havuç ve tatlı patates gibi sebzelerden elde edilen turuncu renkli doğal boya hangisidir?", a: ["Beta-karoten", "Klorofil", "Antosiyanin", "Betalain"], c: 0, h: "Havuçtaki ana pigmenttir." },
+            { q: "Koşnil (Cochineal) böceğinden elde edilen kırmızı doğal boya hangisidir?", a: ["Annatto", "Karmine (E120)", "Karmoisin", "Allura Red"], c: 1, h: "E120 kodlu böcek pigmenti." },
+            { q: "Doğal boyaların analizi için kullanılan 'yüksek hassasiyetli' yöntem hangisidir?", a: ["TLC (İnce Tabaka Kromatografisi)", "HPLC (Yüksek Performanslı Sıvı Kromatografisi)", "Basit süzme", "Santrifüj"], c: 1, h: "Ayrıştırma ve konsantrasyon ölçümü için standart cihaz." },
+            { q: "Bitkilerde bulunan yeşil pigment hangisidir?", a: ["Likopen", "Lutein", "Klorofil", "Karoten"], c: 2, h: "Yapraklara rengini veren madde." },
+            { q: "Gıdalara üretim veya işleme sırasında dışarıdan bulaşan istenmeyen maddelere ne denir?", a: ["Katkı maddeleri", "Kirleticiler", "Mikrobesinler", "Aromalar"], c: 1, h: "Dışarıdan istenmeden bulaşan zararlılar." },
+            { q: "Japonya'da cıva ile kirlenmiş deniz ürünlerinin tüketimiyle ortaya çıkan hastalık hangisidir?", a: ["İtai-itai", "Minamata", "Beriberi", "Pellagra"], c: 1, h: "Cıva (Hg) zehirlenmesi hastalığı." },
+            { q: "Karbonhidrat içeren gıdaların yüksek sıcaklıkta kızartılması sonucu oluşan kimyasal kirletici hangisidir?", a: ["Akrilamid", "Dioksin", "Aflatoksin", "PCB"], c: 0, h: "Patates kızartması ve kahvede ısısal işlemle oluşur." },
+            { q: "Küf mantarları tarafından üretilen (örneğin kuruyemişlerde oluşan) zehirli maddelere ne ad verilir?", a: ["Pestisitler", "Mikotoksinler", "Ağır metaller", "Herbisitler"], c: 1, h: "Myco (mantar) kökenli toksinlerdir." },
+            { q: "Rachel Carson’ın 'Sessiz Bahar' kitabı hangi kirletici türünün zararlarına dikkat çekmiştir?", a: ["Ağır metaller", "Pestisitler (DDT vb.)", "Mikroplastikler", "Gıda boyaları"], c: 1, h: "Tarımsal ilaçların doğaya etkisini anlatır." },
+            { q: "Konserve kutularının iç kaplamasında ve polikarbonat plastiklerde bulunan endokrin bozucu kimyasal hangisidir?", a: ["Ftalat", "Bisfenol A (BPA)", "Dioksin", "Kurşun"], c: 1, h: "BPA olarak kısaltılır." },
+            { q: "Deniz ürünlerinde, özellikle büyük balıklarda birikme riski en yüksek olan ağır metal hangisidir?", a: ["Demir", "Cıva", "Kalsiyum", "Magnezyum"], c: 1, h: "Büyük balıklarda biyobirikimi fazladır." },
+            { q: "Yabani otları yok etmek için kullanılan tarım ilacı alt grubu hangisidir?", a: ["İnsektisit", "Fungisit", "Herbisit", "Rodentisit"], c: 2, h: "Herb (ot) yok edici." },
+            { q: "'MRL' terimi gıda güvenliğinde neyi ifade eder?", a: ["Minimum Reaksiyon Limiti", "Maksimum Kalıntı Limiti", "Mutlak Risk Limiti", "Mikrobiyolojik Referans Listesi"], c: 1, h: "Maximum Residue Limit." },
+            { q: "Aşağıdakilerden hangisi fiziksel bir kirleticidir?", a: ["Pestisit kalıntısı", "Cam kırığı", "Salmonella bakterisi", "Kurşun"], c: 1, h: "Gözle görülebilir yabancı madde." },
+            { q: "Proteinlerin temel yapı taşları aşağıdakilerden hangisidir?", a: ["Yağ asitleri", "Glikoz", "Amino asitler", "Nükleotitler"], c: 2, h: "Peptit bağlarıyla bağlanan birimler." },
+            { q: "Proteinlerin birincil (primer) yapısında hangi bağlar hakimdir?", a: ["Hidrojen bağları", "Peptit (Amit) bağları", "Van der Waals bağları", "İyonik bağlar"], c: 1, h: "Kovalent karakterli ana bağlardır." },
+            { q: "Aşağıdakilerden hangisi yağda çözünen bir vitamindir?", a: ["B1 Vitamini", "C Vitamini", "E Vitamini", "B12 Vitamini"], c: 2, h: "A, D, E, K vitaminleri grubundadır." },
+            { q: "Gece körlüğü hangi vitaminin eksikliğinde görülür?", a: ["A Vitamini", "D Vitamini", "K Vitamini", "B6 Vitamini"], c: 0, h: "Retinol eksikliği belirtisidir." },
+            { q: "Güneş ışığı yardımıyla deride sentezlenebilen vitamin hangisidir?", a: ["C Vitamini", "E Vitamini", "D Vitamini", "A Vitamini"], c: 2, h: "Kalsiyum emilimi için gereklidir." },
+            { q: "Güçlü bir antioksidan olan ve hücre zarlarını koruyan yağda çözünen vitamin hangisidir?", a: ["B2 Vitamini", "E Vitamini", "B12 Vitamini", "K Vitamini"], c: 1, h: "Tokoferol formunda bulunur." },
+            { q: "Kanın pıhtılaşmasında görev alan vitamin hangisidir?", a: ["A Vitamini", "C Vitamini", "K Vitamini", "D Vitamini"], c: 2, h: "Eksikliğinde pıhtılaşma gecikir." },
+            { q: "Tiamin olarak da bilinen vitamin hangisidir?", a: ["B1", "B2", "B3", "B5"], c: 0, h: "B grubu vitaminlerinin birincisidir." },
+            { q: "'Anti-pellagra' faktörü olarak bilinen vitamin hangisidir?", a: ["Riboflavin", "Niasin (B3)", "Folik asit", "Pantotenik asit"], c: 1, h: "B3 vitamini eksikliği pellagra yapar." },
+            { q: "Gebelikte eksikliği 'nöral tüp defekti' riskini artıran vitamin hangisidir?", a: ["B12", "Folik Asit (B9)", "Biyotin", "C Vitamini"], c: 1, h: "B9 vitamini desteği kritiktir." },
+            { q: "Sadece hayvansal gıdalarda bulunan ve kobalt içeren vitamin hangisidir?", a: ["B1", "C", "B12 (Kobalamin)", "B6"], c: 2, h: "Vegan diyette eksikliği görülür." },
+            { q: "İskorbüt hastalığı hangi vitaminin eksikliğinde görülür?", a: ["A", "B12", "C (Askorbik Asit)", "E"], c: 2, h: "Taze meyve/sebze tüketilmeyince oluşur." },
+            { q: "Minerallerden hangisi vücutta 'makro element' (>50mg/gün) olarak sınıflandırılır?", a: ["Demir (Fe)", "Çinko (Zn)", "Kalsiyum (Ca)", "İyot (I)"], c: 2, h: "Kemiklerin ana yapısını oluşturur." },
+            { q: "Yeşil sebzelerden magnezyumun uzaklaştırılması rengi neye dönüştürür?", a: ["Parlak yeşil", "Zeytin kahverengisi", "Sarı", "Mor"], c: 1, h: "Klorofil merkezindeki Mg çıkarsa renk solar." },
+            { q: "Peynir üretiminde emülsifikasyona yardımcı olan mineral bileşiği hangisidir?", a: ["Klorürler", "Fosfatlar", "Sülfatlar", "İyodürler"], c: 1, h: "Fosfor içeren tuzlar." },
+            { q: "Et ürünlerinde su bağlama kapasitesini en çok etkileyen eser element hangisidir?", a: ["Çinko (Zn)", "Bakır (Cu)", "Manganez (Mn)", "Flor"], c: 0, h: "Zn sembollü eser mineral." },
+            { q: "Guatr hastalığı hangi mineralin eksikliği ile ilişkilidir?", a: ["Demir", "İyot", "Magnezyum", "Potasyum"], c: 1, h: "Tiroit hormonları için gereklidir." },
+            { q: "Bitkisel yağların hidrojenasyonunda katalizör olarak kullanılan metal hangisidir?", a: ["Demir", "Nikel (Ni)", "Bakır", "Altın"], c: 1, h: "Ni sembollü metal." },
+            { q: "Şarap üretiminde antimikrobiyal ve esmerleşmeyi önleyici olarak kullanılan madde hangisidir?", a: ["Kalsiyum karbonat", "Kükürt dioksit (SO2)", "Sodyum klorür", "Magnezyum sülfat"], c: 1, h: "Sülfitler sınıfındandır." },
+            { q: "Amino asitlerin hangi özelliği gıdanın fiziko-kimyasal yapısını belirler?", a: ["Sadece renkleri", "Yan zincirlerin (R grubu) kimyasal yapısı", "Sadece tadı", "Molekül ağırlığı"], c: 1, h: "R grubunun polaritesi ve yapısı önemlidir." },
+            { q: "Gıda boyalarının E-kodu aralığı hangisidir?", a: ["E100-E199", "E200-E299", "E300-E399", "E400-E499"], c: 0, h: "Listenin en başındaki gruptur." },
+            { q: "EFSA nedir?", a: ["Gıda Denetleme Birimi", "Avrupa Gıda Güvenliği Otoritesi", "Birleşik Gıda Örgütü", "Dünya Sağlık Teşkilatı"], c: 1, h: "European Food Safety Authority." },
+            { q: "Sülfitler hangi gıdalarda renk korunması için kullanılır?", a: ["Taze et", "Kurutulmuş meyveler", "Süt", "Yumurta"], c: 1, h: "Kayısı gibi kurutulmuş meyvelerde sarı rengi korur." },
+            { q: "BHT ve BHA tüketimi hangi riskle tartışılmaktadır?", a: ["Diş çürüğü", "Kanser riski", "Görme kaybı", "Kemik erimesi"], c: 1, h: "Sentetik antioksidanların karsinojenik potansiyeli." },
+            { q: "Gazlı içeceklerde yaygın kullanılan lezzet asidi hangisidir?", a: ["Sülfürik", "Sitrik", "Hidroklorik", "Nitrik"], c: 1, h: "E330 kodlu meyve asidi." },
+            { q: "Stevia bitkisinin en büyük özelliği nedir?", a: ["Yüksek kalorili olması", "Doğal ve sıfır kalorili olması", "Sentetik olması", "Mavi olması"], c: 1, h: "Bitkisel kaynaklı bir şeker ikamesidir." },
+            { q: "E471 (Mono ve digliseritler) ne yapar?", a: ["Renklendirir", "Doku iyileştirir / bayatlamayı geciktirir", "Tat verir", "Vitamin artırır"], c: 1, h: "Fırın ürünlerinde yumuşaklığı korur." },
+            { q: "Lesitin kaynağı hangisidir?", a: ["Soya / Yumurta", "Deniz yosunu", "Havuç", "Pancar"], c: 0, h: "Doğal bir fosfolipittir." },
+            { q: "Betalainler hangi sebzeden elde edilir?", a: ["Havuç", "Pancar", "Ispanak", "Domates"], c: 1, h: "Kırmızı pancardaki pigmenttir." },
+            { q: "Likopen hangi gıdaya kırmızı rengini verir?", a: ["Havuç", "Domates", "Vişne", "Marul"], c: 1, h: "Domatesin ana karotenoididir." },
+            { q: "Allura Red nerede çok kullanılır?", a: ["Peynirler", "Şekerlemeler / İçecekler", "Zeytinyağı", "Ekmek"], c: 1, h: "Red 40 olarak da bilinir." },
+            { q: "FTIR yöntemi neyi analiz eder?", a: ["Sadece pH", "Fonksiyonel gruplar ve kimyasal bağlar", "Sadece renk", "Sadece kalori"], c: 1, h: "Kızılötesi spektrumunu kullanır." },
+            { q: "Cıva kirliliği hangi organı en çok etkiler?", a: ["Mide", "Sinir Sistemi / Beyin", "Akciğer", "Kemik"], c: 1, h: "Nörotoksik bir ağır metaldir." },
+            { q: "Kadmiyum (Cd) kaynağı nedir?", a: ["Hava", "Gübre ve Sanayi Atıkları", "Su boruları", "Kıyafet"], c: 1, h: "Endüstriyel atıklardan toprağa geçer." },
+            { q: "Akrilamid azaltma yolu nedir?", a: ["Sıcaklığı artırmak", "Sıcaklığı düşürmek (hafif pişirmek)", "Şeker artırmak", "Kurutmak"], c: 1, h: "Yüksek ısıda (120C+) oluşumu hızlanır." },
+            { q: "Cam kırığı gıdada nedir?", a: ["Kimyasal kirletici", "Biyolojik kirletici", "Fiziksel kirletici", "Tatlandırıcı"], c: 2, h: "Cansız ve sert bir yabancı cisim." },
+            { q: "Codex Alimentarius'u kim kurdu?", a: ["Türkiye", "FAO ve WHO", "AB", "NATO"], c: 1, h: "Uluslararası standartlar komisyonudur." },
+            { q: "Suda çözünen vitaminler nasıl atılır?", a: ["Karaciğerde saklanır", "İdrarla atılır", "Yağda birikir", "Kemikte saklanır"], c: 1, h: "Günlük olarak dışarı atılırlar." },
+            { q: "B2 Vitamini rengi nedir?", a: ["Kırmızı", "Mavi", "Parlak Sarı", "Renksiz"], c: 2, h: "Riboflavin rengidir." },
+            { q: "Pantotenik asit kodu?", a: ["B1", "B5", "B9", "C"], c: 1, h: "B5 vitamini." },
+            { q: "Biyotin (B7) ne yapar?", a: ["Oksitler", "Karboksilasyon koenzimidir", "Hidroliz yapar", "Parçalar"], c: 1, h: "Yağ asidi sentezinde rol oynar." },
+            { q: "C vitamini fonksiyonalitesi?", a: ["Tatlandırıcı", "Enzimatik esmerleşmeyi önler", "Renk verir", "Kıvam artırır"], c: 1, h: "Askorbik asit meyvelerin kararmasını önler." },
+            { q: "Elektrolit dengesi için en önemli mineral?", a: ["Sodyum (Na)", "Demir (Fe)", "Bakır (Cu)", "Flor (F)"], c: 0, h: "Hücre dışı ana katyondur." },
+            { q: "Kalsiyum + Oksalat birleşirse ne olur?", a: ["Çok çözünür", "Çözünmez yapı oluşur", "Gaz çıkar", "Vitamin olur"], c: 1, h: "Böbrek taşlarının ana nedenidir." },
+            { q: "Şelat (Chele) ne demek?", a: ["Halka", "Pençe", "Zincir", "Köprü"], c: 1, h: "Metali tutma şeklinden gelir." },
+            { q: "Peptit bağı amino asitlerde hangi yapıdadır?", a: ["Primer", "Sekonder", "Tersiyer", "Kuarterner"], c: 0, h: "Düz zincir yapısı." },
+            { q: "Nitrozaminler ne zaman oluşur?", a: ["Dondurulunca", "Nitritli etler yüksek ısıda pişince", "Yıkanınca", "Güneşte"], c: 1, h: "Salam/sosis kızarınca karsinojenik maddeler oluşur." },
+            { q: "BPA nerede bulunur?", a: ["Kağıt", "Sert plastik / Konserve iç kaplaması", "Cam", "Bez"], c: 1, h: "Bisfenol A." },
+            { q: "En az suda çözünen 'suda çözünen vitamin'?", a: ["B1", "B12", "C", "B6"], c: 1, h: "Kobalamin formudur." },
+            { q: "Karotenoidler neyin öncüsüdür?", a: ["C", "D", "A Vitamini", "E"], c: 2, h: "Görme sağlığı için gereken vitamin." },
+            { q: "D2 Vitamini kaynağı?", a: ["Hayvanlar", "Bitki sterolleri + UV Işığı", "Tuz", "Hava"], c: 1, h: "Ergokalsiferol." },
+            { q: "Hangisi iz elementtir?", a: ["Magnezyum", "Selenyum", "Sodyum", "Potasyum"], c: 1, h: "Mikro miktarda ihtiyaç duyulan mineral." },
+            { q: "Metal katyonları ne kabul edilir?", a: ["Lewis Bazı", "Lewis Asidi", "Nötr", "Alkali"], c: 1, h: "Elektron alıcısıdırlar." },
+            { q: "Anemi hangi eksikliktedir?", a: ["Ca", "Demir (Fe)", "Mg", "K"], c: 1, h: "Kansızlık denince akla gelen mineral." },
+            { q: "Filokinon (K1) en çok nerededir?", a: ["Süt", "Yeşil Yapraklı Sebzeler", "Meyve", "Kırmızı Et"], c: 1, h: "Ispanak ve lahana zengin kaynaklardır." },
+            { q: "Annatto rengi?", a: ["Mavi", "Yeşil", "Sarı-Turuncu", "Beyaz"], c: 2, h: "Peynirlere turuncu renk vermek için kullanılır." },
+            { q: "Fenilketonüri (PKU) hastaları neyi tüketemez?", a: ["Şeker", "Aspartam", "Tuz", "Su"], c: 1, h: "Fenilalanin kaynağı olan tatlandırıcı." },
+            { q: "Tartrazin kodu?", a: ["E100", "E102", "E120", "E140"], c: 1, h: "E102 sarı boyadır." },
+            { q: "Salmonella nedir?", a: ["Kimyasal", "Fiziksel", "Biyolojik kirletici", "Aroma"], c: 2, h: "Zararlı bir bakteri türüdür." },
+            { q: "Aflatoksin nereye saldırır?", a: ["Göz", "Karaciğer", "Tırnak", "Saç"], c: 1, h: "En tehlikeli hepatotoksinlerden biridir." },
+            { q: "Alfa-heliks hangi protein yapısıdır?", a: ["Primer", "Sekonder", "Tersiyer", "Hiçbiri"], c: 1, h: "Yerel sarmal yapılar." },
+            { q: "Minerallerin en belirgin özelliği?", a: ["Çabuk bozulmaları", "Isıya dayanıklı olmaları (yok edilemezler)", "Sıvı olmaları", "Renkli olmaları"], c: 1, h: "Yakıldıklarında geriye kalan küldür." },
+            { q: "DDT ne amaçla kullanılır(dı)?", a: ["Gübre", "İnsektisit (Böcek ilacı)", "Gıda boyası", "Tatlandırıcı"], c: 1, h: "Yasaklanan klorlu pestisit." },
+            { q: "Sakarin sentetik midir?", a: ["Evet", "Hayır (Bitkisel)", "Doğal", "Aromadır"], c: 0, h: "Laboratuvar ortamında üretilen ilk tatlandırıcıdır." },
+            { q: "Emülgatör kod aralığı?", a: ["E100s", "E200s", "E400-E499", "E900s"], c: 2, h: "400 serisi." },
+            { q: "Askorbil palmitat ne amaçla kullanılır?", a: ["Yağlarda oksidasyon önleyici", "Su boyası", "Tuzluk", "Koku"], c: 0, h: "C vitamininin yağa uyumlu formu." },
+            { q: "Nitrat/Nitrit etlerde hangi rengi korur?", a: ["Mavi", "Yeşil", "Kırmızı", "Siyah"], c: 2, h: "Nitrozomyoglobin oluşumu sağlar." },
+            { q: "EDTA ne yapar?", a: ["Boyar", "Şelat oluşturur (Metalleri bağlar)", "Tat verir", "Dondurur"], c: 1, h: "Gıdalardaki metal iyonlarını hapseder." },
+            { q: "B12 yapısındaki metal?", a: ["Demir", "Magnezyum", "Kobalt", "Bakır"], c: 2, h: "Cobalamin isminden gelir." },
+            { q: "HACCP neyi ifade eder?", a: ["Yemek Tarifi", "Tehlike Analizi ve Kritik Kontrol Noktaları", "Hızlı Üretim", "Pazarlama"], c: 1, h: "Gıda güvenliği yönetim sistemi." },
+            { q: "Gıda Kimyasının ana odağı nedir?", a: ["Pazarlama", "Bileşenler, reaksiyonlar ve güvenlik", "Dekorasyon", "Tarım teknikleri"], c: 1, h: "Moleküler düzeyde değişimleri inceler." }
         ];
 
         const quizContainer = document.getElementById('quiz-container');
@@ -183,6 +184,24 @@
 
                 questionDiv.appendChild(optionsGrid);
                 
+                // Hint Section
+                const hintDiv = document.createElement('div');
+                hintDiv.className = "mt-4 hint-section";
+                
+                const hintBtn = document.createElement('button');
+                hintBtn.className = "text-xs text-blue-500 hover:text-blue-700 underline flex items-center gap-1 no-print";
+                hintBtn.innerHTML = "🔍 İpucu";
+                hintBtn.onclick = () => toggleHint(index);
+                
+                const hintContent = document.createElement('p');
+                hintContent.className = "hint-text hidden mt-2 italic text-gray-500 bg-gray-50 p-2 rounded border border-dashed border-gray-200";
+                hintContent.id = `hint-${index}`;
+                hintContent.innerText = q.h;
+                
+                hintDiv.appendChild(hintBtn);
+                hintDiv.appendChild(hintContent);
+                questionDiv.appendChild(hintDiv);
+
                 const feedback = document.createElement('p');
                 feedback.className = "hidden mt-4 font-bold result-text";
                 feedback.id = `feedback-${index}`;
@@ -192,10 +211,14 @@
             });
         }
 
+        function toggleHint(index) {
+            const hint = document.getElementById(`hint-${index}`);
+            hint.classList.toggle('hidden');
+        }
+
         function selectOption(qIdx, optIdx) {
             userAnswers[qIdx] = optIdx;
             
-            // UI Update for selected option
             const buttons = document.querySelectorAll(`[id^="btn-${qIdx}-"]`);
             buttons.forEach(b => b.classList.remove('selected', 'bg-blue-100', 'border-blue-500'));
             
@@ -210,4 +233,33 @@
                 if(isCorrect) score++;
 
                 const feedback = document.getElementById(`feedback-${index}`);
-                feedback.classList.remove('
+                feedback.classList.remove('hidden');
+
+                const correctBtn = document.getElementById(`btn-${index}-${q.c}`);
+                correctBtn.classList.add('correct');
+
+                if (userAnswers[index] !== null && !isCorrect) {
+                    const wrongBtn = document.getElementById(`btn-${index}-${userAnswers[index]}`);
+                    wrongBtn.classList.add('wrong');
+                    feedback.innerText = "❌ Yanlış Cevap!";
+                    feedback.className = "mt-4 font-bold text-red-600";
+                } else if (isCorrect) {
+                    feedback.innerText = "✅ Doğru!";
+                    feedback.className = "mt-4 font-bold text-green-600";
+                } else {
+                    feedback.innerText = "⚠️ Cevaplanmadı (Doğru Cevap İşaretlendi)";
+                    feedback.className = "mt-4 font-bold text-gray-500";
+                }
+            });
+
+            scoreDisplay.classList.remove('hidden');
+            scoreDisplay.innerText = `Sınav Tamamlandı! Toplam Puan: ${score} / ${questions.length}`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
+
+
