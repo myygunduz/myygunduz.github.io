@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -23,17 +22,21 @@
             70% { transform: scale(0.9); opacity: 0.9; }
             100% { transform: scale(1); opacity: 1; }
         }
+        /* Masaüstü ok butonları için özel konumlandırma */
+        @media (min-width: 768px) {
+            .side-nav-left { position: absolute; left: -60px; top: 50%; transform: translateY(-50%); }
+            .side-nav-right { position: absolute; right: -60px; top: 50%; transform: translateY(-50%); }
+        }
     </style>
 </head>
 <body class="bg-slate-50">
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+        const { useState, useEffect } = React;
 
-        // --- ICONS (SVG Components for reliability in standalone HTML) ---
         const Icon = ({ path, className = "w-5 h-5" }) => (
-            <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className={className} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" d={path}></path>
             </svg>
         );
@@ -42,8 +45,8 @@
             Download: (props) => <Icon {...props} path="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />,
             Shuffle: (props) => <Icon {...props} path="M4 4h7m0 0L8 1m3 3l-3 3m12 13h-7m0 0l3-3m-3 3l3 3M4 20l16-16M4 4l16 16" />,
             Share: (props) => <Icon {...props} path="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />,
-            Check: (props) => <Icon {...props} path="M5 13l4 4L19 7" />,
-            X: (props) => <Icon {...props} path="M6 18L18 6M6 6l12 12" />,
+            Check: (props) => <Icon {...props} path="M5 13l4 4L19 7" className="w-4 h-4" />,
+            X: (props) => <Icon {...props} path="M6 18L18 6M6 6l12 12" className="w-4 h-4" />,
             Lightbulb: (props) => <Icon {...props} path="M9.663 17h4.674a1 1 0 00.908-.588l3.358-7.65a3 3 0 01-2.725-4.118l-4.225-4.225a3 3 0 00-4.225 0L4.225 4.225a3 3 0 01-2.725 4.118l3.358 7.65a1 1 0 00.908.588z M12 22V19" />,
             Left: (props) => <Icon {...props} path="M15 19l-7-7 7-7" />,
             Right: (props) => <Icon {...props} path="M9 5l7 7-7 7" />,
@@ -84,7 +87,6 @@
                     { id: 20, question: "Biyolojik etkenler kaç risk grubuna ayrılır?", options: ["2", "3", "4", "5"], correct: 2, hint: "Düşükten yükseğe 4 grup.", topic: "Biyolojik" }
                 ];
 
-                // 100 soruya tamamlamak için konu odaklı ek sorular
                 const topics = ["Kimyasal", "Fiziksel", "Ergonomi", "Eğitim", "Mevzuat", "KKD"];
                 for (let i = 21; i <= 100; i++) {
                     const top = topics[i % topics.length];
@@ -165,105 +167,133 @@
                 setIsPdfLoading(false);
             };
 
-            if (!questions.length) return <div className="p-10 text-center">Yükleniyor...</div>;
+            if (!questions.length) return <div className="p-10 text-center font-bold">Yükleniyor...</div>;
+
+            const hasAns = userAnswers[currentIndex] !== undefined;
 
             return (
-                <div className="min-h-screen p-4 md:p-8">
-                    <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
-                        {/* Header */}
-                        <div className="bg-indigo-600 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-                            <div>
-                                <h1 className="text-2xl font-black">İSG EĞİTİM PORTALI</h1>
-                                <p className="text-indigo-100 text-xs">100 Soru + 10 Açık Uçlu Soru</p>
-                            </div>
-                            <div className="flex gap-2">
-                                <button onClick={shuffle} className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
-                                <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition">
-                                    <Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF'}
+                <div className="min-h-screen p-4 md:p-8 flex items-center justify-center">
+                    <div className="relative w-full max-w-4xl">
+                        
+                        {/* Navigasyon Okları - Masaüstü */}
+                        {!isFinished && (
+                            <>
+                                <button 
+                                    onClick={() => setCurrentIndex(c => Math.max(0, c-1))}
+                                    disabled={currentIndex === 0}
+                                    className="hidden md:flex side-nav-left bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100"
+                                >
+                                    <Icons.Left className="w-8 h-8" />
                                 </button>
-                            </div>
-                        </div>
-
-                        {!isFinished ? (
-                            <div className="p-6 md:p-10">
-                                {/* Progress Bar */}
-                                <div className="mb-10">
-                                    <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
-                                        <span>İLERLEME</span>
-                                        <span>{currentIndex + 1} / {questions.length}</span>
-                                    </div>
-                                    <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                        <div className="bg-indigo-600 h-full transition-all" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div>
-                                    </div>
-                                </div>
-
-                                <div className="min-h-[300px]">
-                                    <span className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block">{questions[currentIndex].topic}</span>
-                                    <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-tight">{questions[currentIndex].question}</h2>
-                                    
-                                    <div className="grid gap-3">
-                                        {questions[currentIndex].options.map((opt, i) => {
-                                            const hasAns = userAnswers[currentIndex] !== undefined;
-                                            const isCorrect = questions[currentIndex].correct === i;
-                                            const isSelected = userAnswers[currentIndex] === i;
-                                            
-                                            let cls = "w-full text-left p-4 rounded-2xl border-2 transition-all flex justify-between items-center ";
-                                            if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50";
-                                            else if (isCorrect) cls += "border-emerald-500 bg-emerald-50 text-emerald-700";
-                                            else if (isSelected) cls += "border-rose-500 bg-rose-50 text-rose-700";
-                                            else cls += "border-slate-50 opacity-40";
-
-                                            return (
-                                                <button key={i} disabled={hasAns} onClick={() => handleAnswer(i)} className={cls}>
-                                                    <span className="font-semibold">{opt}</span>
-                                                    {hasAns && isCorrect && <Icons.Check className="text-emerald-500" />}
-                                                    {hasAns && isSelected && !isCorrect && <Icons.X className="text-rose-500" />}
-                                                </button>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-
-                                {showHint && (
-                                    <div className="mt-6 p-4 bg-amber-50 rounded-2xl flex gap-3 animate-bounce-in">
-                                        <Icons.Lightbulb className="text-amber-600 shrink-0" />
-                                        <p className="text-sm text-amber-800"><b>İpucu:</b> {questions[currentIndex].hint}</p>
-                                    </div>
-                                )}
-
-                                <div className="mt-10 flex justify-between items-center border-t pt-8">
-                                    <div className="flex gap-2">
-                                        <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl"><Icons.Left /></button>
-                                        <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl"><Icons.Right /></button>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <button onClick={() => setShowHint(!showHint)} className="text-amber-600 font-bold px-4">İpucu</button>
-                                        <button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Testi Bitir</button>
-                                    </div>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="p-10 text-center animate-bounce-in">
-                                <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-10 h-10 text-indigo-600" /></div>
-                                <h2 className="text-3xl font-black mb-2">HARİKA İŞ!</h2>
-                                <p className="text-slate-500 mb-8">Puanın: %{Math.round((score/questions.length)*100)}</p>
-                                
-                                <div className="flex justify-center gap-4 mb-10">
-                                    <div className="bg-emerald-50 px-6 py-4 rounded-2xl"><div className="text-[10px] text-emerald-500 font-bold">DOĞRU</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
-                                    <div className="bg-rose-50 px-6 py-4 rounded-2xl"><div className="text-[10px] text-rose-500 font-bold">YANLIŞ</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
-                                </div>
-
-                                <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8">
-                                    <h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600"/> En Önemli Açık Uçlu Sorular</h3>
-                                    {openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 mb-2"><b>{i+1}.</b> {q}</p>)}
-                                </div>
-
-                                <div className="flex justify-center gap-4">
-                                    <button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-700">Yeniden Başla</button>
-                                    <button onClick={() => {alert(`Skorum: %${Math.round((score/questions.length)*100)}! Pano kopyalandı.`);}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100"><Icons.Share /> Paylaş</button>
-                                </div>
-                            </div>
+                                <button 
+                                    onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))}
+                                    disabled={currentIndex === questions.length - 1}
+                                    className="hidden md:flex side-nav-right bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100"
+                                >
+                                    <Icons.Right className="w-8 h-8" />
+                                </button>
+                            </>
                         )}
+
+                        <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+                            {/* Header */}
+                            <div className="bg-indigo-600 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
+                                <div>
+                                    <h1 className="text-2xl font-black">İSG EĞİTİM PORTALI</h1>
+                                    <p className="text-indigo-100 text-xs">100 Soru + 10 Açık Uçlu Soru</p>
+                                </div>
+                                <div className="flex gap-2">
+                                    <button onClick={shuffle} className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
+                                    <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition">
+                                        <Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF'}
+                                    </button>
+                                </div>
+                            </div>
+
+                            {!isFinished ? (
+                                <div className="p-6 md:p-10">
+                                    {/* Progress Bar */}
+                                    <div className="mb-10">
+                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                                            <span>İLERLEME</span>
+                                            <span>{currentIndex + 1} / {questions.length}</span>
+                                        </div>
+                                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                            <div className="bg-indigo-600 h-full transition-all" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div>
+                                        </div>
+                                    </div>
+
+                                    <div className="min-h-[300px]">
+                                        <span className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block">{questions[currentIndex].topic}</span>
+                                        <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-tight">{questions[currentIndex].question}</h2>
+                                        
+                                        <div className="grid gap-3">
+                                            {questions[currentIndex].options.map((opt, i) => {
+                                                const isCorrect = questions[currentIndex].correct === i;
+                                                const isSelected = userAnswers[currentIndex] === i;
+                                                
+                                                let cls = "w-full text-left p-4 rounded-2xl border-2 transition-all flex justify-between items-center ";
+                                                if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50";
+                                                else if (isCorrect) cls += "border-emerald-500 bg-emerald-50 text-emerald-700";
+                                                else if (isSelected) cls += "border-rose-500 bg-rose-50 text-rose-700";
+                                                else cls += "border-slate-50 opacity-40";
+
+                                                return (
+                                                    <button key={i} disabled={hasAns} onClick={() => handleAnswer(i)} className={cls}>
+                                                        <span className="font-semibold">{opt}</span>
+                                                        <div className="flex items-center">
+                                                            {hasAns && isCorrect && <Icons.Check className="text-emerald-500 w-4 h-4" />}
+                                                            {hasAns && isSelected && !isCorrect && <Icons.X className="text-rose-500 w-4 h-4" />}
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+
+                                    {showHint && (
+                                        <div className="mt-6 p-4 bg-amber-50 rounded-2xl flex gap-3 animate-bounce-in">
+                                            <Icons.Lightbulb className="text-amber-600 shrink-0 w-5 h-5" />
+                                            <p className="text-sm text-amber-800"><b>İpucu:</b> {questions[currentIndex].hint}</p>
+                                        </div>
+                                    )}
+
+                                    {/* Bottom Nav (Mobil ve Ekstra Kontroller) */}
+                                    <div className="mt-10 flex justify-between items-center border-t pt-8">
+                                        <div className="flex gap-2 md:hidden">
+                                            <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Left /></button>
+                                            <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Right /></button>
+                                        </div>
+                                        <div className="hidden md:block"></div> {/* Boşluk tutucu */}
+                                        <div className="flex gap-3">
+                                            <button onClick={() => setShowHint(!showHint)} className="text-amber-600 font-bold px-4 hover:text-amber-700">İpucu</button>
+                                            <button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-rose-700 transition-all">Testi Bitir</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="p-10 text-center animate-bounce-in">
+                                    <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-10 h-10 text-indigo-600" /></div>
+                                    <h2 className="text-3xl font-black mb-2 uppercase">Harika İş!</h2>
+                                    <p className="text-slate-500 mb-8">Puanın: %{Math.round((score/questions.length)*100)}</p>
+                                    
+                                    <div className="flex justify-center gap-4 mb-10">
+                                        <div className="bg-emerald-50 px-6 py-4 rounded-2xl border border-emerald-100"><div className="text-[10px] text-emerald-500 font-bold uppercase">Doğru</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
+                                        <div className="bg-rose-50 px-6 py-4 rounded-2xl border border-rose-100"><div className="text-[10px] text-rose-500 font-bold uppercase">Yanlış</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
+                                    </div>
+
+                                    <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100">
+                                        <h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600 w-5 h-5"/> Kritik Açık Uçlu Sorular</h3>
+                                        {openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 mb-2"><b>{i+1}.</b> {q}</p>)}
+                                    </div>
+
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        <button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-700">Yeniden Başla</button>
+                                        <button onClick={() => {alert(`Skorum: %${Math.round((score/questions.length)*100)}! Pano kopyalandı.`);}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100 hover:bg-indigo-700"><Icons.Share className="w-5 h-5" /> Paylaş</button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             );
