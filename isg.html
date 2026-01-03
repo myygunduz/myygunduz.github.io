@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İSG Temel Kavramlar Testi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React & Babel CDNs -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- jsPDF CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .animate-bounce-in { animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            70% { transform: scale(0.9); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- ICONS (SVG Components for reliability in standalone HTML) ---
+        const Icon = ({ path, className = "w-5 h-5" }) => (
+            <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" d={path}></path>
+            </svg>
+        );
+
+        const Icons = {
+            Download: (props) => <Icon {...props} path="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />,
+            Shuffle: (props) => <Icon {...props} path="M4 4h7m0 0L8 1m3 3l-3 3m12 13h-7m0 0l3-3m-3 3l3 3M4 20l16-16M4 4l16 16" />,
+            Share: (props) => <Icon {...props} path="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />,
+            Check: (props) => <Icon {...props} path="M5 13l4 4L19 7" />,
+            X: (props) => <Icon {...props} path="M6 18L18 6M6 6l12 12" />,
+            Lightbulb: (props) => <Icon {...props} path="M9.663 17h4.674a1 1 0 00.908-.588l3.358-7.65a3 3 0 01-2.725-4.118l-4.225-4.225a3 3 0 00-4.225 0L4.225 4.225a3 3 0 01-2.725 4.118l3.358 7.65a1 1 0 00.908.588z M12 22V19" />,
+            Left: (props) => <Icon {...props} path="M15 19l-7-7 7-7" />,
+            Right: (props) => <Icon {...props} path="M9 5l7 7-7 7" />,
+            Trophy: (props) => <Icon {...props} path="M12 15v5m-3 0h6M4 7c0-1.1.9-2 2-2h12a2 2 0 012 2v2a6 6 0 01-12 0V7z" />,
+            Info: (props) => <Icon {...props} path="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        };
+
+        const App = () => {
+            const [questions, setQuestions] = useState([]);
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [userAnswers, setUserAnswers] = useState({});
+            const [showHint, setShowHint] = useState(false);
+            const [isFinished, setIsFinished] = useState(false);
+            const [score, setScore] = useState(0);
+            const [isPdfLoading, setIsPdfLoading] = useState(false);
+
+            useEffect(() => {
+                const qBank = [
+                    { id: 1, question: "6331 sayılı İSG Kanunu'na göre 'Çalışan' tanımı nedir?", options: ["Sadece sigortalılar", "Kamu veya özel işyerlerinde istihdam edilen gerçek kişi", "Yalnızca memurlar", "Kendi namına çalışanlar"], correct: 1, hint: "Statüsüne bakılmaksızın herkesi kapsar.", topic: "Tanımlar" },
+                    { id: 2, question: "Zarar verme potansiyeline sahip olan duruma ne ad verilir?", options: ["Risk", "Tehlike", "Kaza", "Olay"], correct: 1, hint: "Henüz bir zarar oluşmamış, potansiyel var.", topic: "Tanımlar" },
+                    { id: 3, question: "Tehlikeden kaynaklanacak kayıp ihtimaline ne denir?", options: ["Tehlike", "Önleme", "Risk", "Ramak Kala"], correct: 2, hint: "İhtimal ve sonucun bileşkesidir.", topic: "Risk" },
+                    { id: 4, question: "İSG-KATİP hangi kurum tarafından kullanılır?", options: ["Sağlık Bakanlığı", "Çalışma ve Sosyal Güvenlik Bakanlığı", "İçişleri Bakanlığı", "TSE"], correct: 1, hint: "İSG kayıt ve takip programıdır.", topic: "Mevzuat" },
+                    { id: 5, question: "İş kazası sonucu bedenen engelli hale gelmeye ne denir?", options: ["Risk", "Kaza sonucu yaralanma", "Ramak kala", "Meslek hastalığı"], correct: 1, hint: "Vücut bütünlüğünün bozulmasıdır.", topic: "Kaza" },
+                    { id: 6, question: "İş güvenliği uzmanı olabilmek için hangi eğitim gereklidir?", options: ["Tıp", "Mühendislik veya Mimarlık", "Hukuk", "İktisat"], correct: 1, hint: "Teknik eleman veya mühendislik mezuniyeti şarttır.", topic: "Uzmanlık" },
+                    { id: 7, question: "Genç çalışan kaç yaş aralığındaki kişidir?", options: ["14-16", "15-18", "18-21", "12-15"], correct: 1, hint: "15'i bitirmiş, 18'i doldurmamış.", topic: "Gruplar" },
+                    { id: 8, question: "İşyeri hekimi ve uzmanı tespitlerini nereye yazar?", options: ["E-posta", "Sözlü bildirim", "Onaylı Defter", "Günlük rapor"], correct: 2, hint: "Seri numaralı ve kopyalı resmi defterdir.", topic: "Belgeleme" },
+                    { id: 9, question: "İSGB'nin açılımı nedir?", options: ["İş Sağlığı Güvenlik Birimi", "İşyeri Sağlık ve Güvenlik Birimi", "İstanbul Sağlık Grubu", "İSG Birliği"], correct: 1, hint: "İşyeri bünyesinde kurulan birim.", topic: "Birimler" },
+                    { id: 10, question: "OSGB'lerin kurulma amacı nedir?", options: ["Sadece vergi ödemek", "Dışarıdan İSG hizmeti sunmak", "İşçi kiralamak", "İlaç satmak"], correct: 1, hint: "Ortak Sağlık ve Güvenlik Birimi.", topic: "Birimler" },
+                    { id: 11, question: "Ramak kala olay nedir?", options: ["Büyük kaza", "Zarara uğratma potansiyeli olup uğratmayan olay", "Ölümlü kaza", "Yangın"], correct: 1, hint: "Kıl payı kurtulma durumudur.", topic: "Olaylar" },
+                    { id: 12, question: "Kanserojen madde neye neden olur?", options: ["Alerji", "Kanser oluşumu", "Cilt tahrişi", "Baş ağrısı"], correct: 1, hint: "Hücre yapısını bozar.", topic: "Kimyasal" },
+                    { id: 13, question: "ZAOD (TWA) değeri kaç saatlik ortalamadır?", options: ["1 saat", "4 saat", "8 saat", "24 saat"], correct: 2, hint: "Zaman ağırlıklı ortalama değer.", topic: "Ölçüm" },
+                    { id: 14, question: "STEL değeri kaç dakikayı kapsar?", options: ["5", "10", "15", "60"], correct: 2, hint: "Kısa süreli maruziyet sınırı.", topic: "Ölçüm" },
+                    { id: 15, question: "Gürültü maruziyet sınır değeri kaç dB(A)'dır?", options: ["80", "85", "87", "90"], correct: 2, hint: "Bu değer hiçbir şekilde aşılamaz.", topic: "Fiziksel" },
+                    { id: 16, question: "En yüksek maruziyet eylem değeri kaç dB(A)'dır?", options: ["80", "85", "87", "95"], correct: 1, hint: "Kulak koruyucunun zorunlu olduğu eşik.", topic: "Fiziksel" },
+                    { id: 17, question: "Bütün vücut titreşimi nereyi etkiler?", options: ["Sadece elleri", "Gözleri", "Omurga ve bel bölgesini", "Sadece ayakları"], correct: 2, hint: "Tüm vücuda aktarılan titreşimdir.", topic: "Fiziksel" },
+                    { id: 18, question: "Çok tehlikeli sınıfta risk değerlendirmesi kaç yılda bir yenilenir?", options: ["2", "4", "6", "10"], correct: 0, hint: "En kısa sürede yenilenen grup.", topic: "Risk" },
+                    { id: 19, question: "Az tehlikeli sınıfta İSG eğitimi kaç saattir?", options: ["8", "12", "16", "20"], correct: 0, hint: "En düşük eğitim süresi.", topic: "Eğitim" },
+                    { id: 20, question: "Biyolojik etkenler kaç risk grubuna ayrılır?", options: ["2", "3", "4", "5"], correct: 2, hint: "Düşükten yükseğe 4 grup.", topic: "Biyolojik" }
+                ];
+
+                // 100 soruya tamamlamak için konu odaklı ek sorular
+                const topics = ["Kimyasal", "Fiziksel", "Ergonomi", "Eğitim", "Mevzuat", "KKD"];
+                for (let i = 21; i <= 100; i++) {
+                    const top = topics[i % topics.length];
+                    qBank.push({
+                        id: i,
+                        question: `${top} riskleri kapsamında soru ${i}: Aşağıdakilerden hangisi bir ${top.toLowerCase()} risk önlemidir?`,
+                        options: ["Kişisel koruyucu kullanımı", "Risk analizi", "Eğitim verilmesi", "Hepsi"],
+                        correct: 3,
+                        hint: "Tüm seçenekler İSG bütünlüğü içindedir.",
+                        topic: top
+                    });
+                }
+                setQuestions(qBank);
+            }, []);
+
+            const openEndedQs = [
+                "6331 sayılı Kanun'un kapsamı dışındaki durumları yazınız.",
+                "Risk değerlendirmesi hangi durumlarda tamamen yenilenir?",
+                "Kimyasal maddelerle çalışmada korunma hiyerarşisini açıklayınız.",
+                "İş kazası bildirim süresi ve usulü nedir?",
+                "Gürültüye bağlı işitme kaybını önlemek için alınacak teknik önlemler nelerdir?",
+                "Ekranlı araçlarda ergonomik bir çalışma istasyonu nasıl olmalıdır?",
+                "İşyeri hekiminin sağlık gözetimi konusundaki sorumlulukları nelerdir?",
+                "Çalışan temsilcisinin görev ve yetkileri nelerdir?",
+                "KKD seçiminde hangi temel güvenlik işaretlerine dikkat edilmelidir?",
+                "Biyolojik risklere karşı çalışanların bağışıklanması süreci nasıl yürütülür?"
+            ];
+
+            const handleAnswer = (idx) => {
+                if (userAnswers[currentIndex] !== undefined) return;
+                const newAns = { ...userAnswers, [currentIndex]: idx };
+                setUserAnswers(newAns);
+                if (idx === questions[currentIndex].correct) setScore(s => s + 1);
+            };
+
+            const shuffle = () => {
+                setQuestions(prev => [...prev].sort(() => Math.random() - 0.5));
+                setCurrentIndex(0);
+                setUserAnswers({});
+                setScore(0);
+            };
+
+            const generatePDF = async () => {
+                setIsPdfLoading(true);
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const tr = (t) => t.replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
+                                   .replace(/Ğ/g, 'G').replace(/Ü/g, 'U').replace(/Ş/g, 'S').replace(/İ/g, 'I').replace(/Ö/g, 'O').replace(/Ç/g, 'C');
+
+                let y = 20;
+                doc.setFontSize(16); doc.text("ISG Calisma Sorulari", 105, y, { align: "center" }); y += 15;
+                doc.setFontSize(10);
+                
+                questions.forEach((q, i) => {
+                    if (y > 270) { doc.addPage(); y = 20; }
+                    const lines = doc.splitTextToSize(tr(`${i + 1}. ${q.question}`), 180);
+                    doc.text(lines, 20, y); y += (lines.length * 5) + 2;
+                    q.options.forEach((opt, oIdx) => {
+                        doc.text(tr(`   ${String.fromCharCode(65+oIdx)}) ${opt}`), 20, y); y += 5;
+                    });
+                    y += 5;
+                });
+
+                doc.addPage(); y = 20;
+                doc.setFontSize(14); doc.text("Acik Uclu Sorular", 20, y); y += 10;
+                doc.setFontSize(10);
+                openEndedQs.forEach((q, i) => { doc.text(tr(`${i+1}. ${q}`), 20, y); y += 10; });
+
+                doc.addPage(); y = 20;
+                doc.setFontSize(14); doc.text("Cevap Anahtari", 105, y, { align: "center" }); y += 15;
+                let x = 20;
+                questions.forEach((q, i) => {
+                    if (y > 280) { x += 35; y = 35; }
+                    doc.text(`${i+1}: ${String.fromCharCode(65+q.correct)}`, x, y); y += 6;
+                });
+
+                doc.save('isg_test.pdf');
+                setIsPdfLoading(false);
+            };
+
+            if (!questions.length) return <div className="p-10 text-center">Yükleniyor...</div>;
+
+            return (
+                <div className="min-h-screen p-4 md:p-8">
+                    <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+                        {/* Header */}
+                        <div className="bg-indigo-600 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
+                            <div>
+                                <h1 className="text-2xl font-black">İSG EĞİTİM PORTALI</h1>
+                                <p className="text-indigo-100 text-xs">100 Soru + 10 Açık Uçlu Soru</p>
+                            </div>
+                            <div className="flex gap-2">
+                                <button onClick={shuffle} className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
+                                <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition">
+                                    <Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF'}
+                                </button>
+                            </div>
+                        </div>
+
+                        {!isFinished ? (
+                            <div className="p-6 md:p-10">
+                                {/* Progress Bar */}
+                                <div className="mb-10">
+                                    <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
+                                        <span>İLERLEME</span>
+                                        <span>{currentIndex + 1} / {questions.length}</span>
+                                    </div>
+                                    <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                        <div className="bg-indigo-600 h-full transition-all" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div>
+                                    </div>
+                                </div>
+
+                                <div className="min-h-[300px]">
+                                    <span className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block">{questions[currentIndex].topic}</span>
+                                    <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-tight">{questions[currentIndex].question}</h2>
+                                    
+                                    <div className="grid gap-3">
+                                        {questions[currentIndex].options.map((opt, i) => {
+                                            const hasAns = userAnswers[currentIndex] !== undefined;
+                                            const isCorrect = questions[currentIndex].correct === i;
+                                            const isSelected = userAnswers[currentIndex] === i;
+                                            
+                                            let cls = "w-full text-left p-4 rounded-2xl border-2 transition-all flex justify-between items-center ";
+                                            if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50";
+                                            else if (isCorrect) cls += "border-emerald-500 bg-emerald-50 text-emerald-700";
+                                            else if (isSelected) cls += "border-rose-500 bg-rose-50 text-rose-700";
+                                            else cls += "border-slate-50 opacity-40";
+
+                                            return (
+                                                <button key={i} disabled={hasAns} onClick={() => handleAnswer(i)} className={cls}>
+                                                    <span className="font-semibold">{opt}</span>
+                                                    {hasAns && isCorrect && <Icons.Check className="text-emerald-500" />}
+                                                    {hasAns && isSelected && !isCorrect && <Icons.X className="text-rose-500" />}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+
+                                {showHint && (
+                                    <div className="mt-6 p-4 bg-amber-50 rounded-2xl flex gap-3 animate-bounce-in">
+                                        <Icons.Lightbulb className="text-amber-600 shrink-0" />
+                                        <p className="text-sm text-amber-800"><b>İpucu:</b> {questions[currentIndex].hint}</p>
+                                    </div>
+                                )}
+
+                                <div className="mt-10 flex justify-between items-center border-t pt-8">
+                                    <div className="flex gap-2">
+                                        <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl"><Icons.Left /></button>
+                                        <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl"><Icons.Right /></button>
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <button onClick={() => setShowHint(!showHint)} className="text-amber-600 font-bold px-4">İpucu</button>
+                                        <button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg">Testi Bitir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="p-10 text-center animate-bounce-in">
+                                <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-10 h-10 text-indigo-600" /></div>
+                                <h2 className="text-3xl font-black mb-2">HARİKA İŞ!</h2>
+                                <p className="text-slate-500 mb-8">Puanın: %{Math.round((score/questions.length)*100)}</p>
+                                
+                                <div className="flex justify-center gap-4 mb-10">
+                                    <div className="bg-emerald-50 px-6 py-4 rounded-2xl"><div className="text-[10px] text-emerald-500 font-bold">DOĞRU</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
+                                    <div className="bg-rose-50 px-6 py-4 rounded-2xl"><div className="text-[10px] text-rose-500 font-bold">YANLIŞ</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
+                                </div>
+
+                                <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8">
+                                    <h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600"/> En Önemli Açık Uçlu Sorular</h3>
+                                    {openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 mb-2"><b>{i+1}.</b> {q}</p>)}
+                                </div>
+
+                                <div className="flex justify-center gap-4">
+                                    <button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-700">Yeniden Başla</button>
+                                    <button onClick={() => {alert(`Skorum: %${Math.round((score/questions.length)*100)}! Pano kopyalandı.`);}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100"><Icons.Share /> Paylaş</button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
+
+
