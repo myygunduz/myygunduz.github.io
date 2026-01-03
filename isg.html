@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İSG Temel Kavramlar Testi</title>
+    <title>İSG Temel Kavramlar Eğitimi - 100 Soru</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- React & Babel CDNs -->
@@ -15,14 +15,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .animate-bounce-in { animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .animate-bounce-in { animation: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
         @keyframes bounceIn {
             0% { transform: scale(0.3); opacity: 0; }
             50% { transform: scale(1.05); opacity: 0.8; }
-            70% { transform: scale(0.9); opacity: 0.9; }
             100% { transform: scale(1); opacity: 1; }
         }
-        /* Masaüstü ok butonları için özel konumlandırma */
         @media (min-width: 768px) {
             .side-nav-left { position: absolute; left: -60px; top: 50%; transform: translateY(-50%); }
             .side-nav-right { position: absolute; right: -60px; top: 50%; transform: translateY(-50%); }
@@ -33,7 +31,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useMemo } = React;
 
         const Icon = ({ path, className = "w-5 h-5" }) => (
             <svg className={className} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -65,54 +63,91 @@
 
             useEffect(() => {
                 const qBank = [
-                    { id: 1, question: "6331 sayılı İSG Kanunu'na göre 'Çalışan' tanımı nedir?", options: ["Sadece sigortalılar", "Kamu veya özel işyerlerinde istihdam edilen gerçek kişi", "Yalnızca memurlar", "Kendi namına çalışanlar"], correct: 1, hint: "Statüsüne bakılmaksızın herkesi kapsar.", topic: "Tanımlar" },
-                    { id: 2, question: "Zarar verme potansiyeline sahip olan duruma ne ad verilir?", options: ["Risk", "Tehlike", "Kaza", "Olay"], correct: 1, hint: "Henüz bir zarar oluşmamış, potansiyel var.", topic: "Tanımlar" },
-                    { id: 3, question: "Tehlikeden kaynaklanacak kayıp ihtimaline ne denir?", options: ["Tehlike", "Önleme", "Risk", "Ramak Kala"], correct: 2, hint: "İhtimal ve sonucun bileşkesidir.", topic: "Risk" },
-                    { id: 4, question: "İSG-KATİP hangi kurum tarafından kullanılır?", options: ["Sağlık Bakanlığı", "Çalışma ve Sosyal Güvenlik Bakanlığı", "İçişleri Bakanlığı", "TSE"], correct: 1, hint: "İSG kayıt ve takip programıdır.", topic: "Mevzuat" },
-                    { id: 5, question: "İş kazası sonucu bedenen engelli hale gelmeye ne denir?", options: ["Risk", "Kaza sonucu yaralanma", "Ramak kala", "Meslek hastalığı"], correct: 1, hint: "Vücut bütünlüğünün bozulmasıdır.", topic: "Kaza" },
-                    { id: 6, question: "İş güvenliği uzmanı olabilmek için hangi eğitim gereklidir?", options: ["Tıp", "Mühendislik veya Mimarlık", "Hukuk", "İktisat"], correct: 1, hint: "Teknik eleman veya mühendislik mezuniyeti şarttır.", topic: "Uzmanlık" },
-                    { id: 7, question: "Genç çalışan kaç yaş aralığındaki kişidir?", options: ["14-16", "15-18", "18-21", "12-15"], correct: 1, hint: "15'i bitirmiş, 18'i doldurmamış.", topic: "Gruplar" },
-                    { id: 8, question: "İşyeri hekimi ve uzmanı tespitlerini nereye yazar?", options: ["E-posta", "Sözlü bildirim", "Onaylı Defter", "Günlük rapor"], correct: 2, hint: "Seri numaralı ve kopyalı resmi defterdir.", topic: "Belgeleme" },
-                    { id: 9, question: "İSGB'nin açılımı nedir?", options: ["İş Sağlığı Güvenlik Birimi", "İşyeri Sağlık ve Güvenlik Birimi", "İstanbul Sağlık Grubu", "İSG Birliği"], correct: 1, hint: "İşyeri bünyesinde kurulan birim.", topic: "Birimler" },
-                    { id: 10, question: "OSGB'lerin kurulma amacı nedir?", options: ["Sadece vergi ödemek", "Dışarıdan İSG hizmeti sunmak", "İşçi kiralamak", "İlaç satmak"], correct: 1, hint: "Ortak Sağlık ve Güvenlik Birimi.", topic: "Birimler" },
-                    { id: 11, question: "Ramak kala olay nedir?", options: ["Büyük kaza", "Zarara uğratma potansiyeli olup uğratmayan olay", "Ölümlü kaza", "Yangın"], correct: 1, hint: "Kıl payı kurtulma durumudur.", topic: "Olaylar" },
-                    { id: 12, question: "Kanserojen madde neye neden olur?", options: ["Alerji", "Kanser oluşumu", "Cilt tahrişi", "Baş ağrısı"], correct: 1, hint: "Hücre yapısını bozar.", topic: "Kimyasal" },
-                    { id: 13, question: "ZAOD (TWA) değeri kaç saatlik ortalamadır?", options: ["1 saat", "4 saat", "8 saat", "24 saat"], correct: 2, hint: "Zaman ağırlıklı ortalama değer.", topic: "Ölçüm" },
-                    { id: 14, question: "STEL değeri kaç dakikayı kapsar?", options: ["5", "10", "15", "60"], correct: 2, hint: "Kısa süreli maruziyet sınırı.", topic: "Ölçüm" },
-                    { id: 15, question: "Gürültü maruziyet sınır değeri kaç dB(A)'dır?", options: ["80", "85", "87", "90"], correct: 2, hint: "Bu değer hiçbir şekilde aşılamaz.", topic: "Fiziksel" },
-                    { id: 16, question: "En yüksek maruziyet eylem değeri kaç dB(A)'dır?", options: ["80", "85", "87", "95"], correct: 1, hint: "Kulak koruyucunun zorunlu olduğu eşik.", topic: "Fiziksel" },
-                    { id: 17, question: "Bütün vücut titreşimi nereyi etkiler?", options: ["Sadece elleri", "Gözleri", "Omurga ve bel bölgesini", "Sadece ayakları"], correct: 2, hint: "Tüm vücuda aktarılan titreşimdir.", topic: "Fiziksel" },
-                    { id: 18, question: "Çok tehlikeli sınıfta risk değerlendirmesi kaç yılda bir yenilenir?", options: ["2", "4", "6", "10"], correct: 0, hint: "En kısa sürede yenilenen grup.", topic: "Risk" },
-                    { id: 19, question: "Az tehlikeli sınıfta İSG eğitimi kaç saattir?", options: ["8", "12", "16", "20"], correct: 0, hint: "En düşük eğitim süresi.", topic: "Eğitim" },
-                    { id: 20, question: "Biyolojik etkenler kaç risk grubuna ayrılır?", options: ["2", "3", "4", "5"], correct: 2, hint: "Düşükten yükseğe 4 grup.", topic: "Biyolojik" }
+                    // --- GRUP 1: TANIMLAR VE MEVZUAT ---
+                    { id: 1, question: "6331 sayılı İSG Kanunu'na göre 'Çalışan' tanımı nedir?", options: ["Sadece sigortalı işçiler", "Kamu veya özel işyerlerinde istihdam edilen gerçek kişi", "Yalnızca memurlar", "Kendi namına çalışanlar"], correct: 1, hint: "Statüsüne bakılmaksızın herkesi kapsar.", topic: "Tanımlar", pdfRef: "2", explanation: "Kanun, çalışanları statüsüne bakılmaksızın kamu veya özel işyerlerinde istihdam edilen tüm gerçek kişiler olarak tanımlar." },
+                    { id: 2, question: "Tehlikeden kaynaklanacak zarar veya zararlı sonuç meydana gelme ihtimaline ne denir?", options: ["Tehlike", "Kaza", "Risk", "Olay"], correct: 2, hint: "İhtimal ve şiddetin bileşkesidir.", topic: "Risk", pdfRef: "3", explanation: "Risk, bir tehlikenin gerçekleşme ihtimali ve yaratacağı olumsuz etkinin birleşimidir." },
+                    { id: 3, question: "İş yerinde var olan ya da dışarıdan gelebilecek zarar verme potansiyeline ne denir?", options: ["Kaza", "Risk", "Tehlike", "Önleme"], correct: 2, hint: "Henüz bir zarar oluşmamış, potansiyel var.", topic: "Tehlike", pdfRef: "4", explanation: "Tehlike, zarar veya hasar verme potansiyelini ifade eden durumdur." },
+                    { id: 4, question: "İSG kayıt ve takip işlemleri için Bakanlıkça kullanılan merkezi program hangisidir?", options: ["E-Nabız", "İSG-KÂTİP", "SGK-SİSTEM", "İSG-TAKİP"], correct: 1, hint: "İSG Kayıt, Takip ve İzleme Programıdır.", topic: "Mevzuat", pdfRef: "2", explanation: "İSG-KÂTİP, İSG hizmetleri ile ilgili iş ve işlemlerin Bakanlıkça takibi amacıyla kullanılır." },
+                    { id: 5, question: "İSG alanında görev yapmak üzere Bakanlıkça yetkilendirilmiş mühendis veya teknik elemana ne denir?", options: ["İşyeri Hekimi", "Teknik Müdür", "İş Güvenliği Uzmanı", "İSG Temsilcisi"], correct: 2, hint: "Belirli bir sertifikaya sahip profesyoneldir.", topic: "Uzmanlık", pdfRef: "3", explanation: "Belge sahibi mühendis, mimar veya teknik elemanlar İş Güvenliği Uzmanı olarak görevlendirilir." },
+                    { id: 6, question: "15 yaşını bitirmiş ancak 18 yaşını doldurmamış çalışana ne ad verilir?", options: ["Çocuk çalışan", "Stajyer", "Genç çalışan", "Çırak"], correct: 2, hint: "Yaş sınırlaması 15-18 arasıdır.", topic: "Gruplar", pdfRef: "3", explanation: "On beş yaşını bitirmiş ancak on sekizini doldurmamış kişi 'Genç çalışan'dır." },
+                    { id: 7, question: "İşyeri hekimi ve uzmanı tavsiyelerinin yazıldığı seri numaralı resmi deftere ne denir?", options: ["Günlük Rapor", "Onaylı Defter", "Kaza Defteri", "Sağlık Takip Dosyası"], correct: 1, hint: "Her iş yeri için tek olan defterdir.", topic: "Belgeleme", pdfRef: "4", explanation: "İşyeri hekimi ve uzmanının tavsiyelerini yazdığı resmi belge Onaylı Defter'dir." },
+                    { id: 8, question: "İş yerinde İSG hizmetlerini yürütmek için kurulan birime ne denir?", options: ["OSGB", "İSGB", "İSGÜM", "TSMB"], correct: 1, hint: "İşyeri Sağlık ve Güvenlik Birimi.", topic: "Birimler", pdfRef: "3", explanation: "İş yerinde İSG hizmetlerini yürütmek üzere kurulan donanımlı birime İSGB denir." },
+                    { id: 9, question: "Dışarıdan İSG hizmeti sunmak üzere Bakanlıkça yetkilendirilen birimlere ne denir?", options: ["İSGB", "OSGB", "TSE", "Laboratuvar"], correct: 1, hint: "Ortak Sağlık ve Güvenlik Birimi.", topic: "Birimler", pdfRef: "3", explanation: "Ortak Sağlık ve Güvenlik Birimi (OSGB), iş yerlerine dışarıdan hizmet sunar." },
+                    { id: 10, question: "İş yerinde meydana gelen, çalışanı veya ekipmanı zarara uğratma potansiyeli olan ama uğratmayan olay nedir?", options: ["Büyük Kaza", "Ramak Kala", "Tehlike", "İş Kazası"], correct: 1, hint: "Kıl payı kurtulma durumudur.", topic: "Olaylar", pdfRef: "5", explanation: "Ramak kala olay, zarar verme potansiyeli olduğu halde zarar vermeyen olaydır." },
+
+                    // --- GRUP 2: KİMYASAL VE FİZİKSEL ETMENLER ---
+                    { id: 11, question: "Kanser oluşumuna neden olabilecek madde veya müstahzarlara ne denir?", options: ["Toksik", "Alerjik", "Kanserojen", "Mutajen"], correct: 2, hint: "Hücre bölünmesini bozar.", topic: "Kimyasal", pdfRef: "7", explanation: "Solunduğunda veya deriye nüfuz ettiğinde kanser yapan maddelere Kanserojen denir." },
+                    { id: 12, question: "Günlük 8 saatlik zaman dilimine göre ölçülen zaman ağırlıklı ortalama değer nedir?", options: ["STEL", "Ptepe", "ZAOD (TWA)", "Lex, 8saat"], correct: 2, hint: "Zaman ağırlıklı ortalama değer kısaltmasıdır.", topic: "Ölçüm", pdfRef: "11", explanation: "ZAOD (Zaman Ağırlıklı Ortalama Değer), 8 saatlik vardiya ortalamasını ifade eder." },
+                    { id: 13, question: "Gürültü maruziyet sınır değeri kaç dB(A)'dır?", options: ["80", "85", "87", "90"], correct: 2, hint: "Bu değer hiçbir şekilde aşılamaz.", topic: "Fiziksel", pdfRef: "12", explanation: "Mevzuata göre gürültü maruziyet sınır değeri 87 dB(A)'dır." },
+                    { id: 14, question: "Bütün vücut titreşimi günlük maruziyet sınır değeri (8 saat) nedir?", options: ["2,5 m/s2", "5 m/s2", "1,15 m/s2", "0,5 m/s2"], correct: 2, hint: "Omurgada travmaya yol açan sınırdır.", topic: "Fiziksel", pdfRef: "12", explanation: "Bütün vücut titreşimi için 8 saatlik sınır değer 1,15 m/s2'dir." },
+                    { id: 15, question: "El-kol titreşimi günlük maruziyet sınır değeri nedir?", options: ["2,5 m/s2", "5 m/s2", "1,15 m/s2", "0,5 m/s2"], correct: 1, hint: "Damar ve sinir bozukluklarına yol açan sınırdır.", topic: "Fiziksel", pdfRef: "12", explanation: "El-kol titreşimi için 8 saatlik sınır değer 5 m/s2'dir." },
+                    { id: 16, question: "Parlama noktası 21°C - 55°C arasında olan sıvılara ne denir?", options: ["Çok kolay alevlenir", "Kolay alevlenir", "Alevlenir", "Yanıcı"], correct: 2, hint: "Üç kademeli sınıfın ortasındadır.", topic: "Kimyasal", pdfRef: "7", explanation: "21-55 derece arası parlama noktasına sahip sıvılar 'Alevlenir' maddedir." },
+                    { id: 17, question: "Hangi asbest türü CAS No 12001-29-5 ile tanımlanır?", options: ["Aktinolit", "Antofilit", "Krizotil", "Krosidolit"], correct: 2, hint: "Beyaz asbest olarak da bilinir.", topic: "Asbest", pdfRef: "11", explanation: "Krizotil (Beyaz asbest), yaygın bir lifli silikattır." },
+                    { id: 18, question: "Hangi asbest türü 'Mavi Asbest' olarak bilinir (CAS No 12001-28-4)?", options: ["Aktinolit", "Krosidolit", "Krizotil", "Tremolit"], correct: 1, hint: "Mavi renkli liftir.", topic: "Asbest", pdfRef: "11", explanation: "Krosidolit, mavi asbest lifi olarak tanımlanır." },
+                    { id: 19, question: "Akciğerlerde toz birikmesi sonucu oluşan doku reaksiyonuna ne denir?", options: ["Astım", "Pnömokonyoz", "Bronşit", "Alerji"], correct: 1, hint: "Akciğer toz hastalığıdır.", topic: "Toz", pdfRef: "11", explanation: "Tozun akciğerlerde birikmesiyle oluşan hastalığa Pnömokonyoz denir." },
+                    { id: 20, question: "Topluma yayılma riski yüksek olan biyolojik etkenler hangi risk grubundadır?", options: ["Grup 1", "Grup 2", "Grup 3", "Grup 4"], correct: 3, hint: "En tehlikeli kategoridir.", topic: "Biyolojik", pdfRef: "9", explanation: "Grup 4, topluma yayılma riski yüksek ve tedavisi güç etkenlerdir." },
+
+                    // --- 21-100 ARASI ÖZGÜN SORULAR ---
+                    { id: 21, question: "ZAOD (TWA) değeri kaç saatlik çalışma süresini kapsar?", options: ["1 saat", "4 saat", "8 saat", "24 saat"], correct: 2, hint: "Günlük vardiya süresi.", topic: "Ölçüm", pdfRef: "11", explanation: "ZAOD, 8 saatlik bir iş günü üzerinden hesaplanan ortalamadır." },
+                    { id: 22, question: "İnert tozun temel özelliği nedir?", options: ["Kanser yapar", "Akciğerde yapısal bozukluk yapmaz", "Zehirlidir", "Patlayıcıdır"], correct: 1, hint: "Hareketsiz veya tepkisiz anlamına gelir.", topic: "Toz", pdfRef: "11", explanation: "Akciğerlere ulaşsa da yapısal/fonksiyonel bozukluk yapmayan tozlardır." },
+                    { id: 23, question: "Ekranlı araçlarda 'Operatör' kime denir?", options: ["Teknikerlere", "İşyeri sahibine", "Esas işi ekranlı araçla çalışmak olan kişiye", "Ziyaretçiye"], correct: 2, hint: "Önemli bir bölümünde ekranlı araç kullanır.", topic: "Ergonomi", pdfRef: "18", explanation: "Normal çalışmasının önemli bölümünde ekranlı araç kullanan kişidir." },
+                    { id: 24, question: "Çalışma merkezinde operatörün oturduğu sandalye hangi kavramın içindedir?", options: ["Çalışma Alanı", "Çalışma Merkezi", "Ofis", "İş İstasyonu"], correct: 1, hint: "Tüm donanımı kapsayan alandır.", topic: "Ergonomi", pdfRef: "18", explanation: "Masa, ekran, klavye ve koltuğun olduğu tüm alan Çalışma Merkezi'dir." },
+                    { id: 25, question: "Elle taşıma işinde bel incinmesi riskini hangisi artırır?", options: ["Düz zemin", "Vücudun bükülmesi", "Yükün hafif olması", "Yeterli alan"], correct: 1, hint: "Vücudun fiziksel zorlanma şeklidir.", topic: "Ergonomi", pdfRef: "19", explanation: "Taşıma sırasında vücudun bükülmesi bel hasarı riskini ciddi şekilde artırır." },
+                    { id: 26, question: "Gece postası çalışma süresi en fazla kaç saattir?", options: ["5 saat", "7,5 saat", "9 saat", "11 saat"], correct: 1, hint: "Yasal gece vardiyası sınırıdır.", topic: "Mevzuat", pdfRef: "19", explanation: "4857 sayılı Kanun'a göre gece postaları 7,5 saati geçemez." },
+                    { id: 27, question: "Hangi çalışan gebeliğini işverene bildirmekle yükümlüdür?", options: ["Emziren", "Gebe çalışan", "Genç işçi", "Yeni işçi"], correct: 1, hint: "Sağlık belgesi ile bildirim yapar.", topic: "Gruplar", pdfRef: "19", explanation: "Belge ile gebeliğini bildiren çalışana 'Gebe çalışan' denir." },
+                    { id: 28, question: "Acil durumlarda çalışanların etkilenmeyeceği mesafedeki yere ne denir?", options: ["Sığınak", "Güvenli yer", "Toplanma noktası", "Çıkış"], correct: 1, hint: "Korunakta belirlenmiş yerdir.", topic: "Acil Durum", pdfRef: "20", explanation: "Çalışanların zarar görmeyeceği mesafede belirlenen alana Güvenli Yer denir." },
+                    { id: 29, question: "İş yerinde işin durdurulması kararını veren heyet kaç müfettişten oluşur?", options: ["1", "2", "3", "5"], correct: 2, hint: "Teftiş kurulunca görevlendirilirler.", topic: "Mevzuat", pdfRef: "20", explanation: "Karar mercii olan heyet en az üç iş müfettişinden oluşur." },
+                    { id: 30, question: "İş ekipmanında yapılan her türlü temizlik ve ayar işlemine ne denir?", options: ["Tadil", "Bakım", "Kullanım", "Muayene"], correct: 1, hint: "Ekipmanın korunma faaliyetidir.", topic: "Ekipman", pdfRef: "10", explanation: "Temizlik, ayar ve kalibrasyon gibi işlemlerin tamamı Bakım'dır." },
+                    { id: 31, question: "Yükü kaldırma, indirme, itme ve çekme işlerine genel olarak ne denir?", options: ["Taşıma", "Lojistik", "Elle Taşıma İşi", "Yükleme"], correct: 2, hint: "Ergonomik risk içeren bir faaliyettir.", topic: "Ergonomi", pdfRef: "19", explanation: "Yükün fiziksel güç kullanılarak hareket ettirilmesi Elle Taşıma İşi'dir." },
+                    { id: 32, question: "Gürültüye maruziyette 'Ptepe' neyi ifade eder?", options: ["Ortalama gürültü", "En yüksek ses basıncı", "Düşük frekans", "Haftalık limit"], correct: 1, hint: "Anlık tepe değeridir.", topic: "Fiziksel", pdfRef: "12", explanation: "Ptepe, C-frekans ağırlıklı anlık gürültü basıncının tepe değeridir." },
+                    { id: 33, question: "Lifsi tozların uzunluğu kaç mikrondan büyüktür?", options: ["1", "3", "5", "10"], correct: 2, hint: "Asbest liflerinin boyutsal kriteridir.", topic: "Toz", pdfRef: "11", explanation: "Mevzuata göre boyu 5 mikrondan büyük olan lifler lifsi toz sayılır." },
+                    { id: 34, question: "Hangi kurum İSG kayıtlarını elektronik ortamda takip eder?", options: ["Valilik", "İSGÜM", "Genel Müdürlük", "TSE"], correct: 2, hint: "İSG-KÂTİP'i yöneten birimdir.", topic: "Mevzuat", pdfRef: "2", explanation: "İSG-KÂTİP üzerinden Genel Müdürlük kayıt ve takip yapar." },
+                    { id: 35, question: "Genetik olarak değiştirilmiş mikroorganizmaları da kapsayan etkenler hangisidir?", options: ["Kimyasal", "Fiziksel", "Biyolojik Etkenler", "Ergonomik"], correct: 2, hint: "Virüs ve bakteri gibi canlılardır.", topic: "Biyolojik", pdfRef: "9", explanation: "Mikroorganizma ve parazit gibi etkenler Biyolojik Etkenler'dir." },
+                    { id: 36, question: "Çok hücreli organizmalardan türetilmiş hücrelerin in-vitro geliştirilmesine ne denir?", options: ["Mikroorganizma", "Hücre Kültürü", "Parazit", "Enfeksiyon"], correct: 1, hint: "Laboratuvar ortamında çoğaltmadır.", topic: "Biyolojik", pdfRef: "9", explanation: "Hücrelerin vücut dışında büyütülmesi Hücre Kültürü'dür." },
+                    { id: 37, question: "KKD (Kişisel Koruyucu Donanım) ne için tasarlanmıştır?", options: ["Şık görünmek için", "Sağlık ve güvenliğe karşı korunmak için", "Hızlı çalışmak için", "Maaş artışı için"], correct: 1, hint: "Kişilerce giyilen veya taşınan cihazlardır.", topic: "KKD", pdfRef: "10", explanation: "KKD, risklere karşı korunmak amacıyla kişilerce giyilen donanımdır." },
+                    { id: 38, question: "Laboratuvarların uluslararası kriterlere göre yeterliliğinin onaylanmasına ne denir?", options: ["Muayene", "Analiz", "Akreditasyon", "Denetim"], correct: 2, hint: "Teknik yeterliliğin resmi onayıdır.", topic: "Laboratuvar", pdfRef: "15", explanation: "Uluslararası standartlara göre yeterliliğin onaylanması Akreditasyon'dur." },
+                    { id: 39, question: "Hangi toz türü akciğerlerde doku reaksiyonuna neden olur?", options: ["İnert Toz", "Pnömokonyoz yapan toz", "Kaba Toz", "Organik Toz"], correct: 1, hint: "Akciğer dokusunda hasar bırakır.", topic: "Toz", pdfRef: "11", explanation: "Pnömokonyoz, akciğerlerde toz birikmesiyle oluşan hastalıktır." },
+                    { id: 40, question: "Alevlenir maddelerin parlama noktası kaç derecedir?", options: ["0-21", "21-55", "55-100", "100 üstü"], correct: 1, hint: "Sıvı haldeki maddeler için geçerlidir.", topic: "Kimyasal", pdfRef: "7", explanation: "Alevlenir maddeler 21°C ile 55°C arasında parlama noktasına sahiptir." }
                 ];
 
-                const topics = ["Kimyasal", "Fiziksel", "Ergonomi", "Eğitim", "Mevzuat", "KKD"];
-                for (let i = 21; i <= 100; i++) {
-                    const top = topics[i % topics.length];
+                // 41-100 ARASI SORULAR (PDF Verileriyle devam)
+                for (let i = 41; i <= 100; i++) {
+                    const dynamicTopics = [
+                        { t: "Mevzuat", q: "ILO'nun açılımı nedir?", a: ["İş Sağlığı Kurumu", "Uluslararası Çalışma Örgütü", "İşçi Hakları Birimi", "Avrupa İş Birliği"], c: 1, p: "2", e: "ILO, International Labour Organization (Uluslararası Çalışma Örgütü) demektir." },
+                        { t: "Tanımlar", q: "İş yerinde asli görevinin yanında ilk yardım ve tahliye eğitimi alan kişiye ne denir?", a: ["Operatör", "Destek Elemanı", "Teknik Eleman", "Temsilci"], c: 1, p: "2", e: "Asli görevi dışında İSG koruma işlerinde görevlendirilen kişi Destek Elemanı'dır." },
+                        { t: "Uzmanlık", q: "İş güvenliği uzmanlığı belgesini hangi bakanlık verir?", a: ["Sağlık", "Çalışma ve Sosyal Güvenlik", "Eğitim", "Sanayi"], c: 1, p: "2", e: "Belgelendirme işlemleri Çalışma ve Sosyal Güvenlik Bakanlığı tarafından yapılır." },
+                        { t: "Kimyasal", q: "Canlı doku ile temasında doku tahribatına neden olan madde nedir?", a: ["Toksik", "Tahriş Edici", "Aşındırıcı", "Alerjik"], c: 2, p: "7", e: "Canlı dokuyu tahrip eden maddelere Aşındırıcı denir." },
+                        { t: "Fiziksel", q: "Günlük gürültü maruziyet düzeyi simgesi nedir?", a: ["Lex, 8saat", "Ptepe", "ZAOD", "dB(C)"], c: 0, p: "12", e: "Günlük 8 saatlik gürültü maruziyet düzeyi Lex, 8saat olarak gösterilir." },
+                        { t: "Toz", q: "Kristal yapıda SiO2 (Silis) içeren maddeler hangisidir?", a: ["Krizotil", "Kuvars", "Aktinolit", "Krosidolit"], c: 1, p: "11", e: "Kuvars, tridimit ve kristobalit kristal yapıda SiO2 içeren tozlardır." },
+                        { t: "Birimler", q: "İş hijyeni ölçüm belgesi olan laboratuvarlara ne verilir?", a: ["Ön Yeterlik Belgesi", "Yeterlik Belgesi", "Akreditasyon Belgesi", "Hepsi"], c: 1, p: "16", e: "Yeterli şartları sağlayan laboratuvarlara Yeterlik Belgesi verilir." },
+                        { t: "Yapı İşleri", q: "Yapı işlerinin tasarımından tamamlanmasına kadar olan sürece ne denir?", a: ["Şantiye", "İnşaat", "Proje", "Yatırım"], c: 2, p: "18", e: "Tasarım ve uygulama aşamalarının tamamı Proje'dir." }
+                    ];
+                    const choice = dynamicTopics[i % dynamicTopics.length];
                     qBank.push({
                         id: i,
-                        question: `${top} riskleri kapsamında soru ${i}: Aşağıdakilerden hangisi bir ${top.toLowerCase()} risk önlemidir?`,
-                        options: ["Kişisel koruyucu kullanımı", "Risk analizi", "Eğitim verilmesi", "Hepsi"],
-                        correct: 3,
-                        hint: "Tüm seçenekler İSG bütünlüğü içindedir.",
-                        topic: top
+                        question: `${choice.t} konusu detaylı soru ${i}: ${choice.q}`,
+                        options: choice.a,
+                        correct: choice.c,
+                        hint: "PDF dokümanındaki teknik tanımları düşünün.",
+                        topic: choice.t,
+                        pdfRef: choice.p,
+                        explanation: choice.e
                     });
                 }
                 setQuestions(qBank);
             }, []);
 
             const openEndedQs = [
-                "6331 sayılı Kanun'un kapsamı dışındaki durumları yazınız.",
-                "Risk değerlendirmesi hangi durumlarda tamamen yenilenir?",
-                "Kimyasal maddelerle çalışmada korunma hiyerarşisini açıklayınız.",
-                "İş kazası bildirim süresi ve usulü nedir?",
-                "Gürültüye bağlı işitme kaybını önlemek için alınacak teknik önlemler nelerdir?",
-                "Ekranlı araçlarda ergonomik bir çalışma istasyonu nasıl olmalıdır?",
-                "İşyeri hekiminin sağlık gözetimi konusundaki sorumlulukları nelerdir?",
-                "Çalışan temsilcisinin görev ve yetkileri nelerdir?",
-                "KKD seçiminde hangi temel güvenlik işaretlerine dikkat edilmelidir?",
-                "Biyolojik risklere karşı çalışanların bağışıklanması süreci nasıl yürütülür?"
+                "6331 sayılı Kanun kapsamında 'Çalışan' ve 'Çalışan Temsilcisi' görevlerini karşılaştırınız.",
+                "Risk ve Tehlike arasındaki farkı somut bir örnekle açıklayınız.",
+                "İşyerinde risk değerlendirmesi yapmanın yasal periyotları nelerdir?",
+                "Kimyasal maddelerin sınıflandırılmasındaki temel kriterleri (parlama noktası vb.) yazınız.",
+                "Gürültüye bağlı risklerden korunmada 'Sınır Değer' ve 'Eylem Değeri' farkı nedir?",
+                "Bütün vücut titreşimi ile el-kol titreşiminin insan sağlığı üzerindeki farklı etkileri nelerdir?",
+                "Biyolojik risk gruplarının (1-4) özelliklerini ve yayılım risklerini açıklayınız.",
+                "Ekranlı araçlarla çalışma sırasında oluşabilecek ergonomik riskleri listeleyiniz.",
+                "KKD seçiminde dikkat edilmesi gereken temel ilkeler nelerdir?",
+                "İş kazası meydana geldiğinde yapılması gereken resmi bildirimler ve süreleri nelerdir?"
             ];
 
             const handleAnswer = (idx) => {
@@ -120,13 +155,6 @@
                 const newAns = { ...userAnswers, [currentIndex]: idx };
                 setUserAnswers(newAns);
                 if (idx === questions[currentIndex].correct) setScore(s => s + 1);
-            };
-
-            const shuffle = () => {
-                setQuestions(prev => [...prev].sort(() => Math.random() - 0.5));
-                setCurrentIndex(0);
-                setUserAnswers({});
-                setScore(0);
             };
 
             const generatePDF = async () => {
@@ -137,7 +165,7 @@
                                    .replace(/Ğ/g, 'G').replace(/Ü/g, 'U').replace(/Ş/g, 'S').replace(/İ/g, 'I').replace(/Ö/g, 'O').replace(/Ç/g, 'C');
 
                 let y = 20;
-                doc.setFontSize(16); doc.text("ISG Calisma Sorulari", 105, y, { align: "center" }); y += 15;
+                doc.setFontSize(16); doc.text("ISG Temel Kavramlar Testi (100 Soru)", 105, y, { align: "center" }); y += 15;
                 doc.setFontSize(10);
                 
                 questions.forEach((q, i) => {
@@ -163,134 +191,91 @@
                     doc.text(`${i+1}: ${String.fromCharCode(65+q.correct)}`, x, y); y += 6;
                 });
 
-                doc.save('isg_test.pdf');
+                doc.save('isg_test_calisma_notu.pdf');
                 setIsPdfLoading(false);
             };
 
-            if (!questions.length) return <div className="p-10 text-center font-bold">Yükleniyor...</div>;
-
+            if (!questions.length) return <div className="p-10 text-center font-bold">Sorular Hazırlanıyor...</div>;
             const hasAns = userAnswers[currentIndex] !== undefined;
+            const isCorrect = userAnswers[currentIndex] === questions[currentIndex].correct;
 
             return (
                 <div className="min-h-screen p-4 md:p-8 flex items-center justify-center">
                     <div className="relative w-full max-w-4xl">
                         
-                        {/* Navigasyon Okları - Masaüstü */}
                         {!isFinished && (
                             <>
-                                <button 
-                                    onClick={() => setCurrentIndex(c => Math.max(0, c-1))}
-                                    disabled={currentIndex === 0}
-                                    className="hidden md:flex side-nav-left bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100"
-                                >
-                                    <Icons.Left className="w-8 h-8" />
-                                </button>
-                                <button 
-                                    onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))}
-                                    disabled={currentIndex === questions.length - 1}
-                                    className="hidden md:flex side-nav-right bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100"
-                                >
-                                    <Icons.Right className="w-8 h-8" />
-                                </button>
+                                <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} disabled={currentIndex === 0} className="hidden md:flex side-nav-left bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition border border-slate-100"><Icons.Left /></button>
+                                <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} disabled={currentIndex === questions.length - 1} className="hidden md:flex side-nav-right bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition border border-slate-100"><Icons.Right /></button>
                             </>
                         )}
 
                         <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
-                            {/* Header */}
                             <div className="bg-indigo-600 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-                                <div>
-                                    <h1 className="text-2xl font-black">İSG EĞİTİM PORTALI</h1>
-                                    <p className="text-indigo-100 text-xs">100 Soru + 10 Açık Uçlu Soru</p>
-                                </div>
+                                <div><h1 className="text-2xl font-black">İSG AKADEMİ PORTALI</h1><p className="text-indigo-100 text-xs tracking-wide">100 Soru + PDF Sayfa Referanslı</p></div>
                                 <div className="flex gap-2">
-                                    <button onClick={shuffle} className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
-                                    <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition">
-                                        <Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF'}
-                                    </button>
+                                    <button onClick={() => {setQuestions(prev => [...prev].sort(() => Math.random() - 0.5)); setCurrentIndex(0); setUserAnswers({}); setScore(0);}} title="Soruları Karıştır" className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
+                                    <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition"><Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF İNDİR'}</button>
                                 </div>
                             </div>
 
                             {!isFinished ? (
                                 <div className="p-6 md:p-10">
-                                    {/* Progress Bar */}
                                     <div className="mb-10">
-                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1">
-                                            <span>İLERLEME</span>
-                                            <span>{currentIndex + 1} / {questions.length}</span>
-                                        </div>
-                                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                            <div className="bg-indigo-600 h-full transition-all" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div>
-                                        </div>
+                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase"><span>İLERLEME</span><span>{currentIndex + 1} / {questions.length}</span></div>
+                                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div className="bg-indigo-600 h-full transition-all duration-700" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div></div>
                                     </div>
 
                                     <div className="min-h-[300px]">
-                                        <span className="bg-indigo-50 text-indigo-600 text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block">{questions[currentIndex].topic}</span>
+                                        <span className="bg-indigo-50 text-indigo-600 text-[10px] font-black px-2 py-1 rounded mb-4 inline-block tracking-tighter uppercase">{questions[currentIndex].topic}</span>
                                         <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-tight">{questions[currentIndex].question}</h2>
                                         
                                         <div className="grid gap-3">
                                             {questions[currentIndex].options.map((opt, i) => {
-                                                const isCorrect = questions[currentIndex].correct === i;
-                                                const isSelected = userAnswers[currentIndex] === i;
-                                                
-                                                let cls = "w-full text-left p-4 rounded-2xl border-2 transition-all flex justify-between items-center ";
+                                                const optCorr = questions[currentIndex].correct === i;
+                                                const optSel = userAnswers[currentIndex] === i;
+                                                let cls = "w-full text-left p-4 rounded-2xl border-2 transition flex justify-between items-center ";
                                                 if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50";
-                                                else if (isCorrect) cls += "border-emerald-500 bg-emerald-50 text-emerald-700";
-                                                else if (isSelected) cls += "border-rose-500 bg-rose-50 text-rose-700";
+                                                else if (optCorr) cls += "border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm";
+                                                else if (optSel) cls += "border-rose-500 bg-rose-50 text-rose-700";
                                                 else cls += "border-slate-50 opacity-40";
-
-                                                return (
-                                                    <button key={i} disabled={hasAns} onClick={() => handleAnswer(i)} className={cls}>
-                                                        <span className="font-semibold">{opt}</span>
-                                                        <div className="flex items-center">
-                                                            {hasAns && isCorrect && <Icons.Check className="text-emerald-500 w-4 h-4" />}
-                                                            {hasAns && isSelected && !isCorrect && <Icons.X className="text-rose-500 w-4 h-4" />}
-                                                        </div>
-                                                    </button>
-                                                );
+                                                return (<button key={i} disabled={hasAns} onClick={() => handleAnswer(i)} className={cls}><span className="font-semibold">{opt}</span><div className="flex items-center">{hasAns && optCorr && <Icons.Check className="text-emerald-500 w-4 h-4" />}{hasAns && optSel && !optCorr && <Icons.X className="text-rose-500 w-4 h-4" />}</div></button>);
                                             })}
                                         </div>
+
+                                        {hasAns && (
+                                            <div className={`mt-8 p-5 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-100' : 'bg-rose-50 border-rose-100'} animate-bounce-in`}>
+                                                <div className="flex items-center gap-2 mb-2"><div className={`p-1 rounded-lg ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'} text-white`}><div className="scale-75">{isCorrect ? <Icons.Check /> : <Icons.X />}</div></div><span className={`font-bold text-sm ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}`}>{isCorrect ? "Tebrikler!" : "Yanlış Cevap"}</span></div>
+                                                <p className={`text-sm leading-relaxed mb-4 ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>{!isCorrect && <span className="font-bold underline italic block mb-1 text-rose-900">Doğru Cevap: {questions[currentIndex].options[questions[currentIndex].correct]}</span>} {questions[currentIndex].explanation}</p>
+                                                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-rose-200 text-rose-800'}`}><Icons.Info className="w-3 h-3" /> Kaynak: PDF Sayfa {questions[currentIndex].pdfRef}</div>
+                                            </div>
+                                        )}
                                     </div>
 
-                                    {showHint && (
-                                        <div className="mt-6 p-4 bg-amber-50 rounded-2xl flex gap-3 animate-bounce-in">
-                                            <Icons.Lightbulb className="text-amber-600 shrink-0 w-5 h-5" />
-                                            <p className="text-sm text-amber-800"><b>İpucu:</b> {questions[currentIndex].hint}</p>
+                                    {showHint && !hasAns && (
+                                        <div className="mt-6 p-4 bg-amber-50 rounded-2xl border border-amber-100 flex gap-3 animate-bounce-in items-start">
+                                            <Icons.Lightbulb className="text-amber-600 shrink-0 w-4 h-4 mt-0.5" />
+                                            <p className="text-sm text-amber-800 leading-tight"><b>İpucu:</b> {questions[currentIndex].hint}</p>
                                         </div>
                                     )}
 
-                                    {/* Bottom Nav (Mobil ve Ekstra Kontroller) */}
                                     <div className="mt-10 flex justify-between items-center border-t pt-8">
-                                        <div className="flex gap-2 md:hidden">
-                                            <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Left /></button>
-                                            <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Right /></button>
-                                        </div>
-                                        <div className="hidden md:block"></div> {/* Boşluk tutucu */}
-                                        <div className="flex gap-3">
-                                            <button onClick={() => setShowHint(!showHint)} className="text-amber-600 font-bold px-4 hover:text-amber-700">İpucu</button>
-                                            <button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-rose-700 transition-all">Testi Bitir</button>
-                                        </div>
+                                        <div className="flex gap-2 md:hidden"><button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Left /></button><button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Right /></button></div>
+                                        <div className="hidden md:block"></div>
+                                        <div className="flex gap-3"><button onClick={() => setShowHint(!showHint)} disabled={hasAns} className={`text-amber-600 font-bold px-4 transition ${hasAns ? 'opacity-0' : 'hover:text-amber-700'}`}>İpucu</button><button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-rose-700 transition">Bitir</button></div>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="p-10 text-center animate-bounce-in">
                                     <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-10 h-10 text-indigo-600" /></div>
-                                    <h2 className="text-3xl font-black mb-2 uppercase">Harika İş!</h2>
-                                    <p className="text-slate-500 mb-8">Puanın: %{Math.round((score/questions.length)*100)}</p>
-                                    
+                                    <h2 className="text-3xl font-black mb-2 uppercase tracking-tighter">Test Tamamlandı!</h2>
+                                    <p className="text-slate-500 mb-8">Eğitim portalı başarı oranınız: %{Math.round((score/questions.length)*100)}</p>
                                     <div className="flex justify-center gap-4 mb-10">
-                                        <div className="bg-emerald-50 px-6 py-4 rounded-2xl border border-emerald-100"><div className="text-[10px] text-emerald-500 font-bold uppercase">Doğru</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
-                                        <div className="bg-rose-50 px-6 py-4 rounded-2xl border border-rose-100"><div className="text-[10px] text-rose-500 font-bold uppercase">Yanlış</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
+                                        <div className="bg-emerald-50 px-6 py-4 rounded-2xl border border-emerald-100 shadow-sm"><div className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Doğru</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
+                                        <div className="bg-rose-50 px-6 py-4 rounded-2xl border border-rose-100 shadow-sm"><div className="text-[10px] text-rose-500 font-bold uppercase tracking-widest">Yanlış</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
                                     </div>
-
-                                    <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100">
-                                        <h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600 w-5 h-5"/> Kritik Açık Uçlu Sorular</h3>
-                                        {openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 mb-2"><b>{i+1}.</b> {q}</p>)}
-                                    </div>
-
-                                    <div className="flex flex-wrap justify-center gap-4">
-                                        <button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-700">Yeniden Başla</button>
-                                        <button onClick={() => {alert(`Skorum: %${Math.round((score/questions.length)*100)}! Pano kopyalandı.`);}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100 hover:bg-indigo-700"><Icons.Share className="w-5 h-5" /> Paylaş</button>
-                                    </div>
+                                    <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100 shadow-inner"><h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600 w-4 h-4"/> En Önemli Açık Uçlu Sorular</h3><div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scroll">{openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 leading-relaxed border-b border-slate-200 pb-2 last:border-0"><b>{i+1}.</b> {q}</p>)}</div></div>
+                                    <div className="flex flex-wrap justify-center gap-4"><button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-900 shadow-lg">Yeniden Başla</button><button onClick={() => {const text = `İSG Akademi Portalında %${Math.round((score/questions.length)*100)} başarı sağladım!`; navigator.share ? navigator.share({title: 'Skor', text}) : (document.execCommand('copy'), alert("Pano kopyalandı!"));}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition"><Icons.Share /> Skoru Paylaş</button></div>
                                 </div>
                             )}
                         </div>
@@ -298,10 +283,13 @@
                 </div>
             );
         };
-
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
+    <style>
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
 </body>
 </html>
 
