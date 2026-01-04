@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Sınav Sistemi - 100 Soru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .exam-card {
+            transition: all 0.3s ease;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased text-slate-900">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-slate-200 py-6">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 p-2 rounded-lg text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Final Sınav Portalı</h1>
+                    <p class="text-xs text-slate-500 uppercase font-semibold tracking-wider">Akademik Değerlendirme Sistemi</p>
+                </div>
+            </div>
+            <div class="text-sm font-medium bg-slate-100 px-4 py-2 rounded-full text-slate-600">
+                2023-2024 Final Dönemi
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-slate-800 mb-4">Sınav Giriş Paneli</h2>
+                <p class="text-slate-600 max-w-xl mx-auto">Aşağıdaki butonları kullanarak ilgili dersin 100 soruluk final sınavına giriş yapabilirsiniz. Her sınav için ayrılan süreyi dikkatli kullanınız.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Gıda Kimyası Card -->
+                <div class="exam-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-orange-100 text-orange-600 mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.628.281a2 2 0 01-1.158 0l-.628-.281a6 6 0 00-3.86-.517l-2.387.477a2 2 0 00-1.022.547l-.311.467a2 2 0 000 2.216l.311.467a2 2 0 001.022.547l2.387.477a6 6 0 003.86-.517l.628-.281a2 2 0 011.158 0l.628.281a6 6 0 003.86.517l2.387-.477a2 2 0 001.022-.547l.311-.467a2 2 0 000-2.216l-.311-.467z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">Gıda Kimyası</h3>
+                        <p class="text-slate-500 text-sm mb-6 leading-relaxed">Gıda bileşenlerinin yapısı ve kimyasal süreçlerini kapsayan kapsamlı değerlendirme.</p>
+                        
+                        <div class="flex flex-col gap-3 mb-8">
+                            <div class="flex items-center text-sm font-semibold text-slate-700">
+                                <span class="w-24 text-slate-400 font-normal italic">Soru Sayısı:</span> 100 Soru
+                            </div>
+                            <div class="flex items-center text-sm font-semibold text-slate-700">
+                                <span class="w-24 text-slate-400 font-normal italic">Süre:</span> 120 Dakika
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-slate-50 border-t border-slate-100">
+                        <a href="gk.html" class="block w-full text-center py-3 px-6 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-lg transition-colors shadow-md shadow-orange-100">
+                            Sınavı Başlat
+                        </a>
+                    </div>
+                </div>
+
+                <!-- İSG Card -->
+                <div class="exam-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col">
+                    <div class="p-8 flex-grow">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-blue-100 text-blue-600 mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-2">İSG</h3>
+                        <p class="text-slate-500 text-sm mb-6 leading-relaxed">İş sağlığı, güvenliği mevzuatı ve risk yönetimi konularını kapsayan final testi.</p>
+                        
+                        <div class="flex flex-col gap-3 mb-8">
+                            <div class="flex items-center text-sm font-semibold text-slate-700">
+                                <span class="w-24 text-slate-400 font-normal italic">Soru Sayısı:</span> 100 Soru
+                            </div>
+                            <div class="flex items-center text-sm font-semibold text-slate-700">
+                                <span class="w-24 text-slate-400 font-normal italic">Süre:</span> 100 Dakika
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-slate-50 border-t border-slate-100">
+                        <a href="isg.html" class="block w-full text-center py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors shadow-md shadow-blue-100">
+                            Sınavı Başlat
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Uyarı Paneli -->
+            <div class="mt-12 bg-white border-l-4 border-red-500 p-6 rounded-r-2xl shadow-sm">
+                <div class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-red-800 mb-1">DİKKAT: 100 Soru Kuralı</h4>
+                        <p class="text-slate-600 text-sm leading-relaxed">Her iki sınav da tam kapsamlı olup 100 sorudan oluşmaktadır. Sınav esnasında sayfayı yenilemek veya sekmeler arası geçiş yapmak cevaplarınızın kaybolmasına neden olabilir. Lütfen kesintisiz internet bağlantısı olan bir ortamda sınava başlayınız.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-white border-t border-slate-200">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-slate-400 text-xs font-medium tracking-widest uppercase mb-2">Final Sınavı Yönetim Sistemi</p>
+            <p class="text-slate-600 text-sm font-semibold">&copy; 2024 Tüm Akademik Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
