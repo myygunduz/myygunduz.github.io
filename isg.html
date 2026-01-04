@@ -31,7 +31,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect, useMemo } = React;
+        const { useState, useEffect } = React;
 
         const Icon = ({ path, className = "w-5 h-5" }) => (
             <svg className={className} fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -63,91 +63,149 @@
 
             useEffect(() => {
                 const qBank = [
-                    // --- GRUP 1: TANIMLAR VE MEVZUAT ---
-                    { id: 1, question: "6331 sayılı İSG Kanunu'na göre 'Çalışan' tanımı nedir?", options: ["Sadece sigortalı işçiler", "Kamu veya özel işyerlerinde istihdam edilen gerçek kişi", "Yalnızca memurlar", "Kendi namına çalışanlar"], correct: 1, hint: "Statüsüne bakılmaksızın herkesi kapsar.", topic: "Tanımlar", pdfRef: "2", explanation: "Kanun, çalışanları statüsüne bakılmaksızın kamu veya özel işyerlerinde istihdam edilen tüm gerçek kişiler olarak tanımlar." },
-                    { id: 2, question: "Tehlikeden kaynaklanacak zarar veya zararlı sonuç meydana gelme ihtimaline ne denir?", options: ["Tehlike", "Kaza", "Risk", "Olay"], correct: 2, hint: "İhtimal ve şiddetin bileşkesidir.", topic: "Risk", pdfRef: "3", explanation: "Risk, bir tehlikenin gerçekleşme ihtimali ve yaratacağı olumsuz etkinin birleşimidir." },
-                    { id: 3, question: "İş yerinde var olan ya da dışarıdan gelebilecek zarar verme potansiyeline ne denir?", options: ["Kaza", "Risk", "Tehlike", "Önleme"], correct: 2, hint: "Henüz bir zarar oluşmamış, potansiyel var.", topic: "Tehlike", pdfRef: "4", explanation: "Tehlike, zarar veya hasar verme potansiyelini ifade eden durumdur." },
-                    { id: 4, question: "İSG kayıt ve takip işlemleri için Bakanlıkça kullanılan merkezi program hangisidir?", options: ["E-Nabız", "İSG-KÂTİP", "SGK-SİSTEM", "İSG-TAKİP"], correct: 1, hint: "İSG Kayıt, Takip ve İzleme Programıdır.", topic: "Mevzuat", pdfRef: "2", explanation: "İSG-KÂTİP, İSG hizmetleri ile ilgili iş ve işlemlerin Bakanlıkça takibi amacıyla kullanılır." },
-                    { id: 5, question: "İSG alanında görev yapmak üzere Bakanlıkça yetkilendirilmiş mühendis veya teknik elemana ne denir?", options: ["İşyeri Hekimi", "Teknik Müdür", "İş Güvenliği Uzmanı", "İSG Temsilcisi"], correct: 2, hint: "Belirli bir sertifikaya sahip profesyoneldir.", topic: "Uzmanlık", pdfRef: "3", explanation: "Belge sahibi mühendis, mimar veya teknik elemanlar İş Güvenliği Uzmanı olarak görevlendirilir." },
-                    { id: 6, question: "15 yaşını bitirmiş ancak 18 yaşını doldurmamış çalışana ne ad verilir?", options: ["Çocuk çalışan", "Stajyer", "Genç çalışan", "Çırak"], correct: 2, hint: "Yaş sınırlaması 15-18 arasıdır.", topic: "Gruplar", pdfRef: "3", explanation: "On beş yaşını bitirmiş ancak on sekizini doldurmamış kişi 'Genç çalışan'dır." },
-                    { id: 7, question: "İşyeri hekimi ve uzmanı tavsiyelerinin yazıldığı seri numaralı resmi deftere ne denir?", options: ["Günlük Rapor", "Onaylı Defter", "Kaza Defteri", "Sağlık Takip Dosyası"], correct: 1, hint: "Her iş yeri için tek olan defterdir.", topic: "Belgeleme", pdfRef: "4", explanation: "İşyeri hekimi ve uzmanının tavsiyelerini yazdığı resmi belge Onaylı Defter'dir." },
-                    { id: 8, question: "İş yerinde İSG hizmetlerini yürütmek için kurulan birime ne denir?", options: ["OSGB", "İSGB", "İSGÜM", "TSMB"], correct: 1, hint: "İşyeri Sağlık ve Güvenlik Birimi.", topic: "Birimler", pdfRef: "3", explanation: "İş yerinde İSG hizmetlerini yürütmek üzere kurulan donanımlı birime İSGB denir." },
-                    { id: 9, question: "Dışarıdan İSG hizmeti sunmak üzere Bakanlıkça yetkilendirilen birimlere ne denir?", options: ["İSGB", "OSGB", "TSE", "Laboratuvar"], correct: 1, hint: "Ortak Sağlık ve Güvenlik Birimi.", topic: "Birimler", pdfRef: "3", explanation: "Ortak Sağlık ve Güvenlik Birimi (OSGB), iş yerlerine dışarıdan hizmet sunar." },
-                    { id: 10, question: "İş yerinde meydana gelen, çalışanı veya ekipmanı zarara uğratma potansiyeli olan ama uğratmayan olay nedir?", options: ["Büyük Kaza", "Ramak Kala", "Tehlike", "İş Kazası"], correct: 1, hint: "Kıl payı kurtulma durumudur.", topic: "Olaylar", pdfRef: "5", explanation: "Ramak kala olay, zarar verme potansiyeli olduğu halde zarar vermeyen olaydır." },
+                    // --- GRUP 1: GİRİŞ VE TEMEL KAVRAMLAR (S. 2-3) ---
+                    { id: 1, question: "6331 sayılı Kanun'da 'Çalışan' nasıl tanımlanır?", options: ["Sadece sigortalı işçiler", "Kamu veya özel işyerlerinde istihdam edilen gerçek kişi", "Sadece devlet memurları", "Kendi namına çalışanlar"], correct: 1, hint: "Statüsüne bakılmaksızın herkesi kapsar.", topic: "Tanımlar", pdfRef: "Sayfa 2", explanation: "Çalışan, kendi özel kanunlarındaki statülerine bakılmaksızın kamu veya özel işyerlerinde istihdam edilen gerçek kişidir." },
+                    { id: 2, question: "İSG kayıt ve takip işlemleri için Bakanlıkça kullanılan program hangisidir?", options: ["E-Nabız", "İSG-KÂTİP", "SGK-SİSTEM", "İSG-TAKİP"], correct: 1, hint: "İSG Kayıt, Takip ve İzleme Programıdır.", topic: "Tanımlar", pdfRef: "Sayfa 2", explanation: "İSG-KÂTİP, İSG hizmetleri ile ilgili iş ve işlemlerin Genel Müdürlükçe kayıt, takip ve izlenmesi amacıyla kullanılır." },
+                    { id: 3, question: "İSGÜM'ün açılımı nedir?", options: ["İş Sağlığı Güvenliği Üst Merkezi", "İş Sağlığı ve Güvenliği Enstitüsü Müdürlüğü", "İşçi Sağlığı Gözetim Ünitesi", "İş Sağlığı ve Güvenliği Merkezi"], correct: 1, hint: "Bakanlığa bağlı bir enstitüdür.", topic: "Tanımlar", pdfRef: "Sayfa 2", explanation: "İSGÜM, İş Sağlığı ve Güvenliği Enstitüsü Müdürlüğü'dür." },
+                    { id: 4, question: "Asli görevinin yanında yangınla mücadele ve tahliye gibi konularda özel görevlendirilen kişiye ne denir?", options: ["Operatör", "Destek Elemanı", "Teknik Eleman", "Temsilci"], correct: 1, hint: "Özel donanım ve eğitime sahip yardımcı personeldir.", topic: "Tanımlar", pdfRef: "Sayfa 2", explanation: "Destek elemanı, asli görevinin yanında önleme, koruma, tahliye, yangınla mücadele gibi konularda görevlendirilen kişidir." },
+                    { id: 5, question: "15 yaşını bitirmiş ancak 18 yaşını doldurmamış çalışana ne ad verilir?", options: ["Çocuk çalışan", "Stajyer", "Genç çalışan", "Çırak"], correct: 2, hint: "Yaş sınırlaması 15-18 arasıdır.", topic: "Tanımlar", pdfRef: "Sayfa 3", explanation: "Genç çalışan, on beş yaşını bitirmiş ancak on sekiz yaşını doldurmamış çalışandır." },
+                    { id: 6, question: "İş yerinde veya işin yürütümü nedeniyle meydana gelen, ölüme veya engelliliğe yol açan olaya ne denir?", options: ["Meslek Hastalığı", "İş Kazası", "Ramak Kala", "Tehlike"], correct: 1, hint: "Aniden meydana gelen ve bedensel bütünlüğü bozan olaydır.", topic: "Tanımlar", pdfRef: "Sayfa 3", explanation: "İş kazası, iş yerinde veya işin yürütümü nedeniyle meydana gelen, ölüme sebebiyet veren veya vücut bütünlüğünü bozan olaydır." },
+                    { id: 7, question: "Çalışan istihdam eden gerçek veya tüzel kişi yahut tüzel kişiliği olmayan kuruma ne denir?", options: ["İşveren Vekili", "İşveren", "Hizmet Sunucusu", "İşletmeci"], correct: 1, hint: "Çalışanları işe alan taraftır.", topic: "Tanımlar", pdfRef: "Sayfa 3", explanation: "İşveren, çalışan istihdam eden gerçek veya tüzel kişi yahut tüzel kişiliği olmayan kurum ve kuruluşlardır." },
+                    { id: 8, question: "Mesleki risklere maruziyet sonucu ortaya çıkan hastalığa ne denir?", options: ["İş Kazası", "Kronik Hastalık", "Meslek Hastalığı", "Alerjik Reaksiyon"], correct: 2, hint: "Mesleğin niteliğinden kaynaklanır.", topic: "Tanımlar", pdfRef: "Sayfa 3", explanation: "Meslek hastalığı, mesleki risklere maruziyet sonucu ortaya çıkan hastalıktır." },
+                    { id: 9, question: "Tehlikeden kaynaklanacak kayıp, yaralanma ya da başka zararlı sonuç meydana gelme ihtimaline ne denir?", options: ["Tehlike", "Kaza", "Risk", "Olay"], correct: 2, hint: "Bir olasılık ve şiddet bileşkesidir.", topic: "Tanımlar", pdfRef: "Sayfa 3", explanation: "Risk, tehlikeden kaynaklanacak kayıp, yaralanma ya da başka zararlı sonuç meydana gelme ihtimalidir." },
+                    { id: 10, question: "İş yerinde var olan ya da dışarıdan gelebilecek zarar verme potansiyeline ne denir?", options: ["Kaza", "Risk", "Tehlike", "Önleme"], correct: 2, hint: "Henüz bir zarar oluşmamış, sadece potansiyel var.", topic: "Tanımlar", pdfRef: "Sayfa 4", explanation: "Tehlike, işyerinde var olan ya da dışarıdan gelebilecek, zarar veya hasar verme potansiyelidir." },
 
-                    // --- GRUP 2: KİMYASAL VE FİZİKSEL ETMENLER ---
-                    { id: 11, question: "Kanser oluşumuna neden olabilecek madde veya müstahzarlara ne denir?", options: ["Toksik", "Alerjik", "Kanserojen", "Mutajen"], correct: 2, hint: "Hücre bölünmesini bozar.", topic: "Kimyasal", pdfRef: "7", explanation: "Solunduğunda veya deriye nüfuz ettiğinde kanser yapan maddelere Kanserojen denir." },
-                    { id: 12, question: "Günlük 8 saatlik zaman dilimine göre ölçülen zaman ağırlıklı ortalama değer nedir?", options: ["STEL", "Ptepe", "ZAOD (TWA)", "Lex, 8saat"], correct: 2, hint: "Zaman ağırlıklı ortalama değer kısaltmasıdır.", topic: "Ölçüm", pdfRef: "11", explanation: "ZAOD (Zaman Ağırlıklı Ortalama Değer), 8 saatlik vardiya ortalamasını ifade eder." },
-                    { id: 13, question: "Gürültü maruziyet sınır değeri kaç dB(A)'dır?", options: ["80", "85", "87", "90"], correct: 2, hint: "Bu değer hiçbir şekilde aşılamaz.", topic: "Fiziksel", pdfRef: "12", explanation: "Mevzuata göre gürültü maruziyet sınır değeri 87 dB(A)'dır." },
-                    { id: 14, question: "Bütün vücut titreşimi günlük maruziyet sınır değeri (8 saat) nedir?", options: ["2,5 m/s2", "5 m/s2", "1,15 m/s2", "0,5 m/s2"], correct: 2, hint: "Omurgada travmaya yol açan sınırdır.", topic: "Fiziksel", pdfRef: "12", explanation: "Bütün vücut titreşimi için 8 saatlik sınır değer 1,15 m/s2'dir." },
-                    { id: 15, question: "El-kol titreşimi günlük maruziyet sınır değeri nedir?", options: ["2,5 m/s2", "5 m/s2", "1,15 m/s2", "0,5 m/s2"], correct: 1, hint: "Damar ve sinir bozukluklarına yol açan sınırdır.", topic: "Fiziksel", pdfRef: "12", explanation: "El-kol titreşimi için 8 saatlik sınır değer 5 m/s2'dir." },
-                    { id: 16, question: "Parlama noktası 21°C - 55°C arasında olan sıvılara ne denir?", options: ["Çok kolay alevlenir", "Kolay alevlenir", "Alevlenir", "Yanıcı"], correct: 2, hint: "Üç kademeli sınıfın ortasındadır.", topic: "Kimyasal", pdfRef: "7", explanation: "21-55 derece arası parlama noktasına sahip sıvılar 'Alevlenir' maddedir." },
-                    { id: 17, question: "Hangi asbest türü CAS No 12001-29-5 ile tanımlanır?", options: ["Aktinolit", "Antofilit", "Krizotil", "Krosidolit"], correct: 2, hint: "Beyaz asbest olarak da bilinir.", topic: "Asbest", pdfRef: "11", explanation: "Krizotil (Beyaz asbest), yaygın bir lifli silikattır." },
-                    { id: 18, question: "Hangi asbest türü 'Mavi Asbest' olarak bilinir (CAS No 12001-28-4)?", options: ["Aktinolit", "Krosidolit", "Krizotil", "Tremolit"], correct: 1, hint: "Mavi renkli liftir.", topic: "Asbest", pdfRef: "11", explanation: "Krosidolit, mavi asbest lifi olarak tanımlanır." },
-                    { id: 19, question: "Akciğerlerde toz birikmesi sonucu oluşan doku reaksiyonuna ne denir?", options: ["Astım", "Pnömokonyoz", "Bronşit", "Alerji"], correct: 1, hint: "Akciğer toz hastalığıdır.", topic: "Toz", pdfRef: "11", explanation: "Tozun akciğerlerde birikmesiyle oluşan hastalığa Pnömokonyoz denir." },
-                    { id: 20, question: "Topluma yayılma riski yüksek olan biyolojik etkenler hangi risk grubundadır?", options: ["Grup 1", "Grup 2", "Grup 3", "Grup 4"], correct: 3, hint: "En tehlikeli kategoridir.", topic: "Biyolojik", pdfRef: "9", explanation: "Grup 4, topluma yayılma riski yüksek ve tedavisi güç etkenlerdir." },
+                    // --- GRUP 2: YÖNETMELİKLER VE RİSK DEĞERLENDİRMESİ (S. 4-5) ---
+                    { id: 11, question: "Her sayfası seri numaralı ve sayfaları bir asıl iki kopyalı şekilde düzenlenen defter hangisidir?", options: ["Günlük Defter", "Kaza Defteri", "Onaylı Defter", "Ziyaretçi Defteri"], correct: 2, hint: "İşyeri hekimi ve uzmanının tespitlerini yazdığı resmi belgedir.", topic: "Yönetmelikler", pdfRef: "Sayfa 4", explanation: "Onaylı defter, iş yeri hekimi ve iş güvenliği uzmanı tarafından yapılan tespit ve tavsiyelerin yazıldığı defterdir." },
+                    { id: 12, question: "OSGB'lerde tam süreli istihdam edilen ve Bakanlığa karşı sorumlu olan kişiye ne denir?", options: ["İşveren", "İşyeri Hekimi", "Sorumlu Müdür", "Genel Müdür"], correct: 2, hint: "Yönetimsel ve yasal sorumluluğu taşır.", topic: "Yönetmelikler", pdfRef: "Sayfa 4", explanation: "Sorumlu müdür, OSGB'lerde tam süreli istihdam edilen ve birimin işlerinden Bakanlığa karşı sorumlu olan kişidir." },
+                    { id: 13, question: "İş sağlığı ve güvenliği hizmeti sunmak üzere Bakanlıkça yetkilendirilen Sağlık Bakanlığı birimi hangisidir?", options: ["OSGB", "İSGB", "TSMB", "İSGÜM"], correct: 2, hint: "Toplum Sağlığı Merkezi Birimi'dir.", topic: "Yönetmelikler", pdfRef: "Sayfa 5", explanation: "Toplum Sağlığı Merkezi Birimi (TSMB), işyerlerine İSG hizmeti sunmak üzere yetkilendirilen Sağlık Bakanlığı birimidir." },
+                    { id: 14, question: "Yasal yükümlülüklere ve önleme politikasına uygun, yaralanma oluşturmayacak seviyeye ne denir?", options: ["Sıfır Risk", "Minimum Risk", "Kabul Edilebilir Risk Seviyesi", "Operasyonel Limit"], correct: 2, hint: "Tolere edilebilir seviyedeki risktir.", topic: "Risk Değerlendirmesi", pdfRef: "Sayfa 5", explanation: "Kabul edilebilir risk seviyesi, kayıp veya yaralanma oluşturmayacak risk seviyesidir." },
+                    { id: 15, question: "Çalışan, iş yeri ya da ekipmanı zarara uğratma potansiyeli olduğu halde uğratmayan olaya ne denir?", options: ["Hafif Kaza", "Olay", "Ramak Kala Olay", "Tehlike"], correct: 2, hint: "Kıl payı kurtulma durumudur.", topic: "Risk Değerlendirmesi", pdfRef: "Sayfa 5", explanation: "Ramak kala olay, zarara uğratma potansiyeli olduğu halde zarara uğratmayan olaydır." },
 
-                    // --- 21-100 ARASI ÖZGÜN SORULAR ---
-                    { id: 21, question: "ZAOD (TWA) değeri kaç saatlik çalışma süresini kapsar?", options: ["1 saat", "4 saat", "8 saat", "24 saat"], correct: 2, hint: "Günlük vardiya süresi.", topic: "Ölçüm", pdfRef: "11", explanation: "ZAOD, 8 saatlik bir iş günü üzerinden hesaplanan ortalamadır." },
-                    { id: 22, question: "İnert tozun temel özelliği nedir?", options: ["Kanser yapar", "Akciğerde yapısal bozukluk yapmaz", "Zehirlidir", "Patlayıcıdır"], correct: 1, hint: "Hareketsiz veya tepkisiz anlamına gelir.", topic: "Toz", pdfRef: "11", explanation: "Akciğerlere ulaşsa da yapısal/fonksiyonel bozukluk yapmayan tozlardır." },
-                    { id: 23, question: "Ekranlı araçlarda 'Operatör' kime denir?", options: ["Teknikerlere", "İşyeri sahibine", "Esas işi ekranlı araçla çalışmak olan kişiye", "Ziyaretçiye"], correct: 2, hint: "Önemli bir bölümünde ekranlı araç kullanır.", topic: "Ergonomi", pdfRef: "18", explanation: "Normal çalışmasının önemli bölümünde ekranlı araç kullanan kişidir." },
-                    { id: 24, question: "Çalışma merkezinde operatörün oturduğu sandalye hangi kavramın içindedir?", options: ["Çalışma Alanı", "Çalışma Merkezi", "Ofis", "İş İstasyonu"], correct: 1, hint: "Tüm donanımı kapsayan alandır.", topic: "Ergonomi", pdfRef: "18", explanation: "Masa, ekran, klavye ve koltuğun olduğu tüm alan Çalışma Merkezi'dir." },
-                    { id: 25, question: "Elle taşıma işinde bel incinmesi riskini hangisi artırır?", options: ["Düz zemin", "Vücudun bükülmesi", "Yükün hafif olması", "Yeterli alan"], correct: 1, hint: "Vücudun fiziksel zorlanma şeklidir.", topic: "Ergonomi", pdfRef: "19", explanation: "Taşıma sırasında vücudun bükülmesi bel hasarı riskini ciddi şekilde artırır." },
-                    { id: 26, question: "Gece postası çalışma süresi en fazla kaç saattir?", options: ["5 saat", "7,5 saat", "9 saat", "11 saat"], correct: 1, hint: "Yasal gece vardiyası sınırıdır.", topic: "Mevzuat", pdfRef: "19", explanation: "4857 sayılı Kanun'a göre gece postaları 7,5 saati geçemez." },
-                    { id: 27, question: "Hangi çalışan gebeliğini işverene bildirmekle yükümlüdür?", options: ["Emziren", "Gebe çalışan", "Genç işçi", "Yeni işçi"], correct: 1, hint: "Sağlık belgesi ile bildirim yapar.", topic: "Gruplar", pdfRef: "19", explanation: "Belge ile gebeliğini bildiren çalışana 'Gebe çalışan' denir." },
-                    { id: 28, question: "Acil durumlarda çalışanların etkilenmeyeceği mesafedeki yere ne denir?", options: ["Sığınak", "Güvenli yer", "Toplanma noktası", "Çıkış"], correct: 1, hint: "Korunakta belirlenmiş yerdir.", topic: "Acil Durum", pdfRef: "20", explanation: "Çalışanların zarar görmeyeceği mesafede belirlenen alana Güvenli Yer denir." },
-                    { id: 29, question: "İş yerinde işin durdurulması kararını veren heyet kaç müfettişten oluşur?", options: ["1", "2", "3", "5"], correct: 2, hint: "Teftiş kurulunca görevlendirilirler.", topic: "Mevzuat", pdfRef: "20", explanation: "Karar mercii olan heyet en az üç iş müfettişinden oluşur." },
-                    { id: 30, question: "İş ekipmanında yapılan her türlü temizlik ve ayar işlemine ne denir?", options: ["Tadil", "Bakım", "Kullanım", "Muayene"], correct: 1, hint: "Ekipmanın korunma faaliyetidir.", topic: "Ekipman", pdfRef: "10", explanation: "Temizlik, ayar ve kalibrasyon gibi işlemlerin tamamı Bakım'dır." },
-                    { id: 31, question: "Yükü kaldırma, indirme, itme ve çekme işlerine genel olarak ne denir?", options: ["Taşıma", "Lojistik", "Elle Taşıma İşi", "Yükleme"], correct: 2, hint: "Ergonomik risk içeren bir faaliyettir.", topic: "Ergonomi", pdfRef: "19", explanation: "Yükün fiziksel güç kullanılarak hareket ettirilmesi Elle Taşıma İşi'dir." },
-                    { id: 32, question: "Gürültüye maruziyette 'Ptepe' neyi ifade eder?", options: ["Ortalama gürültü", "En yüksek ses basıncı", "Düşük frekans", "Haftalık limit"], correct: 1, hint: "Anlık tepe değeridir.", topic: "Fiziksel", pdfRef: "12", explanation: "Ptepe, C-frekans ağırlıklı anlık gürültü basıncının tepe değeridir." },
-                    { id: 33, question: "Lifsi tozların uzunluğu kaç mikrondan büyüktür?", options: ["1", "3", "5", "10"], correct: 2, hint: "Asbest liflerinin boyutsal kriteridir.", topic: "Toz", pdfRef: "11", explanation: "Mevzuata göre boyu 5 mikrondan büyük olan lifler lifsi toz sayılır." },
-                    { id: 34, question: "Hangi kurum İSG kayıtlarını elektronik ortamda takip eder?", options: ["Valilik", "İSGÜM", "Genel Müdürlük", "TSE"], correct: 2, hint: "İSG-KÂTİP'i yöneten birimdir.", topic: "Mevzuat", pdfRef: "2", explanation: "İSG-KÂTİP üzerinden Genel Müdürlük kayıt ve takip yapar." },
-                    { id: 35, question: "Genetik olarak değiştirilmiş mikroorganizmaları da kapsayan etkenler hangisidir?", options: ["Kimyasal", "Fiziksel", "Biyolojik Etkenler", "Ergonomik"], correct: 2, hint: "Virüs ve bakteri gibi canlılardır.", topic: "Biyolojik", pdfRef: "9", explanation: "Mikroorganizma ve parazit gibi etkenler Biyolojik Etkenler'dir." },
-                    { id: 36, question: "Çok hücreli organizmalardan türetilmiş hücrelerin in-vitro geliştirilmesine ne denir?", options: ["Mikroorganizma", "Hücre Kültürü", "Parazit", "Enfeksiyon"], correct: 1, hint: "Laboratuvar ortamında çoğaltmadır.", topic: "Biyolojik", pdfRef: "9", explanation: "Hücrelerin vücut dışında büyütülmesi Hücre Kültürü'dür." },
-                    { id: 37, question: "KKD (Kişisel Koruyucu Donanım) ne için tasarlanmıştır?", options: ["Şık görünmek için", "Sağlık ve güvenliğe karşı korunmak için", "Hızlı çalışmak için", "Maaş artışı için"], correct: 1, hint: "Kişilerce giyilen veya taşınan cihazlardır.", topic: "KKD", pdfRef: "10", explanation: "KKD, risklere karşı korunmak amacıyla kişilerce giyilen donanımdır." },
-                    { id: 38, question: "Laboratuvarların uluslararası kriterlere göre yeterliliğinin onaylanmasına ne denir?", options: ["Muayene", "Analiz", "Akreditasyon", "Denetim"], correct: 2, hint: "Teknik yeterliliğin resmi onayıdır.", topic: "Laboratuvar", pdfRef: "15", explanation: "Uluslararası standartlara göre yeterliliğin onaylanması Akreditasyon'dur." },
-                    { id: 39, question: "Hangi toz türü akciğerlerde doku reaksiyonuna neden olur?", options: ["İnert Toz", "Pnömokonyoz yapan toz", "Kaba Toz", "Organik Toz"], correct: 1, hint: "Akciğer dokusunda hasar bırakır.", topic: "Toz", pdfRef: "11", explanation: "Pnömokonyoz, akciğerlerde toz birikmesiyle oluşan hastalıktır." },
-                    { id: 40, question: "Alevlenir maddelerin parlama noktası kaç derecedir?", options: ["0-21", "21-55", "55-100", "100 üstü"], correct: 1, hint: "Sıvı haldeki maddeler için geçerlidir.", topic: "Kimyasal", pdfRef: "7", explanation: "Alevlenir maddeler 21°C ile 55°C arasında parlama noktasına sahiptir." }
+                    // --- GRUP 3: BÜYÜK ENDÜSTRİYEL KAZALAR (S. 5-7) ---
+                    { id: 16, question: "Büyük endüstriyel kazalarda kuruluştaki itfaiye, ambulans ve arama-kurtarma hizmetlerine ne denir?", options: ["Lojistik Hizmetler", "Destek Hizmetleri", "Acil Servis Hizmetleri", "Güvenlik Birimi"], correct: 2, hint: "Tüm sağlık ve güvenlik müdahale hizmetlerini kapsar.", topic: "Endüstriyel Kazalar", pdfRef: "Sayfa 5", explanation: "Acil servis hizmetleri; kolluk güçleri, itfaiye, ambulans ve arama-kurtarma hizmetleri dahil tüm sağlık ve güvenlik hizmetleridir." },
+                    { id: 17, question: "Eşik değerlere eşit veya üzerinde ancak üst sınırın altındaki miktarda tehlikeli madde bulunduran kuruluştur?", options: ["Küçük İşletme", "Orta Seviyeli Kuruluş", "Alt Seviyeli Kuruluş", "Riskli Tesis"], correct: 2, hint: "Sütun 2 ve Sütun 3 arasındaki miktarları esas alır.", topic: "Endüstriyel Kazalar", pdfRef: "Sayfa 5", explanation: "Alt seviyeli kuruluş, tehlikeli madde miktarı belirli eşik değerler arasında olan kuruluştur." },
+                    { id: 18, question: "Kontrolsüz gelişmelerden kaynaklanan çevre veya insan sağlığı için ciddi tehlikeye yol açan olaya ne denir?", options: ["Çevresel Felaket", "Endüstriyel Arıza", "Büyük Endüstriyel Kaza", "Sızıntı"], correct: 2, hint: "Büyük bir yayılım, yangın veya patlamayı ifade eder.", topic: "Endüstriyel Kazalar", pdfRef: "Sayfa 6", explanation: "Büyük endüstriyel kaza, tehlikeli maddelerin sebep olduğu büyük yayılım, yangın veya patlama olayıdır." },
+                    { id: 19, question: "Sayısal tabanlı bilimsel metotlarla yapılan risk değerlendirme metodolojisi hangisidir?", options: ["Kalitatif Değerlendirme", "Kantitatif Risk Değerlendirmesi", "Gözlemsel Analiz", "Matris Yöntemi"], correct: 1, hint: "Rakamlara ve olasılık hesaplarına dayalıdır.", topic: "Endüstriyel Kazalar", pdfRef: "Sayfa 6", explanation: "Kantitatif risk değerlendirmesi, sayısal tabanlı bilimsel metotlarla yapılan risk değerlendirmesidir." },
+                    { id: 20, question: "Güvenlik raporlarını incelemek üzere en az üç iş müfettişinden oluşan gruba ne denir?", options: ["Kurul", "Heyet", "Komisyon", "Denetim Grubu"], correct: 2, hint: "Güvenlik raporu incelemesi için kurulur.", topic: "Endüstriyel Kazalar", pdfRef: "Sayfa 6", explanation: "Komisyon, güvenlik raporlarını incelemek üzere teftişe yetkili en az üç iş müfettişinden oluşan heyettir." },
+
+                    // --- GRUP 4: KANSEROJEN VE MUTAJEN MADDELER (S. 7) ---
+                    { id: 21, question: "Kalıtımsal genetik hasarlara yol açabilecek madde veya müstahzarlara ne denir?", options: ["Kanserojen Madde", "Toksik Madde", "Mutajen Madde", "Alerjik Madde"], correct: 2, hint: "Gen yapısında kalıcı değişiklik yapar.", topic: "Kimyasal Riskler", pdfRef: "Sayfa 7", explanation: "Mutajen madde, kalıtımsal genetik hasarlara yol açabilecek madde veya müstahzardır." },
+                    { id: 22, question: "Havadaki maddenin zaman ağırlıklı ortalama konsantrasyonuna ne denir?", options: ["Anlık Değer", "Tepe Değer", "Sınır Değer", "Eylem Değeri"], correct: 2, hint: "Referans zaman aralığındaki sınır değerdir.", topic: "Kimyasal Riskler", pdfRef: "Sayfa 7", explanation: "Sınır değer, referans zaman aralığındaki zaman ağırlıklı ortalama konsantrasyondur." },
+                    { id: 23, question: "Merkezi kulakları birleştiren orta nokta olan 30 cm yarıçaplı kürenin baş önündeki kısmına ne denir?", options: ["Gözlem Bölgesi", "Solunum Bölgesi", "Hayati Alan", "Güvenlik Alanı"], correct: 1, hint: "Havadan alınan örneklerin ölçüldüğü kritik küredir.", topic: "Kimyasal Riskler", pdfRef: "Sayfa 7", explanation: "Solunum bölgesi, kişinin kulaklarını birleştiren çizginin orta noktası olan 30 cm yarıçaplı kürenin baş önündeki yarısıdır." },
+
+                    // --- GRUP 5: KİMYASAL MADDELERLE ÇALIŞMALAR (S. 7-9) ---
+                    { id: 24, question: "Ciltte aşırı derecede hassasiyet meydana getiren maddelere ne ad verilir?", options: ["Toksik Madde", "Aşındırıcı Madde", "Alerjik Madde", "Tahriş Edici Madde"], correct: 2, hint: "Maruz kalındığında karakteristik olumsuz etkiler yapar.", topic: "Kimyasallar", pdfRef: "Sayfa 7", explanation: "Alerjik madde, hassasiyet meydana getirme özelliği olan ve olumsuz etkiler çıkaran maddedir." },
+                    { id: 25, question: "Parlama noktası 21°C ile 55°C arasında olan sıvı maddeler hangisidir?", options: ["Çok kolay alevlenir", "Kolay alevlenir", "Alevlenir Madde", "Patlayıcı"], correct: 2, hint: "Üç kademeli alevlenme sınıfının ortasındadır.", topic: "Kimyasallar", pdfRef: "Sayfa 7", explanation: "Alevlenir madde, parlama noktası 21°C - 55°C arasında olan sıvı haldeki maddelerdir." },
+                    { id: 26, question: "Canlı doku ile temasında dokunun tahribatına neden olan maddelere ne denir?", options: ["Zararlı Madde", "Tahriş Edici Madde", "Aşındırıcı Madde", "Toksik Madde"], correct: 2, hint: "Asit ve bazlar buna örnektir.", topic: "Kimyasallar", pdfRef: "Sayfa 7", explanation: "Aşındırıcı madde, canlı doku ile temasında dokunun tahribatına neden olan maddelerdir." },
+                    { id: 27, question: "Parlama noktası 0°C'den düşük ve kaynama noktası 35°C'den düşük sıvılara ne denir?", options: ["Kolay alevlenir", "Alevlenir", "Çok Kolay Alevlenir Madde", "Patlayıcı"], correct: 2, hint: "En düşük parlama ve kaynama noktasına sahip sınıftır.", topic: "Kimyasallar", pdfRef: "Sayfa 8", explanation: "Çok kolay alevlenir madde, 0 dereceden düşük parlama ve 35 dereceden düşük kaynama noktasına sahip sıvılardır." },
+                    { id: 28, question: "Çok az miktarda alındığında akut veya kronik hasarlara veya ölüme neden olan madde hangisidir?", options: ["Zararlı Madde", "Toksik Madde", "Çok Toksik Madde", "Alerjik Madde"], correct: 2, hint: "En tehlikeli zehirlilik seviyesini ifade eder.", topic: "Kimyasallar", pdfRef: "Sayfa 8", explanation: "Çok toksik madde, çok az miktarlarda alındığında hasara veya ölüme neden olan maddedir." },
+                    { id: 29, question: "Yanıcı maddelerle temasında önemli ölçüde ekzotermik reaksiyona neden olan maddelere ne denir?", options: ["Patlayıcı Madde", "Oksitleyici Madde", "Alevlenir Madde", "Toksik Madde"], correct: 1, hint: "Yanmayı şiddetlendiren maddelerdir.", topic: "Kimyasallar", pdfRef: "Sayfa 8", explanation: "Oksitleyici madde, yanıcı maddelerle temasında ekzotermik reaksiyona neden olan maddelerdir." },
+                    { id: 30, question: "Cilt ile direkt temasında lokal eritem veya ödem oluşturan aşındırıcı olmayan madde nedir?", options: ["Aşındırıcı Madde", "Zararlı Madde", "Tahriş Edici Madde", "Toksik Madde"], correct: 2, hint: "Kızarıklık ve şişlik yapar ama doku tahribatı yapmaz.", topic: "Kimyasallar", pdfRef: "Sayfa 8", explanation: "Tahriş edici madde, cilt ile temasında eritem, eskar veya ödem oluşturabilen maddedir." },
+
+                    // --- GRUP 6: BİYOLOJİK ETKENLER (S. 9) ---
+                    { id: 31, question: "Enfeksiyona, alerjiye veya zehirlenmeye neden olabilen mikroorganizmaları ifade eden kavram nedir?", options: ["Kimyasal Etken", "Fiziksel Etken", "Biyolojik Etkenler", "Radyoaktif Etken"], correct: 2, hint: "Bakteri, virüs ve parazitleri kapsar.", topic: "Biyolojik Etkenler", pdfRef: "Sayfa 9", explanation: "Biyolojik etkenler, enfeksiyona, alerjiye veya zehirlenmeye neden olabilen mikroorganizmalardır." },
+                    { id: 32, question: "Çok hücreli organizmalardan türetilmiş hücrelerin in-vitro olarak geliştirilmesine ne denir?", options: ["Mikroorganizma", "Hücre Kültürü", "Genetik Aktarım", "Biyolojik Sınır"], correct: 1, hint: "Laboratuvar ortamında büyütme işlemidir.", topic: "Biyolojik Etkenler", pdfRef: "Sayfa 9", explanation: "Hücre kültürü, çok hücreli organizmalardan türetilmiş hücrelerin in-vitro geliştirilmesidir." },
+                    { id: 33, question: "Genetik materyali replikasyon veya aktarma yeteneğinde olan mikrobiyolojik varlığa ne denir?", options: ["Virüs", "Hücre", "Mikroorganizma", "Parazit"], correct: 2, hint: "Kendi genetiğini çoğaltabilen yapıları kapsar.", topic: "Biyolojik Etkenler", pdfRef: "Sayfa 9", explanation: "Mikroorganizma, genetik materyali replikasyon yeteneğinde olan mikrobiyolojik varlıktır." },
+
+                    // --- GRUP 7: KİŞİSEL KORUYUCU DONANIMLAR (S. 9-10) ---
+                    { id: 34, question: "Onaylanmış kuruluşça verilerek KKD'nin mevzuata uygunluğunu gösteren belge hangisidir?", options: ["İmalat Belgesi", "AT Tip İnceleme Belgesi", "TSE Belgesi", "Kullanım Kılavuzu"], correct: 1, hint: "Onaylanmış kuruluş tarafından düzenlenir.", topic: "KKD", pdfRef: "Sayfa 9", explanation: "AT Tip İnceleme Belgesi, onaylanmış kuruluşça verilen KKD'nin mevzuata uygunluğunu gösterir belgedir." },
+                    { id: 35, question: "İmalatçının KKD'nin mevzuata uygun olduğunu beyan ettiği belgeye ne denir?", options: ["AT Tip İnceleme Belgesi", "AT Uygunluk Beyanı", "Garanti Belgesi", "TSE Sertifikası"], correct: 1, hint: "İmalatçının kendi beyanıdır.", topic: "KKD", pdfRef: "Sayfa 9", explanation: "AT Uygunluk Beyanı, imalatçının KKD'nin mevzuata uygunluğunu beyan ettiği belgedir." },
+                    { id: 36, question: "Birden fazla sağlık ve güvenlik tehlikesine karşı kişilerce giyilen donanıma ne denir?", options: ["İş Elbisesi", "İş Ekipmanı", "Kişisel Koruyucu Donanım", "Üniforma"], correct: 2, hint: "Bireysel koruma amacıyla giyilen cihaz veya malzemedir.", topic: "KKD", pdfRef: "Sayfa 10", explanation: "Kişisel Koruyucu Donanım (KKD), kişileri risklere karşı korumak için tasarlanmış donanımdır." },
+
+                    // --- GRUP 8: İŞ EKİPMANLARININ KULLANIMI (S. 10) ---
+                    { id: 37, question: "İş ekipmanında yapılan temizlik, ayar ve kalibrasyon işlemlerine ne ad verilir?", options: ["Tadil", "Muayene", "Bakım", "Kullanım"], correct: 2, hint: "Cihazın performansını korumak için yapılan rutin işlerdir.", topic: "İş Ekipmanları", pdfRef: "Sayfa 10", explanation: "Bakım, iş ekipmanında yapılan her türlü temizlik, ayar, kalibrasyon gibi işlemlerin tamamıdır." },
+                    { id: 38, question: "İşin yapılmasında kullanılan makine, alet, tesis ve tesisatın genel adı nedir?", options: ["İş Materyali", "İş Ekipmanı", "Üretim Hattı", "Teknik Cihaz"], correct: 1, hint: "Her türlü iş aracını kapsar.", topic: "İş Ekipmanları", pdfRef: "Sayfa 10", explanation: "İş ekipmanı, işin yapılmasında kullanılan herhangi bir makine, alet, tesis ve tesisatıdır." },
+                    { id: 39, question: "Tamamen veya kısmen tehlikeli bölgede bulunan kişiye ne denir?", options: ["Operatör", "Maruz Kişi", "Sorumlu Kişi", "Müdahil"], correct: 1, hint: "Tehlikeye açık durumdaki kişidir.", topic: "İş Ekipmanları", pdfRef: "Sayfa 10", explanation: "Maruz kişi, tamamen veya kısmen tehlikeli bölgede bulunan kişidir." },
+                    { id: 40, question: "İş ekipmanını kullanma görevi verilen çalışan veya çalışanlara ne ad verilir?", options: ["Tekniker", "Sorumlu", "Operatör", "Uzman"], correct: 2, hint: "Cihazı fiilen çalıştıran kişidir.", topic: "İş Ekipmanları", pdfRef: "Sayfa 10", explanation: "Operatör, iş ekipmanını kullanma görevi verilen çalışan veya çalışanlardır." },
+
+                    // --- GRUP 9: ASBEST VE TOZLA MÜCADELE (S. 11-12) ---
+                    { id: 41, question: "CAS No 12001-29-5 olan ve Beyaz Asbest olarak da bilinen lifli silikat hangisidir?", options: ["Aktinolit", "Antofilit", "Krizotil", "Krosidolit"], correct: 2, hint: "Asbest türleri listesinde CAS numarasıyla eşleşir.", topic: "Asbest", pdfRef: "Sayfa 11", explanation: "Krizotil, CAS No 12001-29-5 olan lifli silikattır." },
+                    { id: 42, question: "CAS No 12001-28-4 olan ve Mavi Asbest olarak da bilinen lifli silikat hangisidir?", options: ["Krizotil", "Krosidolit", "Tremolit", "Amosit"], correct: 1, hint: "Tehlikeli bir asbest lifi türüdür.", topic: "Asbest", pdfRef: "Sayfa 11", explanation: "Krosidolit, CAS No 12001-28-4 olan lifli silikattır." },
+                    { id: 43, question: "Solunumla akciğerlere ulaştığı halde yapısal bozukluk yapmayan toza ne denir?", options: ["Organik Toz", "İnert Toz", "Lifsi Toz", "Toksik Toz"], correct: 1, hint: "Hareketsiz veya tepkisiz anlamına gelir.", topic: "Toz", pdfRef: "11", explanation: "İnert toz, akciğerlerde yapısal ve/veya fonksiyonel bozukluk yapmayan tozlardır." },
+                    { id: 44, question: "Uzunluğu 5 mikrondan büyük, eni 3 mikrondan küçük olan parçacıklara ne denir?", options: ["İnert Toz", "Solunabilir Toz", "Lifsi Tozlar", "Kristal Toz"], correct: 2, hint: "Asbest liflerinin geometrik tanımıdır.", topic: "Toz", pdfRef: "11", explanation: "Lifsi tozlar, uzunluğu beş mikrondan büyük ve belirli boy/en oranına sahip parçacıklardır." },
+                    { id: 45, question: "Akciğerlerde toz birikmesi sonucu ortaya çıkan doku reaksiyonuna ne denir?", options: ["Alerji", "Pnömokonyoz", "Astım", "Bronşit"], correct: 1, hint: "Akciğer toz hastalığıdır.", topic: "Toz", pdfRef: "11", explanation: "Pnömokonyoz (Akciğer Toz Hastalığı), tozun akciğerlerde birikmesiyle oluşan hastalıktır." },
+                    { id: 46, question: "Aerodinamik eşdeğer çapı 0,1-5,0 mikron büyüklüğünde olan toza ne denir?", options: ["İnert Toz", "Lifsi Toz", "Solunabilir Toz", "Kaba Toz"], correct: 2, hint: "Akciğerlerin derinlerine kadar inebilir.", topic: "Toz", pdfRef: "11", explanation: "Solunabilir toz, 0,1-5,0 mikron büyüklüğünde kristal veya amorf yapıdaki tozlardır." },
+
+                    // --- GRUP 10: GÜRÜLTÜ VE TİTREŞİM (S. 12) ---
+                    { id: 47, question: "C-frekans ağırlıklı anlık gürültü basıncının tepe değerine ne denir?", options: ["dB(A)", "Lex, 8saat", "Ptepe", "TWA"], correct: 2, hint: "Anlık zirve ölçümü için kullanılır.", topic: "Gürültü", pdfRef: "12", explanation: "Ptepe, C-frekans ağırlıklı anlık gürültü basıncının tepe değeridir." },
+                    { id: 48, question: "Gürültü maruziyet düzeylerinin sekiz saatlik bir iş günü için zaman ağırlıklı ortalaması nedir?", options: ["Haftalık Maruziyet", "Günlük Gürültü Maruziyet Düzeyi", "Anlık Gürültü", "Sınır Değer"], correct: 1, hint: "Lex, 8saat simgesiyle gösterilir.", topic: "Gürültü", pdfRef: "12", explanation: "Günlük gürültü maruziyet düzeyi (Lex, 8saat), 8 saatlik iş günü için zaman ağırlıklı ortalamadır." },
+                    { id: 49, question: "Vücudun tümüne aktarıldığında bel bölgesinde rahatsızlığa yol açan titreşim nedir?", options: ["El-kol Titreşimi", "Bütün Vücut Titreşimi", "Mekanik Rezonans", "Yüksek Frekans"], correct: 1, hint: "Tüm bedeni etkileyen mekanik bir etkidir.", topic: "Titreşim", pdfRef: "12", explanation: "Bütün vücut titreşimi, vücudun tümüne aktarıldığında bel ve omurgada travmaya yol açan titreşimdir." },
+                    { id: 50, question: "Damar, kemik, eklem ve sinir bozukluklarına yol açan titreşim türü hangisidir?", options: ["Bütün Vücut Titreşimi", "Lokal Titreşim", "El-kol Titreşimi", "İşitsel Titreşim"], correct: 2, hint: "Sadece uzuvları etkiler.", topic: "Titreşim", pdfRef: "12", explanation: "El-kol titreşimi, el-kol sistemine aktarıldığında damar, kemik ve sinir bozukluklarına yol açan titreşimdir." },
+
+                    // --- GRUP 11: ÖZEL ÇALIŞAN GRUPLARI (S. 13) ---
+                    { id: 51, question: "14 yaşını bitirmiş, 15 yaşını doldurmamış ve ilköğretimini tamamlamış kişiye ne denir?", options: ["Genç İşçi", "Çocuk İşçi", "Stajyer", "Çırak"], correct: 1, hint: "En alt çalışma yaşı sınırındadır.", topic: "Özel Gruplar", pdfRef: "13", explanation: "Çocuk işçi, 14 yaşını bitirmiş, 15 yaşını doldurmamış ve ilköğretimini tamamlamış kişidir." },
+                    { id: 52, question: "Çocukların gelişmelerine ve sağlıklarına zararlı etki ihtimali olmayan işlere ne denir?", options: ["Ağır İş", "Tehlikeli İş", "Hafif İş", "Eğitsel İş"], correct: 2, hint: "Okul devamını engellemeyen işlerdir.", topic: "Özel Gruplar", pdfRef: "13", explanation: "Hafif iş, çocukların gelişimine ve eğitimine zararlı etki ihtimali olmayan işlerdir." },
+
+                    // --- GRUP 12: EĞİTİM VE LABORATUVAR (S. 14-16) ---
+                    { id: 53, question: "En az kırk saatlik eğitim sonunda verilen ve eğiticilerin yetkinliğini gösteren belge nedir?", options: ["Ustalık Belgesi", "Eğiticilerin Eğitimi Belgesi", "İSG Belgesi", "Eğitmen Sertifikası"], correct: 1, hint: "Belirli bir program sonucunda alınır.", topic: "Eğitim", pdfRef: "14", explanation: "Eğiticilerin eğitimi belgesi, en az kırk saatlik eğitim sonunda verilen belgedir." },
+                    { id: 54, question: "İşyeri hemşiresi, acil tıp teknisyeni ve çevre sağlığı teknisyeni diplomasına sahip kişilere ne denir?", options: ["Sağlık Görevlisi", "Diğer Sağlık Personeli", "İşyeri Hekimi Yardımcısı", "Teknik Personel"], correct: 1, hint: "Bakanlıkça belgelendirilmiş yardımcı sağlık personelidir.", topic: "Eğitim", pdfRef: "15", explanation: "Diğer sağlık personeli; hemşire, ATT ve çevre sağlığı teknisyeni gibi diplomalara sahip kişilerdir." },
+                    { id: 55, question: "Laboratuvarların uluslararası kabul görmüş teknik kriterlere göre yeterliliğinin onaylanmasına ne denir?", options: ["Muayene", "Analiz", "Akreditasyon", "Denetim"], correct: 2, hint: "Teknik yeterliliğin resmi onayıdır.", topic: "Laboratuvar", pdfRef: "15", explanation: "Akreditasyon, laboratuvarların yeterliliğinin onaylanması ve düzenli aralıklarla denetlenmesidir." },
+                    { id: 56, question: "Laboratuvarlarda 'Deney Personeli' kime denir?", options: ["İşyeri Sahibine", "Yöneticilere", "Analizleri gerçekleştiren laboratuvarca yetkili kişiye", "Müfettişe"], correct: 2, hint: "Numune alma ve analiz yapan kişidir.", topic: "Laboratuvar", pdfRef: "15", explanation: "Deney personeli, laboratuvar tarafından analiz ve test işlemleri için yetkilendirilmiş kişidir." },
+                    { id: 57, question: "Metotlardan henüz akreditasyonu bulunmayan laboratuvarlara Genel Müdürlükçe verilen belge nedir?", options: ["Yeterlik Belgesi", "Ön Yeterlik Belgesi", "Muayene İzni", "Geçici Belge"], correct: 1, hint: "Akreditasyon öncesi aşamadır.", topic: "Laboratuvar", pdfRef: "16", explanation: "Ön yeterlik belgesi, metotları henüz akredite olmayan laboratuvarlara verilen belgedir." },
+
+                    // --- GRUP 13: YAPI İŞLERİ (S. 17-18) ---
+                    { id: 58, question: "İşveren adına projenin hazırlanmasından ve kontrolünden sorumlu gerçek veya tüzel kişiye ne denir?", options: ["Alt İşveren", "Proje Sorumlusu", "Sağlık Koordinatörü", "Mühendis"], correct: 1, hint: "İşveren tarafından görevlendirilir.", topic: "Yapı İşleri", pdfRef: "18", explanation: "Proje sorumlusu, işveren tarafından projenin hazırlanması ve kontrolünden sorumlu olan kişidir." },
+                    { id: 59, question: "Yapı işlerinde sağlık ve güvenlikle ilgili görevleri yapan koordinatöre ne denir?", options: ["Proje Müdürü", "Sağlık ve Güvenlik Koordinatörü", "Saha Temsilcisi", "İşletmeci"], correct: 1, hint: "Hazırlık ve uygulama aşamalarında görev alır.", topic: "Yapı İşleri", pdfRef: "18", explanation: "Sağlık ve güvenlik koordinatörü, işveren adına sağlık ve güvenlikle ilgili görevleri yapan kişidir." },
+                    { id: 60, question: "Farklı ekipler arasında koordinasyonu sağlamak amacıyla hazırlanan dokümana ne denir?", options: ["İş Akış Planı", "Sağlık ve Güvenlik Planı", "Tahliye Planı", "İSG El Kitabı"], correct: 1, hint: "Yapı sahasındaki riskleri ve önlemleri belirler.", topic: "Yapı İşleri", pdfRef: "18", explanation: "Sağlık ve güvenlik planı, yapı işi boyunca alınacak tedbirlerin ve organizasyonun belirlendiği plandır." },
+
+                    // --- GRUP 14: KADIN ÇALIŞANLAR VE ACİL DURUMLAR (S. 19-20) ---
+                    { id: 61, question: "Herhangi bir sağlık kuruluşundan alınan belge ile durumunu bildiren çalışana ne denir?", options: ["Emziren Çalışan", "Yeni Doğum Yapmış", "Gebe Çalışan", "Özel Statülü"], correct: 2, hint: "Durumunu işverene bilgilendirme ile kesinleştirir.", topic: "Gruplar", pdfRef: "19", explanation: "Gebe çalışan, gebeliği hakkında işverenini bilgilendiren çalışandır." },
+                    { id: 62, question: "Çalışanların 1 yaşından küçük çocuklarını emzirmeleri için ayrılan odalara ne ad verilir?", options: ["Kreş", "Yurt", "Emzirme Odaları", "Mola Yeri"], correct: 2, hint: "Küçük çocuklu anneler içindir.", topic: "Gruplar", pdfRef: "19", explanation: "Emzirme odaları, çalışanların bir yaşından küçük çocuklarını emzirmeleri için ayrılan odalardır." },
+                    { id: 63, question: "0-60 aylık çocuklar için bakım ve eğitim yapılan yerlerin adı nedir?", options: ["İlkokul", "Etüt Merkezi", "Yurt/Kreş", "Çocuk Parkı"], correct: 2, hint: "Okul öncesi eğitim kurumudur.", topic: "Gruplar", pdfRef: "19", explanation: "Yurt/çocuk bakım yurdu/kreş, 0-60 aylık çocukların bakımı için olan yerlerdir." },
+                    { id: 64, question: "Yangın, patlama veya doğal afet gibi acil müdahale gerektiren olaylara ne denir?", options: ["Risk", "Kaza", "Acil Durum", "Büyük Tehlike"], correct: 2, hint: "Hızla tepki verilmesi gereken kriz anlarıdır.", topic: "Acil Durum", pdfRef: "20", explanation: "Acil durum; yangın, patlama, doğal afet gibi acil müdahale gerektiren olaylardır." },
+                    { id: 65, question: "Acil durumlarda yapılacak iş ve eylemlerin yer aldığı dokümana ne denir?", options: ["İSG Kitabı", "Tahliye Şeması", "Acil Durum Planı", "Kriz Yönetimi"], correct: 2, hint: "Uygulamaya yönelik eylemleri içerir.", topic: "Acil Durum", pdfRef: "20", explanation: "Acil durum planı, acil durumlarda yapılacak iş ve işlemleri içeren plandır." },
+                    { id: 66, question: "Acil durumların olumsuz sonuçlarından çalışanların etkilenmeyeceği mesafedeki yere ne denir?", options: ["Sığınak", "Güvenli Yer", "Toplanma Alanı", "Çıkış"], correct: 1, hint: "Belirlenmiş ve güvenli mesafededir.", topic: "Acil Durum", pdfRef: "20", explanation: "Güvenli yer, acil durumların olumsuz sonuçlarından çalışanların etkilenmeyeceği yerdir." },
+
+                    // --- GRUP 15: TÜM BAŞLIKLARDAN AYRINTILI TANIMLAR (S. 2-20 KARMA) ---
+                    { id: 67, question: "Bakanlık ve ilgili kuruluşlarında çalışma hayatını denetleyen yetkiliye ne denir?", options: ["İSG Uzmanı", "İşyeri Hekimi", "Müfettiş", "Sorumlu Müdür"], correct: 2, hint: "Denetim yetkisine sahiptir.", topic: "Genel", pdfRef: "13", explanation: "Müfettiş; baş iş müfettişi, iş müfettişi ve yardımcılarıdır." },
+                    { id: 68, question: "Akciğerlerde tozun birikmesi sonucu ortaya çıkan hastalığın tıbbi adı nedir?", options: ["Pnömokonyoz", "Astım", "KOAH", "Farenjit"], correct: 0, hint: "Sayfa 11'de tanımlanmıştır.", topic: "Toz", pdfRef: "11", explanation: "Pnömokonyoz, akciğerlerde tozun birikmesi sonucu oluşan doku reaksiyonudur." },
+                    { id: 69, question: "Hücre kültürleri ve insan endoparazitlerini de içeren etkenlere ne denir?", options: ["Kimyasal", "Fiziksel", "Biyolojik Etkenler", "Ergonomik"], correct: 2, hint: "Canlı veya genetiği değiştirilmiş yapıları kapsar.", topic: "Biyolojik", pdfRef: "9", explanation: "Biyolojik etkenler; mikroorganizmalar, hücre kültürleri ve insan endoparazitlerini kapsar." },
+                    { id: 70, question: "Bir yükün kaldırılması veya hareket ettirilmesi gibi sırta risk oluşturan işlere ne denir?", options: ["Lojistik İşler", "Lokal Taşıma", "Elle Taşıma İşi", "Sırt Üstü İşler"], correct: 2, hint: "Ergonomik koşullarla ilgilidir.", topic: "Ergonomi", pdfRef: "19", explanation: "Elle taşıma işi, bel veya sırt incinmesiyle sonuçlanabilecek yük taşıma işleridir." },
+                    { id: 71, question: "Çalışanların sağlık durumlarının belirlenmesi amacıyla yapılan değerlendirmelere ne denir?", options: ["Risk Analizi", "Sağlık Gözetimi", "Tıbbi Muayene", "Portör"], correct: 1, hint: "Belirli bir maruziyetle ilgili sağlık takibidir.", topic: "Sağlık", pdfRef: "8", explanation: "Sağlık gözetimi, çalışanların sağlık durumlarının belirlenmesi amacıyla yapılan değerlendirmelerdir." },
+                    { id: 72, question: "İş ekipmanlarının teknik özelliklerine göre periyodik kontrolleri kimler yapabilir?", options: ["Sadece müdürler", "Yetkili Mühendis, Tekniker ve Yüksek Teknikerler", "Tüm işçiler", "İşyeri Bekçisi"], correct: 1, hint: "Branş gerektiren teknik bir iştir.", topic: "Ekipman", pdfRef: "10", explanation: "Periyodik kontroller; mühendis, tekniker ve yüksek teknikerler tarafından yapılır." },
+                    { id: 73, question: "Kişisel Koruyucu Donanım (KKD) seçilirken öncelikle hangi önlemler alınmalıdır?", options: ["KKD en pahalısı seçilmeli", "Toplu korunma önlemlerine öncelik verilmeli", "İşçi en sevdiği rengi seçmeli", "Sadece baret takılmalı"], correct: 1, hint: "Korunma hiyerarşisi ilkesidir.", topic: "KKD", pdfRef: "10", explanation: "İSG'de toplu korunma önlemleri kişisel korunma önlemlerinden (KKD) önce gelir." },
+                    { id: 74, question: "İş yerinde 'Heyet' işin durdurulması kararını verirken kaç müfettişten oluşmalıdır?", options: ["1", "2", "3", "5"], correct: 2, hint: "Yasal karar merciidir.", topic: "Mevzuat", pdfRef: "6", explanation: "İşin durdurulması heyeti en az üç iş müfettişinden oluşur." },
+                    { id: 75, question: "İş ekipmanında tehlikelerin teknik önlemlerle tam kontrol altına alınamadığı ekipmana ne denir?", options: ["Standart Ekipman", "Eski Ekipman", "Özel Risk Taşıyan İş Ekipmanı", "Bakımsız Cihaz"], correct: 2, hint: "Ek tehlikeler barındıran cihazlardır.", topic: "Ekipman", pdfRef: "10", explanation: "Özel risk taşıyan iş ekipmanı, tehlikelerin teknik önlemlerle tam kontrol edilemediği cihazlardır." },
+                    { id: 76, question: "Kimyasal maddenin uygun biyolojik ortamdaki üst sınırına ne denir?", options: ["Mesleki Sınır", "Eylem Değeri", "Biyolojik Sınır Değeri", "Konsantrasyon"], correct: 2, hint: "Vücut içindeki limiti ifade eder.", topic: "Kimyasal", pdfRef: "7", explanation: "Biyolojik sınır değeri, kimyasal maddenin biyolojik ortamdaki konsantrasyon üst sınırıdır." },
+                    { id: 77, question: "Örgün veya yaygın eğitim yoluyla bireyleri mesleğe hazırlayan sürece ne denir?", options: ["Staj", "Oryantasyon", "Mesleki Eğitim", "Akademik Eğitim"], correct: 2, hint: "Yeni mesleklere uyumu sağlayan gelişimdir.", topic: "Eğitim", pdfRef: "10", explanation: "Mesleki eğitim, bireyleri mesleğe hazırlayan gelişim sürecidir." },
+                    { id: 78, question: "Asbest söküm çalışanı olabilmek için hangi şart gereklidir?", options: ["Lise mezuniyeti", "Eğitimi tamamlayıp belge almak", "5 yıl tecrübe", "Sadece istekli olmak"], correct: 1, hint: "Bakanlıkça kurulan komisyon eğitimini kapsar.", topic: "Asbest", pdfRef: "11", explanation: "Asbest söküm çalışanı, eğitim programını tamamlamış ve belge almış kişidir." },
+                    { id: 79, question: "İLO Uluslararası Pnömokonyoz Sınıflandırılması eğitimi almış hekime ne denir?", options: ["Radyolog", "Uzman", "Okuyucu", "İşyeri Hekimi"], correct: 2, hint: "Radyografileri değerlendirme yetkisine sahiptir.", topic: "Toz", pdfRef: "11", explanation: "Okuyucu, İLO radyografi sınıflandırılması konusunda eğitim almış hekimdir." },
+                    { id: 80, question: "En az 35x35 cm ebadındaki akciğer radyografisine ne denir?", options: ["Dijital Röntgen", "Mikrofilm", "Standart Akciğer Radyografisi", "Göğüs Filmi"], correct: 2, hint: "Standart ebat ve kriterleri karşılar.", topic: "Toz", pdfRef: "11", explanation: "Standart akciğer radyografisi, 35x35 cm ebadındaki radyografidir." },
+                    { id: 81, question: "Tozla ilgili konularda teknik görüş hazırlamak üzere kurulan komisyon hangisidir?", options: ["İSG Kurulu", "TMK (Tozla Mücadele Komisyonu)", "İstişare Kurulu", "Denetim Kurulu"], correct: 1, hint: "Bakanlıkça oluşturulan özel komisyondur.", topic: "Toz", pdfRef: "12", explanation: "Tozla Mücadele Komisyonu (TMK), teknik ve tıbbi görüş hazırlamak amacıyla kurulur." },
+                    { id: 82, question: "Gürültü basıncının tepe değeri simgesi hangisidir?", options: ["Lex", "dB", "Ptepe", "Lmax"], correct: 2, hint: "Tepe değerin kısaltmasıdır.", topic: "Gürültü", pdfRef: "12", explanation: "Ptepe, anlık gürültü basıncının tepe değeridir." },
+                    { id: 83, question: "Gürültü maruziyet düzeylerinin sekiz saatlik 5 iş günü üzerinden ortalaması nedir?", options: ["Günlük Maruziyet", "Haftalık Gürültü Maruziyet Düzeyi", "Aylık Limit", "Sınır"], correct: 1, hint: "Lex, 8saat simgesiyle gösterilir.", topic: "Gürültü", pdfRef: "12", explanation: "Haftalık gürültü maruziyet düzeyi, 5 iş gününden oluşan bir hafta için ortalamadır." },
+                    { id: 84, question: "Aşıldığında titreşim risklerinin kontrol altına alınmasını gerektiren değere ne denir?", options: ["Sınır Değer", "Maruziyet Eylem Değeri", "Tehlike Eşiği", "Limit"], correct: 1, hint: "Aksiyon alınması gereken başlangıç seviyesidir.", topic: "Titreşim", pdfRef: "12", explanation: "Maruziyet eylem değeri, aşıldığında risklerin kontrolünü gerektiren değerdir." },
+                    { id: 85, question: "Çalışanların kesinlikle maruz kalmaması gereken titreşim değerine ne denir?", options: ["Eylem Değeri", "Maruziyet Sınır Değeri", "Üst Limit", "Zirve"], correct: 1, hint: "Aşılması yasaktır.", topic: "Titreşim", pdfRef: "12", explanation: "Maruziyet sınır değeri, çalışanların üzerinde titreşime kesinlikle maruz kalmaması gereken değerdir." },
+                    { id: 86, question: "İş yeri tehlike sınıfı 'Çok Tehlikeli' olarak belirlenmiş yerlere ne denir?", options: ["Riskli İşyeri", "Sanayi Tesisi", "Çok Tehlikeli Sınıfta Yer Alan İş Yeri", "A Sınıfı Yer"], correct: 2, hint: "Tebliğde bu şekilde isimlendirilir.", topic: "Sınıflar", pdfRef: "13", explanation: "Tehlike sınıfı 'çok tehlikeli' belirlenen yerlere bu ad verilir." },
+                    { id: 87, question: "Yapısı itibariyle çocukların gelişmelerine zararlı etkisi olmayan işler hangisidir?", options: ["Hafif İş", "Kolay İş", "Yazlık İş", "Eğitici İş"], correct: 0, hint: "Okul devamını engellemeyen işlerdir.", topic: "Özel Gruplar", pdfRef: "13", explanation: "Hafif iş, çocukların gelişimine veya eğitimine zararlı etki ihtimali olmayan işlerdir." },
+                    { id: 88, question: "Uygulanan işlemin içeriğine bakılmaksızın ekranında şekil gösteren araçlara ne denir?", options: ["Televizyon", "Monitör", "Ekranlı Araç", "Donanım"], correct: 2, hint: "Harf, rakam ve grafik gösteren tüm araçları kapsar.", topic: "Ergonomi", pdfRef: "18", explanation: "Ekranlı araç; harf, rakam, şekil, grafik gösteren her türlü araçtır." },
+                    { id: 89, question: "Bir işverenden yardımcı işlerde veya uzmanlık gerektiren işlerde iş alan diğer işverene ne denir?", options: ["İş Ortağı", "Alt İşveren", "Proje Müdürü", "Müteahhit"], correct: 1, hint: "Asıl işverene bağlı çalışır.", topic: "Yapı İşleri", pdfRef: "17", explanation: "Alt işveren, asıl işverenden işin bir bölümünde uzmanlık gerektiren iş alan kişidir." },
+                    { id: 90, question: "Çalışan istihdam etmeksizin kendi hesabına projenin tamamlanmasına katkı sağlayan kişidir?", options: ["Serbest Çalışan", "Kendi Nam ve Hesabına Çalışan", "Bağımsız Danışman", "Ustabaşı"], correct: 1, hint: "Profesyonel katkı sağlar ama yanında çalışan yoktur.", topic: "Yapı İşleri", pdfRef: "17", explanation: "Kendi nam ve hesabına çalışan, çalışan istihdam etmeksizin hizmet üretimi yapan kişidir." },
+                    { id: 91, question: "İnşaat ve çeşitli mühendislik işlerinin yürütüldüğü alanlara ne denir?", options: ["Şantiye", "İşletme", "Yapı Alanı", "Kuruluş"], correct: 2, hint: "İşlerin fiilen yürütüldüğü yerdir.", topic: "Yapı İşleri", pdfRef: "18", explanation: "Yapı alanı, yapı işlerinin yürütüldüğü alandır." },
+                    { id: 92, question: "Operatörün sandalyeden faks cihazına kadar tüm donanımlarının olduğu alana ne denir?", options: ["Ofis", "Çalışma Merkezi", "İş Yeri", "Masa"], correct: 1, hint: "Donanımların bir kısmının veya tamamının olduğu alandır.", topic: "Ergonomi", pdfRef: "18", explanation: "Çalışma merkezi; koltuk, ekran, masa ve aksesuarların olduğu çalışma alanıdır." },
+                    { id: 93, question: "Yedi buçuk saati geçmeyen ve gece çalışma sürelerini kapsayan çalışma zamanıdır?", options: ["Vardiya", "Gece Postası", "Nöbet", "Mesai"], correct: 1, hint: "İş Kanunu 69. maddesine atıf yapar.", topic: "Mevzuat", pdfRef: "19", explanation: "Gece postası, gece çalışma sürelerini kapsayan ve 7,5 saati geçmeyen zamandır." },
+                    { id: 94, question: "Tabi olduğu mevzuat uyarınca süt izni kullanmakta olan çalışana ne denir?", options: ["Gebe Çalışan", "Emziren Çalışan", "Yeni Doğum Yapmış", "Bakım Veren"], correct: 1, hint: "Durum hakkında işvereni bilgilendirir.", topic: "Gruplar", pdfRef: "19", explanation: "Süt izni kullanan ve işverenini bilgilendiren kişi 'Emziren çalışan'dır." },
+                    { id: 95, question: "Çalışanın kişisel durumu dikkate alınarak tehlikelere yönelik yapılan takibe ne denir?", options: ["Risk Analizi", "Genel Muayene", "Özel Sağlık Gözetimi", "Klinik Takip"], correct: 2, hint: "Kişisel sağlık durumuna özeldir.", topic: "Sağlık", pdfRef: "19", explanation: "Özel sağlık gözetimi, çalışanın kişisel sağlık durumu dikkate alınarak yapılan gözetimdir." },
+                    { id: 96, question: "Bakanlık İş Teftiş Kurulu Başkanlığına ne ad verilir?", options: ["Genel Müdürlük", "Heyet", "Kurul", "Birim"], correct: 2, hint: "Kısaca bu şekilde isimlendirilir.", topic: "Mevzuat", pdfRef: "20", explanation: "Kurul, Bakanlık İş Teftiş Kurulu Başkanlığı'dır." },
+                    { id: 97, question: "Müfettiş tarafından işin durdurulması hususlarının yazıldığı belge nedir?", options: ["İlan", "Tebligat", "Rapor", "Sertifika"], correct: 2, hint: "İdari tedbir kararıdır.", topic: "Mevzuat", pdfRef: "20", explanation: "Rapor, işin durdurulmasına sebep olan hususların tespit edildiği belgedir." },
+                    { id: 98, question: "İller için valiyi, büyükşehir ilçeleri için kaymakamı ifade eden kavram hangisidir?", options: ["Belediye Başkanı", "Mülki İdare Amiri", "Emniyet Müdürü", "Garnizon Komutanı"], correct: 1, hint: "Yerel en üst otoritedir.", topic: "Tanımlar", pdfRef: "20", explanation: "Mülki idare amiri; illerde valiyi, ilçelerde kaymakamı ifade eder." },
+                    { id: 99, question: "Teknik öğretmen, fizikçi, kimyager ve biyolog unvanına sahip olanlara ne ad verilir?", options: ["Bilim İnsanı", "Eğitmen", "Teknik Eleman", "Akademisyen"], correct: 2, hint: "Uzmanlık öncesi temel teknik branşlardır.", topic: "Tanımlar", pdfRef: "4", explanation: "Teknik eleman; teknik öğretmen, fizikçi, kimyager ve biyolog unvanına sahip olanlardır." },
+                    { id: 100, question: "İşyeri ortam havasına yayılan veya yayılma potansiyeli olan parçacıklara ne denir?", options: ["Buhar", "Gaz", "Toz", "Aerosol"], correct: 2, hint: "Hava kalitesini bozan katı parçacıklardır.", topic: "Toz", pdfRef: "11", explanation: "Toz, iş yeri ortam havasına yayılan veya yayılma potansiyeli olan parçacıklardır." }
                 ];
-
-                // 41-100 ARASI SORULAR (PDF Verileriyle devam)
-                for (let i = 41; i <= 100; i++) {
-                    const dynamicTopics = [
-                        { t: "Mevzuat", q: "ILO'nun açılımı nedir?", a: ["İş Sağlığı Kurumu", "Uluslararası Çalışma Örgütü", "İşçi Hakları Birimi", "Avrupa İş Birliği"], c: 1, p: "2", e: "ILO, International Labour Organization (Uluslararası Çalışma Örgütü) demektir." },
-                        { t: "Tanımlar", q: "İş yerinde asli görevinin yanında ilk yardım ve tahliye eğitimi alan kişiye ne denir?", a: ["Operatör", "Destek Elemanı", "Teknik Eleman", "Temsilci"], c: 1, p: "2", e: "Asli görevi dışında İSG koruma işlerinde görevlendirilen kişi Destek Elemanı'dır." },
-                        { t: "Uzmanlık", q: "İş güvenliği uzmanlığı belgesini hangi bakanlık verir?", a: ["Sağlık", "Çalışma ve Sosyal Güvenlik", "Eğitim", "Sanayi"], c: 1, p: "2", e: "Belgelendirme işlemleri Çalışma ve Sosyal Güvenlik Bakanlığı tarafından yapılır." },
-                        { t: "Kimyasal", q: "Canlı doku ile temasında doku tahribatına neden olan madde nedir?", a: ["Toksik", "Tahriş Edici", "Aşındırıcı", "Alerjik"], c: 2, p: "7", e: "Canlı dokuyu tahrip eden maddelere Aşındırıcı denir." },
-                        { t: "Fiziksel", q: "Günlük gürültü maruziyet düzeyi simgesi nedir?", a: ["Lex, 8saat", "Ptepe", "ZAOD", "dB(C)"], c: 0, p: "12", e: "Günlük 8 saatlik gürültü maruziyet düzeyi Lex, 8saat olarak gösterilir." },
-                        { t: "Toz", q: "Kristal yapıda SiO2 (Silis) içeren maddeler hangisidir?", a: ["Krizotil", "Kuvars", "Aktinolit", "Krosidolit"], c: 1, p: "11", e: "Kuvars, tridimit ve kristobalit kristal yapıda SiO2 içeren tozlardır." },
-                        { t: "Birimler", q: "İş hijyeni ölçüm belgesi olan laboratuvarlara ne verilir?", a: ["Ön Yeterlik Belgesi", "Yeterlik Belgesi", "Akreditasyon Belgesi", "Hepsi"], c: 1, p: "16", e: "Yeterli şartları sağlayan laboratuvarlara Yeterlik Belgesi verilir." },
-                        { t: "Yapı İşleri", q: "Yapı işlerinin tasarımından tamamlanmasına kadar olan sürece ne denir?", a: ["Şantiye", "İnşaat", "Proje", "Yatırım"], c: 2, p: "18", e: "Tasarım ve uygulama aşamalarının tamamı Proje'dir." }
-                    ];
-                    const choice = dynamicTopics[i % dynamicTopics.length];
-                    qBank.push({
-                        id: i,
-                        question: `${choice.t} konusu detaylı soru ${i}: ${choice.q}`,
-                        options: choice.a,
-                        correct: choice.c,
-                        hint: "PDF dokümanındaki teknik tanımları düşünün.",
-                        topic: choice.t,
-                        pdfRef: choice.p,
-                        explanation: choice.e
-                    });
-                }
                 setQuestions(qBank);
             }, []);
-
             const openEndedQs = [
-                "6331 sayılı Kanun kapsamında 'Çalışan' ve 'Çalışan Temsilcisi' görevlerini karşılaştırınız.",
-                "Risk ve Tehlike arasındaki farkı somut bir örnekle açıklayınız.",
-                "İşyerinde risk değerlendirmesi yapmanın yasal periyotları nelerdir?",
-                "Kimyasal maddelerin sınıflandırılmasındaki temel kriterleri (parlama noktası vb.) yazınız.",
-                "Gürültüye bağlı risklerden korunmada 'Sınır Değer' ve 'Eylem Değeri' farkı nedir?",
-                "Bütün vücut titreşimi ile el-kol titreşiminin insan sağlığı üzerindeki farklı etkileri nelerdir?",
-                "Biyolojik risk gruplarının (1-4) özelliklerini ve yayılım risklerini açıklayınız.",
-                "Ekranlı araçlarla çalışma sırasında oluşabilecek ergonomik riskleri listeleyiniz.",
-                "KKD seçiminde dikkat edilmesi gereken temel ilkeler nelerdir?",
-                "İş kazası meydana geldiğinde yapılması gereken resmi bildirimler ve süreleri nelerdir?"
+                "6331 sayılı İSG Kanunu'nun temel amacını ve kapsamını dokümandaki 'Temel Kavramlar' ışığında açıklayınız.",
+                "Tehlike ve Risk kavramlarını bir sanayi tesisi örneği üzerinden ayırt ediniz.",
+                "İSG-KÂTİP sisteminin iş sağlığı ve güvenliği hizmetlerinin takibindeki rolü nedir?",
+                "İş kazası ve meslek hastalığı arasındaki temel farklar nelerdir?",
+                "Büyük endüstriyel kazaların önlenmesinde 'Komisyon' ve 'Heyet' kavramlarının farkı nedir?",
+                "Kimyasal maddelerin sınıflandırılmasında parlama noktası neden kritik bir kriterdir?",
+                "Biyolojik etkenlere maruziyet risklerinin önlenmesinde grup 4 etkenlerin toplum sağlığına etkileri nelerdir?",
+                "Kişisel Koruyucu Donanım (KKD) kullanımında AT Tip İnceleme Belgesi neyi garanti eder?",
+                "Ekranlı araçlarla çalışmada operatör için 'Çalışma Merkezi' standartları nasıl olmalıdır?",
+                "Yapı işlerinde (inşaat) Sağlık ve Güvenlik Planı'nın hazırlanma gerekliliği neden önemlidir?"
             ];
 
             const handleAnswer = (idx) => {
@@ -181,7 +239,10 @@
                 doc.addPage(); y = 20;
                 doc.setFontSize(14); doc.text("Acik Uclu Sorular", 20, y); y += 10;
                 doc.setFontSize(10);
-                openEndedQs.forEach((q, i) => { doc.text(tr(`${i+1}. ${q}`), 20, y); y += 10; });
+                openEndedQs.forEach((q, i) => { 
+                    const lines = doc.splitTextToSize(tr(`${i+1}. ${q}`), 180);
+                    doc.text(lines, 20, y); y += (lines.length * 6);
+                });
 
                 doc.addPage(); y = 20;
                 doc.setFontSize(14); doc.text("Cevap Anahtari", 105, y, { align: "center" }); y += 15;
@@ -191,51 +252,58 @@
                     doc.text(`${i+1}: ${String.fromCharCode(65+q.correct)}`, x, y); y += 6;
                 });
 
-                doc.save('isg_test_calisma_notu.pdf');
+                doc.save('isg_test_tam_surum.pdf');
                 setIsPdfLoading(false);
             };
 
-            if (!questions.length) return <div className="p-10 text-center font-bold">Sorular Hazırlanıyor...</div>;
+            if (!questions.length) return <div className="p-10 text-center font-bold text-slate-400">Yükleniyor...</div>;
             const hasAns = userAnswers[currentIndex] !== undefined;
             const isCorrect = userAnswers[currentIndex] === questions[currentIndex].correct;
 
             return (
-                <div className="min-h-screen p-4 md:p-8 flex items-center justify-center">
+                <div className="min-h-screen p-4 md:p-8 flex items-center justify-center bg-slate-100/50">
                     <div className="relative w-full max-w-4xl">
                         
                         {!isFinished && (
                             <>
-                                <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} disabled={currentIndex === 0} className="hidden md:flex side-nav-left bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition border border-slate-100"><Icons.Left /></button>
-                                <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} disabled={currentIndex === questions.length - 1} className="hidden md:flex side-nav-right bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition border border-slate-100"><Icons.Right /></button>
+                                <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} disabled={currentIndex === 0} className="hidden md:flex side-nav-left bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100 active:scale-95"><Icons.Left className="w-6 h-6" /></button>
+                                <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} disabled={currentIndex === questions.length - 1} className="hidden md:flex side-nav-right bg-white text-slate-400 p-4 rounded-full shadow-lg hover:text-indigo-600 disabled:opacity-0 transition-all border border-slate-100 active:scale-95"><Icons.Right className="w-6 h-6" /></button>
                             </>
                         )}
 
-                        <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+                        <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-200 overflow-hidden">
+                            {/* Header */}
                             <div className="bg-indigo-600 p-6 text-white flex flex-col md:flex-row justify-between items-center gap-4">
-                                <div><h1 className="text-2xl font-black">İSG AKADEMİ PORTALI</h1><p className="text-indigo-100 text-xs tracking-wide">100 Soru + PDF Sayfa Referanslı</p></div>
+                                <div><h1 className="text-2xl font-black tracking-tight">İSG AKADEMİ</h1><p className="text-indigo-100 text-xs">Tam Müfredat 100 Soru</p></div>
                                 <div className="flex gap-2">
-                                    <button onClick={() => {setQuestions(prev => [...prev].sort(() => Math.random() - 0.5)); setCurrentIndex(0); setUserAnswers({}); setScore(0);}} title="Soruları Karıştır" className="bg-indigo-500 p-2 rounded-xl hover:bg-indigo-400 transition"><Icons.Shuffle /></button>
-                                    <button onClick={generatePDF} className="bg-white text-indigo-600 px-4 py-2 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition"><Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF İNDİR'}</button>
+                                    <button onClick={() => {setQuestions(prev => [...prev].sort(() => Math.random() - 0.5)); setCurrentIndex(0); setUserAnswers({}); setScore(0);}} className="bg-indigo-500 p-2.5 rounded-xl hover:bg-indigo-400 transition" title="Karıştır"><Icons.Shuffle /></button>
+                                    <button onClick={generatePDF} className="bg-white text-indigo-600 px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 hover:bg-indigo-50 transition active:scale-95">
+                                        <Icons.Download className="w-4 h-4" /> {isPdfLoading ? '...' : 'PDF İNDİR'}
+                                    </button>
                                 </div>
                             </div>
 
                             {!isFinished ? (
                                 <div className="p-6 md:p-10">
+                                    {/* Progress Bar */}
                                     <div className="mb-10">
-                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1 tracking-widest uppercase"><span>İLERLEME</span><span>{currentIndex + 1} / {questions.length}</span></div>
-                                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden"><div className="bg-indigo-600 h-full transition-all duration-700" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div></div>
+                                        <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-2 tracking-widest uppercase"><span>İLERLEME</span><span>{currentIndex + 1} / {questions.length}</span></div>
+                                        <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden shadow-inner"><div className="bg-indigo-600 h-full transition-all duration-700 ease-out" style={{width: `${((currentIndex+1)/questions.length)*100}%`}}></div></div>
                                     </div>
 
-                                    <div className="min-h-[300px]">
-                                        <span className="bg-indigo-50 text-indigo-600 text-[10px] font-black px-2 py-1 rounded mb-4 inline-block tracking-tighter uppercase">{questions[currentIndex].topic}</span>
+                                    <div className="min-h-[320px]">
+                                        <div className="flex justify-between items-center mb-4">
+                                            <span className="bg-indigo-50 text-indigo-600 text-[10px] font-black px-2.5 py-1 rounded-full tracking-tighter uppercase border border-indigo-100">{questions[currentIndex].topic}</span>
+                                            {hasAns && <span className="text-[10px] font-bold text-slate-400">PDF Sayfa {questions[currentIndex].pdfRef}</span>}
+                                        </div>
                                         <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8 leading-tight">{questions[currentIndex].question}</h2>
                                         
                                         <div className="grid gap-3">
                                             {questions[currentIndex].options.map((opt, i) => {
                                                 const optCorr = questions[currentIndex].correct === i;
                                                 const optSel = userAnswers[currentIndex] === i;
-                                                let cls = "w-full text-left p-4 rounded-2xl border-2 transition flex justify-between items-center ";
-                                                if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50";
+                                                let cls = "w-full text-left p-4 rounded-2xl border-2 transition-all flex justify-between items-center group ";
+                                                if (!hasAns) cls += "border-slate-100 hover:border-indigo-200 hover:bg-indigo-50 active:scale-[0.99]";
                                                 else if (optCorr) cls += "border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm";
                                                 else if (optSel) cls += "border-rose-500 bg-rose-50 text-rose-700";
                                                 else cls += "border-slate-50 opacity-40";
@@ -244,38 +312,67 @@
                                         </div>
 
                                         {hasAns && (
-                                            <div className={`mt-8 p-5 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-100' : 'bg-rose-50 border-rose-100'} animate-bounce-in`}>
-                                                <div className="flex items-center gap-2 mb-2"><div className={`p-1 rounded-lg ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'} text-white`}><div className="scale-75">{isCorrect ? <Icons.Check /> : <Icons.X />}</div></div><span className={`font-bold text-sm ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}`}>{isCorrect ? "Tebrikler!" : "Yanlış Cevap"}</span></div>
-                                                <p className={`text-sm leading-relaxed mb-4 ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>{!isCorrect && <span className="font-bold underline italic block mb-1 text-rose-900">Doğru Cevap: {questions[currentIndex].options[questions[currentIndex].correct]}</span>} {questions[currentIndex].explanation}</p>
-                                                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-rose-200 text-rose-800'}`}><Icons.Info className="w-3 h-3" /> Kaynak: PDF Sayfa {questions[currentIndex].pdfRef}</div>
+                                            <div className={`mt-8 p-5 rounded-2xl border shadow-sm ${isCorrect ? 'bg-emerald-50/50 border-emerald-100' : 'bg-rose-50/50 border-rose-100'} animate-bounce-in`}>
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className={`p-1.5 rounded-lg ${isCorrect ? 'bg-emerald-500' : 'bg-rose-500'} text-white shadow-sm`}>
+                                                        {isCorrect ? <Icons.Check className="w-3.5 h-3.5" /> : <Icons.X className="w-3.5 h-3.5" />}
+                                                    </div>
+                                                    <span className={`font-bold text-sm ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}`}>{isCorrect ? "Tebrikler, Doğru!" : "Açıklamayı Oku"}</span>
+                                                </div>
+                                                <p className={`text-sm leading-relaxed mb-4 ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}`}>{!isCorrect && <span className="font-bold underline block mb-1">Doğru Cevap: {questions[currentIndex].options[questions[currentIndex].correct]}</span>} {questions[currentIndex].explanation}</p>
+                                                <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${isCorrect ? 'bg-emerald-200 text-emerald-800' : 'bg-rose-200 text-rose-800'}`}>
+                                                    <Icons.Info className="w-3 h-3" /> Doküman Sayfası: {questions[currentIndex].pdfRef}
+                                                </div>
                                             </div>
                                         )}
                                     </div>
 
                                     {showHint && !hasAns && (
-                                        <div className="mt-6 p-4 bg-amber-50 rounded-2xl border border-amber-100 flex gap-3 animate-bounce-in items-start">
+                                        <div className="mt-6 p-4 bg-amber-50 rounded-2xl border border-amber-100 flex gap-3 animate-bounce-in items-start shadow-sm">
                                             <Icons.Lightbulb className="text-amber-600 shrink-0 w-4 h-4 mt-0.5" />
                                             <p className="text-sm text-amber-800 leading-tight"><b>İpucu:</b> {questions[currentIndex].hint}</p>
                                         </div>
                                     )}
 
-                                    <div className="mt-10 flex justify-between items-center border-t pt-8">
-                                        <div className="flex gap-2 md:hidden"><button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Left /></button><button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl text-slate-600"><Icons.Right /></button></div>
+                                    {/* Bottom Nav */}
+                                    <div className="mt-10 flex justify-between items-center border-t border-slate-100 pt-8">
+                                        <div className="flex gap-2 md:hidden">
+                                            <button onClick={() => setCurrentIndex(c => Math.max(0, c-1))} className="p-3 bg-slate-100 rounded-xl text-slate-600 active:bg-slate-200"><Icons.Left className="w-5 h-5"/></button>
+                                            <button onClick={() => setCurrentIndex(c => Math.min(questions.length-1, c+1))} className="p-3 bg-slate-100 rounded-xl text-slate-600 active:bg-slate-200"><Icons.Right className="w-5 h-5"/></button>
+                                        </div>
                                         <div className="hidden md:block"></div>
-                                        <div className="flex gap-3"><button onClick={() => setShowHint(!showHint)} disabled={hasAns} className={`text-amber-600 font-bold px-4 transition ${hasAns ? 'opacity-0' : 'hover:text-amber-700'}`}>İpucu</button><button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-rose-700 transition">Bitir</button></div>
+                                        <div className="flex gap-2">
+                                            <button onClick={() => setShowHint(!showHint)} disabled={hasAns} className={`text-amber-600 font-bold px-4 py-2 rounded-xl transition ${hasAns ? 'opacity-0' : 'hover:bg-amber-50 active:scale-95'}`}>İpucu</button>
+                                            <button onClick={() => setIsFinished(true)} className="bg-rose-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-rose-100 hover:bg-rose-700 transition active:scale-95">Testi Bitir</button>
+                                        </div>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="p-10 text-center animate-bounce-in">
-                                    <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-10 h-10 text-indigo-600" /></div>
-                                    <h2 className="text-3xl font-black mb-2 uppercase tracking-tighter">Test Tamamlandı!</h2>
-                                    <p className="text-slate-500 mb-8">Eğitim portalı başarı oranınız: %{Math.round((score/questions.length)*100)}</p>
+                                    <div className="w-24 h-24 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6"><Icons.Trophy className="w-12 h-12 text-indigo-600" /></div>
+                                    <h2 className="text-3xl font-black mb-2 uppercase tracking-tighter">Sınav Tamamlandı</h2>
+                                    <p className="text-slate-500 mb-8 font-medium">Toplam Başarı Oranınız: %{Math.round((score/questions.length)*100)}</p>
+                                    
                                     <div className="flex justify-center gap-4 mb-10">
-                                        <div className="bg-emerald-50 px-6 py-4 rounded-2xl border border-emerald-100 shadow-sm"><div className="text-[10px] text-emerald-500 font-bold uppercase tracking-widest">Doğru</div><div className="text-2xl font-black text-emerald-700">{score}</div></div>
-                                        <div className="bg-rose-50 px-6 py-4 rounded-2xl border border-rose-100 shadow-sm"><div className="text-[10px] text-rose-500 font-bold uppercase tracking-widest">Yanlış</div><div className="text-2xl font-black text-rose-700">{questions.length-score}</div></div>
+                                        <div className="bg-emerald-50 px-8 py-5 rounded-[2rem] border border-emerald-100 shadow-sm"><div className="text-[10px] text-emerald-500 font-black uppercase tracking-widest mb-1">Doğru</div><div className="text-3xl font-black text-emerald-700">{score}</div></div>
+                                        <div className="bg-rose-50 px-8 py-5 rounded-[2rem] border border-rose-100 shadow-sm"><div className="text-[10px] text-rose-500 font-black uppercase tracking-widest mb-1">Yanlış</div><div className="text-3xl font-black text-rose-700">{questions.length-score}</div></div>
                                     </div>
-                                    <div className="text-left bg-slate-50 p-6 rounded-3xl mb-8 border border-slate-100 shadow-inner"><h3 className="font-bold mb-4 flex items-center gap-2"><Icons.Info className="text-indigo-600 w-4 h-4"/> En Önemli Açık Uçlu Sorular</h3><div className="space-y-2 max-h-[250px] overflow-y-auto pr-2 custom-scroll">{openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 leading-relaxed border-b border-slate-200 pb-2 last:border-0"><b>{i+1}.</b> {q}</p>)}</div></div>
-                                    <div className="flex flex-wrap justify-center gap-4"><button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-900 shadow-lg">Yeniden Başla</button><button onClick={() => {const text = `İSG Akademi Portalında %${Math.round((score/questions.length)*100)} başarı sağladım!`; navigator.share ? navigator.share({title: 'Skor', text}) : (document.execCommand('copy'), alert("Pano kopyalandı!"));}} className="bg-indigo-600 text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition"><Icons.Share /> Skoru Paylaş</button></div>
+
+                                    <div className="text-left bg-slate-50 p-8 rounded-[2rem] mb-10 border border-slate-200 shadow-inner">
+                                        <h3 className="font-black text-slate-700 mb-6 flex items-center gap-2 uppercase tracking-tight"><Icons.Info className="text-indigo-600 w-5 h-5"/> Kritik Değerlendirme Soruları</h3>
+                                        <div className="space-y-4 max-h-[300px] overflow-y-auto pr-4 custom-scroll">
+                                            {openEndedQs.map((q, i) => <p key={i} className="text-xs text-slate-600 leading-relaxed border-b border-slate-200 pb-3 last:border-0 last:pb-0"><b>{i+1}.</b> {q}</p>)}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-wrap justify-center gap-4">
+                                        <button onClick={() => window.location.reload()} className="bg-slate-800 text-white px-10 py-4 rounded-2xl font-bold shadow-xl transition hover:bg-slate-900 active:scale-95 uppercase tracking-wide">Yeniden Başla</button>
+                                        <button onClick={() => {
+                                            const text = `İSG Akademi Portalında %${Math.round((score/questions.length)*100)} başarı sağladım!`;
+                                            if (navigator.share) navigator.share({title: 'Sınav Sonucu', text});
+                                            else { document.execCommand('copy'); alert("Sonuç kopyalandı!"); }
+                                        }} className="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-2 shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 uppercase tracking-wide"><Icons.Share className="w-5 h-5" /> Paylaş</button>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -287,10 +384,9 @@
         root.render(<App />);
     </script>
     <style>
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar { width: 5px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
     </style>
 </body>
 </html>
-
-
