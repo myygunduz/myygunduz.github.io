@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gıda Katkı Maddeleri - İnteraktif Test</title>
+    <title>Gıda Katkı Maddeleri - Tam Kapsamlı Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,9 +14,7 @@
             background-color: #f0f2f5;
         }
 
-        .quiz-card {
-            transition: all 0.3s ease;
-        }
+        .quiz-card { transition: all 0.3s ease; }
 
         .option-btn {
             transition: all 0.2s ease;
@@ -63,10 +61,7 @@
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <i class="fas fa-flask text-2xl"></i>
-                <span class="font-bold text-xl tracking-tight">Gıda Kimyası Testi</span>
-            </div>
-            <div id="timer-display" class="text-sm font-medium bg-indigo-800 px-3 py-1 rounded-full hidden">
-                <i class="far fa-clock mr-1"></i> <span id="time">00:00</span>
+                <span class="font-bold text-xl tracking-tight">Gıda Katkı Maddeleri Eğitimi</span>
             </div>
         </div>
     </nav>
@@ -75,16 +70,16 @@
         <!-- Giriş Ekranı -->
         <div id="intro-screen" class="max-w-xl w-full bg-white rounded-3xl shadow-2xl p-8 text-center no-print">
             <div class="w-24 h-24 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fas fa-clipboard-list text-4xl"></i>
+                <i class="fas fa-microscope text-4xl"></i>
             </div>
-            <h1 class="text-3xl font-bold text-gray-800 mb-4">Hoş Geldiniz</h1>
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Tam Kapsamlı Test</h1>
             <p class="text-gray-600 mb-8 leading-relaxed">
-                Bu testte gıda katkı maddelerinin kategorilerini, kaynaklarını ve etkilerini öğreneceksiniz. 
-                Toplam 20 soru bulunmaktadır. E-kodları yerine madde isimleri kullanılmaktadır.
+                Bu test slayttaki <b>tüm (28 adet)</b> katkı maddesini içermektedir. 
+                Her maddenin kategorisini, kaynağını ve endüstrideki etkisini öğreneceksiniz.
             </p>
             <div class="grid gap-3">
                 <button onclick="startQuiz(false)" class="bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-lg">
-                    Sınava Başla
+                    Sırayla Başla
                 </button>
                 <button onclick="startQuiz(true)" class="bg-white border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-50 py-3 rounded-2xl font-semibold transition-all">
                     Soruları Karıştır ve Başla
@@ -94,10 +89,9 @@
 
         <!-- Soru Ekranı -->
         <div id="quiz-screen" class="hidden max-w-2xl w-full no-print">
-            <!-- İlerleme -->
             <div class="mb-4">
                 <div class="flex justify-between items-end mb-2">
-                    <span class="text-indigo-700 font-bold" id="q-counter">Soru 1/20</span>
+                    <span class="text-indigo-700 font-bold" id="q-counter">Soru 1/28</span>
                     <span class="text-gray-400 text-sm" id="q-percent">%0</span>
                 </div>
                 <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden shadow-inner">
@@ -105,20 +99,16 @@
                 </div>
             </div>
 
-            <!-- Kart -->
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden quiz-card">
                 <div class="p-8">
-                    <h2 id="question-text" class="text-2xl font-bold text-gray-800 mb-8">...</h2>
+                    <h2 id="question-text" class="text-2xl font-bold text-gray-800 mb-8 leading-tight text-center">...</h2>
                     
                     <div id="options-grid" class="grid gap-4">
                         <!-- Seçenekler -->
                     </div>
 
-                    <!-- Geri Bildirim Paneli -->
                     <div id="feedback-panel" class="mt-8 transform transition-all duration-300 scale-95 opacity-0 hidden">
-                        <div id="feedback-header" class="flex items-center gap-3 p-4 rounded-2xl mb-4">
-                            <!-- İkon ve Metin -->
-                        </div>
+                        <div id="feedback-header" class="flex items-center gap-3 p-4 rounded-2xl mb-4"></div>
                         <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4 shadow-sm">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                 <div class="bg-white p-3 rounded-xl border border-gray-100">
@@ -131,12 +121,12 @@
                                 </div>
                             </div>
                             <div class="bg-white p-3 rounded-xl border border-gray-100 text-sm">
-                                <span class="text-gray-400 block mb-1">Etkisi</span>
+                                <span class="text-gray-400 block mb-1">Endüstriyel Etki / Bilgi</span>
                                 <span id="info-effect" class="font-medium text-gray-700 leading-relaxed"></span>
                             </div>
                             <button onclick="handleNextQuestion()" class="w-full bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-bold text-lg shadow-xl transition-all active:scale-95 flex items-center justify-center gap-2">
                                 <span>Sonraki Soru</span>
-                                <i class="fas fa-arrow-right"></i>
+                                <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
                     </div>
@@ -144,105 +134,101 @@
             </div>
             
             <button onclick="showExitConfirm()" class="mt-6 w-full text-gray-400 hover:text-red-500 font-medium transition-colors text-sm">
-                <i class="fas fa-times mr-1"></i> Testi Yarıda Kes
+                <i class="fas fa-sign-out-alt mr-1"></i> Testi Sonlandır
             </button>
         </div>
 
         <!-- Sonuç Ekranı -->
         <div id="results-screen" class="hidden max-w-2xl w-full no-print">
             <div class="bg-white rounded-3xl shadow-2xl p-8 text-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6">Sınav Tamamlandı</h2>
-                
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Test Özeti</h2>
                 <div class="flex justify-center items-center gap-8 mb-8">
                     <div class="text-center">
                         <div class="text-4xl font-black text-green-500" id="correct-count">0</div>
-                        <div class="text-xs text-gray-400 uppercase font-bold tracking-widest mt-1">Doğru</div>
+                        <div class="text-xs text-gray-400 font-bold mt-1">DOĞRU</div>
                     </div>
-                    <div class="w-px h-12 bg-gray-100"></div>
                     <div class="text-center">
                         <div class="text-5xl font-black text-indigo-600" id="final-score-percent">%0</div>
-                        <div class="text-xs text-gray-400 uppercase font-bold tracking-widest mt-1">Başarı</div>
+                        <div class="text-xs text-gray-400 font-bold mt-1">BAŞARI</div>
                     </div>
-                    <div class="w-px h-12 bg-gray-100"></div>
                     <div class="text-center">
                         <div class="text-4xl font-black text-red-500" id="wrong-count">0</div>
-                        <div class="text-xs text-gray-400 uppercase font-bold tracking-widest mt-1">Yanlış</div>
+                        <div class="text-xs text-gray-400 font-bold mt-1">YANLIŞ</div>
                     </div>
                 </div>
-
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="shareResult()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all">
-                        <i class="fas fa-share-alt"></i> Skoru Paylaş
-                    </button>
-                    <button onclick="exportResultToPDF()" class="flex-1 bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all">
-                        <i class="fas fa-file-pdf"></i> PDF İndir
-                    </button>
+                    <button onclick="shareResult()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-bold transition-all"><i class="fas fa-copy mr-2"></i>Kopyala</button>
+                    <button onclick="exportResultToPDF()" class="flex-1 bg-gray-900 hover:bg-black text-white py-4 rounded-2xl font-bold transition-all"><i class="fas fa-download mr-2"></i>PDF Rapor</button>
                 </div>
-                <button onclick="location.reload()" class="mt-6 text-indigo-600 font-bold hover:underline">Testi Yeniden Başlat</button>
+                <button onclick="location.reload()" class="mt-6 text-indigo-600 font-bold">Tekrar Çöz</button>
             </div>
-
             <div id="wrong-list-container" class="bg-white rounded-3xl shadow-xl p-8">
-                <h3 class="text-lg font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <i class="fas fa-exclamation-circle text-red-500"></i>
-                    Geliştirilmesi Gerekenler
-                </h3>
-                <div id="wrong-items-list" class="space-y-4">
-                    <!-- Hatalar buraya -->
-                </div>
+                <h3 class="text-lg font-bold text-gray-800 mb-6">Hatalı Soruların Detaylı Analizi</h3>
+                <div id="wrong-items-list" class="space-y-4"></div>
             </div>
         </div>
     </main>
 
-    <!-- Modal: Çıkış Onayı -->
-    <div id="exit-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden no-print">
-        <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 shadow-2xl">
-            <h3 class="text-xl font-bold text-gray-800 mb-2 text-center">Testi Bitir?</h3>
-            <p class="text-gray-500 text-center mb-6">İlerlemeniz kaydedilmeyecektir. Emin misiniz?</p>
+    <!-- Modal -->
+    <div id="exit-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl">
+            <h3 class="text-xl font-bold mb-6 text-center">Testi Bitir?</h3>
             <div class="flex gap-3">
-                <button onclick="hideExitConfirm()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-xl font-bold transition-all">Vazgeç</button>
-                <button onclick="location.reload()" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-3 rounded-xl font-bold transition-all shadow-lg shadow-red-200">Bitir</button>
+                <button onclick="hideExitConfirm()" class="flex-1 bg-gray-100 py-3 rounded-xl font-bold">Vazgeç</button>
+                <button onclick="location.reload()" class="flex-1 bg-red-500 text-white py-3 rounded-xl font-bold">Bitir</button>
             </div>
         </div>
     </div>
 
     <!-- Yazdırma Görünümü -->
     <div id="print-area" class="print-only p-10 bg-white">
-        <h1 class="text-2xl font-bold mb-2">Gıda Katkı Maddeleri Test Raporu</h1>
-        <p class="text-gray-500 border-b pb-4 mb-6" id="print-date"></p>
-        
-        <div class="grid grid-cols-3 gap-4 mb-8 text-center border p-4 rounded-lg">
-            <div><strong>Doğru</strong><br><span id="print-correct"></span></div>
-            <div><strong>Yanlış</strong><br><span id="print-wrong"></span></div>
-            <div><strong>Başarı</strong><br><span id="print-score"></span></div>
-        </div>
-
-        <h3 class="font-bold text-lg mb-4">Hatalı Sorular ve Bilgileri</h3>
-        <div id="print-details" class="space-y-6"></div>
+        <h1 class="text-2xl font-bold">Gıda Katkı Maddeleri Sınav Raporu</h1>
+        <p id="print-date" class="border-b pb-4 mb-4"></p>
+        <p id="print-summary" class="mb-6 font-bold"></p>
+        <div id="print-details" class="space-y-4"></div>
     </div>
 </div>
 
 <script>
+    // Slayttaki tüm spesifik maddeler (28 Adet)
     const additives = [
-        { name: "Sodyum Benzoat", category: "Koruyucular", source: "Sentetik", effect: "Küf ve mayalara karşı etkilidir." },
-        { name: "Askorbik Asit", category: "Antioksidanlar", source: "C Vitamini", effect: "Renk kaybını önler, gıdanın tazeliğini korur." },
-        { name: "Kurkumin", category: "Renklendiriciler", source: "Zerdeçal (Doğal)", effect: "Gıdaya sarı renk verir." },
-        { name: "Aspartam", category: "Tatlandırıcılar", source: "Sentetik", effect: "Şekerden 200 kat tatlıdır, diyet içeceklerde kullanılır." },
-        { name: "Lesitin", category: "Emülgatörler", source: "Soya fasulyesi, yumurta sarısı", effect: "Yağ ve suyun homojen karışmasını sağlar." },
-        { name: "Sorbik Asit", category: "Koruyucular", source: "Sentetik", effect: "Peynir ve fırın ürünlerinde maya/küf büyümesini engeller." },
-        { name: "Sülfitler", category: "Koruyucular", source: "Sentetik", effect: "Kurutulmuş meyvelerde oksidasyonu önler." },
-        { name: "Nitratlar", category: "Koruyucular", source: "Sentetik", effect: "İşlenmiş et ürünlerinde bakteri üremesini engeller." },
-        { name: "Tokoferoller", category: "Antioksidanlar", source: "E Vitamini", effect: "Yağların acılaşmasını önler." },
-        { name: "BHA (Butilleşmiş Hidroksianisol)", category: "Antioksidanlar", source: "Sentetik", effect: "Yağ içeren gıdaların raf ömrünü uzatır." },
-        { name: "Sitrik Asit", category: "Antioksidanlar", source: "Limon gibi narenciyeler", effect: "Lezzet artırıcı ve koruyucu." },
-        { name: "Beta-Karoten", category: "Renklendiriciler", source: "Havuç, tatlı patates", effect: "Turuncu renk verir." },
-        { name: "Klorofiller", category: "Renklendiriciler", source: "Yeşil bitkiler", effect: "Dondurma ve soslarda yeşil renk sağlar." },
-        { name: "Annatto", category: "Renklendiriciler", source: "Annatto bitkisi", effect: "Peynirde sarı-turuncu renk sağlar." },
-        { name: "Karmoisin", category: "Renklendiriciler", source: "Sentetik", effect: "Şekerlemelere kırmızı renk verir." },
-        { name: "Sakarin", category: "Tatlandırıcılar", source: "Sentetik", effect: "Şekerden 300-400 kat daha tatlıdır." },
-        { name: "Stevia", category: "Tatlandırıcılar", source: "Stevia bitkisi", effect: "Doğal sıfır kalorili tatlandırıcıdır." },
-        { name: "Sükraloz", category: "Tatlandırıcılar", source: "Sentetik", effect: "Şekerden yaklaşık 600 kat tatlıdır." },
-        { name: "Karagenan", category: "Emülgatörler", source: "Kırmızı deniz yosunları", effect: "Sütlü tatlılarda jelleşme sağlar." },
-        { name: "Mono ve Digliseritler", category: "Emülgatörler", source: "Bitkisel/Hayvansal yağlar", effect: "Keklerin bayatlamasını geciktirir." }
+        // Koruyucular (E200-E299)
+        { name: "Sorbik Asit ve Türevleri", category: "Koruyucular", source: "Sentetik (E200-E203)", effect: "Peynir, yoğurt ve fırın ürünlerinde maya ve küf büyümesini engeller." },
+        { name: "Benzoik Asit (Sodyum Benzoat)", category: "Koruyucular", source: "Sentetik (E210-E213)", effect: "İçecekler, turşular ve reçellerde bakteri, maya ve küf üremesini durdurur." },
+        { name: "Sülfitler", category: "Koruyucular", source: "Sentetik (E220-E228)", effect: "Şarap, kurutulmuş meyve ve patateste oksidasyonu önler, rengi korur. Astım hastalarında alerjik olabilir." },
+        { name: "Nitrat ve Nitritler", category: "Koruyucular", source: "Sentetik (E249-E252)", effect: "İşlenmiş etlerde (salam, sosis) bakteri üremesini engeller ve ete kırmızı renk verir." },
+        
+        // Antioksidanlar (E300-E399)
+        { name: "Askorbik Asit", category: "Antioksidanlar", source: "C Vitamini (E300)", effect: "Meyve suları ve et ürünlerinde renk kaybını önler, bağışıklığı destekler." },
+        { name: "Tokoferoller", category: "Antioksidanlar", source: "E Vitamini (E306-E309)", effect: "Bitkisel yağlar ve margarinlerde yağların acılaşmasını önler." },
+        { name: "BHA (Butilleşmiş Hidroksianisol)", category: "Antioksidanlar", source: "Sentetik (E320)", effect: "Tahıllar ve cipslerde yağlı gıdaların raf ömrünü uzatır." },
+        { name: "BHT (Butilleşmiş Hidroksitoluen)", category: "Antioksidanlar", source: "Sentetik (E321)", effect: "Paketli atıştırmalıklarda oksidasyonu önler, koku ve lezzeti korur." },
+        { name: "Sitrik Asit", category: "Antioksidanlar", source: "Doğal/Limon (E330)", effect: "Gazlı içecekler ve şekerlemelerde hem lezzet artırıcı hem koruyucu olarak kullanılır." },
+
+        // Renklendiriciler (E100-E199)
+        { name: "Kurkumin", category: "Renklendiriciler", source: "Zerdeçal (E100)", effect: "Ekmek ve soslarda kullanılan sarı renkli doğal renklendiricidir." },
+        { name: "Karmoisin", category: "Renklendiriciler", source: "Sentetik (E122)", effect: "Şekerleme ve jölelerde kullanılan kırmızı renkli sentetik maddedir." },
+        { name: "Beta-Karoten", category: "Renklendiriciler", source: "Havuç/Tatlı Patates (E160a)", effect: "Margarin ve süt ürünlerinde kullanılan turuncu renkli doğal maddedir." },
+        { name: "Klorofiller", category: "Renklendiriciler", source: "Bitkisel Kaynaklar (E140)", effect: "Dondurma ve soslarda yeşil renk sağlamak için kullanılır." },
+        { name: "Annatto", category: "Renklendiriciler", source: "Annatto Bitkisi (E160b)", effect: "Peynir ve tereyağında kullanılan sarı-turuncu doğal renklendiricidir." },
+        { name: "Tartrazin", category: "Renklendiriciler", source: "Sentetik (E102)", effect: "Astımlı bireylerde alerjik reaksiyona neden olabilen sarı renklendirici." },
+        { name: "Allura Red", category: "Renklendiriciler", source: "Sentetik (E129)", effect: "Yüksek dozlarda kanserojen riski tartışılan sentetik kırmızı renklendirici." },
+        { name: "Sunset Yellow", category: "Renklendiriciler", source: "Sentetik (E110)", effect: "İçeceklerde kullanılan turuncu-sarı sentetik maddedir." },
+
+        // Tatlandırıcılar (E900-E999)
+        { name: "Aspartam", category: "Tatlandırıcılar", source: "Sentetik (E951)", effect: "Şekerden 200 kat tatlıdır. Diyet içeceklerde ve sakızlarda kullanılır." },
+        { name: "Sakarin", category: "Tatlandırıcılar", source: "Sentetik (E954)", effect: "Şekerden 300-400 kat tatlıdır. Kalorisi neredeyse sıfırdır." },
+        { name: "Sükraloz", category: "Tatlandırıcılar", source: "Sentetik (E955)", effect: "Şekerden 600 kat tatlıdır. Isıya dayanıklıdır." },
+        { name: "Stevia", category: "Tatlandırıcılar", source: "Stevia Bitkisi (E960)", effect: "Doğal bitkisel kaynaklı sıfır kalorili tatlandırıcıdır." },
+        { name: "Acesulfam Potasyum", category: "Tatlandırıcılar", source: "Sentetik (E950)", effect: "Şekerden 200 kat tatlıdır, fırın ürünlerinde tercih edilir." },
+        { name: "Keşiş Meyvesi (Monk Fruit)", category: "Tatlandırıcılar", source: "Doğal Bitki", effect: "Bitkisel kaynaklı doğal bir tatlandırıcıdır." },
+
+        // Emülgatörler (E400-E499)
+        { name: "Lesitin", category: "Emülgatörler", source: "Soya/Yumurta (E322)", effect: "Çikolata ve margarinde yağ ve suyun homojen karışımını sağlar." },
+        { name: "Mono ve Digliseritler", category: "Emülgatörler", source: "Yağlar (E471)", effect: "Fırın ürünlerinde bayatlamayı geciktirir ve kıvamı artırır." },
+        { name: "Sodyum Aljinat", category: "Emülgatörler", source: "Deniz Yosunu (E401)", effect: "Dondurma ve yoğurtta kıvam artırıcı ve su tutucu olarak kullanılır." },
+        { name: "Karagenan", category: "Emülgatörler", source: "Kırmızı Deniz Yosunu (E407)", effect: "Sütlü tatlılarda jelleştirme ve stabilizasyon sağlar. Bağırsak mikrobiyotasını etkileyebilir." },
+        { name: "Polisorbatlar", category: "Emülgatörler", source: "Sentetik (E432-E436)", effect: "Yağ ve su karışımını stabilize eder, dondurmalarda kullanılır." }
     ];
 
     const allCategories = ["Koruyucular", "Antioksidanlar", "Renklendiriciler", "Tatlandırıcılar", "Emülgatörler"];
@@ -258,8 +244,6 @@
         currentIdx = 0;
         corrects = 0;
         wrongs = [];
-        isAnswered = false;
-        
         document.getElementById('intro-screen').classList.add('hidden');
         document.getElementById('quiz-screen').classList.remove('hidden');
         renderQuestion();
@@ -271,19 +255,15 @@
         const container = document.getElementById('options-grid');
         const feedback = document.getElementById('feedback-panel');
         
-        // UI Reset
-        feedback.classList.add('hidden');
-        feedback.classList.remove('scale-100', 'opacity-100');
-        feedback.classList.add('scale-95', 'opacity-0');
+        feedback.classList.add('hidden', 'scale-95', 'opacity-0');
         container.innerHTML = '';
         
-        document.getElementById('question-text').innerText = `${q.name} hangi kategoriye aittir?`;
+        document.getElementById('question-text').innerText = `${q.name} hangi kategoriye girer?`;
         document.getElementById('q-counter').innerText = `Soru ${currentIdx + 1} / ${quizData.length}`;
         const percent = Math.round(((currentIdx + 1) / quizData.length) * 100);
         document.getElementById('q-percent').innerText = `%${percent}`;
         document.getElementById('progress-fill').style.width = `${percent}%`;
 
-        // Generate options
         let opts = [q.category];
         while(opts.length < 4) {
             let rc = allCategories[Math.floor(Math.random() * allCategories.length)];
@@ -309,23 +289,19 @@
         btns.forEach(b => b.disabled = true);
 
         const isCorrect = choice === q.category;
-        const feedbackHeader = document.getElementById('feedback-header');
+        const fbHeader = document.getElementById('feedback-header');
         
         if(isCorrect) {
             corrects++;
             btn.classList.add('correct');
-            feedbackHeader.className = "flex items-center gap-3 p-4 rounded-2xl mb-4 bg-green-100 text-green-700";
-            feedbackHeader.innerHTML = `<i class="fas fa-check-circle text-xl"></i> <span class="font-bold">Tebrikler, Doğru!</span>`;
+            fbHeader.className = "flex items-center gap-3 p-4 rounded-2xl mb-4 bg-green-100 text-green-700 font-bold";
+            fbHeader.innerHTML = `<i class="fas fa-check-circle"></i> Doğru Cevap!`;
         } else {
             wrongs.push({ ...q, userChoice: choice });
             btn.classList.add('wrong');
-            feedbackHeader.className = "flex items-center gap-3 p-4 rounded-2xl mb-4 bg-red-100 text-red-700";
-            feedbackHeader.innerHTML = `<i class="fas fa-times-circle text-xl"></i> <span class="font-bold">Yanlış Cevap</span>`;
-            
-            // Show correct one
-            btns.forEach(b => {
-                if(b.innerText === q.category) b.classList.add('correct', 'opacity-100');
-            });
+            fbHeader.className = "flex items-center gap-3 p-4 rounded-2xl mb-4 bg-red-100 text-red-700 font-bold";
+            fbHeader.innerHTML = `<i class="fas fa-times-circle"></i> Yanlış Cevap`;
+            btns.forEach(b => { if(b.innerText === q.category) b.classList.add('correct'); });
         }
 
         document.getElementById('info-cat').innerText = q.category;
@@ -334,99 +310,52 @@
 
         const panel = document.getElementById('feedback-panel');
         panel.classList.remove('hidden');
-        setTimeout(() => {
-            panel.classList.remove('scale-95', 'opacity-0');
-            panel.classList.add('scale-100', 'opacity-100');
-        }, 10);
+        setTimeout(() => panel.classList.remove('scale-95', 'opacity-0'), 10);
     }
 
     function handleNextQuestion() {
         currentIdx++;
-        if(currentIdx < quizData.length) {
-            renderQuestion();
-        } else {
-            showResults();
-        }
+        if(currentIdx < quizData.length) renderQuestion();
+        else showResults();
     }
 
     function showResults() {
         document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('results-screen').classList.remove('hidden');
-        
-        const perc = Math.round((corrects / quizData.length) * 100);
+        const p = Math.round((corrects / quizData.length) * 100);
         document.getElementById('correct-count').innerText = corrects;
         document.getElementById('wrong-count').innerText = wrongs.length;
-        document.getElementById('final-score-percent').innerText = `%${perc}`;
+        document.getElementById('final-score-percent').innerText = `%${p}`;
 
         const list = document.getElementById('wrong-items-list');
-        list.innerHTML = '';
-        
-        if(wrongs.length === 0) {
-            list.innerHTML = `<div class="p-6 bg-green-50 rounded-2xl text-green-700 font-bold text-center">Tüm soruları doğru cevapladınız!</div>`;
-        } else {
-            wrongs.forEach(w => {
-                const card = document.createElement('div');
-                card.className = "p-4 bg-gray-50 border border-gray-100 rounded-2xl";
-                card.innerHTML = `
-                    <div class="font-bold text-gray-800">${w.name}</div>
-                    <div class="flex gap-4 mt-2 text-xs font-bold uppercase tracking-wider">
-                        <span class="text-red-500">Senin: ${w.userChoice}</span>
-                        <span class="text-green-600">Doğru: ${w.category}</span>
-                    </div>
-                    <div class="text-xs text-gray-500 mt-2 italic">${w.effect}</div>
-                `;
-                list.appendChild(card);
-            });
-        }
+        list.innerHTML = wrongs.length === 0 ? `<div class="p-6 bg-green-50 rounded-2xl text-center font-bold">Harika! Hiç hata yapmadınız.</div>` : "";
+        wrongs.forEach(w => {
+            const div = document.createElement('div');
+            div.className = "p-4 bg-gray-50 border border-gray-100 rounded-2xl";
+            div.innerHTML = `<div class="font-bold">${w.name}</div><div class="text-xs mt-1 text-red-500">Sen: ${w.userChoice} | Doğru: ${w.category}</div><div class="text-xs text-gray-500 mt-2">${w.effect}</div>`;
+            list.appendChild(div);
+        });
     }
 
     function shareResult() {
-        const text = `Gıda Katkı Maddeleri Testi'nde %${Math.round((corrects / quizData.length) * 100)} başarı sağladım! (${corrects}/${quizData.length})`;
-        const el = document.createElement('textarea');
-        el.value = text;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        alert("Skorunuz panoya kopyalandı!");
+        const text = `Gıda Katkı Maddeleri Testi Sonucum: ${corrects}/${quizData.length} (%${Math.round((corrects/quizData.length)*100)})`;
+        navigator.clipboard.writeText(text).then(() => alert("Skor panoya kopyalandı!"));
     }
 
     function exportResultToPDF() {
         document.getElementById('print-date').innerText = `Rapor Tarihi: ${new Date().toLocaleString('tr-TR')}`;
-        document.getElementById('print-correct').innerText = corrects;
-        document.getElementById('print-wrong').innerText = wrongs.length;
-        document.getElementById('print-score').innerText = `%${Math.round((corrects / quizData.length) * 100)}`;
-
-        const details = document.getElementById('print-details');
-        details.innerHTML = '';
-        
-        if(wrongs.length > 0) {
-            wrongs.forEach(w => {
-                const d = document.createElement('div');
-                d.innerHTML = `
-                    <h4 style="margin:0"><strong>Madde: ${w.name}</strong></h4>
-                    <p style="margin:5px 0">Senin Cevabın: ${w.userChoice} | Doğru Kategori: ${w.category}</p>
-                    <p style="margin:0; font-size:12px; color:#666">Bilgi: ${w.effect}</p>
-                    <hr style="border:0; border-top:1px solid #eee; margin-top:10px">
-                `;
-                details.appendChild(d);
-            });
-        } else {
-            details.innerHTML = "<p>Mükemmel performans! Hatalı soru bulunmuyor.</p>";
-        }
-
+        document.getElementById('print-summary').innerText = `Sonuç: ${corrects}/${quizData.length} Doğru (%${Math.round((corrects/quizData.length)*100)} Başarı)`;
+        const pd = document.getElementById('print-details');
+        pd.innerHTML = wrongs.length > 0 ? "<h3>Geliştirilmesi Gereken Maddeler:</h3>" : "<h3>Tebrikler, hata yok!</h3>";
+        wrongs.forEach(w => {
+            pd.innerHTML += `<div style="margin-bottom:10px; padding:10px; border:1px solid #eee"><b>${w.name}</b><br>Kategori: ${w.category} | Kaynak: ${w.source}<br>Detay: ${w.effect}</div>`;
+        });
         window.print();
     }
 
-    function showExitConfirm() {
-        document.getElementById('exit-modal').classList.remove('hidden');
-    }
-
-    function hideExitConfirm() {
-        document.getElementById('exit-modal').classList.add('hidden');
-    }
+    function showExitConfirm() { document.getElementById('exit-modal').classList.remove('hidden'); }
+    function hideExitConfirm() { document.getElementById('exit-modal').classList.add('hidden'); }
 </script>
 
 </body>
 </html>
-
