@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atomik Spektroskopi - Final V4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+        }
+
+        /* Ana Kart */
+        .main-card {
+            min-height: 400px;
+            transition: all 0.3s ease;
+        }
+
+        /* Yan Oklar */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 50;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+        }
+        .nav-btn:hover {
+            background-color: #f3f4f6;
+            color: #059669;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .nav-prev { left: -20px; }
+        .nav-next { right: -20px; }
+
+        @media (max-width: 640px) {
+            .nav-prev { left: 0; border-radius: 0 12px 12px 0; }
+            .nav-next { right: 0; border-radius: 12px 0 0 12px; }
+        }
+
+        /* Boşluk Stili */
+        .blank-space {
+            display: inline-block;
+            min-width: 80px;
+            border-bottom: 2px dashed #9ca3af;
+            color: transparent; /* Başlangıçta görünmez, placeholder var */
+            font-weight: 700;
+            padding: 0 4px;
+            margin: 0 2px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .blank-space.empty::after {
+            content: "_____";
+            color: #9ca3af;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .blank-space.filled {
+            border-bottom: none;
+            color: inherit;
+        }
+        .blank-space.filled::after {
+            content: none;
+        }
+
+        /* Kart Çevirme */
+        .card-container {
+            perspective: 2000px;
+            width: 100%;
+            height: 400px;
+            position: relative;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .card-inner.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            background: white;
+        }
+        .card-back {
+            background: #059669;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+
+    <div class="w-full max-w-3xl relative">
+        
+        <!-- Navigasyon Butonları (Kartın dışında, sağda ve solda) -->
+        <button onclick="app.prevSlide()" class="nav-btn nav-prev hidden md:flex" id="desktop-prev">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button onclick="app.nextSlide()" class="nav-btn nav-next hidden md:flex" id="desktop-next">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Ana Konteyner -->
+        <div class="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden flex flex-col min-h-[550px]">
+            
+            <!-- Header -->
+            <header class="bg-white border-b border-gray-100 p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                        <i class="fa-solid fa-atom"></i>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-gray-800">Atomik Test</h1>
+                        <div class="text-xs text-gray-400 font-medium" id="progress-text">1 / 30</div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-2">
+                    <button onclick="app.shuffleContent()" class="p-2 text-gray-400 hover:text-emerald-600 transition" title="Karıştır">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+                    <button onclick="app.goHome()" class="p-2 text-gray-400 hover:text-emerald-600 transition" title="Ana Menü">
+                        <i class="fa-solid fa-house"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-1 bg-gray-50">
+                <div id="progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <!-- İçerik Alanı -->
+            <main id="app-content" class="flex-1 p-6 flex flex-col items-center justify-center relative bg-slate-50/50">
+                <!-- Dinamik içerik buraya gelecek -->
+            </main>
+
+            <!-- Mobil Navigasyon (Sadece mobilde görünür, ekranın kenarlarında) -->
+            <button onclick="app.prevSlide()" class="nav-btn nav-prev md:hidden flex" style="position: absolute; top: 50%;">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="app.nextSlide()" class="nav-btn nav-next md:hidden flex" style="position: absolute; top: 50%;">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const sourceData = [
+            { id: 1, type: 'gap', parts: ["AFS'nin", "türünde, yayılan ışımanın dalga boyu absorplanan ile aynıdır."], answer: "Rezonans", options: ["Rezonans", "Basamaklı", "Doğrudan", "Isısal"], flashcard: { front: "Rezonans Floresans", back: "Yayılan ışımanın, absorplanan ışıma ile aynı dalga boyunda olduğu AFS türüdür." } },
+            { id: 2, type: 'gap', parts: ["Atom daha yüksek bir enerjiye çıkıp ışıma yaparsa buna", "floresans denir."], answer: "Doğrudan Hat", options: ["Doğrudan Hat", "Rezonans", "Stokes", "Anti-Stokes"], flashcard: { front: "Doğrudan Hat Floresansı", back: "Atomun ilk uyarıldığı enerji düzeyinden farklı bir enerji düzeyine geçişi sonucu oluşan floresanstır." } },
+            { id: 3, type: 'gap', parts: ["Atom ışımasız yoldan alt düzeye inip sonra ışıma yaparsa buna", "floresans denir."], answer: "Basamaklı", options: ["Basamaklı", "Rezonans", "Doğrudan", "Ters"], flashcard: { front: "Basamaklı Floresans", back: "Atomun uyarılmış düzeyden önce daha düşük bir ara düzeye inip, oradan ışıma yaparak temel hale dönmesidir." } },
+            { id: 4, type: 'gap', parts: ["Isısal destekli floresansta atom çarpışarak daha", "enerjili bir düzeye çıkar."], answer: "Yüksek", options: ["Yüksek", "Düşük", "Eşit", "Nötr"], flashcard: { front: "Isısal Destekli Floresans", back: "Uyarılmış atomun çarpışarak daha üst bir enerji seviyesine çıkması ve oradan ışıma yapmasıdır." } },
+            { id: 5, type: 'gap', parts: ["Atomik Emisyon Spektroskopisinde (AES) harici bir", "kaynağına gerek yoktur."], answer: "Işık", options: ["Işık", "Isı", "Voltaj", "Basınç"], flashcard: { front: "AES ve Işık Kaynağı", back: "AES'de atomlar kendileri ışık yayar, bu yüzden harici lamba gerekmez." } },
+            { id: 6, type: 'gap', parts: ["AES, uyarmayı sağlayan", "kaynağının türüne göre sınıflandırılır."], answer: "Enerji", options: ["Enerji", "Işık", "Dedektör", "Prizma"], flashcard: { front: "AES Sınıflandırması", back: "AES; alev, ark, kıvılcım veya plazma gibi enerji kaynağının türüne göre sınıflandırılır." } },
+            { id: 7, type: 'gap', parts: ["AAS ise", "yönteminin türüne göre sınıflandırılır (Alevli/Alevsiz)."], answer: "Atomlaştırma", options: ["Atomlaştırma", "İyonlaşma", "Buharlaşma", "Çözünme"], flashcard: { front: "AAS Sınıflandırması", back: "AAS cihazları atomlaştırıcı ünitenin tipine göre (Örn: Alevli AAS, Grafit Fırın AAS) sınıflandırılır." } },
+            { id: 8, type: 'gap', parts: ["As, Se ve Sb elementleri", "yöntemi ile analiz edilir."], answer: "Hidrür Oluşturma", options: ["Hidrür Oluşturma", "Soğuk Buhar", "Grafit Fırın", "Alev"], flashcard: { front: "Hidrür Oluşturma", back: "As, Se, Sb gibi elementlerin uçucu hidrür oluşturarak analiz edilmesidir." } },
+            { id: 9, type: 'gap', parts: ["Hidrür oluşturma yönteminde reaktif olarak", "kullanılır."], answer: "Sodyum Borhidrür", options: ["Sodyum Borhidrür", "HCl", "NaOH", "Metanol"], flashcard: { front: "Hidrür Reaktifi", back: "Sodyum Borhidrür (NaBH4) kullanılır." } },
+            { id: 10, type: 'gap', parts: ["Sadece Cıva (Hg) için uygulanan yönteme", "Yöntemi denir."], answer: "Soğuk Buhar", options: ["Soğuk Buhar", "Sıcak Alev", "Plazma", "Ark"], flashcard: { front: "Soğuk Buhar Yöntemi", back: "Sadece Cıva (Hg) için uygulanır, ısıtma gerektirmez." } },
+            { id: 11, type: 'gap', parts: ["Fosfat girişimini önlemek için Lantan gibi", "ajanlar kullanılır."], answer: "Serbestleştirici", options: ["Serbestleştirici", "İyonlaştırıcı", "Çöktürücü", "Tampon"], flashcard: { front: "Serbestleştirici Ajan", back: "Girişim yapan maddeyle reaksiyona girerek analiti serbest bırakan maddelerdir (Örn: Lantan)." } },
+            { id: 12, type: 'gap', parts: ["Alevsiz sistemlerde en yaygın kimyasal girişim", "oluşumudur."], answer: "Karbür", options: ["Karbür", "Oksit", "Sülfür", "Nitrat"], flashcard: { front: "Karbür Oluşumu", back: "Grafit fırında metallerin karbonla birleşerek zor uçucu karbürler oluşturmasıdır." } },
+            { id: 13, type: 'gap', parts: ["Alevsiz sistemde ortamda", "olmadığı için oksit oluşumu azdır."], answer: "Oksijen", options: ["Oksijen", "Azot", "Argon", "Hava"], flashcard: { front: "Alevsiz Ortam", back: "Grafit fırın inert gaz atmosferinde çalıştığı için oksijen yoktur." } },
+            { id: 14, type: 'gap', parts: ["Doğal çizgi genişlemesi,", "belirsizlik ilkesine dayanır."], answer: "Heisenberg", options: ["Heisenberg", "Pauli", "Dalton", "Bohr"], flashcard: { front: "Belirsizlik Etkisi", back: "Uyarılmış halin sınırlı yaşam süresi nedeniyle oluşan doğal genişlemedir." } },
+            { id: 15, type: 'gap', parts: ["Atomların hızına bağlı dalga boyu değişimine", "genişlemesi denir."], answer: "Doppler", options: ["Doppler", "Basınç", "Çarpışma", "Manyetik"], flashcard: { front: "Doppler Genişlemesi", back: "Atomların dedektöre yaklaşıp uzaklaşmasıyla oluşan frekans kaymasıdır." } },
+            { id: 16, type: 'gap', parts: ["Basınç genişlemesi, atomların", "sonucu oluşur."], answer: "Çarpışması", options: ["Çarpışması", "Birleşmesi", "Ayrışması", "Donması"], flashcard: { front: "Basınç Genişlemesi", back: "Diğer atomlarla çarpışma sonucu enerji seviyelerinin bozulmasıdır." } },
+            { id: 17, type: 'gap', parts: ["İyonlaşmayı önlemek için ortama iyonlaşma enerjisi", "element eklenir."], answer: "Düşük", options: ["Düşük", "Yüksek", "Eşit", "Sıfır"], flashcard: { front: "İyonlaşma Tamponu", back: "Analitten daha kolay iyonlaşan (K, Na gibi) elementler eklenir." } },
+            { id: 18, type: 'gap', parts: ["Zor eriyen oksitler için", "alevi tercih edilir."], answer: "Nitröz Oksit-Asetilen", options: ["Nitröz Oksit-Asetilen", "Hava-Asetilen", "Propan", "Doğalgaz"], flashcard: { front: "Nitröz Oksit Alevi", back: "Yüksek sıcaklık sağladığı için zor eriyen metaller için kullanılır." } },
+            { id: 19, type: 'gap', parts: ["Moleküllerin ışığı soğurmasına", "absorpsiyonu denir."], answer: "Zemin", options: ["Zemin", "Atomik", "İyonik", "Kütle"], flashcard: { front: "Zemin Absorpsiyonu", back: "Atomik olmayan türlerin ışığı absorplamasıdır, hata kaynağıdır." } },
+            { id: 20, type: 'gap', parts: ["Zemin düzeltmesinde sürekli ışık kaynağı olarak", "lambası kullanılır."], answer: "Döteryum", options: ["Döteryum", "Tungsten", "Ksenon", "Neon"], flashcard: { front: "Döteryum Lambası", back: "UV bölgesinde zemin düzeltmesi için kullanılır." } },
+            { id: 21, type: 'gap', parts: ["Manyetik alanda enerji yarılması prensibine", "etkisi denir."], answer: "Zeeman", options: ["Zeeman", "Stark", "Raman", "Compton"], flashcard: { front: "Zeeman Etkisi", back: "Manyetik alan altında spektral çizgilerin yarılmasıdır, zemin düzeltmede kullanılır." } },
+            { id: 22, type: 'gap', parts: ["Yüksek akım darbeleriyle yapılan zemin düzeltme yöntemi:", "yöntemidir."], answer: "Smith-Hieftje", options: ["Smith-Hieftje", "L'vov", "Beer", "Newton"], flashcard: { front: "Smith-Hieftje", back: "Oyuk katot lambasına yüksek akım uygulanarak zemin ölçümü yapılmasıdır." } },
+            { id: 23, type: 'gap', parts: ["Dalga boylarının çakışmasına", "girişim denir."], answer: "Spektral", options: ["Spektral", "Kimyasal", "Fiziksel", "Matriks"], flashcard: { front: "Spektral Girişim", back: "İki elementin hatlarının çakışmasıdır." } },
+            { id: 24, type: 'gap', parts: ["Viskozite farkından kaynaklanan hataya", "girişim denir."], answer: "Fiziksel", options: ["Fiziksel", "Kimyasal", "Biyolojik", "Radyoaktif"], flashcard: { front: "Fiziksel Girişim", back: "Numunenin akışkanlığının farklı olması sonucu oluşur." } },
+            { id: 25, type: 'gap', parts: ["Matriks etkilerini gidermek için", "yöntemi uygulanır."], answer: "Standart Ekleme", options: ["Standart Ekleme", "Kalibrasyon", "İç Standart", "Kör"], flashcard: { front: "Standart Ekleme", back: "Numuneye standart eklenerek yapılan analizdir." } },
+            { id: 26, type: 'gap', parts: ["AAS, nicel analizde", "yasasına dayanır."], answer: "Beer-Lambert", options: ["Beer-Lambert", "Avogadro", "Boyle", "Charles"], flashcard: { front: "Beer-Lambert Yasası", back: "Absorbans ile derişim arasındaki doğrusal ilişkiyi açıklar." } },
+            { id: 27, type: 'gap', parts: ["AAS ile yaklaşık", "tane element tayin edilebilir."], answer: "60", options: ["60", "10", "100", "25"], flashcard: { front: "Element Sayısı", back: "Yaklaşık 60 metal element tayin edilebilir." } },
+            { id: 28, type: 'gap', parts: ["Numuneyi asitle parçalamaya", "işlemi denir."], answer: "Çürütme", options: ["Çürütme", "Kurutma", "Süzme", "Çökme"], flashcard: { front: "Çürütme", back: "Organik yapıyı yok etmek için asitle ısıtma işlemidir." } },
+            { id: 29, type: 'gap', parts: ["Analiti deriştirmek için", "yöntemi kullanılır."], answer: "Ekstraksiyon", options: ["Ekstraksiyon", "Titrasyon", "Gravimetri", "Damıtma"], flashcard: { front: "Ekstraksiyon", back: "Analitin başka bir faza alınarak saflaştırılmasıdır." } },
+            { id: 30, type: 'gap', parts: ["Girişimleri önlemek için EDTA gibi", "ajanlar kullanılır."], answer: "Kompleksleştirici", options: ["Kompleksleştirici", "Çöktürücü", "İndirgeyici", "Yükseltgeyici"], flashcard: { front: "Kompleksleştirici", back: "Girişimci ile kompleks oluşturarak hatayı önleyen maddelerdir." } }
+        ];
+
+        class App {
+            constructor() {
+                this.data = JSON.parse(JSON.stringify(sourceData));
+                this.currentIndex = 0;
+                this.mode = 'home';
+                this.userAnswers = {};
+                this.dom = {
+                    content: document.getElementById('app-content'),
+                    desktopPrev: document.getElementById('desktop-prev'),
+                    desktopNext: document.getElementById('desktop-next'),
+                    progress: document.getElementById('progress-text'),
+                    progressBar: document.getElementById('progress-bar')
+                };
+                this.renderHome();
+            }
+
+            shuffleContent() {
+                for (let i = this.data.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [this.data[i], this.data[j]] = [this.data[j], this.data[i]];
+                }
+                this.currentIndex = 0;
+                this.userAnswers = {};
+                this.updateView();
+            }
+
+            goHome() {
+                this.mode = 'home';
+                this.renderHome();
+            }
+
+            renderHome() {
+                // Okları gizle
+                this.dom.desktopPrev.classList.add('hidden');
+                this.dom.desktopNext.classList.add('hidden');
+                
+                this.dom.content.innerHTML = `
+                    <div class="text-center space-y-6 fade-in w-full max-w-sm">
+                        <div class="w-24 h-24 mx-auto bg-emerald-50 rounded-full flex items-center justify-center animate-bounce">
+                            <i class="fa-solid fa-graduation-cap text-4xl text-emerald-600"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800">Hazır mısın?</h2>
+                            <p class="text-gray-500">30 soruluk çalışma seti seni bekliyor.</p>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <button onclick="app.startQuiz()" class="bg-emerald-600 text-white p-4 rounded-xl shadow-lg hover:bg-emerald-700 transition font-bold flex items-center justify-between group">
+                                <span>Testi Başlat</span>
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button onclick="app.startFlashcards()" class="bg-white text-emerald-700 border border-emerald-100 p-4 rounded-xl hover:bg-emerald-50 transition font-bold flex items-center justify-between">
+                                <span>Bilgi Kartları</span>
+                                <i class="fa-solid fa-layer-group"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            startQuiz() {
+                this.mode = 'quiz';
+                this.currentIndex = 0;
+                this.userAnswers = {};
+                this.renderQuiz();
+            }
+
+            renderQuiz() {
+                // Okları göster
+                this.dom.desktopPrev.classList.remove('hidden');
+                this.dom.desktopNext.classList.remove('hidden');
+
+                const item = this.data[this.currentIndex];
+                const ans = this.userAnswers[item.id];
+                const isAnswered = !!ans;
+
+                if (!item.shuffledOptions) {
+                    item.shuffledOptions = [...item.options].sort(() => Math.random() - 0.5);
+                }
+
+                // Cümle oluşturma
+      let sentenceClass = "text-xl font-medium text-gray-800 leading-loose text-center mb-8 fade-in";
+                let blankClass = "blank-space " + (isAnswered ? "filled" : "empty");
+                let blankContent = "";
+                let blankStyle = "";
+
+                if (isAnswered) {
+                    blankContent = ans.selected;
+                    // Cevap cümle içinde renkleniyor
+                    if (ans.isCorrect) {
+                        blankStyle = "color: #059669; border-bottom: 2px solid #059669;"; // Yeşil
+                    } else {
+                        blankStyle = "color: #dc2626; border-bottom: 2px solid #dc2626; text-decoration: line-through;"; // Kırmızı
+                    }
+                }
+
+                let sentenceHtml = `
+                    <div class="${sentenceClass}">
+                        ${item.parts[0]} 
+                        <span class="${blankClass}" style="${blankStyle}">${blankContent}</span> 
+                        ${item.parts[1] || ''}
+                    </div>
+                `;
+
+                // Seçenekler
+                let optionsHtml = `<div class="grid grid-cols-2 gap-3 w-full fade-in">`;
+                item.shuffledOptions.forEach(opt => {
+                    let btnClass = "p-4 rounded-xl border font-semibold text-sm transition-all duration-200 shadow-sm flex justify-center text-center items-center h-16 ";
+                    
+                    if (isAnswered) {
+                        if (opt === item.answer) {
+                            // Doğru cevap her zaman yeşil yanar (ipucu olarak)
+                            btnClass += "bg-emerald-500 border-emerald-500 text-white ring-2 ring-emerald-300"; 
+                        } else if (opt === ans.selected && !ans.isCorrect) {
+                            // Yanlış seçilen kırmızı yanar
+                            btnClass += "bg-white border-red-500 text-red-500 opacity-50"; 
+                        } else {
+                            btnClass += "bg-gray-50 text-gray-300 border-gray-100";
+                        }
+                    } else {
+                        btnClass += "bg-white border-gray-200 text-gray-600 hover:border-emerald-400 hover:text-emerald-600 hover:shadow-md";
+                    }
+
+                    optionsHtml += `
+                        <button onclick="app.handleGapFill(${item.id}, '${opt}')" ${isAnswered ? 'disabled' : ''} class="${btnClass}">
+                            ${opt}
+                        </button>
+                    `;
+                });
+                optionsHtml += `</div>`;
+
+                this.dom.content.innerHTML = `
+                    <div class="w-full max-w-lg flex flex-col items-center">
+                        ${sentenceHtml}
+                        ${optionsHtml}
+                    </div>
+                `;
+                this.updateUI();
+            }
+
+            handleGapFill(qId, selectedOption) {
+                if (this.userAnswers[qId]) return;
+                const item = this.data.find(d => d.id === qId);
+                this.userAnswers[qId] = { selected: selectedOption, isCorrect: selectedOption === item.answer };
+                this.renderQuiz();
+            }
+
+            startFlashcards() {
+                this.mode = 'flashcard';
+                this.currentIndex = 0;
+                this.renderFlashcard();
+            }
+
+            renderFlashcard() {
+                this.dom.desktopPrev.classList.remove('hidden');
+                this.dom.desktopNext.classList.remove('hidden');
+                const item = this.data[this.currentIndex];
+                
+                this.dom.content.innerHTML = `
+                    <div class="card-container fade-in" onclick="this.querySelector('.card-inner').classList.toggle('is-flipped')">
+                        <div class="card-inner">
+                            <div class="card-face bg-white">
+                                <span class="absolute top-4 right-4 bg-gray-100 text-gray-400 text-xs px-2 py-1 rounded">SORU</span>
+                                <i class="fa-solid fa-circle-question text-4xl text-emerald-100 mb-6"></i>
+                                <h3 class="text-xl font-bold text-center text-gray-800">${item.flashcard.front}</h3>
+                                <p class="text-xs text-gray-400 mt-auto">Çevirmek için tıkla</p>
+                            </div>
+                            <div class="card-face card-back">
+                                <span class="absolute top-4 right-4 bg-white/20 text-white text-xs px-2 py-1 rounded">CEVAP</span>
+                                <i class="fa-solid fa-lightbulb text-3xl text-yellow-300 mb-6"></i>
+                                <p class="text-lg text-center font-medium">${item.flashcard.back}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                this.updateUI();
+            }
+
+            prevSlide() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                    this.updateView();
+                }
+            }
+
+            nextSlide() {
+                if (this.currentIndex < this.data.length - 1) {
+                    this.currentIndex++;
+                    this.updateView();
+                } else if (this.mode === 'quiz') {
+                    this.finishTest();
+                }
+            }
+
+            updateView() {
+                this.mode === 'quiz' ? this.renderQuiz() : this.renderFlashcard();
+            }
+
+            updateUI() {
+                this.dom.progress.innerText = `${this.currentIndex + 1} / ${this.data.length}`;
+                const pct = ((this.currentIndex + 1) / this.data.length) * 100;
+                this.dom.progressBar.style.width = `${pct}%`;
+                
+                // Mobil buton kontrolü (Basitlik için HTML'de style ile kontrol ediliyor ama burada da class eklenebilir)
+            }
+
+            finishTest() {
+                this.dom.desktopPrev.classList.add('hidden');
+                this.dom.desktopNext.classList.add('hidden');
+                
+                let correct = 0;
+                Object.values(this.userAnswers).forEach(a => { if(a.isCorrect) correct++; });
+                
+                this.dom.content.innerHTML = `
+                    <div class="text-center space-y-6 fade-in">
+                        <h2 class="text-3xl font-bold text-emerald-600">Test Bitti!</h2>
+                        <div class="text-6xl font-black text-gray-800">${correct}<span class="text-2xl text-gray-400">/${this.data.length}</span></div>
+                        <p class="text-gray-500">Doğru Sayısı</p>
+                        <button onclick="app.downloadPDF()" class="bg-gray-800 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-gray-900 transition flex items-center gap-2 mx-auto">
+                            <i class="fa-solid fa-download"></i> PDF İndir
+                        </button>
+                        <button onclick="app.goHome()" class="text-emerald-600 font-bold hover:underline block mx-auto">
+                            Ana Menüye Dön
+                        </button>
+                    </div>
+                `;
+            }
+
+            downloadPDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.setFontSize(16);
+                doc.text("Atomik Spektroskopi Sonuclar", 20, 20);
+                doc.setFontSize(10);
+                let y = 30;
+                
+                const clean = txt => txt.replace(/ğ/g,'g').replace(/Ğ/g,'G').replace(/ü/g,'u').replace(/Ü/g,'U').replace(/ş/g,'s').replace(/Ş/g,'S').replace(/ı/g,'i').replace(/İ/g,'I').replace(/ö/g,'o').replace(/Ö/g,'O').replace(/ç/g,'c').replace(/Ç/g,'C');
+
+                this.data.forEach((item, i) => {
+                    if (y > 270) { doc.addPage(); y = 20; }
+                    const text = `${i+1}. ${item.parts[0]} ${item.answer.toUpperCase()} ${item.parts[1]||''}`;
+                    doc.text(clean(text), 20, y);
+                    y += 7;
+                });
+                doc.save("Sonuclar.pdf");
+            }
+        }
+
+        const app = new App();
+    </script>
+</body>
+</html>
+
