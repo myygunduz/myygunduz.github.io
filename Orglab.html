@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organik Kimya NMR Spektroskopisi Eğitim Aracı</title>
+    <style>
+        :root {
+            --primary-color: #2563eb; /* Bilimsel Mavi */
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --bg-color: #f8fafc;
+            --text-color: #1e293b;
+            --card-bg: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: white;
+            color: var(--primary-color);
+            border-color: white;
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Cards & Layout --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .compound-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .compound-title h2 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .formula-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        /* --- Images Section --- */
+        .grid-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .image-container {
+            text-align: center;
+            background: #f1f5f9;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.2s;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-label {
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .structure-view {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            background: #f8fafc;
+        }
+
+        /* --- Table Styling --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .data-table th, .data-table td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .data-table th {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* --- Controls --- */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background: var(--primary-color); color: white; }
+        .btn-primary:hover { background: var(--secondary-color); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .btn-outline:hover { background: #eff6ff; }
+        .btn-next { background: var(--text-color); color: white; }
+
+        /* --- Quiz Specific Styles --- */
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            border-color: var(--primary-color);
+            background: #eff6ff;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: var(--success);
+            color: #065f46;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: var(--error);
+            color: #991b1b;
+        }
+
+        .feedback-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .feedback-area.success { background: #dcfce7; color: #065f46; display: block; }
+        .feedback-area.error { background: #fee2e2; color: #991b1b; display: block; }
+
+        .hidden-content {
+            filter: blur(5px);
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .revealed {
+            filter: none;
+            pointer-events: all;
+            user-select: auto;
+            transition: filter 0.5s ease;
+        }
+
+        /* --- Modal (Lightbox) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 4px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .grid-images { grid-template-columns: 1fr; }
+            .quiz-options { grid-template-columns: 1fr; }
+            .compound-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🧪 NMR Eğitim Aracı</h1>
+        <div class="subtitle">Organik Bileşiklerin Yapı Analizi ve Spektroskopi Simülasyonu</div>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('lecture')">📖 Konu Anlatımı</button>
+            <button class="tab-btn" onclick="switchTab('test')">🧠 Test Modu</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- LECTURE SECTION -->
+        <section id="lecture-section" class="section active">
+            <div class="card">
+                <div class="compound-header">
+                    <div class="compound-title">
+                        <h2 id="lecture-name">Bileşik İsmi</h2>
+                        <span style="font-size:0.9rem; color:#64748b;">Yapısal Analiz</span>
+                    </div>
+                    <div class="formula-badge" id="lecture-formula">CxHy</div>
+                </div>
+
+                <div class="structure-view">
+                    <img id="lecture-structure" src="" alt="Açık Yapı" style="max-height: 150px; opacity: 0.9;">
+                    <div class="image-label">Moleküler Yapı</div>
+                </div>
+
+                <div class="grid-images">
+                    <div class="image-container" onclick="openModal(this)">
+                        <img id="lecture-hnmr" src="" alt="H-NMR Spektrumu">
+                        <div class="image-label">H-NMR (Proton) Spektrumu 🔍</div>
+                    </div>
+                    <div class="image-container" onclick="openModal(this)">
+                        <img id="lecture-cnmr" src="" alt="C-NMR Spektrumu">
+                        <div class="image-label">C-NMR (Karbon) Spektrumu 🔍</div>
+                    </div>
+                </div>
+
+                <h3>📊 Pik Analizi</h3>
+                <div style="overflow-x: auto; margin-top: 10px;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Spektrum Türü</th>
+                                <th>Kimyasal Kayma (ppm)</th>
+                                <th>Açıklama / Atama</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lecture-table-body">
+                            <!-- JS ile doldurulacak -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-outline" onclick="changeLecture(-1)">⬅️ Önceki</button>
+                    <span id="lecture-counter" style="align-self: center; color: #64748b; font-weight: bold;">1 / 12</span>
+                    <button class="btn btn-primary" onclick="changeLecture(1)">Sonraki ➡️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEST SECTION -->
+        <section id="test-section" class="section">
+            <div class="card">
+                <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                    <h2 style="color:var(--primary-color)">Bu bileşik hangisidir?</h2>
+                    <div class="formula-badge" id="quiz-formula">?</div>
+                </div>
+                
+                <p style="margin-bottom: 1rem; color:#64748b;">Aşağıdaki spektrumlara ve formüle bakarak doğru bileşiği tahmin et.</p>
+
+                <div class="grid-images">
+                    <div class="image-container" onclick="openModal(this)">
+                        <img id="quiz-hnmr" src="" alt="H-NMR">
+                        <div class="image-label">H-NMR</div>
+                    </div>
+                    <div class="image-container" onclick="openModal(this)">
+                        <img id="quiz-cnmr" src="" alt="C-NMR">
+                        <div class="image-label">C-NMR</div>
+                    </div>
+                </div>
+
+                <!-- Cevap Alanı -->
+                <div class="quiz-options" id="quiz-options-container">
+                    <!-- Butonlar JS ile gelecek -->
+                </div>
+
+                <!-- Geri Bildirim ve Detaylar -->
+                <div id="quiz-feedback" class="feedback-area"></div>
+
+                <div id="quiz-details" class="hidden-content" style="margin-top: 2rem; border-top: 2px dashed #e2e8f0; padding-top: 1rem;">
+                    <h3 id="quiz-reveal-name" style="color:var(--primary-color)">Bileşik: -</h3>
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <img id="quiz-reveal-structure" src="" style="max-height: 120px;">
+                    </div>
+                    <table class="data-table">
+                        <tbody id="quiz-reveal-table"></tbody>
+                    </table>
+                </div>
+
+                <div class="controls" style="justify-content: flex-end; margin-top: 1.5rem;">
+                    <button class="btn btn-next" id="next-q-btn" onclick="nextQuestion()" style="display:none;">Sonraki Soru ⏩</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal Lightbox -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modal-img">
+        <div id="caption" style="color:white; margin-top:10px; font-size:1.2rem;"></div>
+    </div>
+
+    <script>
+        // --- 1. VERİ YAPISI ---
+        const compounds = [
+            {
+                name: "Anilin",
+                formula: "C6H7N",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+Halkasi+-+NH2",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Anilin+(Aromatik+Amino)",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Anilin",
+                peaks: [
+                    { type: "H-NMR", ppm: "3.5 - 4.0", desc: "NH2 Protonları (Geniş singlet)" },
+                    { type: "H-NMR", ppm: "6.5 - 7.2", desc: "Aromatik Protonlar (Multiplet)" },
+                    { type: "C-NMR", ppm: "115 - 130", desc: "Aromatik Karbonlar" },
+                    { type: "C-NMR", ppm: "146", desc: "C-N bağı olan Aromatik Karbon" }
+                ]
+            },
+            {
+                name: "Asetik Anhidrit",
+                formula: "C4H6O3",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=CH3-CO-O-CO-CH3",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Asetik+Anhidrit",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Asetik+Anhidrit",
+                peaks: [
+                    { type: "H-NMR", ppm: "2.2", desc: "CH3 Protonları (Singlet, simetrik yapı)" },
+                    { type: "C-NMR", ppm: "22", desc: "CH3 Karbonları" },
+                    { type: "C-NMR", ppm: "166", desc: "Karbonil (C=O) Karbonları" }
+                ]
+            },
+            {
+                name: "Etanol",
+                formula: "C2H6O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=CH3-CH2-OH",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Etanol",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Etanol",
+                peaks: [
+                    { type: "H-NMR", ppm: "1.2", desc: "CH3 (Triplet)" },
+                    { type: "H-NMR", ppm: "3.7", desc: "CH2 (Quartet)" },
+                    { type: "H-NMR", ppm: "2.0 - 5.0", desc: "OH (Değişken, singlet)" },
+                    { type: "C-NMR", ppm: "18", desc: "CH3 Karbonu" },
+                    { type: "C-NMR", ppm: "58", desc: "CH2-OH Karbonu" }
+                ]
+            },
+            {
+                name: "t-Amil Alkol",
+                formula: "C5H12O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=(CH3)2-C(OH)-CH2-CH3",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+t-Amil+Alkol",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+t-Amil+Alkol",
+                peaks: [
+                    { type: "H-NMR", ppm: "0.9", desc: "CH3 (Etil grubu ucu, Triplet)" },
+                    { type: "H-NMR", ppm: "1.2", desc: "2x CH3 (Aynı karbona bağlı, Singlet)" },
+                    { type: "H-NMR", ppm: "1.5", desc: "CH2 (Quartet)" },
+                    { type: "C-NMR", ppm: "70-75", desc: "Kuaterner C-OH Karbonu" }
+                ]
+            },
+            {
+                name: "Benzaldehit",
+                formula: "C7H6O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+-+CHO",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Benzaldehit",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Benzaldehit",
+                peaks: [
+                    { type: "H-NMR", ppm: "10.0", desc: "Aldehit Protonu (Singlet, karakteristik)" },
+                    { type: "H-NMR", ppm: "7.4 - 7.9", desc: "Aromatik Protonlar" },
+                    { type: "C-NMR", ppm: "192", desc: "Karbonil (C=O)" },
+                    { type: "C-NMR", ppm: "128 - 135", desc: "Aromatik Karbonlar" }
+                ]
+            },
+            {
+                name: "Benzoik Asit",
+                formula: "C7H6O2",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+-+COOH",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Benzoik+Asit",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Benzoik+Asit",
+                peaks: [
+                    { type: "H-NMR", ppm: "11.0 - 12.0", desc: "Karboksilik Asit Protonu (Geniş singlet)" },
+                    { type: "H-NMR", ppm: "7.4 - 8.1", desc: "Aromatik Protonlar" },
+                    { type: "C-NMR", ppm: "172", desc: "Karboksil (C=O)" }
+                ]
+            },
+            {
+                name: "Benzil Alkol",
+                formula: "C7H8O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+-+CH2+-+OH",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Benzil+Alkol",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Benzil+Alkol",
+                peaks: [
+                    { type: "H-NMR", ppm: "4.6", desc: "Benzilik CH2 (Singlet)" },
+                    { type: "H-NMR", ppm: "7.3", desc: "Aromatik Protonlar (Multiplet)" },
+                    { type: "H-NMR", ppm: "2.0 - 3.0", desc: "OH Protonu" },
+                    { type: "C-NMR", ppm: "65", desc: "Benzilik CH2 Karbonu" }
+                ]
+            },
+            {
+                name: "Dietil Eter",
+                formula: "C4H10O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=CH3-CH2-O-CH2-CH3",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Dietil+Eter",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Dietil+Eter",
+                peaks: [
+                    { type: "H-NMR", ppm: "1.2", desc: "CH3 (Triplet)" },
+                    { type: "H-NMR", ppm: "3.5", desc: "CH2-O (Quartet)" },
+                    { type: "C-NMR", ppm: "15", desc: "CH3 Karbonu" },
+                    { type: "C-NMR", ppm: "66", desc: "CH2-O Karbonu" }
+                ]
+            },
+            {
+                name: "Aseton",
+                formula: "C3H6O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=CH3-CO-CH3",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Aseton",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Aseton",
+                peaks: [
+                    { type: "H-NMR", ppm: "2.1", desc: "CH3 Protonları (Tek Singlet, 6H)" },
+                    { type: "C-NMR", ppm: "30", desc: "CH3 Karbonları" },
+                    { type: "C-NMR", ppm: "206", desc: "Karbonil (C=O) Karbonu" }
+                ]
+            },
+            {
+                name: "Salisilik Asit",
+                formula: "C7H6O3",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+(o-OH,+-COOH)",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Salisilik+Asit",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Salisilik+Asit",
+                peaks: [
+                    { type: "H-NMR", ppm: "10-12", desc: "COOH ve Fenolik OH (Hidrojen bağı)" },
+                    { type: "H-NMR", ppm: "6.8 - 7.9", desc: "Aromatik Protonlar" },
+                    { type: "C-NMR", ppm: "172", desc: "Karboksil (C=O)" },
+                    { type: "C-NMR", ppm: "161", desc: "C-OH (Fenolik Karbon)" }
+                ]
+            },
+            {
+                name: "n-Amil Alkol",
+                formula: "C5H12O",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=CH3-(CH2)4-OH",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+n-Amil+Alkol",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+n-Amil+Alkol",
+                peaks: [
+                    { type: "H-NMR", ppm: "0.9", desc: "Terminal CH3 (Triplet)" },
+                    { type: "H-NMR", ppm: "3.6", desc: "CH2-OH (Triplet)" },
+                    { type: "H-NMR", ppm: "1.3 - 1.6", desc: "Aradaki CH2 zinciri (Multiplet)" }
+                ]
+            },
+            {
+                name: "Ftalik Anhidrit",
+                formula: "C8H4O3",
+                structure: "https://placehold.co/400x200/ffffff/000000?text=Benzen+Halkasi+Bitisik+Anhidrit",
+                hnmr: "https://placehold.co/400x300/eef2ff/2563eb?text=H-NMR+Ftalik+Anhidrit",
+                cnmr: "https://placehold.co/400x300/fff7ed/ea580c?text=C-NMR+Ftalik+Anhidrit",
+                peaks: [
+                    { type: "H-NMR", ppm: "7.8 - 8.1", desc: "Aromatik Protonlar (Simetrik AA'BB')" },
+                    { type: "C-NMR", ppm: "163", desc: "Karbonil (C=O)" },
+                    { type: "C-NMR", ppm: "130-135", desc: "Aromatik Karbonlar" }
+                ]
+            }
+        ];
+
+        // --- 2. UYGULAMA DURUMU (STATE) ---
+        let currentLectureIndex = 0;
+        let quizQueue = [];
+        let currentQuizIndex = 0;
+        let isQuizAnswered = false;
+
+        // --- 3. TEMEL FONKSİYONLAR ---
+        
+        // Tab Değiştirme
+        function switchTab(tabName) {
+            // Butonları güncelle
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Bölümleri gizle/göster
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            
+            if (tabName === 'lecture') {
+                document.getElementById('lecture-section').classList.add('active');
+                renderLecture();
+            } else {
+                document.getElementById('test-section').classList.add('active');
+                startQuiz();
+            }
+        }
+
+        // --- 4. KONU ANLATIMI MANTIĞI ---
+        function renderLecture() {
+            const compound = compounds[currentLectureIndex];
+            
+            // Metinleri güncelle
+            document.getElementById('lecture-name').innerText = compound.name;
+            document.getElementById('lecture-formula').innerText = compound.formula;
+            document.getElementById('lecture-structure').src = compound.structure;
+            document.getElementById('lecture-hnmr').src = compound.hnmr;
+            document.getElementById('lecture-cnmr').src = compound.cnmr;
+            document.getElementById('lecture-counter').innerText = `${currentLectureIndex + 1} / ${compounds.length}`;
+
+            // Tabloyu güncelle
+            const tbody = document.getElementById('lecture-table-body');
+            tbody.innerHTML = '';
+            compound.peaks.forEach(peak => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="color: ${peak.type === 'H-NMR' ? 'var(--primary-color)' : '#ea580c'}; font-weight:bold;">${peak.type}</td>
+                    <td>${peak.ppm}</td>
+                    <td>${peak.desc}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function changeLecture(direction) {
+            currentLectureIndex += direction;
+            // Döngüsel navigasyon
+            if (currentLectureIndex < 0) currentLectureIndex = compounds.length - 1;
+            if (currentLectureIndex >= compounds.length) currentLectureIndex = 0;
+            renderLecture();
+        }
+
+        // --- 5. TEST (QUIZ) MANTIĞI ---
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz() {
+            // Bileşikleri karıştırıp sıraya diz
+            quizQueue = shuffleArray([...compounds]);
+            currentQuizIndex = 0;
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            isQuizAnswered = false;
+            const currentCompound = quizQueue[currentQuizIndex];
+
+            // UI Temizle
+            document.getElementById('quiz-feedback').className = 'feedback-area';
+            document.getElementById('quiz-feedback').style.display = 'none';
+            document.getElementById('quiz-details').classList.remove('revealed');
+            document.getElementById('quiz-details').classList.add('hidden-content');
+            document.getElementById('next-q-btn').style.display = 'none';
+
+            // Soru Verilerini Yükle
+            document.getElementById('quiz-formula').innerText = currentCompound.formula;
+            document.getElementById('quiz-hnmr').src = currentCompound.hnmr;
+            document.getElementById('quiz-cnmr').src = currentCompound.cnmr;
+
+            // Cevap Detaylarını Hazırla (Gizli)
+            document.getElementById('quiz-reveal-name').innerText = `Doğru Cevap: ${currentCompound.name}`;
+            document.getElementById('quiz-reveal-structure').src = currentCompound.structure;
+            
+            const revealBody = document.getElementById('quiz-reveal-table');
+            revealBody.innerHTML = '';
+            currentCompound.peaks.forEach(peak => {
+                revealBody.innerHTML += `<tr><td><b>${peak.type}</b></td><td>${peak.ppm}</td><td>${peak.desc}</td></tr>`;
+            });
+
+            // Şıkları Oluştur
+            generateOptions(currentCompound);
+        }
+
+        function generateOptions(correctCompound) {
+            const container = document.getElementById('quiz-options-container');
+            container.innerHTML = '';
+
+            // Doğru cevap hariç diğerlerini al
+            let otherCompounds = compounds.filter(c => c.name !== correctCompound.name);
+            // Karıştır ve ilk 3'ünü al
+            shuffleArray(otherCompounds);
+            let distractors = otherCompounds.slice(0, 3);
+
+            // Şık havuzu (1 doğru + 3 yanlış)
+            let options = [...distractors, correctCompound];
+            shuffleArray(options);
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt.name;
+                btn.onclick = () => checkAnswer(opt, correctCompound, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct, btnElement) {
+            if (isQuizAnswered) return; // Zaten cevaplandıysa işlem yapma
+            isQuizAnswered = true;
+
+            const feedbackEl = document.getElementById('quiz-feedback');
+            const allBtns = document.querySelectorAll('.option-btn');
+
+            // Butonları devre dışı bırak
+            allBtns.forEach(b => b.classList.add('disabled'));
+
+            if (selected.name === correct.name) {
+                // DOĞRU
+                btnElement.classList.add('correct');
+                feedbackEl.innerText = "🎉 Harika! Doğru analiz.";
+                feedbackEl.className = "feedback-area success";
+            } else {
+                // YANLIŞ
+                btnElement.classList.add('wrong');
+                feedbackEl.innerText = `❌ Üzgünüm, yanlış cevap. Doğru cevap: ${correct.name}`;
+                feedbackEl.className = "feedback-area error";
+                
+                // Doğru olanı yeşil yap
+                allBtns.forEach(b => {
+                    if (b.innerText === correct.name) b.classList.add('correct');
+                });
+            }
+
+            // Detayları Aç
+            document.getElementById('quiz-details').classList.remove('hidden-content');
+            document.getElementById('quiz-details').classList.add('revealed');
+            
+            // Sonraki Soru butonunu göster
+            document.getElementById('next-q-btn').style.display = 'inline-block';
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex >= quizQueue.length) {
+                alert("Tebrikler! Tüm bileşikleri tamamladın. Test baştan başlatılıyor.");
+                startQuiz();
+            } else {
+                renderQuestion();
+            }
+        }
+
+        // --- 6. LIGHTBOX (MODAL) ---
+        function openModal(element) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modal-img");
+            const captionText = document.getElementById("caption");
+            const img = element.querySelector('img');
+            const desc = element.querySelector('.image-label').innerText;
+
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+            captionText.innerHTML = desc;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // İlk yükleme
+        window.onload = function() {
+            renderLecture();
+        };
+
+        // ESC tuşu ile modal kapatma
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+
+    </script>
+</body>
+</html>
+
+
+                
+                
