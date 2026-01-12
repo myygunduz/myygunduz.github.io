@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biyokimya İnteraktif Test Uygulaması</title>
+    <style>
+        /* --- GENEL AYARLAR VE TASARIM (CSS) --- */
+        :root {
+            --bg-color: #e0f7fa; /* Açık Mavi Arka Plan */
+            --card-bg: #ffffff;
+            --primary-color: #006064; /* Koyu Mavi/Teal Yazılar */
+            --accent-color: #00acc1; /* Buton Rengi */
+            --correct-color: #4caf50; /* Yeşil */
+            --wrong-color: #f44336; /* Kırmızı */
+            --text-color: #333;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* HEADER & PROGRESS BAR */
+        .header {
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255,255,255,0.3);
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #00e5ff;
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* SORU ALANI */
+        .question-area {
+            padding: 30px 20px;
+            min-height: 300px;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            color: var(--primary-color);
+        }
+
+        .options-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background-color: #f1f8e9;
+            border: 2px solid #e0e0e0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+            transition: all 0.2s;
+            color: var(--text-color);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        /* DOĞRU/YANLIŞ DURUMLARI */
+        .option-btn.correct {
+            background-color: var(--correct-color) !important;
+            color: white !important;
+            border-color: var(--correct-color) !important;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--wrong-color) !important;
+            color: white !important;
+            border-color: var(--wrong-color) !important;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+            opacity: 0.9;
+        }
+
+        /* NAVİGASYON BUTONLARI */
+        .controls {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: var(--primary-color);
+            color: white;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #00838f;
+        }
+
+        .nav-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .shuffle-btn {
+            background-color: #ff9800;
+        }
+        .shuffle-btn:hover {
+            background-color: #f57c00;
+        }
+
+        /* SONUÇ EKRANI */
+        .result-screen {
+            display: none;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            font-weight: bold;
+        }
+
+        .mistakes-list {
+            text-align: left;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .mistake-item {
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .mistake-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #d32f2f;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header" id="header-section">
+            <h1>Vitaminler, Mineraller ve Enzimler Testi</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div style="margin-top: 5px; font-size: 0.8rem;">
+                Soru: <span id="current-q-num">1</span> / <span id="total-q-num">30</span>
+            </div>
+        </div>
+
+        <div class="question-area" id="quiz-section">
+            <div class="question-text" id="question-text">
+                </div>
+            <div class="options-grid" id="options-container">
+                </div>
+        </div>
+
+        <div class="result-screen" id="result-section">
+            <div class="score-circle" id="score-display">0/0</div>
+            <h2>Test Tamamlandı!</h2>
+            <p id="feedback-message"></p>
+            
+            <div id="mistakes-container" class="mistakes-list">
+                <h3>Hatalı Cevaplanan Sorular ve Doğruları:</h3>
+                </div>
+
+            <button class="nav-btn shuffle-btn" onclick="restartQuiz()" style="margin-top:20px;">Testi Karıştır ve Tekrar Başlat</button>
+        </div>
+
+        <div class="controls" id="controls-section">
+            <button class="nav-btn shuffle-btn" onclick="shuffleAndRestart()">Karıştır & Yenile</button>
+            <div>
+                <button class="nav-btn" id="prev-btn" onclick="changeQuestion(-1)">← Geri</button>
+                <button class="nav-btn" id="next-btn" onclick="changeQuestion(1)">İleri →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* --- VERİ SETİ (30 SORU) --- */
+        const questionsData = [
+            // Vitaminler
+            {
+                id: 1,
+                text: "Göz sağlığı için kritik olan ve eksikliğinde 'Gece Körlüğü' görülen vitamin hangisidir?",
+                options: ["A Vitamini", "C Vitamini", "D Vitamini", "K Vitamini"],
+                answer: "A Vitamini"
+            },
+            {
+                id: 2,
+                text: "Kollajen sentezi için gerekli olan ve eksikliğinde 'Skorbüt' hastalığına yol açan vitamin hangisidir?",
+                options: ["B12 Vitamini", "C Vitamini", "E Vitamini", "A Vitamini"],
+                answer: "C Vitamini"
+            },
+            {
+                id: 3,
+                text: "Kalsiyum emilimi için elzem olan ve eksikliğinde çocuklarda 'Raşitizm' görülen vitamin hangisidir?",
+                options: ["D Vitamini", "K Vitamini", "B1 Vitamini", "C Vitamini"],
+                answer: "D Vitamini"
+            },
+            {
+                id: 4,
+                text: "Kanın pıhtılaşma faktörlerinin sentezinde görev alan vitamin hangisidir?",
+                options: ["E Vitamini", "A Vitamini", "K Vitamini", "D Vitamini"],
+                answer: "K Vitamini"
+            },
+            {
+                id: 5,
+                text: "Aşağıdakilerden hangisi B12 vitamini eksikliğinin en belirgin sonucudur?",
+                options: ["Gece Körlüğü", "Pernisiyöz Anemi", "Kısırlık", "Deri Döküntüsü"],
+                answer: "Pernisiyöz Anemi"
+            },
+            {
+                id: 6,
+                text: "Antioksidan özelliği ile hücre zarlarını koruyan vitamin hangisidir?",
+                options: ["E Vitamini", "D Vitamini", "B1 Vitamini", "K Vitamini"],
+                answer: "E Vitamini"
+            },
+            {
+                id: 7,
+                text: "____ vitamini, özellikle turunçgillerde, kivi ve yeşil biberde bol miktarda bulunur.",
+                options: ["A", "D", "C", "B12"],
+                answer: "C"
+            },
+            {
+                id: 8,
+                text: "Güneş ışığı yardımıyla deride sentezlenebilen vitamin hangisidir?",
+                options: ["C Vitamini", "D Vitamini", "B6 Vitamini", "E Vitamini"],
+                answer: "D Vitamini"
+            },
+            
+            // Mineraller
+            {
+                id: 9,
+                text: "Hemoglobinin yapısına katılan ve eksikliğinde anemi (kansızlık) görülen mineral hangisidir?",
+                options: ["Kalsiyum", "Demir", "Çinko", "Magnezyum"],
+                answer: "Demir"
+            },
+            {
+                id: 10,
+                text: "Tiroid hormonlarının sentezi için gerekli olan ve eksikliğinde 'Guatr' hastalığı oluşan mineral nedir?",
+                options: ["İyot", "Sodyum", "Potasyum", "Klor"],
+                answer: "İyot"
+            },
+            {
+                id: 11,
+                text: "Kemik ve dişlerin yapısının büyük bölümünü oluşturan mineral hangisidir?",
+                options: ["Demir", "Kalsiyum", "Çinko", "Selenyum"],
+                answer: "Kalsiyum"
+            },
+            {
+                id: 12,
+                text: "Kas kasılması ve sinir iletiminde kilit rol oynayan hücre içi temel katyon hangisidir?",
+                options: ["Sodyum", "Potasyum", "Bakır", "Flor"],
+                answer: "Potasyum"
+            },
+            {
+                id: 13,
+                text: "Yara iyileşmesi ve bağışıklık sistemi fonksiyonları için elzem olan mineral hangisidir?",
+                options: ["Çinko", "Kalsiyum", "Klor", "Fosfor"],
+                answer: "Çinko"
+            },
+            {
+                id: 14,
+                text: "Diş minesini sertleştirerek çürükleri önleyen mineral hangisidir?",
+                options: ["Flor", "İyot", "Demir", "Magnezyum"],
+                answer: "Flor"
+            },
+            
+            // Enzim Sınıfları (Boşluk Doldurma ve Tanımlar)
+            {
+                id: 15,
+                text: "İki molekülü ATP enerjisi kullanarak birleştiren enzim sınıfına ____ denir.",
+                options: ["Ligazlar", "Hidrolazlar", "Liyazlar", "İzomerazlar"],
+                answer: "Ligazlar"
+            },
+            {
+                id: 16,
+                text: "Su katarak kimyasal bağları parçalayan (hidroliz yapan) enzim sınıfı hangisidir?",
+                options: ["Transferazlar", "Hidrolazlar", "Oksidoredüktazlar", "Ligazlar"],
+                answer: "Hidrolazlar"
+            },
+            {
+                id: 17,
+                text: "Molekül içi düzenlemeler yaparak bir molekülü izomerine dönüştüren enzim sınıfı nedir?",
+                options: ["Liyazlar", "İzomerazlar", "Oksidoredüktazlar", "Transferazlar"],
+                answer: "İzomerazlar"
+            },
+            {
+                id: 18,
+                text: "Bir molekülden fonksiyonel bir grubu (örn: metil, fosfat) başka bir moleküle taşıyan enzim sınıfı hangisidir?",
+                options: ["Transferazlar", "Ligazlar", "Hidrolazlar", "Oksidoredüktazlar"],
+                answer: "Transferazlar"
+            },
+            {
+                id: 19,
+                text: "Oksidasyon-redüksiyon (indirgenme-yükseltgenme) tepkimelerini katalizleyen enzim sınıfı hangisidir?",
+                options: ["Hidrolazlar", "Oksidoredüktazlar", "Liyazlar", "İzomerazlar"],
+                answer: "Oksidoredüktazlar"
+            },
+            {
+                id: 20,
+                text: "Su kullanmadan veya oksidasyon olmadan bağları kopararak çift bağ oluşturan enzim sınıfına ____ denir.",
+                options: ["Liyazlar", "Ligazlar", "Transferazlar", "Hidrolazlar"],
+                answer: "Liyazlar"
+            },
+            {
+                id: 21,
+                text: "Laktat Dehidrogenaz enzimi, elektron transferi yaptığı için hangi sınıfa girer?",
+                options: ["Oksidoredüktazlar", "Ligazlar", "İzomerazlar", "Hidrolazlar"],
+                answer: "Oksidoredüktazlar"
+            },
+            {
+                id: 22,
+                text: "DNA moleküllerini birbirine bağlayan DNA Ligaz enzimi hangi sınıfa örnektir?",
+                options: ["Liyazlar", "Ligazlar", "Transferazlar", "Hidrolazlar"],
+                answer: "Ligazlar"
+            },
+            {
+                id: 23,
+                text: "Sindirim enzimleri (Pepsin, Tripsin vb.) genellikle hangi sınıfa aittir?",
+                options: ["Oksidoredüktazlar", "Hidrolazlar", "İzomerazlar", "Ligazlar"],
+                answer: "Hidrolazlar"
+            },
+
+            // Karışık / Detay Sorular
+            {
+                id: 24,
+                text: "Hangisi yağda çözünen vitaminlerden biridir?",
+                options: ["C Vitamini", "B1 Vitamini", "A Vitamini", "B6 Vitamini"],
+                answer: "A Vitamini"
+            },
+            {
+                id: 25,
+                text: "Suda çözünen vitaminlerin vücutta depolanma özelliği nasıldır?",
+                options: ["Yüksek oranda depolanır", "Depolanmaz, fazlası atılır", "Sadece karaciğerde depolanır", "Yağ dokusunda birikir"],
+                answer: "Depolanmaz, fazlası atılır"
+            },
+            {
+                id: 26,
+                text: "ATP'den bir fosfat grubunu glikoza aktaran Hekzokinaz enzimi hangi sınıfa girer?",
+                options: ["Transferazlar", "Liyazlar", "İzomerazlar", "Hidrolazlar"],
+                answer: "Transferazlar"
+            },
+            {
+                id: 27,
+                text: "Hamilelikte nöral tüp defektlerini önlemek için alınması gereken B grubu vitamini hangisidir?",
+                options: ["Folik Asit (B9)", "B12", "B1", "B2"],
+                answer: "Folik Asit (B9)"
+            },
+            {
+                id: 28,
+                text: "Kas kramplarının önlenmesinde önemli rol oynayan mineral hangisidir?",
+                options: ["Magnezyum", "Demir", "Çinko", "Flor"],
+                answer: "Magnezyum"
+            },
+            {
+                id: 29,
+                text: "Glukoz-6-fosfatı, Fruktoz-6-fosfata çeviren enzim hangi sınıftandır?",
+                options: ["İzomerazlar", "Ligazlar", "Oksidoredüktazlar", "Hidrolazlar"],
+                answer: "İzomerazlar"
+            },
+            {
+                id: 30,
+                text: "Enzimlerin çalışmasını durduran veya yavaşlatan maddelere ne ad verilir?",
+                options: ["Kofaktör", "İnhibitör", "Koenzim", "Substrat"],
+                answer: "İnhibitör"
+            }
+        ];
+
+        /* --- UYGULAMA MANTIĞI (JS) --- */
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let userAnswers = []; // { questionId, isCorrect, selected, correct }
+        let isAnswered = false;
+
+        // Başlangıç Fonksiyonu
+        function initQuiz() {
+            currentQuestions = [...questionsData]; // Orijinal sırayı kopyala
+            currentIndex = 0;
+            userAnswers = new Array(questionsData.length).fill(null);
+            updateUI();
+        }
+
+        // Karıştır ve Başlat
+        function shuffleAndRestart() {
+            if(confirm("Test sıfırlanacak ve soruların yeri değişecek. Onaylıyor musunuz?")) {
+                restartQuiz();
+            }
+        }
+
+        function restartQuiz() {
+            // Fisher-Yates Shuffle
+            currentQuestions = [...questionsData];
+            for (let i = currentQuestions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentQuestions[i], currentQuestions[j]] = [currentQuestions[j], currentQuestions[i]];
+            }
+            
+            currentIndex = 0;
+            userAnswers = new Array(questionsData.length).fill(null);
+            
+            document.getElementById('result-section').style.display = 'none';
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('controls-section').classList.remove('hidden');
+            document.getElementById('header-section').classList.remove('hidden');
+            
+            updateUI();
+        }
+
+        // UI Güncelleme
+        function updateUI() {
+            const currentQ = currentQuestions[currentIndex];
+            isAnswered = userAnswers[currentIndex] !== null;
+
+            // Header Bilgileri
+            document.getElementById('current-q-num').innerText = currentIndex + 1;
+            document.getElementById('total-q-num').innerText = currentQuestions.length;
+            
+            const progressPercent = ((currentIndex) / currentQuestions.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Soruyu Yazdır
+            document.getElementById('question-text').innerText = currentQ.text;
+
+            // Şıkları Yazdır
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            currentQ.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(opt, btn);
+
+                // Eğer daha önce cevaplanmışsa durumunu geri yükle
+                if (isAnswered) {
+                    btn.disabled = true;
+                    const savedAns = userAnswers[currentIndex];
+                    
+                    if (opt === currentQ.answer) {
+                        btn.classList.add('correct');
+                    }
+                    if (opt === savedAns.selected && !savedAns.isCorrect) {
+                        btn.classList.add('wrong');
+                    }
+                }
+                
+                optionsContainer.appendChild(btn);
+            });
+
+            // Navigasyon Buton Kontrolü
+            document.getElementById('prev-btn').disabled = (currentIndex === 0);
+            
+            const nextBtn = document.getElementById('next-btn');
+            if (currentIndex === currentQuestions.length - 1) {
+                nextBtn.innerText = "Testi Bitir";
+                nextBtn.onclick = finishQuiz;
+            } else {
+                nextBtn.innerText = "İleri →";
+                nextBtn.onclick = () => changeQuestion(1);
+            }
+        }
+
+// Cevap Verme İşlemi
+        function handleAnswer(selectedOption, btnElement) {
+            if (isAnswered) return;
+
+            const currentQ = currentQuestions[currentIndex];
+            const isCorrect = (selectedOption === currentQ.answer);
+
+            // Kaydet
+            userAnswers[currentIndex] = {
+                questionId: currentQ.id,
+                questionText: currentQ.text,
+                selected: selectedOption,
+                correct: currentQ.answer,
+                isCorrect: isCorrect
+            };
+
+            // Görsel Geri Bildirim
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b.innerText === currentQ.answer) {
+                    b.classList.add('correct');
+                }
+                if (b === btnElement && !isCorrect) {
+                    b.classList.add('wrong');
+                }
+            });
+
+            isAnswered = true;
+        }
+
+        // Soru Değiştirme
+        function changeQuestion(direction) {
+            currentIndex += direction;
+            updateUI();
+        }
+
+        // Testi Bitirme ve Sonuçlar
+        function finishQuiz() {
+            // Cevaplanmamış soru var mı kontrolü (İsteğe bağlı, burada direkt bitiriyoruz)
+            showResults();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('controls-section').classList.add('hidden');
+            document.getElementById('header-section').classList.add('hidden');
+            document.getElementById('result-section').style.display = 'block';
+
+            let correctCount = 0;
+            const mistakesContainer = document.getElementById('mistakes-container');
+            mistakesContainer.innerHTML = '<h3>Hatalı Cevaplanan Sorular ve Doğruları:</h3>';
+
+            let hasMistakes = false;
+
+            userAnswers.forEach((ans, index) => {
+                if (ans && ans.isCorrect) {
+                    correctCount++;
+                } else {
+                    // Yanlış veya Boş
+                    hasMistakes = true;
+                    const qText = ans ? ans.questionText : currentQuestions[index].text;
+                    const correctAns = ans ? ans.correct : currentQuestions[index].answer;
+                    const userAns = ans ? ans.selected : "Boş Bırakıldı";
+
+                    const div = document.createElement('div');
+                    div.className = 'mistake-item';
+                    div.innerHTML = `
+                        <strong>Soru: ${qText}</strong>
+                        <span style="color:red">Sizin Cevabınız: ${userAns}</span><br>
+                        <span style="color:green">Doğru Cevap: ${correctAns}</span>
+                    `;
+                    mistakesContainer.appendChild(div);
+                }
+            });
+
+            if (!hasMistakes) {
+                mistakesContainer.innerHTML += "<p style='color:green; font-weight:bold;'>Tebrikler! Hiç yanlışınız yok.</p>";
+            }
+
+            document.getElementById('score-display').innerText = `${correctCount}/${currentQuestions.length}`;
+            
+            const feedbackMsg = document.getElementById('feedback-message');
+            const scorePercent = (correctCount / currentQuestions.length) * 100;
+            
+            if(scorePercent >= 90) feedbackMsg.innerText = "Mükemmel sonuç! Konuya çok hakimsin.";
+            else if(scorePercent >= 70) feedbackMsg.innerText = "Gayet iyi, ufak tekrarlarla tamamlarsın.";
+            else feedbackMsg.innerText = "Biraz daha çalışman gerekebilir.";
+        }
+
+        // Uygulamayı Başlat
+        window.onload = initQuiz;
+
+    </script>
+</body>
+</html>
+               
