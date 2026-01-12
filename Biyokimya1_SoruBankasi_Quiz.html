@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biyokimya 1 — Soru Bankası (150 Soru)</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #0f172a;
+      --card2: #0b1326;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --border: rgba(148,163,184,0.22);
+      --accent: #3b82f6;
+      --good: #22c55e;
+      --bad: #ef4444;
+      --warn: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(59,130,246,0.20), transparent 60%),
+                  radial-gradient(900px 700px at 100% 0%, rgba(34,197,94,0.16), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.35;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .brand .sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pillrow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.65);
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill strong { color: var(--text); font-weight: 650; }
+    .card {
+      background: linear-gradient(180deg, rgba(15,23,42,0.92), rgba(11,19,38,0.92));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.35);
+      color: #bfdbfe;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .badge.gray {
+      background: rgba(148,163,184,0.10);
+      border: 1px solid rgba(148,163,184,0.25);
+      color: #cbd5e1;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      border: 1px solid var(--border);
+      background: rgba(15,23,42,0.55);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: transform 0.05s ease, border-color 0.15s ease, background 0.15s ease;
+      user-select: none;
+    }
+    button:hover {
+      border-color: rgba(59,130,246,0.55);
+      background: rgba(15,23,42,0.75);
+    }
+    button:active { transform: translateY(1px); }
+    button.primary {
+      background: rgba(59,130,246,0.18);
+      border-color: rgba(59,130,246,0.55);
+    }
+    button.danger {
+      background: rgba(239,68,68,0.15);
+      border-color: rgba(239,68,68,0.45);
+    }
+    button.good {
+      background: rgba(34,197,94,0.16);
+      border-color: rgba(34,197,94,0.45);
+    }
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .card-body { padding: 16px; }
+    .start {
+      padding: 20px 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .start h2 { margin: 0; font-size: 16px; }
+    .start p { margin: 0; color: var(--muted); font-size: 13px; }
+    .opts {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border: 1px dashed rgba(148,163,184,0.28);
+      border-radius: 14px;
+      background: rgba(2,6,23,0.30);
+    }
+    label.checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 13px;
+    }
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      accent-color: var(--accent);
+    }
+    .qmeta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .qmeta .id {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.25);
+      color: #e2e8f0;
+    }
+    .qmeta .diff {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.35);
+      color: #fde68a;
+    }
+    .qmeta .topic {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.10);
+      border: 1px solid rgba(34,197,94,0.28);
+      color: #bbf7d0;
+    }
+    .stem {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 650;
+      letter-spacing: 0.1px;
+    }
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .opt {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: rgba(2,6,23,0.25);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .opt:hover { border-color: rgba(59,130,246,0.45); background: rgba(2,6,23,0.34); }
+    .opt .letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.25);
+      font-weight: 700;
+      font-family: var(--mono);
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+    .opt .text { color: var(--text); font-size: 14px; }
+    .opt.correct {
+      border-color: rgba(34,197,94,0.75);
+      background: rgba(34,197,94,0.12);
+    }
+    .opt.wrong {
+      border-color: rgba(239,68,68,0.75);
+      background: rgba(239,68,68,0.10);
+    }
+    .feedback {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(2,6,23,0.25);
+      display: none;
+      gap: 8px;
+    }
+    .feedback.show { display: grid; }
+    .feedback .line {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      font-size: 13px;
+    }
+    .feedback .line strong { font-family: var(--mono); }
+    .feedback .ok { color: #86efac; }
+    .feedback .no { color: #fca5a5; }
+    .hint {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(59,130,246,0.35);
+      background: rgba(59,130,246,0.10);
+      color: #dbeafe;
+      display: none;
+      white-space: pre-wrap;
+      font-size: 13px;
+    }
+    .hint.show { display: block; }
+    .nav {
+      margin-top: 16px;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .nav .left, .nav .right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .progress {
+      margin-top: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.18);
+      overflow: hidden;
+    }
+    .progress > div {
+      height: 100%;
+      width: 0%;
+      background: rgba(59,130,246,0.85);
+    }
+    .results {
+      display: none;
+      padding: 16px;
+    }
+    .results.show { display: block; }
+    .results h2 { margin: 0 0 8px 0; font-size: 18px; }
+    .results p { margin: 0; color: var(--muted); font-size: 13px; }
+    .statgrid {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+    }
+    .stat {
+      border: 1px solid var(--border);
+      background: rgba(2,6,23,0.25);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat .k { font-size: 12px; color: var(--muted); }
+    .stat .v { font-size: 18px; font-weight: 750; margin-top: 4px; }
+    .wronglist {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+    .wrongitem {
+      border: 1px solid rgba(239,68,68,0.45);
+      background: rgba(239,68,68,0.08);
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 6px;
+    }
+    .wrongitem .top {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .wrongitem .qid {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.25);
+    }
+    .wrongitem .mini { font-size: 13px; color: #fee2e2; }
+    .wrongitem .ans { font-size: 13px; color: #fecaca; }
+    .footerhint {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 760px) {
+      .statgrid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .brand h1 { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <h1>Biyokimya 1 — 150 Soruluk Soru Bankası</h1>
+        <div class="sub">Tek ekranda 1 soru • Seçince anında doğru/yanlış • İpucu • Oklarla gezinme • Yanlışlar listesi</div>
+      </div>
+      <div class="pillrow">
+        <div class="pill"><strong>Oklar:</strong> ← →</div>
+        <div class="pill"><strong>İpucu:</strong> H</div>
+        <div class="pill"><strong>Bitir:</strong> Ctrl/Cmd + Enter</div>
+      </div>
+    </div>
+
+    <div class="card" id="appCard">
+      <div class="card-header" id="headerBar">
+        <div class="qmeta" id="qmeta">
+          <span class="badge gray">Hazır</span>
+        </div>
+        <div class="actions" id="headerActions">
+          <button id="btnStart" class="primary">Başla</button>
+        </div>
+      </div>
+
+      <div class="card-body" id="body">
+        <div class="start" id="startScreen">
+          <h2>Başlamadan önce</h2>
+          <p>Not: Sorular, <b>Biyokimya1_Final_DersNotu_ve_SoruBankasi</b> PDF’indeki 150 sorudan oluşturuldu.</p>
+          <div class="opts">
+            <label class="checkbox">
+              <input type="checkbox" id="chkShuffle" />
+              <span><b>Soruları karıştır (shuffle)</b><br><span style="color: var(--muted); font-size: 12px;">Başlangıçta soru sırası rastgele olur. İstersen sonra “Yeniden Başlat” ile farklı karıştırabilirsin.</span></span>
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" id="chkInstant" checked />
+              <span><b>Seçince sonucu hemen göster</b><br><span style="color: var(--muted); font-size: 12px;">İşaretler işaretlenmez doğru/yanlış + doğru cevap görünür.</span></span>
+            </label>
+          </div>
+          <div class="actions">
+            <button id="startNow" class="primary">Teste Başla</button>
+            <button id="previewStats">Soru istatistiği</button>
+          </div>
+          <div class="footerhint">Klavye: ← / → ile gezin. <b>H</b> ipucunu aç/kapat. <b>Ctrl/Cmd+Enter</b> testi bitir.</div>
+        </div>
+
+        <div id="quizScreen" style="display:none;">
+          <div class="progress" aria-label="İlerleme"><div id="progFill"></div></div>
+
+          <div class="stem" id="stem"></div>
+
+          <div class="options" id="options"></div>
+
+          <div class="hint" id="hintBox"></div>
+
+          <div class="feedback" id="feedback">
+            <div class="line" id="fbLine1"></div>
+            <div class="line" id="fbLine2" style="color: var(--muted);"></div>
+          </div>
+
+          <div class="nav">
+            <div class="left">
+              <button id="prevBtn">← Önceki</button>
+              <button id="hintBtn">İpucu (H)</button>
+            </div>
+            <div class="right">
+              <button id="finishBtn" class="danger">Testi Bitir</button>
+              <button id="nextBtn" class="primary">Sonraki →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="results" id="resultsScreen">
+          <h2>Test Sonucu</h2>
+          <p>Yanlışlarını aşağıda listeledim. “Soruya git” ile hızlı tekrar yapabilirsin.</p>
+
+          <div class="statgrid" id="statgrid"></div>
+
+          <div class="actions" style="margin-top: 12px;">
+            <button id="reviewWrong" class="primary">Yanlışları sırayla çöz</button>
+            <button id="restartBtn">Yeniden Başlat</button>
+            <button id="toggleShuffleRestart">Karıştır + Yeniden Başlat</button>
+          </div>
+
+          <div class="wronglist" id="wrongList"></div>
+          <div class="footerhint">İpucu: Yanlış listesinde gerekirse her sorunun açıklamasını (gerekçesini) tekrar oku.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script>
+const QUESTIONS = [{"id": "P-01", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Proteinlerin temel işlev sınıflarından hangisi doğru değildir?", "options": [{"letter": "A", "text": "Enzim katalizi"}, {"letter": "B", "text": "Taşıma/depoma (örn. hemoglobin, ferritin)"}, {"letter": "C", "text": "Yapısal destek (örn. kollajen)"}, {"letter": "D", "text": "Genetik kodun doğrudan kopyalanması (DNA replikasyonu enzimsiz)"}, {"letter": "E", "text": "Sinyal iletimi/reseptörlük"}], "answer": "D", "rationale": "DNA replikasyonu protein/enzim gerektiren bir süreçtir; 'enzimsiz' ifade yanlıştır.", "hint": "Konu: Protein yapısı–işlev ilişkisi\nDNA replikasyonu protein/enzim gerektiren bir süreçtir; 'enzimsiz' ifade yanlıştır."}, {"id": "P-02", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Ligand-protein bağlanmasında Kd neyi ifade eder?", "options": [{"letter": "A", "text": "Bağlanma entalpisi"}, {"letter": "B", "text": "Dissosiyasyon sabiti; bağlanma afinitesinin ölçüsü"}, {"letter": "C", "text": "Ligandın difüzyon hızını"}, {"letter": "D", "text": "Proteinin molekül ağırlığını"}, {"letter": "E", "text": "Kooperativite katsayısını"}], "answer": "B", "rationale": "Kd küçükse afinitesi yüksektir; Kd yarı doygunlukta [L]'ye karşılık gelir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nKd küçükse afinitesi yüksektir; Kd yarı doygunlukta [L]'ye karşılık gelir."}, {"id": "P-03", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Bir proteinin belirli bir liganda seçici bağlanmasının temel nedeni aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "Proteinin rastgele çarpışmaları"}, {"letter": "B", "text": "Sadece hidrojen bağları"}, {"letter": "C", "text": "Bağlanma cebinin (aktif bölge) şekil/kimyasal tamamlayıcılığı"}, {"letter": "D", "text": "Proteinlerin her liganda eşit bağlanması"}, {"letter": "E", "text": "Ligandın mutlaka iyonik olması"}], "answer": "C", "rationale": "Geometri + yük/polarite + hidrofobik uyum seçiciliği belirler.", "hint": "Konu: Ligand bağlanması (Kd, doygunluk)\nGeometri + yük/polarite + hidrofobik uyum seçiciliği belirler."}, {"id": "P-04", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "“Uyarılmış uyum (induced fit)” modeli neyi vurgular?", "options": [{"letter": "A", "text": "Ligand bağlanınca proteinin konformasyon değiştirmesini"}, {"letter": "B", "text": "Proteinlerin hiç şekil değiştirmemesini"}, {"letter": "C", "text": "Bağlanmanın yalnızca iyonik bağlarla olmasını"}, {"letter": "D", "text": "Ligandın proteine kovalent bağlanmasını"}, {"letter": "E", "text": "Kooperativitenin her zaman negatif olmasını"}], "answer": "A", "rationale": "Ligand bağlanması proteini daha uygun konformasyona yönlendirir.", "hint": "Konu: Protein yapısı–işlev ilişkisi\nLigand bağlanması proteini daha uygun konformasyona yönlendirir."}, {"id": "P-05", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Hem grubu aşağıdakilerden hangisini içerir?", "options": [{"letter": "A", "text": "ATP"}, {"letter": "B", "text": "Porfirin halkası + Fe"}, {"letter": "C", "text": "Kalsiyum fosfat"}, {"letter": "D", "text": "Sadece bakır iyonu"}, {"letter": "E", "text": "Glukoz"}], "answer": "B", "rationale": "Hem: protoporfirin IX + Fe içerir ve O2 bağlanmasını mümkün kılar.", "hint": "Konu: Protein yapısı–işlev ilişkisi\nHem: protoporfirin IX + Fe içerir ve O2 bağlanmasını mümkün kılar."}, {"id": "P-06", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Miyoglobin ile hemoglobin karşılaştırmasında hangisi doğrudur?", "options": [{"letter": "A", "text": "Miyoglobin tetramerdir, Hb monomerdir"}, {"letter": "B", "text": "Miyoglobin O2'yi kooperatif bağlar"}, {"letter": "C", "text": "Hemoglobin tetramerdir, miyoglobin monomerdir"}, {"letter": "D", "text": "İkisi de O2'yi aynı eğriyle bağlar"}, {"letter": "E", "text": "Miyoglobin yalnızca CO2 taşır"}], "answer": "C", "rationale": "Hb (α2β2) tetramer; Mb monomer ve depolama/taşıma özellikleri farklıdır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nHb (α2β2) tetramer; Mb monomer ve depolama/taşıma özellikleri farklıdır."}, {"id": "P-07", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Oksijen bağlanma eğrisi sigmoid olan protein aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "Miyoglobin"}, {"letter": "B", "text": "Hemoglobin"}, {"letter": "C", "text": "Albumin"}, {"letter": "D", "text": "Kollajen"}, {"letter": "E", "text": "Keratin"}], "answer": "B", "rationale": "Hb kooperativite nedeniyle sigmoid; Mb hiperboliktir.", "hint": "Konu: Protein yapısı–işlev ilişkisi\nHb kooperativite nedeniyle sigmoid; Mb hiperboliktir."}, {"id": "P-08", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Kooperativite için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Bir liganda bağlanma diğer bağlanmaları azaltır (daima negatif)"}, {"letter": "B", "text": "Bir liganda bağlanma diğer bağlanmaları etkileyemez"}, {"letter": "C", "text": "Bir liganda bağlanma diğer bağlanma bölgelerinin afinitesini değiştirir"}, {"letter": "D", "text": "Sadece monomer proteinlerde görülür"}, {"letter": "E", "text": "Sadece kovalent modifikasyonla oluşur"}], "answer": "C", "rationale": "Kooperativite, bağlanma olaylarının birbirini etkilemesidir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nKooperativite, bağlanma olaylarının birbirini etkilemesidir."}, {"id": "P-09", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Hb'nin her bir tetrameri maksimum kaç O2 bağlayabilir?", "options": [{"letter": "A", "text": "1"}, {"letter": "B", "text": "2"}, {"letter": "C", "text": "3"}, {"letter": "D", "text": "4"}, {"letter": "E", "text": "8"}], "answer": "D", "rationale": "Her hem grubu 1 O2 bağlar; tetramerde 4 hem vardır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nHer hem grubu 1 O2 bağlar; tetramerde 4 hem vardır."}, {"id": "P-10", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Allosterik düzenlemenin tanımı için en uygunu hangisidir?", "options": [{"letter": "A", "text": "Enzimin aktif bölgesine bağlanma"}, {"letter": "B", "text": "Proteinin kovalent parçalanması"}, {"letter": "C", "text": "Aktif bölge dışı bir bölgeye bağlanan efektörün aktivite/afiniteyi değiştirmesi"}, {"letter": "D", "text": "Proteinin denatüre olması"}, {"letter": "E", "text": "Ligandın proteine hiç bağlanmaması"}], "answer": "C", "rationale": "Allosterik efektörler proteinin fonksiyonel durumunu değiştirir.", "hint": "Konu: Enzim regülasyonu\nAllosterik efektörler proteinin fonksiyonel durumunu değiştirir."}, {"id": "P-11", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Protein-ligand bağlanmasıyla ilgili aşağıdakilerden hangisi doğrudur?", "options": [{"letter": "A", "text": "Bağlanma her zaman kovalenttir"}, {"letter": "B", "text": "Bağlanma çoğunlukla zayıf (kovalent olmayan) etkileşimlerle olur"}, {"letter": "C", "text": "Bağlanma için mutlaka metal gerekir"}, {"letter": "D", "text": "Bağlanma enerjisi daima pozitiftir"}, {"letter": "E", "text": "Bağlanma, proteini her zaman denatüre eder"}], "answer": "B", "rationale": "H-bağı, iyonik, hidrofobik, van der Waals gibi etkileşimler baskındır.", "hint": "Konu: Ligand bağlanması (Kd, doygunluk)\nH-bağı, iyonik, hidrofobik, van der Waals gibi etkileşimler baskındır."}, {"id": "P-12", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "O2 bağlanmasında P50 kavramı en çok hangi protein için kullanışlıdır?", "options": [{"letter": "A", "text": "Miyoglobin"}, {"letter": "B", "text": "Hemoglobin"}, {"letter": "C", "text": "Albumin"}, {"letter": "D", "text": "Aktin"}, {"letter": "E", "text": "Elastin"}], "answer": "B", "rationale": "Hb'nin sigmoidal eğrisi için yarı doygunluk basıncı P50 kullanılır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nHb'nin sigmoidal eğrisi için yarı doygunluk basıncı P50 kullanılır."}, {"id": "P-13", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Hb'de T (tense) durumunun genel özelliği hangisidir?", "options": [{"letter": "A", "text": "Yüksek O2 afinitesi"}, {"letter": "B", "text": "Düşük O2 afinitesi"}, {"letter": "C", "text": "Hem grubu yoktur"}, {"letter": "D", "text": "Sadece CO bağlar"}, {"letter": "E", "text": "Monomer yapı"}], "answer": "B", "rationale": "T durumu daha düşük afiniteli, R daha yüksek afinitelidir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nT durumu daha düşük afiniteli, R daha yüksek afinitelidir."}, {"id": "P-14", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Hb'nin oksijenlenmesi (O2 bağlanması) hangi genel etkiyi yapar?", "options": [{"letter": "A", "text": "T durumunu stabilize eder"}, {"letter": "B", "text": "R durumunu stabilize eder"}, {"letter": "C", "text": "pH'ı artırır ama konformasyonu değiştirmez"}, {"letter": "D", "text": "Kooperativiteyi ortadan kaldırır"}, {"letter": "E", "text": "Hem demirini Fe3+ yapar"}], "answer": "B", "rationale": "O2 bağlanması R durumuna geçişi destekler.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nO2 bağlanması R durumuna geçişi destekler."}, {"id": "P-15", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Kolay", "stem": "Hb'nin en temel fizyolojik rolü hangisidir?", "options": [{"letter": "A", "text": "Hücre içi ATP üretmek"}, {"letter": "B", "text": "Kas kasılması"}, {"letter": "C", "text": "O2'yi akciğerden dokulara taşımak"}, {"letter": "D", "text": "Yağ asidi sentezlemek"}, {"letter": "E", "text": "DNA paketlemek"}], "answer": "C", "rationale": "Hb'nin görevi dolaşımda O2 taşımaktır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nHb'nin görevi dolaşımda O2 taşımaktır."}, {"id": "P-16", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bir proteinin bir liganda afinitesi artarsa (daha güçlü bağlanırsa) Kd nasıl değişir?", "options": [{"letter": "A", "text": "Artar"}, {"letter": "B", "text": "Azalır"}, {"letter": "C", "text": "Değişmez"}, {"letter": "D", "text": "Sıfır olur"}, {"letter": "E", "text": "Negatif olur"}], "answer": "B", "rationale": "Afinitesi artınca dissosiyasyon eğilimi azalır; Kd küçülür.", "hint": "Konu: Ligand bağlanması (Kd, doygunluk)\nAfinitesi artınca dissosiyasyon eğilimi azalır; Kd küçülür."}, {"id": "P-17", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Hb eğrisi sağa kayarsa (P50 artarsa) aşağıdakilerden hangisi beklenir?", "options": [{"letter": "A", "text": "Dokulara O2 bırakımı azalır"}, {"letter": "B", "text": "Dokulara O2 bırakımı artar"}, {"letter": "C", "text": "Akciğerde O2 yüklenmesi tamamen durur"}, {"letter": "D", "text": "Hb kooperativitesi kaybolur"}, {"letter": "E", "text": "Hb hem içermez"}], "answer": "B", "rationale": "Sağa kayma: afinitenin azalması ve O2 salımının kolaylaşmasıdır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nSağa kayma: afinitenin azalması ve O2 salımının kolaylaşmasıdır."}, {"id": "P-18", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Hb'nin sigmoid eğrisinin temel nedeni aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "Hb'nin monomer olması"}, {"letter": "B", "text": "Kooperatif bağlanma ve T-R geçişi"}, {"letter": "C", "text": "Hemin Fe3+ olması"}, {"letter": "D", "text": "Sadece hidrojen bağları"}, {"letter": "E", "text": "Ligandın kovalent bağlanması"}], "answer": "B", "rationale": "Subunit etkileşimleri kooperativiteyi doğurur.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nSubunit etkileşimleri kooperativiteyi doğurur."}, {"id": "P-19", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bir allosterik efektör Hb'nin O2 afinitesini düşürüyorsa en olası etkisi hangisidir?", "options": [{"letter": "A", "text": "R durumunu stabilize eder"}, {"letter": "B", "text": "T durumunu stabilize eder"}, {"letter": "C", "text": "Hb'yi monomere çevirir"}, {"letter": "D", "text": "Hem grubunu çıkarır"}, {"letter": "E", "text": "Kooperativiteyi kesinlikle artırır"}], "answer": "B", "rationale": "Afinitesi düşük durum (T) stabil hale gelir.", "hint": "Konu: Enzim regülasyonu\nAfinitesi düşük durum (T) stabil hale gelir."}, {"id": "P-20", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Miyoglobinin O2 bağlanma eğrisi neden hiperboliktir?", "options": [{"letter": "A", "text": "Kooperatif bağlanır"}, {"letter": "B", "text": "Tek bağlanma bölgesi (monomer) olduğundan"}, {"letter": "C", "text": "Hem içermez"}, {"letter": "D", "text": "Sadece CO bağlar"}, {"letter": "E", "text": "Ligand bağlanması kovalenttir"}], "answer": "B", "rationale": "Tek bağlanma bölgesi olduğundan kooperativite yoktur.", "hint": "Konu: Miyoglobin: hiperbolik bağlanma\nTek bağlanma bölgesi olduğundan kooperativite yoktur."}, {"id": "P-21", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Hb'nin dokularda O2 bırakmasını kolaylaştıran fizyolojik değişikliklerden hangisi doğrudur?", "options": [{"letter": "A", "text": "pH artışı"}, {"letter": "B", "text": "CO2 azalması"}, {"letter": "C", "text": "Sıcaklık artışı"}, {"letter": "D", "text": "2,3-BPG azalması"}, {"letter": "E", "text": "H+ azalması"}], "answer": "C", "rationale": "Aktif dokularda ısı artışı afinitiyi düşürür ve O2 salımını artırır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nAktif dokularda ısı artışı afinitiyi düşürür ve O2 salımını artırır."}, {"id": "P-22", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bohr etkisi aşağıdakilerden hangisiyle en iyi açıklanır?", "options": [{"letter": "A", "text": "pH azalınca Hb'nin O2 afinitesinin azalması"}, {"letter": "B", "text": "pH artınca Hb'nin O2 afinitesinin azalması"}, {"letter": "C", "text": "pH değişimlerinin etkisiz olması"}, {"letter": "D", "text": "O2 bağlanınca CO2 bağlanmasının artması"}, {"letter": "E", "text": "Hem grubunun yıkımı"}], "answer": "A", "rationale": "H+ ve CO2 artışı T durumunu stabilize eder, afinitiyi düşürür.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nH+ ve CO2 artışı T durumunu stabilize eder, afinitiyi düşürür."}, {"id": "P-23", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "2,3-BPG'nin Hb üzerine etkisi için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "R durumuna bağlanıp O2 afinitesini artırır"}, {"letter": "B", "text": "T durumuna bağlanıp O2 afinitesini azaltır"}, {"letter": "C", "text": "Miyoglobine bağlanır"}, {"letter": "D", "text": "Hem demirini Fe3+ yapar"}, {"letter": "E", "text": "Hb'yi denatüre eder"}], "answer": "B", "rationale": "2,3-BPG T boşluğuna bağlanır, dokularda O2 salımını kolaylaştırır.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\n2,3-BPG T boşluğuna bağlanır, dokularda O2 salımını kolaylaştırır."}, {"id": "P-24", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Fetal hemoglobinin (HbF) 2,3-BPG'ye bağlanması genelde nasıldır?", "options": [{"letter": "A", "text": "Daha güçlü; O2 afinitesi düşer"}, {"letter": "B", "text": "Daha zayıf; O2 afinitesi artar"}, {"letter": "C", "text": "Aynı; O2 afinitesi değişmez"}, {"letter": "D", "text": "Hiç hem içermez"}, {"letter": "E", "text": "Sadece CO taşır"}], "answer": "B", "rationale": "HbF 2,3-BPG'yi daha zayıf bağlar; O2 afinitesi daha yüksektir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nHbF 2,3-BPG'yi daha zayıf bağlar; O2 afinitesi daha yüksektir."}, {"id": "P-25", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bir Hb tetramerinde ilk O2 bağlanması genelde nasıl bir etki yapar?", "options": [{"letter": "A", "text": "Diğer bağlanmaları zorlaştırır (negatif kooperativite)"}, {"letter": "B", "text": "Diğer bağlanmaları kolaylaştırır (pozitif kooperativite)"}, {"letter": "C", "text": "Diğer bağlanmaları etkilemez"}, {"letter": "D", "text": "Hem grubunu çıkarır"}, {"letter": "E", "text": "Sadece CO bağlanmasını sağlar"}], "answer": "B", "rationale": "Pozitif kooperativite: ilk bağlanma afinitiyi artırır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nPozitif kooperativite: ilk bağlanma afinitiyi artırır."}, {"id": "P-26", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "CO zehirlenmesinde temel problem aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "CO, O2'den daha zayıf bağlanır"}, {"letter": "B", "text": "CO, hem'e yüksek afinite ile bağlanarak O2 taşınmasını azaltır"}, {"letter": "C", "text": "CO Hb'yi parçalar"}, {"letter": "D", "text": "CO sadece miyoglobine bağlanır"}, {"letter": "E", "text": "CO, 2,3-BPG'yi tamamen yok eder"}], "answer": "B", "rationale": "CO hem'e çok yüksek afiniteyle bağlanır ve O2 bağlanmasını engeller.", "hint": "Konu: Protein yapısı–işlev ilişkisi\nCO hem'e çok yüksek afiniteyle bağlanır ve O2 bağlanmasını engeller."}, {"id": "P-27", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bir protein-ligand bağlanmasında doygunluğa yaklaşınca bağlanma eğrisi neden plato yapar?", "options": [{"letter": "A", "text": "Ligand tükendiği için"}, {"letter": "B", "text": "Protein denatüre olduğu için"}, {"letter": "C", "text": "Bağlanma bölgeleri dolduğu için"}, {"letter": "D", "text": "Kd sıfırlandığı için"}, {"letter": "E", "text": "Kooperativite kaybolduğu için"}], "answer": "C", "rationale": "Sınırlı sayıda bağlanma bölgesi tamamen dolunca plato oluşur.", "hint": "Konu: Ligand bağlanması (Kd, doygunluk)\nSınırlı sayıda bağlanma bölgesi tamamen dolunca plato oluşur."}, {"id": "P-28", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Allosterik proteinler için en uygun tanım hangisidir?", "options": [{"letter": "A", "text": "Sadece monomer yapı"}, {"letter": "B", "text": "Birden çok konformasyonel durumu bulunan ve efektörlerle dengesi değişen protein"}, {"letter": "C", "text": "Daima kovalent bağ kuran protein"}, {"letter": "D", "text": "Sadece membranda bulunan protein"}, {"letter": "E", "text": "Sadece yapısal protein"}], "answer": "B", "rationale": "Allosterik proteinlerde T/R gibi durumlar arasında denge vardır.", "hint": "Konu: Enzim regülasyonu\nAllosterik proteinlerde T/R gibi durumlar arasında denge vardır."}, {"id": "P-29", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Hb'nin O2 afinitesinin artması genelde eğride neye yol açar?", "options": [{"letter": "A", "text": "Sağa kayma (P50 artışı)"}, {"letter": "B", "text": "Sola kayma (P50 azalışı)"}, {"letter": "C", "text": "Eğrinin düzleşmesi"}, {"letter": "D", "text": "Hiperbolik şekle dönüş"}, {"letter": "E", "text": "Hiçbir değişiklik"}], "answer": "B", "rationale": "Afinitesi artarsa daha düşük pO2'de doyar: P50 düşer.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nAfinitesi artarsa daha düşük pO2'de doyar: P50 düşer."}, {"id": "P-30", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Orta", "stem": "Bir mutasyon Hb'nin T durumunu aşırı stabilize ederse beklenen sonuç hangisidir?", "options": [{"letter": "A", "text": "O2 afinitesi artar"}, {"letter": "B", "text": "O2 afinitesi azalır ve dokulara salım artabilir ama yükleme zorlaşır"}, {"letter": "C", "text": "Hb hiç O2 bağlayamaz"}, {"letter": "D", "text": "Hb monomerleşir"}, {"letter": "E", "text": "Mb eğrisi oluşur"}], "answer": "B", "rationale": "T stabilizasyonu afinitiyi düşürür; yükleme/taşıma dengesi bozulabilir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nT stabilizasyonu afinitiyi düşürür; yükleme/taşıma dengesi bozulabilir."}, {"id": "P-31", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'nin Hill katsayısı (nH) yaklaşık 1'den büyükse bu neyi destekler?", "options": [{"letter": "A", "text": "Kooperativite yok"}, {"letter": "B", "text": "Pozitif kooperativite var"}, {"letter": "C", "text": "Negatif kooperativite var"}, {"letter": "D", "text": "Ligand bağlanması kovalent"}, {"letter": "E", "text": "Hem yok"}], "answer": "B", "rationale": "nH>1 pozitif kooperativite göstergesidir (ideal Hb ~2.8-3).", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nnH>1 pozitif kooperativite göstergesidir (ideal Hb ~2.8-3)."}, {"id": "P-32", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Bohr etkisi en iyi hangi moleküler olayla ilişkilidir?", "options": [{"letter": "A", "text": "H+ bağlanmasının T durumunu stabilize etmesi"}, {"letter": "B", "text": "O2 bağlanmasının heme Fe3+ yapması"}, {"letter": "C", "text": "2,3-BPG'nin R durumuna bağlanması"}, {"letter": "D", "text": "CO'nun globine bağlanması"}, {"letter": "E", "text": "Hem grubunun protein dışına çıkması"}], "answer": "A", "rationale": "Protonasyon ve tuz köprüleri T durumunu destekler.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nProtonasyon ve tuz köprüleri T durumunu destekler."}, {"id": "P-33", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "CO bağlanması Hb eğrisini genelde nasıl etkiler?", "options": [{"letter": "A", "text": "Tüm Hb tamamen serbest kalır"}, {"letter": "B", "text": "Hem'e bağlanan CO hem O2 kapasitesini azaltır ve kalan bağlanma bölgelerinde afinitiyi artırıp eğriyi sola kaydırır"}, {"letter": "C", "text": "Afinitiyi azaltıp sağa kaydırır"}, {"letter": "D", "text": "Kooperativiteyi artırıp P50'yi artırır"}, {"letter": "E", "text": "Eğriyi hiperbolik yapar ama P50 artar"}], "answer": "B", "rationale": "CO hem kapasitesini düşürür; ayrıca kalan alt birimlerin R benzeri durumda kalmasına yol açar (sola kayma).", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nCO hem kapasitesini düşürür; ayrıca kalan alt birimlerin R benzeri durumda kalmasına yol açar (sola kayma)."}, {"id": "P-34", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "2,3-BPG seviyesi yüksek irtifada neden artar ve temel sonucu nedir?", "options": [{"letter": "A", "text": "O2 taşıma kapasitesini artırmak için R durumunu stabilize eder"}, {"letter": "B", "text": "Doku hipoksisine adaptasyon için T durumunu stabilize eder, O2 salımını artırır"}, {"letter": "C", "text": "Hb'yi denatüre eder"}, {"letter": "D", "text": "Mb sentezini azaltır"}, {"letter": "E", "text": "Heme Fe3+ yapar"}], "answer": "B", "rationale": "Yüksek irtifada O2 düşük; 2,3-BPG artışı dokulara O2 bırakımını kolaylaştırır.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nYüksek irtifada O2 düşük; 2,3-BPG artışı dokulara O2 bırakımını kolaylaştırır."}, {"id": "P-35", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "HbF'nin O2 afinitesinin HbA'dan yüksek olması pratikte ne sağlar?", "options": [{"letter": "A", "text": "Fetustan anneye O2 geçişini kolaylaştırır"}, {"letter": "B", "text": "Anneden fetusa CO2 geçişini azaltır"}, {"letter": "C", "text": "Fetusta 2,3-BPG üretimini artırır"}, {"letter": "D", "text": "Fetusta Hb konsantrasyonunu düşürür"}, {"letter": "E", "text": "Fetusta O2 taşınmasını engeller"}], "answer": "A", "rationale": "Plasentada O2 anne kanından fetusa geçer; HbF daha yüksek afinitelidir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nPlasentada O2 anne kanından fetusa geçer; HbF daha yüksek afinitelidir."}, {"id": "P-36", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Methemoglobin (Fe3+) oluşumu artarsa beklenen temel sonuç hangisidir?", "options": [{"letter": "A", "text": "O2 bağlanması artar"}, {"letter": "B", "text": "O2 bağlanması azalır çünkü Fe3+ O2 bağlayamaz"}, {"letter": "C", "text": "CO bağlanması azalır ama O2 artar"}, {"letter": "D", "text": "2,3-BPG bağlanması artar ve O2 yüklenmesi artar"}, {"letter": "E", "text": "Hb monomerleşir"}], "answer": "B", "rationale": "Fe3+ O2 bağlayamaz; fonksiyonel O2 taşıma azalır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nFe3+ O2 bağlayamaz; fonksiyonel O2 taşıma azalır."}, {"id": "P-37", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'nin T->R geçişinde aşağıdakilerden hangisi doğru bir yapısal olaydır?", "options": [{"letter": "A", "text": "Alt birimler arası tuz köprülerinin azalması ve merkez boşluğun daralması"}, {"letter": "B", "text": "Hem grubunun tamamen ayrılması"}, {"letter": "C", "text": "Globin zincirlerinin kovalent olarak kesilmesi"}, {"letter": "D", "text": "Porfirin halkasının yıkılması"}, {"letter": "E", "text": "β zincirinin yok olması"}], "answer": "A", "rationale": "R durumunda daha az tuz köprüsü ve daha dar merkez boşluğu beklenir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nR durumunda daha az tuz köprüsü ve daha dar merkez boşluğu beklenir."}, {"id": "P-38", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "O2 bağlanmasında ‘P50’ kullanımı neden Kd yerine tercih edilir?", "options": [{"letter": "A", "text": "Hb'nin tek bağlanma bölgesi vardır"}, {"letter": "B", "text": "Hb kooperatif bağlandığı için basit Kd tek bir değeri iyi temsil etmez"}, {"letter": "C", "text": "Kd yalnız enzimler içindir"}, {"letter": "D", "text": "P50 sadece miyoglobinde kullanılır"}, {"letter": "E", "text": "P50 sıcaklıktan bağımsızdır"}], "answer": "B", "rationale": "Kooperativite nedeniyle Hb'de tek bir Kd ile açıklama yetersiz kalır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nKooperativite nedeniyle Hb'de tek bir Kd ile açıklama yetersiz kalır."}, {"id": "P-39", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Dokuda pH düşüp CO2 arttığında Hb'nin O2 bırakımı artar. Bu, denge açısından hangi yönde etkidir?", "options": [{"letter": "A", "text": "HbO2 + H+ -> HbH + O2 yönü desteklenir"}, {"letter": "B", "text": "HbH + O2 -> HbO2 + H+ yönü desteklenir"}, {"letter": "C", "text": "Hiçbir yön desteklenmez"}, {"letter": "D", "text": "O2 bağlanması artar"}, {"letter": "E", "text": "Hem yıkımı artar"}], "answer": "A", "rationale": "H+ artışı O2'nin ayrılmasını kolaylaştırır (Bohr).", "hint": "Konu: Biotin ve karboksilasyon\nH+ artışı O2'nin ayrılmasını kolaylaştırır (Bohr)."}, {"id": "P-40", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Bir mutasyon 2,3-BPG bağlanma boşluğunu küçültürse en olası klinik sonuç hangisidir?", "options": [{"letter": "A", "text": "Hb O2 afinitesi artar, dokulara O2 bırakımı zorlaşabilir"}, {"letter": "B", "text": "Hb O2 afinitesi azalır, dokulara O2 bırakımı aşırı artar"}, {"letter": "C", "text": "Hb hiç O2 bağlamaz"}, {"letter": "D", "text": "Mb eğrisi oluşur"}, {"letter": "E", "text": "Hb polimerleşmesi artar mutlaka"}], "answer": "A", "rationale": "2,3-BPG bağlanması azalırsa T stabilizasyonu azalır, afinitesi artar (sola kayma).", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\n2,3-BPG bağlanması azalırsa T stabilizasyonu azalır, afinitesi artar (sola kayma)."}, {"id": "P-41", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'nin O2 satürasyon eğrisinde kooperativite ortadan kalkarsa eğri en çok neye benzer?", "options": [{"letter": "A", "text": "Sigmoid"}, {"letter": "B", "text": "Lineer"}, {"letter": "C", "text": "Hiperbolik (miyoglobin benzeri)"}, {"letter": "D", "text": "Parabolik"}, {"letter": "E", "text": "Basamaklı"}], "answer": "C", "rationale": "Kooperativite kaybolursa monomer benzeri hiperbolik davranışa yaklaşır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nKooperativite kaybolursa monomer benzeri hiperbolik davranışa yaklaşır."}, {"id": "P-42", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Allosterik modülatörlerin ‘heterotropik’ olması ne anlama gelir?", "options": [{"letter": "A", "text": "Efektör, ana ligandın aynısıdır"}, {"letter": "B", "text": "Efektör, ana ligandan farklıdır"}, {"letter": "C", "text": "Efektör kovalent bağlanır"}, {"letter": "D", "text": "Efektör sadece monomerde olur"}, {"letter": "E", "text": "Efektör sadece enzimlerde olur"}], "answer": "B", "rationale": "Heterotropik efektör liganddan farklı moleküldür (örn. H+, CO2, 2,3-BPG).", "hint": "Konu: Enzim regülasyonu\nHeterotropik efektör liganddan farklı moleküldür (örn. H+, CO2, 2,3-BPG)."}, {"id": "P-43", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'de O2 bağlanması sırasında heme Fe2+ 'nin porfirin düzlemine yaklaşması hangi sonucu doğurur?", "options": [{"letter": "A", "text": "Alt birimler arası konformasyon değişimini tetikler"}, {"letter": "B", "text": "Hem grubunu koparır"}, {"letter": "C", "text": "O2'yi iterek bağlanmayı azaltır"}, {"letter": "D", "text": "Fe3+ oluşur"}, {"letter": "E", "text": "Kooperativiteyi negatif yapar"}], "answer": "A", "rationale": "Fe2+ düzleme yaklaşması F-heliks/His bağlantıları ile T->R geçişini başlatır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nFe2+ düzleme yaklaşması F-heliks/His bağlantıları ile T->R geçişini başlatır."}, {"id": "P-44", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'nin merkez boşluğuna bağlanan başlıca efektör hangisidir?", "options": [{"letter": "A", "text": "ATP"}, {"letter": "B", "text": "2,3-BPG"}, {"letter": "C", "text": "NADH"}, {"letter": "D", "text": "FAD"}, {"letter": "E", "text": "KoA"}], "answer": "B", "rationale": "2,3-BPG deoksi-Hb'nin merkez boşluğuna bağlanır.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\n2,3-BPG deoksi-Hb'nin merkez boşluğuna bağlanır."}, {"id": "P-45", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Kooperativite ile allosteri arasındaki fark için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Kooperativite sadece heterotropiktir"}, {"letter": "B", "text": "Kooperativite aynı ligandın bağlanmasının etkisidir; allosteri farklı efektörlerin de etkisini kapsar"}, {"letter": "C", "text": "İkisi tamamen aynı kavramdır"}, {"letter": "D", "text": "Allosteri sadece monomer proteinlerde olur"}, {"letter": "E", "text": "Kooperativite sadece enzimlerde olur"}], "answer": "B", "rationale": "Kooperativite homotropik allosterinin özel bir durumudur.", "hint": "Konu: Enzim regülasyonu\nKooperativite homotropik allosterinin özel bir durumudur."}, {"id": "P-46", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Bir Hb varyantında tuz köprüleri zayıflarsa beklenen eğri değişimi hangisidir?", "options": [{"letter": "A", "text": "Sağa kayma"}, {"letter": "B", "text": "Sola kayma"}, {"letter": "C", "text": "Değişmez"}, {"letter": "D", "text": "Hiperbolik ve sağa kayma"}, {"letter": "E", "text": "Lineer olur"}], "answer": "B", "rationale": "T stabilizasyonu azalır, R daha baskın olur -> afinitesi artar (sola kayma).", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nT stabilizasyonu azalır, R daha baskın olur -> afinitesi artar (sola kayma)."}, {"id": "P-47", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Mb'nin Hb'ye göre daha yüksek O2 afinitesine sahip olması fizyolojik olarak ne sağlar?", "options": [{"letter": "A", "text": "Kanda O2 taşınmasını"}, {"letter": "B", "text": "Kas içinde O2 depolama ve düşük pO2'de bile O2 tutma"}, {"letter": "C", "text": "CO2 taşınmasını"}, {"letter": "D", "text": "pH tamponlamasını"}, {"letter": "E", "text": "Demir depolanmasını"}], "answer": "B", "rationale": "Mb kas içinde O2 depolar ve gerektiğinde serbestleştirir.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nMb kas içinde O2 depolar ve gerektiğinde serbestleştirir."}, {"id": "P-48", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "O2 bağlanmasında ‘kısmi basınç’ kavramı (pO2) neden kullanılır?", "options": [{"letter": "A", "text": "O2'nin suda hiç çözünmemesi nedeniyle"}, {"letter": "B", "text": "Gazların çözünürlüğü ve difüzyonu pO2 ile ilişkilidir"}, {"letter": "C", "text": "Sadece hemoglobin için geçerlidir"}, {"letter": "D", "text": "pO2 sıcaklıktan bağımsızdır"}, {"letter": "E", "text": "pO2 sadece CO için kullanılır"}], "answer": "B", "rationale": "Fizyolojik taşımada O2 miktarı pO2 ile ilişkilidir (Henry kanunu).", "hint": "Konu: Protein yapısı–işlev ilişkisi\nFizyolojik taşımada O2 miktarı pO2 ile ilişkilidir (Henry kanunu)."}, {"id": "P-49", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Bir Hb tetramerinde kooperativiteyi açıklayan ‘MWC’ modeli için en uygun ifade hangisidir?", "options": [{"letter": "A", "text": "Alt birimler bağımsız değişir"}, {"letter": "B", "text": "T ve R durumları arasında toplu denge vardır; ligand bağlanması dengeyi R'ye iter"}, {"letter": "C", "text": "Sadece aktif bölge değişir"}, {"letter": "D", "text": "Efektörler yalnız kovalent bağlanır"}, {"letter": "E", "text": "Model sadece enzimler içindir"}], "answer": "B", "rationale": "MWC (concerted) modelinde alt birimler birlikte T/R durumuna geçer.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nMWC (concerted) modelinde alt birimler birlikte T/R durumuna geçer."}, {"id": "P-50", "topicKey": "protein", "topic": "Proteinlerin İşlevi", "difficulty": "Zor", "stem": "Hb'nin O2 taşıma verimliliği açısından en kritik avantajı hangisidir?", "options": [{"letter": "A", "text": "Mb gibi çok yüksek afinite"}, {"letter": "B", "text": "Kooperativite sayesinde akciğerde yüksek yükleme, dokuda kolay boşaltma"}, {"letter": "C", "text": "Hem içermemesi"}, {"letter": "D", "text": "Sadece CO2 taşıması"}, {"letter": "E", "text": "Düz çizgili satürasyon"}], "answer": "B", "rationale": "Sigmoid eğri, yükleme/boşaltma farkını maksimize eder.", "hint": "Konu: Hemoglobin: kooperativite ve Bohr/2,3‑BPG\nSigmoid eğri, yükleme/boşaltma farkını maksimize eder."}, {"id": "E-01", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzimlerin temel görevi aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "Tepkime dengesini (Keq) değiştirmek"}, {"letter": "B", "text": "Aktivasyon enerjisini düşürerek tepkime hızını artırmak"}, {"letter": "C", "text": "Ürünleri substrata çevirmek (daima ters)"}, {"letter": "D", "text": "Sıcaklığı artırmak"}, {"letter": "E", "text": "pH'ı sabitlemek"}], "answer": "B", "rationale": "Enzimler geçiş durumunu stabilize eder; dengeyi değil hızı etkiler.", "hint": "Konu: Enzimlerin temel ilkeleri\nEnzimler geçiş durumunu stabilize eder; dengeyi değil hızı etkiler."}, {"id": "E-02", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzim katalizinde en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Enzim tepkimede tüketilir"}, {"letter": "B", "text": "Enzim yalnız bir kez çalışır"}, {"letter": "C", "text": "Enzim hem ileri hem geri yönde hızlandırabilir"}, {"letter": "D", "text": "Enzim ürünlere kovalent bağlanır"}, {"letter": "E", "text": "Enzim sadece denatüre halde aktiftir"}], "answer": "C", "rationale": "Enzim katalizi, tepkimeyi iki yönde de hızlandırabilir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nEnzim katalizi, tepkimeyi iki yönde de hızlandırabilir."}, {"id": "E-03", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Apoenzim ve holoenzim için doğru eşleştirme hangisidir?", "options": [{"letter": "A", "text": "Apoenzim = kofaktörlü aktif enzim"}, {"letter": "B", "text": "Holoenzim = kofaktörsüz enzim"}, {"letter": "C", "text": "Apoenzim = protein kısmı; Holoenzim = protein + kofaktör"}, {"letter": "D", "text": "Apoenzim = ürün; Holoenzim = substrat"}, {"letter": "E", "text": "Apoenzim = inhibitörlü enzim"}], "answer": "C", "rationale": "Apoenzim tek başına; kofaktör eklenince holoenzim oluşur.", "hint": "Konu: Enzimlerin temel ilkeleri\nApoenzim tek başına; kofaktör eklenince holoenzim oluşur."}, {"id": "E-04", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Koenzim için en uygun tanım hangisidir?", "options": [{"letter": "A", "text": "Proteinin kovalent bölümü"}, {"letter": "B", "text": "İnorganik metal iyonu"}, {"letter": "C", "text": "Organik, küçük molekül kofaktör"}, {"letter": "D", "text": "Substratın aynısı"}, {"letter": "E", "text": "Denatürasyon ajanı"}], "answer": "C", "rationale": "Koenzimler çoğu zaman vitamin türevidir ve elektron/grup taşır.", "hint": "Konu: Enzimlerin temel ilkeleri\nKoenzimler çoğu zaman vitamin türevidir ve elektron/grup taşır."}, {"id": "E-05", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Prostetik grup neyi ifade eder?", "options": [{"letter": "A", "text": "Enzime gevşek bağlanan metal iyonu"}, {"letter": "B", "text": "Enzime sıkı/kalıcı bağlı kofaktör"}, {"letter": "C", "text": "Sadece inhibitör"}, {"letter": "D", "text": "Sadece substrat"}, {"letter": "E", "text": "Tepkime ürünü"}], "answer": "B", "rationale": "Prostetik grup enzime sıkı bağlı kofaktördür (örn. FAD, heme).", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nProstetik grup enzime sıkı bağlı kofaktördür (örn. FAD, heme)."}, {"id": "E-06", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzimlerin sınıflandırılmasında hidrolaz ne yapar?", "options": [{"letter": "A", "text": "Oksidasyon-indirgenme"}, {"letter": "B", "text": "Bağları su kullanarak kırar"}, {"letter": "C", "text": "İzomerizasyon"}, {"letter": "D", "text": "Grupları taşır"}, {"letter": "E", "text": "CO2 bağlar"}], "answer": "B", "rationale": "Hidrolazlar hidroliz reaksiyonlarını katalizler.", "hint": "Konu: Enzimlerin temel ilkeleri\nHidrolazlar hidroliz reaksiyonlarını katalizler."}, {"id": "E-07", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Aşağıdakilerden hangisi bir oksidoredüktaz örneğidir?", "options": [{"letter": "A", "text": "Proteaz"}, {"letter": "B", "text": "Dehidrogenaz"}, {"letter": "C", "text": "İzomeraz"}, {"letter": "D", "text": "Ligaz"}, {"letter": "E", "text": "Transferaz"}], "answer": "B", "rationale": "Dehidrogenazlar redoks enzimleridir.", "hint": "Konu: Enzimlerin temel ilkeleri\nDehidrogenazlar redoks enzimleridir."}, {"id": "E-08", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzim aktif bölgesi için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Proteinin tamamıdır"}, {"letter": "B", "text": "Substratın bağlandığı ve katalizin gerçekleştiği özel bölgedir"}, {"letter": "C", "text": "Sadece yüzeyde rastgele bir yerdir"}, {"letter": "D", "text": "Koenzimin olmadığı bölgedir"}, {"letter": "E", "text": "Yalnızca inhibisyonun olduğu bölgedir"}], "answer": "B", "rationale": "Aktif bölge bağlanma + kataliz fonksiyonunu taşır.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nAktif bölge bağlanma + kataliz fonksiyonunu taşır."}, {"id": "E-09", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzimlerin substratlarına özgüllüğü (spesifiklik) büyük ölçüde neye dayanır?", "options": [{"letter": "A", "text": "Yalnız hidrofobik etkileşimlere"}, {"letter": "B", "text": "Aktif bölge - substrat şekil/kimyasal tamamlayıcılığına"}, {"letter": "C", "text": "Enzimin pH'ına"}, {"letter": "D", "text": "Sıcaklığın sabit olmasına"}, {"letter": "E", "text": "Substratın mutlaka iyonik olmasına"}], "answer": "B", "rationale": "Geometrik ve kimyasal tamamlayıcılık belirleyicidir.", "hint": "Konu: Enzimlerin temel ilkeleri\nGeometrik ve kimyasal tamamlayıcılık belirleyicidir."}, {"id": "E-10", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzim kataliz stratejilerinden hangisi doğrudur?", "options": [{"letter": "A", "text": "Geçiş durumunu destabilize etmek"}, {"letter": "B", "text": "Geçiş durumunu stabilize etmek"}, {"letter": "C", "text": "Ürünü stabilize edip tepkimeyi durdurmak"}, {"letter": "D", "text": "Keq'yi değiştirmek"}, {"letter": "E", "text": "Sadece difüzyonu durdurmak"}], "answer": "B", "rationale": "Enzim, geçiş durumunun bağlanma enerjisini artırarak Ea'yı düşürür.", "hint": "Konu: Enzimlerin temel ilkeleri\nEnzim, geçiş durumunun bağlanma enerjisini artırarak Ea'yı düşürür."}, {"id": "E-11", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Michaelis-Menten kinetiğinde Vmax neyi ifade eder?", "options": [{"letter": "A", "text": "Enzim tümüyle doymuşken maksimum hız"}, {"letter": "B", "text": "Substrat yokken hız"}, {"letter": "C", "text": "Km'nin iki katı"}, {"letter": "D", "text": "Denge sabiti"}, {"letter": "E", "text": "Inhibitör sabiti"}], "answer": "A", "rationale": "Yüksek [S] altında enzim doymuşken hız Vmax'a yaklaşır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nYüksek [S] altında enzim doymuşken hız Vmax'a yaklaşır."}, {"id": "E-12", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Michaelis-Menten kinetiğinde Km için en uygun ifade hangisidir?", "options": [{"letter": "A", "text": "Enzim konsantrasyonu"}, {"letter": "B", "text": "V0 = Vmax/2 iken [S]"}, {"letter": "C", "text": "Inhibitör konsantrasyonu"}, {"letter": "D", "text": "Tepkime entalpisi"}, {"letter": "E", "text": "pH değeri"}], "answer": "B", "rationale": "Km yarı maksimum hızda gerekli substrat derişimidir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nKm yarı maksimum hızda gerekli substrat derişimidir."}, {"id": "E-13", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Kompetitif (yarışmalı) inhibisyonun temel özelliği hangisidir?", "options": [{"letter": "A", "text": "İnhibitör yalnız ES'e bağlanır"}, {"letter": "B", "text": "İnhibitör aktif bölgeye bağlanarak substratla yarışır"}, {"letter": "C", "text": "Vmax azalır ama Km değişmez"}, {"letter": "D", "text": "Km azalır"}, {"letter": "E", "text": "İnhibitör kovalent bağlanır zorunlu"}], "answer": "B", "rationale": "Kompetitifte inhibitör aktif bölgede yarışır; Km artar, Vmax sabit kalır.", "hint": "Konu: Enzim inhibisyon tipleri\nKompetitifte inhibitör aktif bölgede yarışır; Km artar, Vmax sabit kalır."}, {"id": "E-14", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Nonkompetitif (yarışmasız, saf) inhibisyon için tipik sonuç hangisidir?", "options": [{"letter": "A", "text": "Km artar, Vmax değişmez"}, {"letter": "B", "text": "Km değişmez, Vmax azalır"}, {"letter": "C", "text": "Km azalır, Vmax artar"}, {"letter": "D", "text": "Km artar, Vmax artar"}, {"letter": "E", "text": "Hiç etki olmaz"}], "answer": "B", "rationale": "Saf nonkompetitifte Vmax düşer, Km değişmez.", "hint": "Konu: Enzim inhibisyon tipleri\nSaf nonkompetitifte Vmax düşer, Km değişmez."}, {"id": "E-15", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Kolay", "stem": "Enzimlerin çoğu neden protein yapısındadır?", "options": [{"letter": "A", "text": "Proteinler esnek 3B yapılar oluşturup spesifik bağlanma ve kataliz sağlayabildiği için"}, {"letter": "B", "text": "Proteinler yalnız enerji depolar"}, {"letter": "C", "text": "Proteinler yalnız genetik bilgi taşır"}, {"letter": "D", "text": "Proteinler metal iyonudur"}, {"letter": "E", "text": "Proteinler pH'ı sabitler"}], "answer": "A", "rationale": "3B yapı + fonksiyonel gruplar katalizde anahtar rol oynar.", "hint": "Konu: Enzimlerin temel ilkeleri\n3B yapı + fonksiyonel gruplar katalizde anahtar rol oynar."}, {"id": "E-16", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "[S] = Km iken Michaelis-Menten'e göre V0 yaklaşık ne olur?", "options": [{"letter": "A", "text": "Vmax"}, {"letter": "B", "text": "Vmax/2"}, {"letter": "C", "text": "Vmax/4"}, {"letter": "D", "text": "0"}, {"letter": "E", "text": "2Vmax"}], "answer": "B", "rationale": "Tanım gereği [S]=Km -> hız yarı maksimumdur.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nTanım gereği [S]=Km -> hız yarı maksimumdur."}, {"id": "E-17", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "[S] >> Km olduğunda hız neden Vmax'a yaklaşır?", "options": [{"letter": "A", "text": "Enzim denatüre olur"}, {"letter": "B", "text": "Aktif bölgeler çoğunlukla doludur (doygunluk)"}, {"letter": "C", "text": "Substrat azalır"}, {"letter": "D", "text": "Km artar"}, {"letter": "E", "text": "Ürün inhibitörü mutlaka oluşur"}], "answer": "B", "rationale": "Doygunlukta hız enzim miktarıyla sınırlanır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nDoygunlukta hız enzim miktarıyla sınırlanır."}, {"id": "E-18", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Kompetitif inhibisyonda Vmax ve Km nasıl değişir?", "options": [{"letter": "A", "text": "Vmax azalır, Km azalır"}, {"letter": "B", "text": "Vmax değişmez, Km artar"}, {"letter": "C", "text": "Vmax artar, Km değişmez"}, {"letter": "D", "text": "Vmax azalır, Km değişmez"}, {"letter": "E", "text": "Vmax değişmez, Km azalır"}], "answer": "B", "rationale": "Yarışma nedeniyle daha yüksek [S] gerekir; Vmax aynı kalır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nYarışma nedeniyle daha yüksek [S] gerekir; Vmax aynı kalır."}, {"id": "E-19", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Unkompetitif inhibisyonda tipik değişim hangisidir?", "options": [{"letter": "A", "text": "Sadece Vmax azalır"}, {"letter": "B", "text": "Sadece Km artar"}, {"letter": "C", "text": "Km ve Vmax birlikte azalır"}, {"letter": "D", "text": "Km artar, Vmax azalır"}, {"letter": "E", "text": "Km değişmez, Vmax artar"}], "answer": "C", "rationale": "Unkompetitif inhibitör ES'e bağlanır; hem Km hem Vmax düşer.", "hint": "Konu: Enzim inhibisyon tipleri\nUnkompetitif inhibitör ES'e bağlanır; hem Km hem Vmax düşer."}, {"id": "E-20", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Lineweaver-Burk grafiğinde (1/V0 vs 1/[S]) y-kesişimi neyi verir?", "options": [{"letter": "A", "text": "Km"}, {"letter": "B", "text": "Vmax"}, {"letter": "C", "text": "1/Vmax"}, {"letter": "D", "text": "-1/Km"}, {"letter": "E", "text": "kcat"}], "answer": "C", "rationale": "y-kesişimi 1/Vmax'tır; x-kesişimi -1/Km'dir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\ny-kesişimi 1/Vmax'tır; x-kesişimi -1/Km'dir."}, {"id": "E-21", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Bir enzimin kcat değeri en iyi neyi ifade eder?", "options": [{"letter": "A", "text": "Substrat afinitesini"}, {"letter": "B", "text": "Bir enzimin saniyede dönüştürdüğü substrat sayısını (doygunlukta)"}, {"letter": "C", "text": "pH optimumunu"}, {"letter": "D", "text": "Inhibitör afinitesini"}, {"letter": "E", "text": "Denge sabitini"}], "answer": "B", "rationale": "kcat = Vmax/[E]tot; turnover sayısıdır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nkcat = Vmax/[E]tot; turnover sayısıdır."}, {"id": "E-22", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "kcat/Km oranı çoğunlukla ne olarak yorumlanır?", "options": [{"letter": "A", "text": "Tepkime entalpisi"}, {"letter": "B", "text": "Katalitik etkinlik (özellikle düşük [S])"}, {"letter": "C", "text": "Doygunluk derecesi"}, {"letter": "D", "text": "pH tampon kapasitesi"}, {"letter": "E", "text": "Proteinin stabilitesi"}], "answer": "B", "rationale": "kcat/Km difüzyon limitine yaklaşırsa enzim 'mükemmel' sayılır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nkcat/Km difüzyon limitine yaklaşırsa enzim 'mükemmel' sayılır."}, {"id": "E-23", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Bir enzimde pH optimumunun oluşmasının temel nedeni hangisidir?", "options": [{"letter": "A", "text": "Proteinler pH'dan etkilenmez"}, {"letter": "B", "text": "Aktif bölgedeki iyonlaşabilir grupların protonasyon durumunun katalizi etkilemesi"}, {"letter": "C", "text": "Sadece substratın parçalanması"}, {"letter": "D", "text": "Vmax'ın pH'ı belirlemesi"}, {"letter": "E", "text": "Km'nin sabit olması"}], "answer": "B", "rationale": "His, Asp, Glu, Lys gibi grupların protonasyon durumu kritik olabilir.", "hint": "Konu: Enzimlerin temel ilkeleri\nHis, Asp, Glu, Lys gibi grupların protonasyon durumu kritik olabilir."}, {"id": "E-24", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Geri besleme (feedback) inhibisyonu için doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Ürün, aynı yolun erken bir enzimini (genelde allosterik) inhibe eder"}, {"letter": "B", "text": "Ürün enzimi aktive eder"}, {"letter": "C", "text": "Substrat enzimi yok eder"}, {"letter": "D", "text": "Enzim dengesini değiştirir"}, {"letter": "E", "text": "Sadece geri dönüşümsüz inhibisyondur"}], "answer": "A", "rationale": "Metabolik yol kontrolünde son ürün erken basamağı inhibe eder.", "hint": "Konu: Enzim inhibisyon tipleri\nMetabolik yol kontrolünde son ürün erken basamağı inhibe eder."}, {"id": "E-25", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Allosterik enzimlerin kinetiği çoğunlukla nasıl görünür?", "options": [{"letter": "A", "text": "Her zaman Michaelis-Menten hiperbolik"}, {"letter": "B", "text": "Sigmoid hız-sübstrat ilişkisi"}, {"letter": "C", "text": "Lineer"}, {"letter": "D", "text": "Sıfırıncı dereceden"}, {"letter": "E", "text": "Düzensiz ve ölçülemez"}], "answer": "B", "rationale": "Kooperativite nedeniyle sigmoid eğriler görülebilir.", "hint": "Konu: Enzim regülasyonu\nKooperativite nedeniyle sigmoid eğriler görülebilir."}, {"id": "E-26", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Bir inhibitör Vmax'ı düşürüp Km'yi değiştirmiyorsa en olası tip hangisidir?", "options": [{"letter": "A", "text": "Kompetitif"}, {"letter": "B", "text": "Saf nonkompetitif"}, {"letter": "C", "text": "Unkompetitif"}, {"letter": "D", "text": "Aktivatör"}, {"letter": "E", "text": "Substrat analoğu değil"}], "answer": "B", "rationale": "Saf nonkompetitifte Km sabit, Vmax düşer.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nSaf nonkompetitifte Km sabit, Vmax düşer."}, {"id": "E-27", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Irreversibl (geri dönüşümsüz) inhibisyon genelde ne yapar?", "options": [{"letter": "A", "text": "Geçici bağlanır ve kolay ayrılır"}, {"letter": "B", "text": "Enzime kovalent veya çok sıkı bağlanarak kalıcı inaktivasyon yapar"}, {"letter": "C", "text": "Sadece Km'yi düşürür"}, {"letter": "D", "text": "Vmax'ı artırır"}, {"letter": "E", "text": "Sadece pH'ı değiştirir"}], "answer": "B", "rationale": "Aspirin-COX, penicillin-transpeptidaz gibi örnekler vardır.", "hint": "Konu: Enzim inhibisyon tipleri\nAspirin-COX, penicillin-transpeptidaz gibi örnekler vardır."}, {"id": "E-28", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Bir reaksiyonda enzim eklemek Keq'yi değiştirmez. Bunun nedeni hangisidir?", "options": [{"letter": "A", "text": "Enzim ürünleri stabilize ettiği için"}, {"letter": "B", "text": "Enzim ileri ve geri hızları aynı oranda artırdığı için"}, {"letter": "C", "text": "Enzim sadece ileri yönde çalıştığı için"}, {"letter": "D", "text": "Keq sadece sıcaklığa bağlı değildir"}, {"letter": "E", "text": "Enzim substratı tükettiği için"}], "answer": "B", "rationale": "Denge termodinamiğe bağlıdır; enzim kinetiği etkiler.", "hint": "Konu: Enzimlerin temel ilkeleri\nDenge termodinamiğe bağlıdır; enzim kinetiği etkiler."}, {"id": "E-29", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Bir enzimin Km'si düşükse genelde ne yorumu yapılır?", "options": [{"letter": "A", "text": "Substrata afinitesi daha yüksek"}, {"letter": "B", "text": "Substrata afinitesi daha düşük"}, {"letter": "C", "text": "Vmax daha düşük"}, {"letter": "D", "text": "Enzim mutlaka allosteriktir"}, {"letter": "E", "text": "Enzim mutlaka metal içerir"}], "answer": "A", "rationale": "Km düşük -> yarı maksimum hız için daha az [S] yeterli.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nKm düşük -> yarı maksimum hız için daha az [S] yeterli."}, {"id": "E-30", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Orta", "stem": "Kofaktör-metal iyonlarının en yaygın işlevlerinden biri hangisidir?", "options": [{"letter": "A", "text": "Keq'yi değiştirmek"}, {"letter": "B", "text": "Elektron/grup transferini kolaylaştırmak ve yük stabilizasyonu sağlamak"}, {"letter": "C", "text": "Proteini denatüre etmek"}, {"letter": "D", "text": "Substratı tamamen tüketmek"}, {"letter": "E", "text": "pH'ı sabitlemek"}], "answer": "B", "rationale": "Metal iyonları yük stabilizasyonu, redoks ve yönlendirmede rol oynar.", "hint": "Konu: Enzimlerin temel ilkeleri\nMetal iyonları yük stabilizasyonu, redoks ve yönlendirmede rol oynar."}, {"id": "E-31", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzim için Vmax = 120 µmol/dk ve [E]toplam = 2 µmol ise kcat yaklaşık kaç dk^-1 olur?", "options": [{"letter": "A", "text": "30"}, {"letter": "B", "text": "60"}, {"letter": "C", "text": "120"}, {"letter": "D", "text": "240"}, {"letter": "E", "text": "360"}], "answer": "B", "rationale": "kcat = Vmax/[E]toplam = 120/2 = 60 dk^-1.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nkcat = Vmax/[E]toplam = 120/2 = 60 dk^-1."}, {"id": "E-32", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzim için Km = 5 mM, Vmax = 100 birim. [S] = 5 mM iken V0 yaklaşık kaç birimdir?", "options": [{"letter": "A", "text": "25"}, {"letter": "B", "text": "50"}, {"letter": "C", "text": "75"}, {"letter": "D", "text": "100"}, {"letter": "E", "text": "200"}], "answer": "B", "rationale": "[S]=Km olduğunda hız Vmax/2 olur: 50.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\n[S]=Km olduğunda hız Vmax/2 olur: 50."}, {"id": "E-33", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Kompetitif inhibitör varlığında Km 4 mM'den 12 mM'ye çıkıyor, Vmax değişmiyor. Bunun en doğru yorumu hangisidir?", "options": [{"letter": "A", "text": "İnhibitör ES'e bağlanıyor"}, {"letter": "B", "text": "İnhibitör aktif bölgeye bağlanıp substratla yarışıyor"}, {"letter": "C", "text": "İnhibitör enzimi aktive ediyor"}, {"letter": "D", "text": "İnhibitör yalnız ürüne bağlanıyor"}, {"letter": "E", "text": "İnhibitör geri dönüşümsüz kovalent bağ kuruyor"}], "answer": "B", "rationale": "Kompetitif inhibisyon Km'yi artırır, Vmax sabit kalır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nKompetitif inhibisyon Km'yi artırır, Vmax sabit kalır."}, {"id": "E-34", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Unkompetitif inhibisyon saptandığında Lineweaver-Burk doğruları tipik olarak nasıl görünür?", "options": [{"letter": "A", "text": "Y-ekseninde kesişir"}, {"letter": "B", "text": "X-ekseninde kesişir"}, {"letter": "C", "text": "Paralel doğrular"}, {"letter": "D", "text": "Hiç doğrusal olmaz"}, {"letter": "E", "text": "Tamamen üst üste biner"}], "answer": "C", "rationale": "Unkompetitifte eğim değişmez (paralel) ve hem Km hem Vmax azalır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nUnkompetitifte eğim değişmez (paralel) ve hem Km hem Vmax azalır."}, {"id": "E-35", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir inhibitör hem Km'yi artırıp hem Vmax'ı azaltıyorsa en olası inhibisyon tipi hangisidir?", "options": [{"letter": "A", "text": "Kompetitif"}, {"letter": "B", "text": "Saf nonkompetitif"}, {"letter": "C", "text": "Karışık (mixed) inhibisyon"}, {"letter": "D", "text": "Unkompetitif"}, {"letter": "E", "text": "Geri besleme inhibisyonu"}], "answer": "C", "rationale": "Mixed inhibisyonda inhibitör E ve ES'e farklı afinite ile bağlanır; Km ve Vmax değişebilir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nMixed inhibisyonda inhibitör E ve ES'e farklı afinite ile bağlanır; Km ve Vmax değişebilir."}, {"id": "E-36", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "kcat/Km = 1×10^8 M^-1 s^-1 olan bir enzim için en doğru yorum hangisidir?", "options": [{"letter": "A", "text": "Çok yavaş enzim"}, {"letter": "B", "text": "Dengeyi değiştirir"}, {"letter": "C", "text": "Difüzyon limitine yakın, oldukça etkin bir enzim"}, {"letter": "D", "text": "Mutlaka kompetitif inhibitörlü"}, {"letter": "E", "text": "Sadece membran enzimidir"}], "answer": "C", "rationale": "10^8-10^9 aralığı difüzyon limitine yakın kabul edilir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\n10^8-10^9 aralığı difüzyon limitine yakın kabul edilir."}, {"id": "E-37", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimin Km'si aynı kalırken Vmax yarıya düşüyor. Bu durumda en olası neden hangisidir?", "options": [{"letter": "A", "text": "Substrat afinitesi artmıştır"}, {"letter": "B", "text": "Enzim konsantrasyonu veya aktif enzim miktarı azalmıştır"}, {"letter": "C", "text": "Substrat konsantrasyonu artmıştır"}, {"letter": "D", "text": "Kompetitif inhibitör eklenmiştir"}, {"letter": "E", "text": "Km mutlaka değişmelidir"}], "answer": "B", "rationale": "Vmax enzim miktarıyla orantılıdır; Km değişmeyebilir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nVmax enzim miktarıyla orantılıdır; Km değişmeyebilir."}, {"id": "E-38", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzim için V0 = 40, Vmax = 80 iken [S] kaç Km'dir? (Michaelis-Menten)", "options": [{"letter": "A", "text": "0.5 Km"}, {"letter": "B", "text": "1 Km"}, {"letter": "C", "text": "2 Km"}, {"letter": "D", "text": "4 Km"}, {"letter": "E", "text": "8 Km"}], "answer": "B", "rationale": "V0=Vmax/2 olduğuna göre [S]=Km.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nV0=Vmax/2 olduğuna göre [S]=Km."}, {"id": "E-39", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Vmax = 200, Km = 10 mM. [S]=30 mM iken V0 yaklaşık?", "options": [{"letter": "A", "text": "50"}, {"letter": "B", "text": "100"}, {"letter": "C", "text": "150"}, {"letter": "D", "text": "171"}, {"letter": "E", "text": "200"}], "answer": "C", "rationale": "V0 = 200×30/(10+30) = 150.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nV0 = 200×30/(10+30) = 150."}, {"id": "E-40", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimde kompetitif inhibitörün etkisini azaltmanın en iyi yolu hangisidir?", "options": [{"letter": "A", "text": "pH'ı düşürmek"}, {"letter": "B", "text": "Sıcaklığı artırmak"}, {"letter": "C", "text": "Substrat konsantrasyonunu artırmak"}, {"letter": "D", "text": "Enzim konsantrasyonunu azaltmak"}, {"letter": "E", "text": "Ürün eklemek"}], "answer": "C", "rationale": "Kompetitif inhibitörde yüksek [S] inhibitörü 'yener' (Vmax'a ulaşılabilir).", "hint": "Konu: Enzim inhibisyon tipleri\nKompetitif inhibitörde yüksek [S] inhibitörü 'yener' (Vmax'a ulaşılabilir)."}, {"id": "E-41", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimin aktivasyon enerjisini düşürmesi en iyi hangi kavramla açıklanır?", "options": [{"letter": "A", "text": "Ürün enerjisini yükseltmek"}, {"letter": "B", "text": "Geçiş durumunu stabilize etmek"}, {"letter": "C", "text": "Substratı tamamen yok etmek"}, {"letter": "D", "text": "Denge sabitini artırmak"}, {"letter": "E", "text": "Tepkimeyi endotermik yapmak"}], "answer": "B", "rationale": "Enzim, geçiş durumunu daha iyi bağlar ve Ea düşer.", "hint": "Konu: Enzimlerin temel ilkeleri\nEnzim, geçiş durumunu daha iyi bağlar ve Ea düşer."}, {"id": "E-42", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Metal iyon kofaktörleri için aşağıdakilerden hangisi tipik bir roldür?", "options": [{"letter": "A", "text": "Keq'yi değiştirmek"}, {"letter": "B", "text": "Negatif yükleri stabilize etmek ve suyu aktive etmek"}, {"letter": "C", "text": "Proteinleri denatüre etmek"}, {"letter": "D", "text": "Katalizi durdurmak"}, {"letter": "E", "text": "Sadece enerji depolamak"}], "answer": "B", "rationale": "Zn2+ gibi iyonlar polarizasyon/yük stabilizasyonu sağlayabilir.", "hint": "Konu: Enzimlerin temel ilkeleri\nZn2+ gibi iyonlar polarizasyon/yük stabilizasyonu sağlayabilir."}, {"id": "E-43", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir allosterik efektör enzimin Vmax'ını artırıp Km'sini (veya K0.5) düşürüyorsa en doğru yorum hangisidir?", "options": [{"letter": "A", "text": "Enzim inhibe olmuştur"}, {"letter": "B", "text": "Enzim aktivasyonu ve substrata afinitenin artması söz konusudur"}, {"letter": "C", "text": "Enzim dengeyi değiştirmiştir"}, {"letter": "D", "text": "Enzim geri dönüşümsüz inaktive olmuştur"}, {"letter": "E", "text": "Enzim mutlaka kompetitif inhibitörlüdür"}], "answer": "B", "rationale": "Aktivasyon, daha yüksek maksimum hız ve daha düşük yarı-doygunluk değeri ile görülebilir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nAktivasyon, daha yüksek maksimum hız ve daha düşük yarı-doygunluk değeri ile görülebilir."}, {"id": "E-44", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir inhibitör sadece ES kompleksine bağlanıyorsa, substrat konsantrasyonu artınca inhibitör etkisi nasıl değişir?", "options": [{"letter": "A", "text": "Azalır"}, {"letter": "B", "text": "Artar"}, {"letter": "C", "text": "Değişmez"}, {"letter": "D", "text": "Sıfırlanır"}, {"letter": "E", "text": "Tahmin edilemez"}], "answer": "B", "rationale": "ES arttıkça bağlanma hedefi artar; unkompetitif etkinlik artabilir.", "hint": "Konu: Enzim inhibisyon tipleri\nES arttıkça bağlanma hedefi artar; unkompetitif etkinlik artabilir."}, {"id": "E-45", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Lineweaver-Burk grafiğinde kompetitif inhibisyon doğrularının ortak noktası tipik olarak nerededir?", "options": [{"letter": "A", "text": "Y-ekseninde (1/Vmax aynı)"}, {"letter": "B", "text": "X-ekseninde (-1/Km aynı)"}, {"letter": "C", "text": "Paralel doğrular"}, {"letter": "D", "text": "Hiç ortak nokta yok"}, {"letter": "E", "text": "Orijinde"}], "answer": "A", "rationale": "Kompetitifte Vmax değişmediği için 1/Vmax aynı kalır.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nKompetitifte Vmax değişmediği için 1/Vmax aynı kalır."}, {"id": "E-46", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimde “induced fit” en çok neyi açıklar?", "options": [{"letter": "A", "text": "Enzim tüketimini"}, {"letter": "B", "text": "Enzim-substrat bağlanmasında konformasyon değişimi ile geçiş durumunun daha iyi bağlanmasını"}, {"letter": "C", "text": "Keq değişimini"}, {"letter": "D", "text": "Ürünlerin kovalent bağlanmasını"}, {"letter": "E", "text": "Dengeyi bozmayı"}], "answer": "B", "rationale": "İndüklenmiş uyum, katalizi kolaylaştıran konformasyon değişimini açıklar.", "hint": "Konu: Enzimlerin temel ilkeleri\nİndüklenmiş uyum, katalizi kolaylaştıran konformasyon değişimini açıklar."}, {"id": "E-47", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimin Km'si 2 mM ve Vmax 100 birim iken [S]=1 mM için V0 yaklaşık kaçtır?", "options": [{"letter": "A", "text": "25"}, {"letter": "B", "text": "33"}, {"letter": "C", "text": "50"}, {"letter": "D", "text": "67"}, {"letter": "E", "text": "75"}], "answer": "B", "rationale": "V0=100*1/(2+1)=33.3 birim.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nV0=100*1/(2+1)=33.3 birim."}, {"id": "E-48", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimde geri dönüşümsüz inhibitör aktif enzim miktarını %50 azaltırsa, Km ve Vmax için en olası değişim hangisidir?", "options": [{"letter": "A", "text": "Km artar, Vmax azalır"}, {"letter": "B", "text": "Km değişmez, Vmax azalır"}, {"letter": "C", "text": "Km azalır, Vmax artar"}, {"letter": "D", "text": "Km azalır, Vmax azalır"}, {"letter": "E", "text": "Km artar, Vmax artar"}], "answer": "B", "rationale": "Aktif enzim miktarı azalınca Vmax düşer; Km (afinite) değişmeyebilir.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nAktif enzim miktarı azalınca Vmax düşer; Km (afinite) değişmeyebilir."}, {"id": "E-49", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Aşağıdakilerden hangisi enzimlerin ‘katalitik mükemmellik’ sınırını belirleyen ana faktördür?", "options": [{"letter": "A", "text": "Protein sentez hızı"}, {"letter": "B", "text": "Substratın enzime difüzyon hızı"}, {"letter": "C", "text": "Ürünlerin renkli olması"}, {"letter": "D", "text": "pH'ın 7 olması"}, {"letter": "E", "text": "Denge sabiti"}], "answer": "B", "rationale": "kcat/Km difüzyon limitine yaklaştığında süreç difüzyonla sınırlıdır.", "hint": "Konu: Enzimlerin temel ilkeleri\nkcat/Km difüzyon limitine yaklaştığında süreç difüzyonla sınırlıdır."}, {"id": "E-50", "topicKey": "enz", "topic": "Enzimler", "difficulty": "Zor", "stem": "Bir enzimin optimum sıcaklığının üstünde aktivitenin düşmesinin ana nedeni hangisidir?", "options": [{"letter": "A", "text": "Km'nin sıfırlanması"}, {"letter": "B", "text": "Proteinin denatürasyonu ve aktif bölgenin bozulması"}, {"letter": "C", "text": "Keq'nin değişmesi"}, {"letter": "D", "text": "Substratın çoğalması"}, {"letter": "E", "text": "Hızın her zaman artması"}], "answer": "B", "rationale": "Yüksek sıcaklık yapı bozar; kataliz azalır.", "hint": "Konu: Enzimlerin temel ilkeleri\nYüksek sıcaklık yapı bozar; kataliz azalır."}, {"id": "V-01", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitaminler için en doğru genel ifade hangisidir?", "options": [{"letter": "A", "text": "Vücutta sınırsız sentezlenir"}, {"letter": "B", "text": "Küçük miktarlarda gerekli, çoğu dışarıdan alınan organik bileşiklerdir"}, {"letter": "C", "text": "Sadece enerji verir"}, {"letter": "D", "text": "Sadece protein yapısındadır"}, {"letter": "E", "text": "Her zaman toksiktir"}], "answer": "B", "rationale": "Vitaminler çoğu zaman koenzim/antioksidan gibi rollerle küçük miktarda gereklidir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nVitaminler çoğu zaman koenzim/antioksidan gibi rollerle küçük miktarda gereklidir."}, {"id": "V-02", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Yağda çözünen vitaminler hangileridir?", "options": [{"letter": "A", "text": "B ve C"}, {"letter": "B", "text": "A, D, E, K"}, {"letter": "C", "text": "A, B, C"}, {"letter": "D", "text": "D, B12, C"}, {"letter": "E", "text": "K, C, B1"}], "answer": "B", "rationale": "ADEK yağda çözünür; depolanma ve toksisite riski daha fazladır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nADEK yağda çözünür; depolanma ve toksisite riski daha fazladır."}, {"id": "V-03", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Suda çözünen vitaminler hangileridir?", "options": [{"letter": "A", "text": "A ve D"}, {"letter": "B", "text": "E ve K"}, {"letter": "C", "text": "B grubu ve C"}, {"letter": "D", "text": "A ve E"}, {"letter": "E", "text": "K ve D"}], "answer": "C", "rationale": "B vitaminleri ve C suda çözünür, depolanmaları sınırlıdır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nB vitaminleri ve C suda çözünür, depolanmaları sınırlıdır."}, {"id": "V-04", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitamin A'nın temel fizyolojik rollerinden biri hangisidir?", "options": [{"letter": "A", "text": "Kollajen çapraz bağları"}, {"letter": "B", "text": "Gece görmesi (retinal)"}, {"letter": "C", "text": "Kan pıhtılaşması"}, {"letter": "D", "text": "Ca emilimi"}, {"letter": "E", "text": "Lipid peroksidasyonunu artırmak"}], "answer": "B", "rationale": "Retinal görme döngüsünde; retinoik asit gen ekspresyonunda rol alır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nRetinal görme döngüsünde; retinoik asit gen ekspresyonunda rol alır."}, {"id": "V-05", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitamin D'nin aktif formu (kalsitriol) için doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Kan pıhtılaşmasını sağlar"}, {"letter": "B", "text": "Ca ve P dengesinde, Ca emilimini artırmada rol alır"}, {"letter": "C", "text": "NAD koenzimidir"}, {"letter": "D", "text": "Antioksidan değildir"}, {"letter": "E", "text": "Sadece gözde bulunur"}], "answer": "B", "rationale": "D vitamini Ca emilimi ve kemik mineralizasyonu için kritiktir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nD vitamini Ca emilimi ve kemik mineralizasyonu için kritiktir."}, {"id": "V-06", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitamin E'nin en bilinen rolü hangisidir?", "options": [{"letter": "A", "text": "Koenzim A yapısı"}, {"letter": "B", "text": "Lipid çözünür antioksidan olarak membranları korumak"}, {"letter": "C", "text": "Kan pıhtılaşması"}, {"letter": "D", "text": "Kolajen sentezi"}, {"letter": "E", "text": "DNA sentezi"}], "answer": "B", "rationale": "E vitamini lipid peroksidasyonuna karşı antioksidan koruma sağlar.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nE vitamini lipid peroksidasyonuna karşı antioksidan koruma sağlar."}, {"id": "V-07", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitamin K için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Görme pigmentidir"}, {"letter": "B", "text": "Kan pıhtılaşmasında (gamma-karboksilasyon) rol alır"}, {"letter": "C", "text": "NADP oluşturur"}, {"letter": "D", "text": "Biyotin görevi görür"}, {"letter": "E", "text": "Hemoglobin yapısına katılır"}], "answer": "B", "rationale": "K vitamini pıhtılaşma faktörlerinin olgunlaşmasında gereklidir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nK vitamini pıhtılaşma faktörlerinin olgunlaşmasında gereklidir."}, {"id": "V-08", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "B1 vitamini (tiamin) en çok hangi koenzimin parçasıdır?", "options": [{"letter": "A", "text": "NAD+"}, {"letter": "B", "text": "FAD"}, {"letter": "C", "text": "TPP (tiamin pirofosfat)"}, {"letter": "D", "text": "Biotin"}, {"letter": "E", "text": "KoA"}], "answer": "C", "rationale": "TPP aldehit transferi/dekarboksilasyonda görev alır.", "hint": "Konu: TPP ve dekarboksilasyon reaksiyonları\nTPP aldehit transferi/dekarboksilasyonda görev alır."}, {"id": "V-09", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "B2 vitamini (riboflavin) hangi koenzimlere dönüştürülür?", "options": [{"letter": "A", "text": "NAD/NADP"}, {"letter": "B", "text": "FMN ve FAD"}, {"letter": "C", "text": "TPP"}, {"letter": "D", "text": "PLP"}, {"letter": "E", "text": "THF"}], "answer": "B", "rationale": "Riboflavin -> FMN/FAD (redoks).", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nRiboflavin -> FMN/FAD (redoks)."}, {"id": "V-10", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "B3 vitamini (niasin) hangi koenzimlerin öncülüdür?", "options": [{"letter": "A", "text": "FMN/FAD"}, {"letter": "B", "text": "NAD+ ve NADP+"}, {"letter": "C", "text": "TPP"}, {"letter": "D", "text": "Biotin"}, {"letter": "E", "text": "KoA"}], "answer": "B", "rationale": "Niasin -> NAD/NADP (redoks).", "hint": "Konu: NAD/NADP ve redoks reaksiyonları\nNiasin -> NAD/NADP (redoks)."}, {"id": "V-11", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Vitamin C (askorbat) eksikliği en çok neyle ilişkilidir?", "options": [{"letter": "A", "text": "Beriberi"}, {"letter": "B", "text": "Skorbüt (kolajen sentezi bozukluğu)"}, {"letter": "C", "text": "Pellagra"}, {"letter": "D", "text": "Gece körlüğü"}, {"letter": "E", "text": "Riket"}], "answer": "B", "rationale": "C vitamini prolin/lysin hidroksilasyonu için gereklidir; eksiklikte skorbüt.", "hint": "Konu: C vitamini ve kolajen\nC vitamini prolin/lysin hidroksilasyonu için gereklidir; eksiklikte skorbüt."}, {"id": "V-12", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Beriberi en çok hangi vitamin eksikliğinde görülür?", "options": [{"letter": "A", "text": "B1"}, {"letter": "B", "text": "B2"}, {"letter": "C", "text": "B3"}, {"letter": "D", "text": "C"}, {"letter": "E", "text": "D"}], "answer": "A", "rationale": "B1 (tiamin) eksikliği: beriberi, Wernicke-Korsakoff vb.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nB1 (tiamin) eksikliği: beriberi, Wernicke-Korsakoff vb."}, {"id": "V-13", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Pellagra (dermatit, diyare, demans) hangi vitamin eksikliğinde görülür?", "options": [{"letter": "A", "text": "B1"}, {"letter": "B", "text": "B2"}, {"letter": "C", "text": "B3"}, {"letter": "D", "text": "B6"}, {"letter": "E", "text": "B12"}], "answer": "C", "rationale": "Niasin eksikliği pellagra yapar.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nNiasin eksikliği pellagra yapar."}, {"id": "V-14", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Riket/osteomalazi en çok hangi vitamin eksikliği ile ilişkilidir?", "options": [{"letter": "A", "text": "A"}, {"letter": "B", "text": "C"}, {"letter": "C", "text": "D"}, {"letter": "D", "text": "E"}, {"letter": "E", "text": "K"}], "answer": "C", "rationale": "D vitamini eksikliği mineralizasyonu bozar.", "hint": "Konu: D vitamini ve Ca/P dengesi\nD vitamini eksikliği mineralizasyonu bozar."}, {"id": "V-15", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Kolay", "stem": "Minerallerin en genel biyokimyasal rolü hangisidir?", "options": [{"letter": "A", "text": "Sadece enerji kaynağı"}, {"letter": "B", "text": "Yapısal bileşen ve enzim kofaktörü/elektrolit dengesi"}, {"letter": "C", "text": "Sadece vitaminlere dönüşmek"}, {"letter": "D", "text": "Sadece DNA sentezi"}, {"letter": "E", "text": "Sadece antioksidan olmak"}], "answer": "B", "rationale": "Makro/mikro elementler yapı + kofaktör + iletim gibi rollere sahiptir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nMakro/mikro elementler yapı + kofaktör + iletim gibi rollere sahiptir."}, {"id": "V-16", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Vitamin A eksikliğinde en tipik belirti hangisidir?", "options": [{"letter": "A", "text": "Kanama eğilimi"}, {"letter": "B", "text": "Gece körlüğü"}, {"letter": "C", "text": "Pellagra"}, {"letter": "D", "text": "Riket"}, {"letter": "E", "text": "Skorbüt"}], "answer": "B", "rationale": "Rodopsin döngüsü etkilenir; gece görmesi bozulur.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nRodopsin döngüsü etkilenir; gece görmesi bozulur."}, {"id": "V-17", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Vitamin D eksikliğinde aşağıdakilerden hangisi beklenir?", "options": [{"letter": "A", "text": "Ca emilimi artar"}, {"letter": "B", "text": "Ca emilimi azalır ve kemik mineralizasyonu bozulur"}, {"letter": "C", "text": "Kan pıhtılaşması artar"}, {"letter": "D", "text": "NAD oluşumu artar"}, {"letter": "E", "text": "Lipid peroksidasyonu azalır"}], "answer": "B", "rationale": "Kalsitriol azalınca Ca emilimi düşer.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nKalsitriol azalınca Ca emilimi düşer."}, {"id": "V-18", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Vitamin E'nin fazla alınmasıyla en olası risklerden biri hangisidir?", "options": [{"letter": "A", "text": "Skorbüt"}, {"letter": "B", "text": "Kanama eğilimi (K vitamini ile etkileşim)"}, {"letter": "C", "text": "Beriberi"}, {"letter": "D", "text": "Gece körlüğü"}, {"letter": "E", "text": "Riket"}], "answer": "B", "rationale": "Yüksek E vitamini K'ya bağlı pıhtılaşmayı etkileyebilir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nYüksek E vitamini K'ya bağlı pıhtılaşmayı etkileyebilir."}, {"id": "V-19", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Vitamin K eksikliğinde en olası klinik bulgu hangisidir?", "options": [{"letter": "A", "text": "Dermatit"}, {"letter": "B", "text": "Kanama/pıhtılaşma bozukluğu"}, {"letter": "C", "text": "Kas zayıflığı (beri beri)"}, {"letter": "D", "text": "Demans"}, {"letter": "E", "text": "Görme bozukluğu"}], "answer": "B", "rationale": "K eksikliği pıhtılaşma faktörlerini etkiler.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nK eksikliği pıhtılaşma faktörlerini etkiler."}, {"id": "V-20", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "B6 (piridoksin) türevi PLP en çok hangi reaksiyonlarda rol alır?", "options": [{"letter": "A", "text": "Yağ asidi beta-oksidasyonu"}, {"letter": "B", "text": "Amino asit transaminasyon/dekarboksilasyon"}, {"letter": "C", "text": "DNA replikasyonu"}, {"letter": "D", "text": "Kolajen hidroksilasyonu"}, {"letter": "E", "text": "Gamma-karboksilasyon"}], "answer": "B", "rationale": "PLP, amino asit metabolizmasında aminotransferazların koenzimidir.", "hint": "Konu: PLP (B6) ve amino asit reaksiyonları\nPLP, amino asit metabolizmasında aminotransferazların koenzimidir."}, {"id": "V-21", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Biotin (B7) için en doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Elektron taşıyıcıdır (NAD)"}, {"letter": "B", "text": "Karbon dioksit taşıyarak karboksilasyon reaksiyonlarında rol alır"}, {"letter": "C", "text": "Aldehit transfer eder"}, {"letter": "D", "text": "Serbest radikalleri artırır"}, {"letter": "E", "text": "Pıhtılaşma faktörlerini aktive eder"}], "answer": "B", "rationale": "Biotin CO2 taşıyıcı koenzimdir (karboksilazlar).", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nBiotin CO2 taşıyıcı koenzimdir (karboksilazlar)."}, {"id": "V-22", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Folat (B9) türevi THF en çok ne taşır?", "options": [{"letter": "A", "text": "Elektron"}, {"letter": "B", "text": "Tek karbon birimleri (C1)"}, {"letter": "C", "text": "Amino grubu"}, {"letter": "D", "text": "Fosfat"}, {"letter": "E", "text": "Sülfat"}], "answer": "B", "rationale": "THF C1 birim taşır; purin/timidilat sentezinde kritik.", "hint": "Konu: Folat–B12 ilişkisi / tek-karbon metabolizması\nTHF C1 birim taşır; purin/timidilat sentezinde kritik."}, {"id": "V-23", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "B12 eksikliği ile folat eksikliği arasındaki ayırt edici klinik fark hangisidir?", "options": [{"letter": "A", "text": "B12'de anemi olmaz"}, {"letter": "B", "text": "B12'de nörolojik bulgular görülebilir"}, {"letter": "C", "text": "Folat sadece yağda çözünür"}, {"letter": "D", "text": "Folat kanamaya yol açar"}, {"letter": "E", "text": "B12 skorbüt yapar"}], "answer": "B", "rationale": "Her ikisi megaloblastik anemi yapabilir; B12 eksikliğinde nöro bulgular tipiktir.", "hint": "Konu: Folat–B12 ilişkisi / tek-karbon metabolizması\nHer ikisi megaloblastik anemi yapabilir; B12 eksikliğinde nöro bulgular tipiktir."}, {"id": "V-24", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Koenzim A'nın (CoA) vitamin kökeni hangisidir?", "options": [{"letter": "A", "text": "B1"}, {"letter": "B", "text": "B2"}, {"letter": "C", "text": "B3"}, {"letter": "D", "text": "B5 (pantotenik asit)"}, {"letter": "E", "text": "C"}], "answer": "D", "rationale": "Pantotenik asit CoA'nın bir parçasıdır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nPantotenik asit CoA'nın bir parçasıdır."}, {"id": "V-25", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "NAD+ daha çok hangi tip reaksiyonlarda görev alır?", "options": [{"letter": "A", "text": "Karboksilasyon"}, {"letter": "B", "text": "Redoks (hidrit transferi)"}, {"letter": "C", "text": "Gamma-karboksilasyon"}, {"letter": "D", "text": "Kovalent kataliz"}, {"letter": "E", "text": "Peptit bağını kırma"}], "answer": "B", "rationale": "NAD/NADP redoks koenzimleridir.", "hint": "Konu: NAD/NADP ve redoks reaksiyonları\nNAD/NADP redoks koenzimleridir."}, {"id": "V-26", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Vitamin C'nin biyokimyasal rolü için doğru ifade hangisidir?", "options": [{"letter": "A", "text": "Kolajen sentezinde prolin/lysin hidroksilasyonunda indirgen ajan olarak rol alır"}, {"letter": "B", "text": "Pıhtılaşmayı artırır"}, {"letter": "C", "text": "NAD oluşturur"}, {"letter": "D", "text": "FAD oluşturur"}, {"letter": "E", "text": "CoA oluşturur"}], "answer": "A", "rationale": "Askorbat, hidroksilazlarda indirgen gücü sağlar.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nAskorbat, hidroksilazlarda indirgen gücü sağlar."}, {"id": "V-27", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Demirin (Fe) biyokimyasal rolü için en uygun ifade hangisidir?", "options": [{"letter": "A", "text": "Sadece kemik yapar"}, {"letter": "B", "text": "Hemoglobin/myoglobin ve birçok enzimin (sitokromlar) redoks merkezidir"}, {"letter": "C", "text": "Sadece antioksidandır"}, {"letter": "D", "text": "DNA sentezini inhibe eder"}, {"letter": "E", "text": "Sadece pıhtılaşma yapar"}], "answer": "B", "rationale": "Fe O2 taşıma ve elektron taşımada kritik rol oynar.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nFe O2 taşıma ve elektron taşımada kritik rol oynar."}, {"id": "V-28", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Çinko (Zn) sık görülen bir kofaktördür. En uygun açıklama hangisidir?", "options": [{"letter": "A", "text": "Redoks yapar"}, {"letter": "B", "text": "Lewis asidi olarak polarizasyon/yük stabilizasyonu sağlayabilir"}, {"letter": "C", "text": "Sadece ATP üretir"}, {"letter": "D", "text": "Sadece görmede görevli"}, {"letter": "E", "text": "Sadece Ca emilimini artırır"}], "answer": "B", "rationale": "Zn2+ redoks yapmaz; katalizde polarizasyon/yük stabilizasyonu sağlayabilir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nZn2+ redoks yapmaz; katalizde polarizasyon/yük stabilizasyonu sağlayabilir."}, {"id": "V-29", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "İyot (I) eksikliğinde en olası sonuç hangisidir?", "options": [{"letter": "A", "text": "Pellagra"}, {"letter": "B", "text": "Guatr ve tiroid hormon sentezinde azalma"}, {"letter": "C", "text": "Skorbüt"}, {"letter": "D", "text": "Riket"}, {"letter": "E", "text": "Kanama"}], "answer": "B", "rationale": "İyot tiroid hormonlarının yapısında yer alır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nİyot tiroid hormonlarının yapısında yer alır."}, {"id": "V-30", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Orta", "stem": "Selenyum (Se) ile ilişkili en bilinen enzim sistemi hangisidir?", "options": [{"letter": "A", "text": "Transketolaz"}, {"letter": "B", "text": "Glutatyon peroksidaz"}, {"letter": "C", "text": "Hemoglobin"}, {"letter": "D", "text": "Kollajenaz"}, {"letter": "E", "text": "Pepsin"}], "answer": "B", "rationale": "Se, antioksidan enzim glutatyon peroksidazda yer alır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nSe, antioksidan enzim glutatyon peroksidazda yer alır."}, {"id": "V-31", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Alkolik bir hastada konfüzyon, ataksi ve oftalmopleji görülüyor. En olası vitamin eksikliği hangisidir?", "options": [{"letter": "A", "text": "B1 (tiamin)"}, {"letter": "B", "text": "B3 (niasin)"}, {"letter": "C", "text": "C"}, {"letter": "D", "text": "D"}, {"letter": "E", "text": "K"}], "answer": "A", "rationale": "Wernicke ensefalopatisi tiamin eksikliği ile ilişkilidir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nWernicke ensefalopatisi tiamin eksikliği ile ilişkilidir."}, {"id": "V-32", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Karboksilaz enzimlerinin aktivitesi azalmış, saç dökülmesi ve dermatit var. En olası vitamin eksikliği hangisidir?", "options": [{"letter": "A", "text": "B2"}, {"letter": "B", "text": "B7 (biotin)"}, {"letter": "C", "text": "B12"}, {"letter": "D", "text": "E"}, {"letter": "E", "text": "A"}], "answer": "B", "rationale": "Biotin eksikliği karboksilazları etkiler; dermatit/alopezi görülebilir.", "hint": "Konu: Biotin ve karboksilasyon\nBiotin eksikliği karboksilazları etkiler; dermatit/alopezi görülebilir."}, {"id": "V-33", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Megaloblastik anemi + periferik nöropati birlikteyse en olası eksiklik hangisidir?", "options": [{"letter": "A", "text": "Folat (B9)"}, {"letter": "B", "text": "B12"}, {"letter": "C", "text": "B6"}, {"letter": "D", "text": "B1"}, {"letter": "E", "text": "C"}], "answer": "B", "rationale": "B12 eksikliğinde nöro bulgular eşlik edebilir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nB12 eksikliğinde nöro bulgular eşlik edebilir."}, {"id": "V-34", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Bir hastada kanama zamanı uzamış, pıhtılaşma faktörleri düşük. En olası vitamin eksikliği hangisidir?", "options": [{"letter": "A", "text": "A"}, {"letter": "B", "text": "D"}, {"letter": "C", "text": "E"}, {"letter": "D", "text": "K"}, {"letter": "E", "text": "C"}], "answer": "D", "rationale": "K vitamini gamma-karboksilasyon için gereklidir.", "hint": "Konu: K vitamini ve pıhtılaşma\nK vitamini gamma-karboksilasyon için gereklidir."}, {"id": "V-35", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "NADP+/NADPH sistemi hücrede daha çok hangi amaçla kullanılır?", "options": [{"letter": "A", "text": "Katabolik enerji üretimi"}, {"letter": "B", "text": "Anabolik reaksiyonlar ve antioksidan savunma (redüktif güç)"}, {"letter": "C", "text": "Pıhtılaşma"}, {"letter": "D", "text": "Görme"}, {"letter": "E", "text": "Karboksilasyon"}], "answer": "B", "rationale": "NADPH biyosentez ve glutatyon indirgenmesi gibi süreçlerde kullanılır.", "hint": "Konu: NAD/NADP ve redoks reaksiyonları\nNADPH biyosentez ve glutatyon indirgenmesi gibi süreçlerde kullanılır."}, {"id": "V-36", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "TPP (B1 türevi) aşağıdaki hangi reaksiyon tipiyle en güçlü ilişkilidir?", "options": [{"letter": "A", "text": "Tek karbon transferi"}, {"letter": "B", "text": "Alfa-ketoasitlerin oksidatif dekarboksilasyonu"}, {"letter": "C", "text": "Gamma-karboksilasyon"}, {"letter": "D", "text": "Lipid peroksidasyonu"}, {"letter": "E", "text": "Serbest radikal süpürme"}], "answer": "B", "rationale": "PDH ve alfa-KGDH gibi komplekslerde TPP kullanılır.", "hint": "Konu: TPP ve dekarboksilasyon reaksiyonları\nPDH ve alfa-KGDH gibi komplekslerde TPP kullanılır."}, {"id": "V-37", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "FAD/FMN (B2) koenzimleri genelde nasıl elektron taşır?", "options": [{"letter": "A", "text": "Hidrit (2 e-) transferi ile zorunlu"}, {"letter": "B", "text": "Tek elektron veya çift elektron taşıyabilir"}, {"letter": "C", "text": "CO2 taşır"}, {"letter": "D", "text": "Amino grubu taşır"}, {"letter": "E", "text": "Fosfat taşır"}], "answer": "B", "rationale": "Flavinler 1e- veya 2e- transfer edebilir; semikinon ara ürünü mümkündür.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nFlavinler 1e- veya 2e- transfer edebilir; semikinon ara ürünü mümkündür."}, {"id": "V-38", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Vitamin A toksisitesi (hipervitaminoz A) için en olası durum hangisidir?", "options": [{"letter": "A", "text": "Sadece suda çözünen olduğu için atılır, toksisite olmaz"}, {"letter": "B", "text": "Yağda çözünen olduğu için depolanır; baş ağrısı, karaciğer toksisitesi görülebilir"}, {"letter": "C", "text": "Kanamayı azaltır"}, {"letter": "D", "text": "Riket yapar"}, {"letter": "E", "text": "Skorbüt yapar"}], "answer": "B", "rationale": "ADEK depolanır; aşırı alım toksisiteye yol açabilir.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nADEK depolanır; aşırı alım toksisiteye yol açabilir."}, {"id": "V-39", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Vitamin D fazlalığında en olası biyokimyasal/klinik sonuç hangisidir?", "options": [{"letter": "A", "text": "Hipokalsemi"}, {"letter": "B", "text": "Hiperkalsemi ve yumuşak doku kalsifikasyonu"}, {"letter": "C", "text": "Megaloblastik anemi"}, {"letter": "D", "text": "Pellagra"}, {"letter": "E", "text": "Skorbüt"}], "answer": "B", "rationale": "Aşırı D -> Ca artışı -> kalsifikasyon riskleri.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nAşırı D -> Ca artışı -> kalsifikasyon riskleri."}, {"id": "V-40", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Vitamin E eksikliğinde (nadiren) hangi süreçten özellikle etkilenme beklenir?", "options": [{"letter": "A", "text": "Lipid membranların oksidatif hasara duyarlılığı artar"}, {"letter": "B", "text": "DNA metilasyonu artar"}, {"letter": "C", "text": "Görme pigmenti azalır"}, {"letter": "D", "text": "Pıhtılaşma artar"}, {"letter": "E", "text": "Ca emilimi artar"}], "answer": "A", "rationale": "E, lipid antioksidandır; eksiklikte hemoliz/nöro bulgular görülebilir.", "hint": "Konu: NAD/NADP ve redoks reaksiyonları\nE, lipid antioksidandır; eksiklikte hemoliz/nöro bulgular görülebilir."}, {"id": "V-41", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Askorbik asit eksikliğinde diş eti kanaması ve yara iyileşmesinde gecikme beklenir. Bunun temel biyokimyasal nedeni hangisidir?", "options": [{"letter": "A", "text": "Gamma-karboksilasyon bozukluğu"}, {"letter": "B", "text": "Kolajen sentezinde hidroksilasyon reaksiyonlarının aksaması"}, {"letter": "C", "text": "Redoks reaksiyonlarının artması"}, {"letter": "D", "text": "DNA sentezinin artması"}, {"letter": "E", "text": "Ca emiliminin artması"}], "answer": "B", "rationale": "Prolin/lysin hidroksilasyonu bozulur; kollajen zayıflar.", "hint": "Konu: Enzim kinetiği (Km, Vmax, kcat)\nProlin/lysin hidroksilasyonu bozulur; kollajen zayıflar."}, {"id": "V-42", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "B12 eksikliğinde metilmalonik asit artışı genelde hangi durumla ilişkilidir?", "options": [{"letter": "A", "text": "Lipid sentezinin bozulması ve nörolojik hasar"}, {"letter": "B", "text": "Görme bozukluğu"}, {"letter": "C", "text": "Pıhtılaşma artışı"}, {"letter": "D", "text": "Ca emilimi artışı"}, {"letter": "E", "text": "Skorbüt"}], "answer": "A", "rationale": "Metilmalonil-CoA mutaz reaksiyonu B12'ye bağımlıdır; artış nöro bulgularla ilişkilidir.", "hint": "Konu: Folat–B12 ilişkisi / tek-karbon metabolizması\nMetilmalonil-CoA mutaz reaksiyonu B12'ye bağımlıdır; artış nöro bulgularla ilişkilidir."}, {"id": "V-43", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Folat tuzağı (methyl trap) hipotezine göre B12 eksikliğinde folat hangi formda 'kilitlenir'?", "options": [{"letter": "A", "text": "THF"}, {"letter": "B", "text": "5-metil-THF"}, {"letter": "C", "text": "10-formil-THF"}, {"letter": "D", "text": "5,10-metilen-THF"}, {"letter": "E", "text": "Folik asit"}], "answer": "B", "rationale": "B12 eksikliğinde 5-metil-THF THF'ye geri dönemez.", "hint": "Konu: Folat–B12 ilişkisi / tek-karbon metabolizması\nB12 eksikliğinde 5-metil-THF THF'ye geri dönemez."}, {"id": "V-44", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Glutatyon peroksidaz enziminin kofaktörü olan selenyum hangi amino asitte bulunur?", "options": [{"letter": "A", "text": "Serin"}, {"letter": "B", "text": "Sistein"}, {"letter": "C", "text": "Selenosistein"}, {"letter": "D", "text": "Metiyonin"}, {"letter": "E", "text": "Glisin"}], "answer": "C", "rationale": "Selenyum biyolojik olarak selenosistein formunda enzimlere katılır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nSelenyum biyolojik olarak selenosistein formunda enzimlere katılır."}, {"id": "V-45", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Çinko bağımlı bir enzim örneği olarak en sık verilenlerden biri hangisidir?", "options": [{"letter": "A", "text": "Karbonik anhidraz"}, {"letter": "B", "text": "Heksokinaz"}, {"letter": "C", "text": "Glukoz-6-fosfataz"}, {"letter": "D", "text": "Transketolaz"}, {"letter": "E", "text": "Pepsin"}], "answer": "A", "rationale": "Karbonik anhidraz Zn2+ ile suyu aktive eder.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nKarbonik anhidraz Zn2+ ile suyu aktive eder."}, {"id": "V-46", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "B2 eksikliğinde (riboflavin) en olası etkilenme hangisidir?", "options": [{"letter": "A", "text": "NAD/NADP azalır"}, {"letter": "B", "text": "FAD/FMN bağımlı redoks enzimleri etkilenir"}, {"letter": "C", "text": "KoA azalır"}, {"letter": "D", "text": "THF azalır"}, {"letter": "E", "text": "Pıhtılaşma azalır"}], "answer": "B", "rationale": "Riboflavin FAD/FMN öncülüdür; redoks reaksiyonları etkilenebilir.", "hint": "Konu: FAD/FMN ve redoks reaksiyonları\nRiboflavin FAD/FMN öncülüdür; redoks reaksiyonları etkilenebilir."}, {"id": "V-47", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "B3 eksikliğinde görülen pellagranın 3D triadı aşağıdakilerden hangisidir?", "options": [{"letter": "A", "text": "Dermatit - Diyare - Demans"}, {"letter": "B", "text": "Diş eti kanaması - Yara iyileşmesi - Morarma"}, {"letter": "C", "text": "Gece körlüğü - Kseroftalmi - Körlük"}, {"letter": "D", "text": "Kanama - Hemoliz - Kramplar"}, {"letter": "E", "text": "Riket - Osteomalazi - Tetani"}], "answer": "A", "rationale": "Pellagra: Dermatit, Diyare, Demans (tedavi edilmezse ölüm).", "hint": "Konu: NAD/NADP ve redoks reaksiyonları\nPellagra: Dermatit, Diyare, Demans (tedavi edilmezse ölüm)."}, {"id": "V-48", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "B6 (PLP) eksikliğinde en olası biyokimyasal sonuç hangisidir?", "options": [{"letter": "A", "text": "Transaminaz aktivitelerinde azalma"}, {"letter": "B", "text": "Gamma-karboksilasyon artışı"}, {"letter": "C", "text": "Kolajen hidroksilasyonu artışı"}, {"letter": "D", "text": "FAD oluşumu artışı"}, {"letter": "E", "text": "NADPH artışı"}], "answer": "A", "rationale": "PLP aminotransferazların koenzimidir; eksiklikte amino asit metabolizması etkilenir.", "hint": "Konu: PLP (B6) ve amino asit reaksiyonları\nPLP aminotransferazların koenzimidir; eksiklikte amino asit metabolizması etkilenir."}, {"id": "V-49", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Kalsiyum ve fosfat dengesinde hormon-vitamin ekseni için doğru eşleştirme hangisidir?", "options": [{"letter": "A", "text": "Kalsitriol (D) - Ca emilimini artırır"}, {"letter": "B", "text": "Retinal (A) - Ca emilimini artırır"}, {"letter": "C", "text": "Tokoferol (E) - kemik mineralizasyonu"}, {"letter": "D", "text": "K vitamini - Ca emilimini artırır"}, {"letter": "E", "text": "Askorbat (C) - PTH gibi davranır"}], "answer": "A", "rationale": "D vitamini aktif formu kalsitriol bağırsakta Ca emilimini artırır.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nD vitamini aktif formu kalsitriol bağırsakta Ca emilimini artırır."}, {"id": "V-50", "topicKey": "vit", "topic": "Vitaminler ve Koenzimler", "difficulty": "Zor", "stem": "Demir eksikliğinde en olası hematolojik sonuç hangisidir?", "options": [{"letter": "A", "text": "Makrositer anemi"}, {"letter": "B", "text": "Mikrositer-hipokrom anemi"}, {"letter": "C", "text": "Megaloblastik anemi"}, {"letter": "D", "text": "Hemolitik anemi (mutlaka)"}, {"letter": "E", "text": "Polisitemi"}], "answer": "B", "rationale": "Demir eksikliği Hb sentezini bozar -> mikrositer-hipokrom anemi.", "hint": "Konu: Vitamin/koenzim eşleştirmeleri\nDemir eksikliği Hb sentezini bozar -> mikrositer-hipokrom anemi."}];
+
+let settings = {
+  shuffle: false,
+  instantFeedback: true,
+};
+
+let order = [];
+let answers = {}; // index -> letter
+let current = 0;
+let finished = false;
+
+const el = (id) => document.getElementById(id);
+
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function setupOrder() {
+  order = Array.from({length: QUESTIONS.length}, (_, i) => i);
+  if (settings.shuffle) shuffleArray(order);
+}
+
+function getQ() {
+  const qi = order[current];
+  return { q: QUESTIONS[qi], qi };
+}
+
+function setHeaderMeta() {
+  if (finished) return;
+  const { q } = getQ();
+  const meta = el("qmeta");
+  meta.innerHTML = "";
+  const id = document.createElement("span");
+  id.className = "id";
+  id.textContent = q.id;
+  const diff = document.createElement("span");
+  diff.className = "diff";
+  diff.textContent = q.difficulty || "—";
+  const topic = document.createElement("span");
+  topic.className = "topic";
+  topic.textContent = q.topic;
+  const pos = document.createElement("span");
+  pos.className = "badge gray";
+  pos.textContent = `Soru ${current+1} / ${QUESTIONS.length}`;
+  meta.appendChild(id);
+  meta.appendChild(diff);
+  meta.appendChild(topic);
+  meta.appendChild(pos);
+
+  // header actions
+  const actions = el("headerActions");
+  actions.innerHTML = "";
+  const b1 = document.createElement("button");
+  b1.textContent = "Yeniden Başlat";
+  b1.onclick = () => restart(false);
+  const b2 = document.createElement("button");
+  b2.textContent = "Karıştır + Yeniden Başlat";
+  b2.onclick = () => restart(true);
+  actions.appendChild(b1);
+  actions.appendChild(b2);
+}
+
+function renderProgress() {
+  const pct = Math.round(((current) / (QUESTIONS.length-1)) * 100);
+  el("progFill").style.width = `${Math.max(0, Math.min(100, pct))}%`;
+}
+
+function renderQuestion() {
+  if (finished) return;
+  const { q, qi } = getQ();
+  setHeaderMeta();
+  renderProgress();
+
+  el("stem").textContent = q.stem;
+  el("hintBox").classList.remove("show");
+  el("hintBox").textContent = q.hint || "İpucu bulunamadı.";
+
+  const opts = el("options");
+  opts.innerHTML = "";
+
+  const userAns = answers[qi] || null;
+
+  q.options.forEach((opt) => {
+    const row = document.createElement("div");
+    row.className = "opt";
+
+    const letter = document.createElement("div");
+    letter.className = "letter";
+    letter.textContent = opt.letter;
+
+    const text = document.createElement("div");
+    text.className = "text";
+    text.textContent = opt.text;
+
+    row.appendChild(letter);
+    row.appendChild(text);
+
+    row.onclick = () => selectAnswer(opt.letter);
+    opts.appendChild(row);
+  });
+
+  // Feedback area
+  el("feedback").classList.remove("show");
+  el("fbLine1").textContent = "";
+  el("fbLine2").textContent = "";
+
+  // If already answered, re-apply UI and optionally show feedback
+  if (userAns) {
+    applyMarking(userAns);
+    if (settings.instantFeedback) showFeedback(userAns);
+  }
+
+  // Next button label on last
+  el("nextBtn").textContent = (current === QUESTIONS.length-1) ? "Bitti → Sonuç" : "Sonraki →";
+}
+
+function applyMarking(selectedLetter) {
+  const { q } = getQ();
+  const rows = Array.from(el("options").children);
+  rows.forEach((row) => {
+    const letter = row.querySelector(".letter")?.textContent;
+    row.classList.remove("correct", "wrong");
+    if (letter === q.answer) row.classList.add("correct");
+    if (selectedLetter && letter === selectedLetter && selectedLetter !== q.answer) row.classList.add("wrong");
+  });
+}
+
+function showFeedback(selectedLetter) {
+  const { q } = getQ();
+  const fb = el("feedback");
+  const isCorrect = selectedLetter === q.answer;
+  const correctOpt = q.options.find(o => o.letter === q.answer);
+  const selectedOpt = q.options.find(o => o.letter === selectedLetter);
+
+  fb.classList.add("show");
+  el("fbLine1").innerHTML = "";
+  const span = document.createElement("span");
+  span.className = isCorrect ? "ok" : "no";
+  span.textContent = isCorrect ? "Doğru." : "Yanlış.";
+  const strong = document.createElement("strong");
+  strong.textContent = ` Doğru cevap: ${q.answer}`;
+  const txt = document.createElement("span");
+  txt.style.color = "var(--text)";
+  txt.textContent = correctOpt ? ` — ${correctOpt.text}` : "";
+  el("fbLine1").appendChild(span);
+  el("fbLine1").appendChild(strong);
+  el("fbLine1").appendChild(txt);
+
+  const rationale = (q.rationale || "").trim();
+  el("fbLine2").textContent = rationale ? ("Gerekçe: " + rationale) : "Gerekçe: (Bu soru için kısa gerekçe yok.)";
+}
+
+function selectAnswer(letter) {
+  const { qi } = getQ();
+  answers[qi] = letter;
+  applyMarking(letter);
+  if (settings.instantFeedback) showFeedback(letter);
+}
+
+function next() {
+  if (current === QUESTIONS.length - 1) {
+    finish();
+    return;
+  }
+  current += 1;
+  renderQuestion();
+}
+
+function prev() {
+  if (current === 0) return;
+  current -= 1;
+  renderQuestion();
+}
+
+function toggleHint() {
+  el("hintBox").classList.toggle("show");
+}
+
+function finish() {
+  finished = true;
+  el("quizScreen").style.display = "none";
+  el("resultsScreen").classList.add("show");
+
+  // Header update
+  const meta = el("qmeta");
+  meta.innerHTML = "";
+  const badge = document.createElement("span");
+  badge.className = "badge";
+  badge.textContent = "Sonuç ekranı";
+  meta.appendChild(badge);
+
+  const actions = el("headerActions");
+  actions.innerHTML = "";
+  const b = document.createElement("button");
+  b.className = "primary";
+  b.textContent = "Yeniden Başlat";
+  b.onclick = () => restart(false);
+  actions.appendChild(b);
+
+  // Compute stats
+  let correct = 0, wrong = 0, unanswered = 0;
+  const wrongItems = [];
+  for (let i = 0; i < QUESTIONS.length; i++) {
+    const q = QUESTIONS[i];
+    const ua = answers[i] || null;
+    if (!ua) {
+      unanswered += 1;
+    } else if (ua === q.answer) {
+      correct += 1;
+    } else {
+      wrong += 1;
+      wrongItems.push({ index: i, q, ua });
+    }
+  }
+  const totalAnswered = correct + wrong;
+  const acc = totalAnswered ? Math.round((correct / totalAnswered) * 100) : 0;
+
+  // Stats grid
+  const sg = el("statgrid");
+  sg.innerHTML = "";
+  const stats = [
+    {k:"Toplam", v: QUESTIONS.length},
+    {k:"Doğru", v: correct},
+    {k:"Yanlış", v: wrong},
+    {k:"Boş", v: unanswered},
+  ];
+  stats.forEach(s => {
+    const d = document.createElement("div");
+    d.className = "stat";
+    const k = document.createElement("div");
+    k.className = "k";
+    k.textContent = s.k;
+    const v = document.createElement("div");
+    v.className = "v";
+    v.textContent = s.v;
+    d.appendChild(k); d.appendChild(v);
+    sg.appendChild(d);
+  });
+
+  // Wrong list
+  const wl = el("wrongList");
+  wl.innerHTML = "";
+  if (wrongItems.length === 0) {
+    const ok = document.createElement("div");
+    ok.className = "stat";
+    ok.innerHTML = "<div class='k'>Tebrikler</div><div class='v'>Yanlış yok</div>";
+    wl.appendChild(ok);
+  } else {
+    wrongItems.forEach((it) => {
+      const w = document.createElement("div");
+      w.className = "wrongitem";
+      const top = document.createElement("div");
+      top.className = "top";
+      const qid = document.createElement("span");
+      qid.className = "qid";
+      qid.textContent = it.q.id;
+      const mini = document.createElement("span");
+      mini.className = "mini";
+      mini.textContent = it.q.topic + " • " + (it.q.difficulty || "—");
+      top.appendChild(qid);
+      top.appendChild(mini);
+
+      const stem = document.createElement("div");
+      stem.className = "ans";
+      stem.textContent = it.q.stem;
+
+      const corrOpt = it.q.options.find(o => o.letter === it.q.answer);
+      const yourOpt = it.q.options.find(o => o.letter === it.ua);
+
+      const ans = document.createElement("div");
+      ans.className = "ans";
+      ans.textContent = `Senin cevabın: ${it.ua}${yourOpt ? " — " + yourOpt.text : ""} | Doğru: ${it.q.answer}${corrOpt ? " — " + corrOpt.text : ""}`;
+
+      const go = document.createElement("button");
+      go.textContent = "Soruya git";
+      go.onclick = () => {
+        // jump to that question in quiz mode
+        finished = false;
+        el("resultsScreen").classList.remove("show");
+        el("quizScreen").style.display = "block";
+        // find the position of this index in current order
+        const pos = order.indexOf(it.index);
+        current = (pos >= 0) ? pos : 0;
+        renderQuestion();
+      };
+
+      w.appendChild(top);
+      w.appendChild(stem);
+      w.appendChild(ans);
+      w.appendChild(go);
+      wl.appendChild(w);
+    });
+  }
+}
+
+function restart(withShuffle) {
+  finished = false;
+  el("resultsScreen").classList.remove("show");
+  el("startScreen").style.display = "none";
+  el("quizScreen").style.display = "block";
+  answers = {};
+  current = 0;
+  if (withShuffle !== null && withShuffle !== undefined) {
+    settings.shuffle = !!withShuffle;
+  }
+  setupOrder();
+  renderQuestion();
+}
+
+function startFromStartScreen() {
+  settings.shuffle = el("chkShuffle").checked;
+  settings.instantFeedback = el("chkInstant").checked;
+  el("startScreen").style.display = "none";
+  el("quizScreen").style.display = "block";
+  answers = {};
+  current = 0;
+  finished = false;
+  setupOrder();
+  renderQuestion();
+}
+
+function showStatsPreview() {
+  const counts = {protein:0, enz:0, vit:0};
+  QUESTIONS.forEach(q => counts[q.topicKey] = (counts[q.topicKey]||0)+1);
+  alert(`Soru dağılımı\n\nProtein: ${counts.protein}\nEnzimler: ${counts.enz}\nVitamin/Koenzim: ${counts.vit}\n\nToplam: ${QUESTIONS.length}`);
+}
+
+// Wire UI
+el("btnStart").onclick = () => el("startNow").click();
+el("startNow").onclick = startFromStartScreen;
+el("previewStats").onclick = showStatsPreview;
+
+el("nextBtn").onclick = next;
+el("prevBtn").onclick = prev;
+el("hintBtn").onclick = toggleHint;
+el("finishBtn").onclick = finish;
+
+el("restartBtn").onclick = () => {
+  // go back to start screen, preserving current checkbox states
+  finished = false;
+  el("resultsScreen").classList.remove("show");
+  el("quizScreen").style.display = "none";
+  el("startScreen").style.display = "grid";
+  // header reset
+  el("qmeta").innerHTML = '<span class="badge gray">Hazır</span>';
+  el("headerActions").innerHTML = '<button id="btnStart2" class="primary">Başla</button>';
+  setTimeout(() => {
+    const b = document.getElementById("btnStart2");
+    if (b) b.onclick = () => el("startNow").click();
+  }, 0);
+};
+
+el("toggleShuffleRestart").onclick = () => restart(true);
+el("reviewWrong").onclick = () => {
+  // jump to first wrong question, if any
+  const wrong = [];
+  for (let i=0;i<QUESTIONS.length;i++) {
+    const ua = answers[i] || null;
+    if (ua && ua !== QUESTIONS[i].answer) wrong.push(i);
+  }
+  if (wrong.length === 0) {
+    alert("Yanlışın yok. İstersen karıştırıp yeniden çözebilirsin.");
+    return;
+  }
+  finished = false;
+  el("resultsScreen").classList.remove("show");
+  el("quizScreen").style.display = "block";
+  // navigate to first wrong in order
+  const pos = order.indexOf(wrong[0]);
+  current = (pos >= 0) ? pos : 0;
+  renderQuestion();
+};
+
+// Keyboard controls
+document.addEventListener("keydown", (e) => {
+  // Don't hijack when focusing inputs (none) or if start screen visible
+  if (el("startScreen").style.display !== "none") return;
+  if (finished) return;
+
+  if (e.key === "ArrowRight") { e.preventDefault(); next(); }
+  if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
+  if (e.key.toLowerCase() === "h") { e.preventDefault(); toggleHint(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); finish(); }
+});
+</script>
+</body>
+</html>
