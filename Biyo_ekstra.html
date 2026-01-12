@@ -254,194 +254,286 @@
     <script>
         /* --- VERİ SETİ (30 SORU) --- */
         const questionsData = [
-            // Vitaminler
+            // --- YAĞDA ÇÖZÜNEN VİTAMİNLER (A, D, E, K) ---
             {
                 id: 1,
-                text: "Göz sağlığı için kritik olan ve eksikliğinde 'Gece Körlüğü' görülen vitamin hangisidir?",
-                options: ["A Vitamini", "C Vitamini", "D Vitamini", "K Vitamini"],
-                answer: "A Vitamini"
+                text: "Alacakaranlıkta görmeyi sağlayan rodopsin pigmentinin yapısına katılan ve eksikliğinde 'Gece Körlüğü' oluşan vitamin hangisidir?",
+                options: ["A Vitamini (Retinol)", "E Vitamini", "D Vitamini", "C Vitamini"],
+                answer: "A Vitamini (Retinol)"
             },
             {
                 id: 2,
-                text: "Kollajen sentezi için gerekli olan ve eksikliğinde 'Skorbüt' hastalığına yol açan vitamin hangisidir?",
-                options: ["B12 Vitamini", "C Vitamini", "E Vitamini", "A Vitamini"],
-                answer: "C Vitamini"
-            },
-            {
-                id: 3,
-                text: "Kalsiyum emilimi için elzem olan ve eksikliğinde çocuklarda 'Raşitizm' görülen vitamin hangisidir?",
-                options: ["D Vitamini", "K Vitamini", "B1 Vitamini", "C Vitamini"],
+                text: "Kalsiyum ve fosforun bağırsaklardan emilimini artırarak kemik gelişimini sağlayan vitamin hangisidir?",
+                options: ["D Vitamini", "K Vitamini", "A Vitamini", "B12 Vitamini"],
                 answer: "D Vitamini"
             },
             {
+                id: 3,
+                text: "En güçlü antioksidanlardan biri olup hücre zarını serbest radikallerden koruyan vitamin hangisidir?",
+                options: ["E Vitamini (Tokoferol)", "D Vitamini", "K Vitamini", "B1 Vitamini"],
+                answer: "E Vitamini (Tokoferol)"
+            },
+            {
                 id: 4,
-                text: "Kanın pıhtılaşma faktörlerinin sentezinde görev alan vitamin hangisidir?",
-                options: ["E Vitamini", "A Vitamini", "K Vitamini", "D Vitamini"],
+                text: "Kanın pıhtılaşma faktörlerinin (Protrombin vb.) sentezi için karaciğerde gerekli olan vitamin hangisidir?",
+                options: ["K Vitamini", "E Vitamini", "C Vitamini", "B6 Vitamini"],
                 answer: "K Vitamini"
             },
             {
                 id: 5,
-                text: "Aşağıdakilerden hangisi B12 vitamini eksikliğinin en belirgin sonucudur?",
-                options: ["Gece Körlüğü", "Pernisiyöz Anemi", "Kısırlık", "Deri Döküntüsü"],
-                answer: "Pernisiyöz Anemi"
+                text: "Çocuklarda 'Raşitizm', yetişkinlerde 'Osteomalazi' hastalığı hangi vitaminin eksikliğinde görülür?",
+                options: ["D Vitamini", "A Vitamini", "E Vitamini", "K Vitamini"],
+                answer: "D Vitamini"
             },
+
+            // --- SUDA ÇÖZÜNEN VİTAMİNLER (C ve B KOMPLEKSİ) ---
             {
                 id: 6,
-                text: "Antioksidan özelliği ile hücre zarlarını koruyan vitamin hangisidir?",
-                options: ["E Vitamini", "D Vitamini", "B1 Vitamini", "K Vitamini"],
-                answer: "E Vitamini"
+                text: "Bağ dokusu proteini olan Kollajen sentezi için elzem olan ve eksikliğinde 'Skorbüt' görülen vitamin hangisidir?",
+                options: ["C Vitamini (Askorbik Asit)", "B1 Vitamini", "E Vitamini", "D Vitamini"],
+                answer: "C Vitamini (Askorbik Asit)"
             },
             {
                 id: 7,
-                text: "____ vitamini, özellikle turunçgillerde, kivi ve yeşil biberde bol miktarda bulunur.",
-                options: ["A", "D", "C", "B12"],
-                answer: "C"
+                text: "Karbonhidrat metabolizmasında (Pirüvat Dehidrogenaz) koenzim olarak görev yapan ve eksikliğinde 'Beriberi' hastalığı oluşan vitamin hangisidir?",
+                options: ["B1 (Tiamin)", "B2 (Riboflavin)", "B3 (Niasin)", "B6 (Piridoksin)"],
+                answer: "B1 (Tiamin)"
             },
             {
                 id: 8,
-                text: "Güneş ışığı yardımıyla deride sentezlenebilen vitamin hangisidir?",
-                options: ["C Vitamini", "D Vitamini", "B6 Vitamini", "E Vitamini"],
-                answer: "D Vitamini"
+                text: "FAD ve FMN koenzimlerinin yapısına katılan, eksikliğinde ağız kenarında çatlaklar (Keylozis) görülen vitamin hangisidir?",
+                options: ["B2 (Riboflavin)", "B1 (Tiamin)", "B12 (Kobalamin)", "C Vitamini"],
+                answer: "B2 (Riboflavin)"
             },
-            
-            // Mineraller
             {
                 id: 9,
-                text: "Hemoglobinin yapısına katılan ve eksikliğinde anemi (kansızlık) görülen mineral hangisidir?",
-                options: ["Kalsiyum", "Demir", "Çinko", "Magnezyum"],
-                answer: "Demir"
+                text: "NAD+ ve NADP+ koenzimlerinin öncüsü olan ve eksikliğinde 'Pellegra' (Dermatit, Demans, Diyare) görülen vitamin hangisidir?",
+                options: ["B3 (Niasin)", "B1 (Tiamin)", "B9 (Folat)", "B5 (Pantotenik Asit)"],
+                answer: "B3 (Niasin)"
             },
             {
                 id: 10,
-                text: "Tiroid hormonlarının sentezi için gerekli olan ve eksikliğinde 'Guatr' hastalığı oluşan mineral nedir?",
-                options: ["İyot", "Sodyum", "Potasyum", "Klor"],
-                answer: "İyot"
+                text: "Koenzim A'nın (CoA) yapısına katılan ve enerji metabolizmasında merkezi rol oynayan vitamin hangisidir?",
+                options: ["B5 (Pantotenik Asit)", "B3 (Niasin)", "B7 (Biotin)", "B1 (Tiamin)"],
+                answer: "B5 (Pantotenik Asit)"
             },
             {
                 id: 11,
-                text: "Kemik ve dişlerin yapısının büyük bölümünü oluşturan mineral hangisidir?",
-                options: ["Demir", "Kalsiyum", "Çinko", "Selenyum"],
-                answer: "Kalsiyum"
+                text: "Amino asit metabolizmasında (Transaminasyon reaksiyonlarında) çok önemli rol oynayan vitamin hangisidir?",
+                options: ["B6 (Piridoksin)", "B2 (Riboflavin)", "B1 (Tiamin)", "C Vitamini"],
+                answer: "B6 (Piridoksin)"
             },
             {
                 id: 12,
-                text: "Kas kasılması ve sinir iletiminde kilit rol oynayan hücre içi temel katyon hangisidir?",
-                options: ["Sodyum", "Potasyum", "Bakır", "Flor"],
-                answer: "Potasyum"
+                text: "Karboksilasyon reaksiyonlarında (örn: pirüvat karboksilaz) koenzim olarak görev yapan ve çiğ yumurta akındaki 'Avidin' tarafından emilimi engellenen vitamin hangisidir?",
+                options: ["B7 (Biotin)", "B12 (Kobalamin)", "B9 (Folat)", "B3 (Niasin)"],
+                answer: "B7 (Biotin)"
             },
             {
                 id: 13,
-                text: "Yara iyileşmesi ve bağışıklık sistemi fonksiyonları için elzem olan mineral hangisidir?",
-                options: ["Çinko", "Kalsiyum", "Klor", "Fosfor"],
-                answer: "Çinko"
+                text: "DNA sentezi ve hücre bölünmesi için kritik olan, gebelikte eksikliği 'Nöral Tüp Defektine' yol açan vitamin hangisidir?",
+                options: ["B9 (Folik Asit)", "B12 (Kobalamin)", "B6 (Piridoksin)", "A Vitamini"],
+                answer: "B9 (Folik Asit)"
             },
             {
                 id: 14,
-                text: "Diş minesini sertleştirerek çürükleri önleyen mineral hangisidir?",
-                options: ["Flor", "İyot", "Demir", "Magnezyum"],
-                answer: "Flor"
+                text: "Sadece hayvansal kaynaklarda bulunan, mideden salgılanan 'İntrinsik Faktör' ile emilen ve eksikliğinde 'Pernisiyöz Anemi' görülen vitamin hangisidir?",
+                options: ["B12 (Kobalamin)", "B9 (Folat)", "Demir", "B6 (Piridoksin)"],
+                answer: "B12 (Kobalamin)"
             },
-            
-            // Enzim Sınıfları (Boşluk Doldurma ve Tanımlar)
+
+            // --- MAKRO MİNERALLER ---
             {
                 id: 15,
-                text: "İki molekülü ATP enerjisi kullanarak birleştiren enzim sınıfına ____ denir.",
-                options: ["Ligazlar", "Hidrolazlar", "Liyazlar", "İzomerazlar"],
-                answer: "Ligazlar"
+                text: "Vücutta en fazla bulunan mineral olup kemik ve diş yapısının temelini oluşturan element hangisidir?",
+                options: ["Kalsiyum (Ca)", "Fosfor (P)", "Magnezyum (Mg)", "Demir (Fe)"],
+                answer: "Kalsiyum (Ca)"
             },
             {
                 id: 16,
-                text: "Su katarak kimyasal bağları parçalayan (hidroliz yapan) enzim sınıfı hangisidir?",
-                options: ["Transferazlar", "Hidrolazlar", "Oksidoredüktazlar", "Ligazlar"],
-                answer: "Hidrolazlar"
+                text: "Hücre dışı sıvının temel katyonu olup kan basıncı ve sıvı dengesini düzenleyen mineral hangisidir?",
+                options: ["Sodyum (Na)", "Potasyum (K)", "Klor (Cl)", "Kalsiyum (Ca)"],
+                answer: "Sodyum (Na)"
             },
             {
                 id: 17,
-                text: "Molekül içi düzenlemeler yaparak bir molekülü izomerine dönüştüren enzim sınıfı nedir?",
-                options: ["Liyazlar", "İzomerazlar", "Oksidoredüktazlar", "Transferazlar"],
-                answer: "İzomerazlar"
+                text: "Hücre içi sıvının temel katyonu olan ve kalbin elektriksel aktivitesi ile kas kasılmasında hayati rol oynayan mineral hangisidir?",
+                options: ["Potasyum (K)", "Sodyum (Na)", "Magnezyum (Mg)", "Demir (Fe)"],
+                answer: "Potasyum (K)"
             },
             {
                 id: 18,
-                text: "Bir molekülden fonksiyonel bir grubu (örn: metil, fosfat) başka bir moleküle taşıyan enzim sınıfı hangisidir?",
-                options: ["Transferazlar", "Ligazlar", "Hidrolazlar", "Oksidoredüktazlar"],
-                answer: "Transferazlar"
+                text: "DNA, RNA ve ATP'nin yapısında bulunan, kemiklerde kalsiyumla birlikte yer alan mineral hangisidir?",
+                options: ["Fosfor (P)", "Kükürt (S)", "Klor (Cl)", "Çinko (Zn)"],
+                answer: "Fosfor (P)"
             },
             {
                 id: 19,
-                text: "Oksidasyon-redüksiyon (indirgenme-yükseltgenme) tepkimelerini katalizleyen enzim sınıfı hangisidir?",
-                options: ["Hidrolazlar", "Oksidoredüktazlar", "Liyazlar", "İzomerazlar"],
-                answer: "Oksidoredüktazlar"
+                text: "Mide asidinin (HCl) üretiminde görev alan temel anyon hangisidir?",
+                options: ["Klor (Cl)", "Sodyum (Na)", "Potasyum (K)", "İyot (I)"],
+                answer: "Klor (Cl)"
             },
             {
                 id: 20,
-                text: "Su kullanmadan veya oksidasyon olmadan bağları kopararak çift bağ oluşturan enzim sınıfına ____ denir.",
+                text: "Klorofilin yapısında bulunan, insanlarda ise 300'den fazla enzimin kofaktörü olan ve kas kramplarını önleyen mineral hangisidir?",
+                options: ["Magnezyum (Mg)", "Demir (Fe)", "Bakır (Cu)", "Mangan (Mn)"],
+                answer: "Magnezyum (Mg)"
+            },
+            {
+                id: 21,
+                text: "Metiyonin ve Sistein gibi amino asitlerin yapısında bulunan mineral hangisidir?",
+                options: ["Kükürt (S)", "Fosfor (P)", "Selenyum (Se)", "Demir (Fe)"],
+                answer: "Kükürt (S)"
+            },
+
+            // --- MİKRO (ESER) MİNERALLER ---
+            {
+                id: 22,
+                text: "Hemoglobinin yapısında oksijen taşıyan ve eksikliğinde en sık görülen anemi türüne yol açan mineral hangisidir?",
+                options: ["Demir (Fe)", "Çinko (Zn)", "Bakır (Cu)", "Magnezyum (Mg)"],
+                answer: "Demir (Fe)"
+            },
+            {
+                id: 23,
+                text: "T3 ve T4 tiroid hormonlarının sentezi için zorunlu olan ve eksikliğinde 'Guatr' görülen mineral hangisidir?",
+                options: ["İyot (I)", "Selenyum (Se)", "Çinko (Zn)", "Flor (F)"],
+                answer: "İyot (I)"
+            },
+            {
+                id: 24,
+                text: "İnsülinin etkisini artırarak glikoz tolerans faktörü olarak çalışan mineral hangisidir?",
+                options: ["Krom (Cr)", "Mangan (Mn)", "İyot (I)", "Kobalt (Co)"],
+                answer: "Krom (Cr)"
+            },
+            {
+                id: 25,
+                text: "Bağışıklık sistemi, yara iyileşmesi ve tat alma duyusu için kritik olan mineral hangisidir?",
+                options: ["Çinko (Zn)", "Bakır (Cu)", "Demir (Fe)", "Kalsiyum (Ca)"],
+                answer: "Çinko (Zn)"
+            },
+            {
+                id: 26,
+                text: "Glutatyon Peroksidaz enziminin yapısında bulunan ve E vitamini ile birlikte güçlü bir antioksidan olan mineral hangisidir?",
+                options: ["Selenyum (Se)", "Çinko (Zn)", "Magnezyum (Mg)", "Fosfor (P)"],
+                answer: "Selenyum (Se)"
+            },
+            {
+                id: 27,
+                text: "Demir emilimi için gerekli olan, fazlalığında 'Wilson Hastalığı'na (karaciğer ve beyinde birikim) yol açan mineral hangisidir?",
+                options: ["Bakır (Cu)", "Çinko (Zn)", "Mangan (Mn)", "Krom (Cr)"],
+                answer: "Bakır (Cu)"
+            },
+            {
+                id: 28,
+                text: "Diş minesinin yapısını güçlendirerek çürükleri önleyen mineral hangisidir?",
+                options: ["Flor (F)", "Kalsiyum (Ca)", "Fosfor (P)", "Çinko (Zn)"],
+                answer: "Flor (F)"
+            },
+            {
+                id: 29,
+                text: "B12 vitamininin (Kobalamin) merkezinde bulunan atom hangisidir?",
+                options: ["Kobalt (Co)", "Demir (Fe)", "Magnezyum (Mg)", "Nikel (Ni)"],
+                answer: "Kobalt (Co)"
+            },
+
+            // --- ENZİM SINIFLARI & GENEL KAVRAMLAR ---
+            {
+                id: 30,
+                text: "ATP enerjisi kullanarak iki molekülü birbirine bağlayan (örn: DNA birleşimi) enzim sınıfına ____ denir.",
+                options: ["Ligazlar", "Liyazlar", "Hidrolazlar", "Transferazlar"],
+                answer: "Ligazlar"
+            },
+            {
+                id: 31,
+                text: "Su katarak kimyasal bağları kıran (Sindirim enzimleri bu gruba girer) enzim sınıfı hangisidir?",
+                options: ["Hidrolazlar", "Oksidoredüktazlar", "İzomerazlar", "Ligazlar"],
+                answer: "Hidrolazlar"
+            },
+            {
+                id: 32,
+                text: "Bir molekül içindeki atomların yerini değiştirerek izomerini oluşturan enzim sınıfı nedir?",
+                options: ["İzomerazlar", "Transferazlar", "Liyazlar", "Ligazlar"],
+                answer: "İzomerazlar"
+            },
+            {
+                id: 33,
+                text: "Bir molekülden fosfat, metil vb. grupları başka bir moleküle taşıyan (örn: Kinazlar) enzim sınıfı hangisidir?",
+                options: ["Transferazlar", "Ligazlar", "Oksidoredüktazlar", "Hidrolazlar"],
+                answer: "Transferazlar"
+            },
+            {
+                id: 34,
+                text: "Elektron transferi yaparak İndirgenme-Yükseltgenme (Redoks) tepkimelerini katalizleyen enzim sınıfı hangisidir?",
+                options: ["Oksidoredüktazlar", "Hidrolazlar", "Liyazlar", "İzomerazlar"],
+                answer: "Oksidoredüktazlar"
+            },
+            {
+                id: 35,
+                text: "Su kullanmadan kovalent bağları kırarak çift bağ oluşturan veya çift bağlara grup ekleyen enzim sınıfı hangisidir?",
                 options: ["Liyazlar", "Ligazlar", "Transferazlar", "Hidrolazlar"],
                 answer: "Liyazlar"
             },
             {
-                id: 21,
-                text: "Laktat Dehidrogenaz enzimi, elektron transferi yaptığı için hangi sınıfa girer?",
-                options: ["Oksidoredüktazlar", "Ligazlar", "İzomerazlar", "Hidrolazlar"],
-                answer: "Oksidoredüktazlar"
+                id: 36,
+                text: "Enzimlerin protein olmayan yardımcı kısımlarına (vitamin veya mineral kökenli) genel olarak ne ad verilir?",
+                options: ["Kofaktör", "Apoenzim", "Substrat", "İnhibitör"],
+                answer: "Kofaktör"
             },
             {
-                id: 22,
-                text: "DNA moleküllerini birbirine bağlayan DNA Ligaz enzimi hangi sınıfa örnektir?",
-                options: ["Liyazlar", "Ligazlar", "Transferazlar", "Hidrolazlar"],
-                answer: "Ligazlar"
+                id: 37,
+                text: "Enzimlerin sadece protein kısmına (yardımcı kısım olmadan) ne ad verilir?",
+                options: ["Apoenzim", "Holoenzim", "Koenzim", "Zimojen"],
+                answer: "Apoenzim"
             },
             {
-                id: 23,
-                text: "Sindirim enzimleri (Pepsin, Tripsin vb.) genellikle hangi sınıfa aittir?",
-                options: ["Oksidoredüktazlar", "Hidrolazlar", "İzomerazlar", "Ligazlar"],
-                answer: "Hidrolazlar"
-            },
-
-            // Karışık / Detay Sorular
-            {
-                id: 24,
-                text: "Hangisi yağda çözünen vitaminlerden biridir?",
-                options: ["C Vitamini", "B1 Vitamini", "A Vitamini", "B6 Vitamini"],
-                answer: "A Vitamini"
+                id: 38,
+                text: "Organik yapılı kofaktörlere (genellikle B vitaminlerinden türetilir) ne ad verilir?",
+                options: ["Koenzim", "Prostetik grup", "Apoenzim", "Substrat"],
+                answer: "Koenzim"
             },
             {
-                id: 25,
-                text: "Suda çözünen vitaminlerin vücutta depolanma özelliği nasıldır?",
-                options: ["Yüksek oranda depolanır", "Depolanmaz, fazlası atılır", "Sadece karaciğerde depolanır", "Yağ dokusunda birikir"],
-                answer: "Depolanmaz, fazlası atılır"
+                id: 39,
+                text: "Aşırı sıcaklık veya pH değişimi sonucu enzimin üç boyutlu yapısının bozulmasına ne denir?",
+                options: ["Denatürasyon", "Renatürasyon", "İnhibisyon", "Aktivasyon"],
+                answer: "Denatürasyon"
             },
             {
-                id: 26,
-                text: "ATP'den bir fosfat grubunu glikoza aktaran Hekzokinaz enzimi hangi sınıfa girer?",
-                options: ["Transferazlar", "Liyazlar", "İzomerazlar", "Hidrolazlar"],
-                answer: "Transferazlar"
+                id: 40,
+                text: "Aşağıdakilerden hangisi yağda çözünen vitaminlerin ortak özelliğidir?",
+                options: ["Vücutta (karaciğer ve yağ dokuda) depolanabilirler", "Günlük alınmaları zorunludur", "Fazlası idrarla atılır", "Koenzim olarak görev yapmazlar"],
+                answer: "Vücutta (karaciğer ve yağ dokuda) depolanabilirler"
             },
             {
-                id: 27,
-                text: "Hamilelikte nöral tüp defektlerini önlemek için alınması gereken B grubu vitamini hangisidir?",
-                options: ["Folik Asit (B9)", "B12", "B1", "B2"],
-                answer: "Folik Asit (B9)"
+                id: 41,
+                text: "Hangi mineralin eksikliği erkeklerde sperm üretimini olumsuz etkiler ve kısırlıkla ilişkilendirilir?",
+                options: ["Çinko (Zn)", "Demir (Fe)", "Kalsiyum (Ca)", "Sodyum (Na)"],
+                answer: "Çinko (Zn)"
             },
             {
-                id: 28,
-                text: "Kas kramplarının önlenmesinde önemli rol oynayan mineral hangisidir?",
-                options: ["Magnezyum", "Demir", "Çinko", "Flor"],
-                answer: "Magnezyum"
+                id: 42,
+                text: "Alkolizmde emilimi en çok bozulan ve eksikliğinde Wernicke-Korsakoff sendromu görülen vitamin hangisidir?",
+                options: ["B1 (Tiamin)", "C Vitamini", "D Vitamini", "E Vitamini"],
+                answer: "B1 (Tiamin)"
             },
             {
-                id: 29,
-                text: "Glukoz-6-fosfatı, Fruktoz-6-fosfata çeviren enzim hangi sınıftandır?",
-                options: ["İzomerazlar", "Ligazlar", "Oksidoredüktazlar", "Hidrolazlar"],
-                answer: "İzomerazlar"
+                id: 43,
+                text: "Hangi vitamin bitkisel besinlerde hiç bulunmaz, sadece hayvansal gıdalardan veya takviye ile alınır?",
+                options: ["B12", "C", "Folat", "K"],
+                answer: "B12"
             },
             {
-                id: 30,
-                text: "Enzimlerin çalışmasını durduran veya yavaşlatan maddelere ne ad verilir?",
-                options: ["Kofaktör", "İnhibitör", "Koenzim", "Substrat"],
-                answer: "İnhibitör"
+                id: 44,
+                text: "Kan basıncının yükselmesine (hipertansiyon) neden olan mineralin aşırı tüketimi hangisidir?",
+                options: ["Sodyum", "Potasyum", "Magnezyum", "Kalsiyum"],
+                answer: "Sodyum"
+            },
+            {
+                id: 45,
+                text: "Ksantin Oksidaz gibi enzimlerin yapısında bulunan iz element hangisidir?",
+                options: ["Molibden (Mo)", "Krom (Cr)", "Flor (F)", "Nikel (Ni)"],
+                answer: "Molibden (Mo)"
             }
-        ];
+        ];             
 
         /* --- UYGULAMA MANTIĞI (JS) --- */
         let currentQuestions = [];
