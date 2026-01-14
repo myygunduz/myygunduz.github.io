@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Word Solitaire</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #2e8b57; /* Classic Solitaire Green */
+            overflow: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* CARD STYLES */
+        .card {
+            width: 75px;
+            height: 110px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            text-align: center;
+            font-size: 11px;
+            border: 1px solid #ccc;
+            transition: transform 0.1s;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Mobile Adjustments */
+        @media (min-width: 768px) {
+            .card {
+                width: 100px;
+                height: 140px;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+        }
+
+        .card-header {
+            background-color: #fef3c7; /* Amber-100 */
+            border: 2px solid #d97706; /* Amber-600 */
+            font-weight: bold;
+            color: #d97706;
+        }
+
+        .card-item {
+            /* Default item style */
+        }
+        
+        .card-selected {
+            border: 3px solid #3b82f6; /* Blue selection */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+            z-index: 100 !important;
+        }
+
+        .card-back {
+            background: repeating-linear-gradient(
+                45deg,
+                #1e3a8a,
+                #1e3a8a 10px,
+                #2563eb 10px,
+                #2563eb 20px
+            );
+            border: 2px solid #fff;
+        }
+
+        /* LAYOUT ZONES */
+        .zone {
+            position: absolute;
+            border-radius: 8px;
+            border: 2px dashed rgba(255,255,255,0.3);
+        }
+
+        /* ANIMATIONS */
+        @keyframes deal {
+            from { transform: translate(-100vw, -100vh); }
+        }
+        
+        .animate-deal {
+            animation: deal 0.5s ease-out backwards;
+        }
+
+        /* MODAL */
+        .modal-bg {
+            background-color: rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body class="h-screen w-screen relative text-slate-800">
+
+    <!-- ==================== MAIN MENU ==================== -->
+    <div id="main-menu" class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900 text-white">
+        <div class="mb-8 text-center">
+            <h1 class="text-5xl font-bold text-yellow-400 mb-2">WORD SOLITAIRE</h1>
+            <p class="text-slate-400">Sort the words by category!</p>
+        </div>
+        
+        <div class="space-y-4 w-64">
+            <button onclick="startGame()" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
+                <i data-lucide="play" class="w-6 h-6"></i> START GAME
+            </button>
+            <button onclick="showSettings()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-bold py-3 rounded-xl shadow-lg transition transform active:scale-95 flex items-center justify-center gap-2">
+                <i data-lucide="settings" class="w-5 h-5"></i> SETTINGS
+            </button>
+        </div>
+        
+        <div class="absolute bottom-8 text-xs text-slate-500">
+            v2.0 - English Edition
+        </div>
+    </div>
+
+    <!-- ==================== SETTINGS MODAL ==================== -->
+    <div id="settings-modal" class="hidden absolute inset-0 z-[60] flex items-center justify-center modal-bg backdrop-blur-sm">
+        <div class="bg-white p-6 rounded-2xl shadow-2xl w-80">
+            <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <i data-lucide="settings" class="w-6 h-6 text-slate-600"></i> Settings
+            </h2>
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span>Sound Effects</span>
+                    <input type="checkbox" checked class="w-5 h-5 accent-green-600">
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>Show Hints</span>
+                    <input type="checkbox" checked class="w-5 h-5 accent-green-600">
+                </div>
+            </div>
+            <button onclick="closeSettings()" class="mt-6 w-full bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold py-2 rounded-lg">Close</button>
+        </div>
+    </div>
+
+    <!-- ==================== GAME AREA ==================== -->
+    <div id="game-board" class="hidden absolute inset-0 overflow-hidden">
+        
+        <!-- Top Bar -->
+        <div class="absolute top-0 left-0 right-0 h-12 bg-black/20 flex items-center justify-between px-4 text-white z-40">
+            <button onclick="goHome()" class="hover:bg-white/10 p-2 rounded-full"><i data-lucide="home" class="w-5 h-5"></i></button>
+            <div class="font-bold flex gap-4">
+                <span>MOVES: <span id="move-count" class="text-yellow-300">0</span></span>
+            </div>
+            <button onclick="restartGame()" class="hover:bg-white/10 p-2 rounded-full"><i data-lucide="rotate-ccw" class="w-5 h-5"></i></button>
+        </div>
+
+        <!-- Zones Container -->
+        <div class="absolute top-14 left-0 right-0 bottom-0 p-2 md:p-6 max-w-6xl mx-auto">
+            
+            <!-- Top Row: Stock, Waste, Foundations -->
+            <div class="flex justify-between items-start mb-4 h-[120px] md:h-[150px]">
+                
+                <!-- Left: Stock & Waste -->
+                <div class="flex gap-2 md:gap-4">
+                    <div id="stock-pile" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px] flex items-center justify-center cursor-pointer hover:bg-white/10 transition" onclick="drawCard()">
+                        <div id="stock-count" class="text-white/50 text-2xl font-bold">↺</div>
+                    </div>
+                    <div id="waste-pile" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px]"></div>
+                </div>
+
+                <!-- Right: Foundations (4 slots) -->
+                <div class="flex gap-2 md:gap-4">
+                    <div id="foundation-0" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px] bg-black/10 flex items-center justify-center text-white/20 font-bold text-xs md:text-sm text-center p-2" onclick="handleZoneClick('foundation', 0)">CATEGORY<br>PLACEHOLDER</div>
+                    <div id="foundation-1" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px] bg-black/10 flex items-center justify-center text-white/20 font-bold text-xs md:text-sm text-center p-2" onclick="handleZoneClick('foundation', 1)">CATEGORY<br>PLACEHOLDER</div>
+                    <div id="foundation-2" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px] bg-black/10 flex items-center justify-center text-white/20 font-bold text-xs md:text-sm text-center p-2" onclick="handleZoneClick('foundation', 2)">CATEGORY<br>PLACEHOLDER</div>
+                    <div id="foundation-3" class="zone w-[75px] h-[110px] md:w-[100px] md:h-[140px] bg-black/10 flex items-center justify-center text-white/20 font-bold text-xs md:text-sm text-center p-2" onclick="handleZoneClick('foundation', 3)">CATEGORY<br>PLACEHOLDER</div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Tableau (7 Columns) -->
+            <div class="flex justify-between items-start h-full pt-2">
+                <div id="tableau-0" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 0)"></div>
+                <div id="tableau-1" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 1)"></div>
+                <div id="tableau-2" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 2)"></div>
+                <div id="tableau-3" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 3)"></div>
+                <div id="tableau-4" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 4)"></div>
+                <div id="tableau-5" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 5)"></div>
+                <div id="tableau-6" class="zone w-[75px] md:w-[100px] h-full border-none" onclick="handleZoneClick('tableau', 6)"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Definition Modal -->
+    <div id="def-modal" class="hidden absolute inset-0 z-50 flex items-center justify-center modal-bg p-4" onclick="closeDefModal()">
+        <div class="bg-white rounded-xl p-6 max-w-sm w-full shadow-2xl transform scale-100 transition-all" onclick="event.stopPropagation()">
+            <div class="text-center">
+                <div id="def-icon" class="text-4xl mb-2">🍎</div>
+                <h3 id="def-title" class="text-2xl font-bold text-slate-800 mb-2">Apple</h3>
+                <p id="def-text" class="text-slate-600 italic mb-4">A round fruit with red or green skin.</p>
+                <button onclick="closeDefModal()" class="bg-blue-600 text-white px-6 py-2 rounded-full font-bold hover:bg-blue-700">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Modal -->
+    <div id="win-modal" class="hidden absolute inset-0 z-[70] flex items-center justify-center modal-bg">
+        <div class="bg-white rounded-2xl p-8 text-center max-w-sm mx-4 shadow-2xl animate-bounce">
+            <div class="text-6xl mb-4">🏆</div>
+            <h2 class="text-3xl font-bold text-green-600 mb-2">CONGRATULATIONS!</h2>
+            <p class="text-slate-600 mb-6">You sorted all the words correctly!</p>
+            <button onclick="restartGame()" class="bg-green-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-700 shadow-lg">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        // ================= GAME DATA =================
+        const CATEGORIES = [
+            { id: 'fruits', name: 'FRUITS', icon: '🍎', color: 'text-red-600', items: [
+                { t: 'Apple', d: 'A round fruit with red or green skin.' },
+                { t: 'Banana', d: 'A long curved fruit with yellow skin.' },
+                { t: 'Grape', d: 'Small juicy berry growing in clusters.' },
+                { t: 'Lemon', d: 'Oval yellow fruit with sour juice.' },
+                { t: 'Orange', d: 'Round citrus fruit with thick skin.' },
+                { t: 'Peach', d: 'Soft fruit with fuzzy skin and a stone.' },
+                { t: 'Pear', d: 'Sweet fruit narrower at the stalk.' },
+                { t: 'Plum', d: 'Oval fleshy fruit with purple skin.' },
+                { t: 'Cherry', d: 'Small soft red fruit with a stone.' },
+                { t: 'Melon', d: 'Large fleshy fruit growing on a vine.' },
+                { t: 'Kiwi', d: 'Small fruit with green flesh and black seeds.' },
+                { t: 'Mango', d: 'Tropical stone fruit with yellow flesh.' }
+            ]},
+            { id: 'animals', name: 'ANIMALS', icon: '🦁', color: 'text-amber-700', items: [
+                { t: 'Lion', d: 'Large wild cat known as king of beasts.' },
+                { t: 'Elephant', d: 'Very large mammal with a trunk.' },
+                { t: 'Tiger', d: 'Large wild cat with stripes.' },
+                { t: 'Zebra', d: 'African wild horse with black and white stripes.' },
+                { t: 'Giraffe', d: 'Tall African mammal with a long neck.' },
+                { t: 'Monkey', d: 'Primate known for climbing trees.' },
+                { t: 'Bear', d: 'Large heavy mammal with thick fur.' },
+                { t: 'Wolf', d: 'Wild carnivorous mammal of the dog family.' },
+                { t: 'Fox', d: 'Small wild dog with a bushy tail.' },
+                { t: 'Rabbit', d: 'Small plant-eating mammal with long ears.' },
+                { t: 'Deer', d: 'Hoofed grazing animal with antlers.' },
+                { t: 'Eagle', d: 'Large bird of prey with a hooked beak.' }
+            ]},
+            { id: 'tech', name: 'TECH', icon: '💻', color: 'text-blue-600', items: [
+                { t: 'Laptop', d: 'Portable personal computer.' },
+                { t: 'Phone', d: 'Device for making calls and using apps.' },
+                { t: 'Mouse', d: 'Handheld device to control cursor.' },
+                { t: 'Keyboard', d: 'Panel of keys to type text.' },
+                { t: 'Monitor', d: 'Screen that displays output.' },
+                { t: 'Tablet', d: 'Touchscreen mobile computer.' },
+                { t: 'Router', d: 'Device that forwards data packets.' },
+                { t: 'Server', d: 'Computer managing network resources.' },
+                { t: 'Robot', d: 'Machine capable of carrying out tasks.' },
+                { t: 'Drone', d: 'Unmanned aerial vehicle.' },
+                { t: 'Camera', d: 'Device for recording visual images.' },
+                { t: 'Printer', d: 'Machine for printing text or pictures.' }
+            ]},
+            { id: 'nature', name: 'NATURE', icon: '🌲', color: 'text-green-700', items: [
+                { t: 'Tree', d: 'Tall plant with a trunk and branches.' },
+                { t: 'River', d: 'Large natural stream of water.' },
+                { t: 'Mountain', d: 'Large natural elevation of earth surface.' },
+                { t: 'Ocean', d: 'Vast body of salt water.' },
+                { t: 'Flower', d: 'Seed-bearing part of a plant.' },
+                { t: 'Cloud', d: 'Visible mass of condensed water vapor.' },
+                { t: 'Rain', d: 'Moisture condensed from the atmosphere.' },
+                { t: 'Sun', d: 'Star around which the earth orbits.' },
+                { t: 'Moon', d: 'Natural satellite of the earth.' },
+                { t: 'Forest', d: 'Large area covered chiefly with trees.' },
+                { t: 'Desert', d: 'Arid land with little vegetation.' },
+                { t: 'Valley', d: 'Low area of land between hills.' }
+            ]}
+        ];
+
+        // ================= STATE =================
+        let deck = [];
+        let stock = [];
+        let waste = [];
+        let foundations = [[], [], [], []];
+        let tableau = [[], [], [], [], [], [], []];
+        let selectedCard = null; // { location: 'tableau', col: 0, index: 5 }
+        let moveCount = 0;
+
+        // ================= INIT =================
+        function createDeck() {
+            let newDeck = [];
+            let idCounter = 0;
+            
+            CATEGORIES.forEach(cat => {
+                // Add Header Card
+                newDeck.push({
+                    id: idCounter++,
+                    type: 'header',
+                    catId: cat.id,
+                    text: cat.name,
+                    icon: cat.icon,
+                    color: cat.color,
+                    def: `Category Card: Place this in the foundation slots first!`
+                });
+                // Add Items
+                cat.items.forEach(item => {
+                    newDeck.push({
+                        id: idCounter++,
+                        type: 'item',
+                        catId: cat.id,
+                        text: item.t,
+                        def: item.d,
+                        color: 'text-slate-800'
+                    });
+                });
+            });
+            return newDeck;
+        }
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startGame() {
+            document.getElementById('main-menu').classList.add('hidden');
+            document.getElementById('game-board').classList.remove('hidden');
+            document.getElementById('win-modal').classList.add('hidden');
+            initGame();
+        }
+
+        function initGame() {
+            // Reset State
+            stock = [];
+            waste = [];
+            foundations = [[], [], [], []];
+            tableau = [[], [], [], [], [], [], []];
+            selectedCard = null;
+            moveCount = 0;
+            updateMoveCount();
+
+            // Create and Shuffle
+            deck = shuffle(createDeck());
+
+            // Deal to Tableau
+            // Col 0: 1 card, Col 1: 2 cards, ..., Col 6: 7 cards
+            let cardIdx = 0;
+            for (let i = 0; i < 7; i++) {
+                for (let j = 0; j <= i; j++) {
+                    if (cardIdx < deck.length) {
+                        tableau[i].push(deck[cardIdx]);
+                        cardIdx++;
+                    }
+                }
+            }
+
+            // Rest to Stock
+            while (cardIdx < deck.length) {
+                stock.push(deck[cardIdx]);
+                cardIdx++;
+            }
+
+            renderBoard();
+        }
+
+        // ================= RENDERING =================
+        function renderBoard() {
+            // Render Stock
+            const stockEl = document.getElementById('stock-pile');
+            stockEl.innerHTML = stock.length > 0 
+                ? `<div class="card card-back absolute" style="top:0; left:0;"></div><div class="absolute text-white font-bold z-20 shadow-black drop-shadow-md">${stock.length}</div>` 
+                : '<div class="text-white/30 text-4xl">↺</div>';
+
+            // Render Waste
+            const wasteEl = document.getElementById('waste-pile');
+            wasteEl.innerHTML = '';
+            if (waste.length > 0) {
+                const card = waste[waste.length - 1];
+                const cardEl = createCardElement(card, 'waste', 0, waste.length - 1);
+                wasteEl.appendChild(cardEl);
+            }
+
+            // Render Foundations
+            for (let i = 0; i < 4; i++) {
+                const fEl = document.getElementById(`foundation-${i}`);
+                fEl.innerHTML = ''; // Clear
+                
+                if (foundations[i].length === 0) {
+                    fEl.innerHTML = `<span class="text-white/20 text-xs text-center font-bold pointer-events-none">EMPTY<br>SLOT</span>`;
+                } else {
+                    // Render top card
+                    const topCard = foundations[i][foundations[i].length - 1];
+                    const cardEl = createCardElement(topCard, 'foundation', i, foundations[i].length - 1);
+                    fEl.appendChild(cardEl);
+                    
+                    // Count badge
+                    const badge = document.createElement('div');
+                    badge.className = "absolute -top-2 -right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold z-20 shadow";
+                    badge.innerText = foundations[i].length;
+                    fEl.appendChild(badge);
+                }
+            }
+
+            // Render Tableau
+            for (let i = 0; i < 7; i++) {
+                const tEl = document.getElementById(`tableau-${i}`);
+                tEl.innerHTML = '';
+                
+                // Base placeholder for empty column
+                const placeholder = document.createElement('div');
+                placeholder.className = "w-full h-24 rounded border-2 border-dashed border-white/10 absolute top-0";
+                tEl.appendChild(placeholder);
+
+                tableau[i].forEach((card, idx) => {
+                    const cardEl = createCardElement(card, 'tableau', i, idx);
+                    // Vertical spacing
+                    cardEl.style.top = `${idx * 30}px`; // Overlap
+                    tEl.appendChild(cardEl);
+                });
+            }
+        }
+
+        function createCardElement(card, loc, col, idx) {
+            const el = document.createElement('div');
+            const isHeader = card.type === 'header';
+            
+            let classes = "card transition-all duration-200 ";
+            if (isHeader) classes += "card-header ";
+            else classes += "card-item ";
+
+            // Check if selected
+            if (selectedCard && selectedCard.id === card.id) {
+                classes += "card-selected ";
+            }
+
+            el.className = classes;
+
+            // Content
+            if (isHeader) {
+                el.innerHTML = `
+                    <div class="text-2xl mb-1">${card.icon}</div>
+                    <div class="uppercase leading-tight text-xs md:text-sm font-bold">${card.text}</div>
+                    <div class="text-[9px] mt-1 font-normal opacity-70">CATEGORY</div>
+                `;
+            } else {
+                el.innerHTML = `
+                    <div class="text-xs md:text-sm font-semibold px-1 leading-snug">${card.text}</div>
+                `;
+            }
+
+            // Info Button
+            const infoBtn = document.createElement('button');
+            infoBtn.className = "absolute top-1 right-1 text-slate-400 hover:text-blue-500 z-20";
+            infoBtn.innerHTML = `<i data-lucide="info" class="w-3 h-3 md:w-4 md:h-4"></i>`;
+            infoBtn.onclick = (e) => {
+                e.stopPropagation();
+                showDef(card);
+            };
+            el.appendChild(infoBtn);
+
+            // Click Handler for Selection/Move
+            el.onclick = (e) => handleCardClick(e, card, loc, col, idx);
+
+            return el;
+        }
+
+        // ================= INTERACTION LOGIC =================
+
+        function drawCard() {
+            if (stock.length > 0) {
+                const card = stock.pop();
+                waste.push(card);
+            } else {
+                // Reset stock from waste
+                if (waste.length > 0) {
+                    stock = waste.reverse();
+                    waste = [];
+                }
+            }
+            deselect();
+            moveCount++;
+            updateMoveCount();
+            renderBoard();
+        }
+
+        function handleCardClick(e, card, loc, col, idx) {
+            e.stopPropagation(); // Prevent zone click
+
+            // Logic:
+            // 1. If no card selected, select this card (if eligible).
+            // 2. If card selected:
+            //    a. If clicked card is same, deselect.
+            //    b. If clicked card is different, try to move selected card ONTO clicked card.
+
+            if (!selectedCard) {
+                // Selection conditions
+                // Can select from Waste (top only)
+                if (loc === 'waste' && idx === waste.length - 1) select(card, loc, col, idx);
+                // Can select from Tableau (any card, to move stack) - For simplicity, let's allow moving single cards or stacks? 
+                // Let's implement: Moving a card from middle of tableau moves everything below it too.
+                else if (loc === 'tableau') select(card, loc, col, idx);
+                // Can select from Foundation? Usually no, but let's say no for now.
+                else if (loc === 'foundation') return; 
+            } else {
+                // Action
+                if (selectedCard.id === card.id) {
+                    deselect();
+                } else {
+                    // Try to move Selected -> Clicked Target
+                    attemptMoveToCard(card, loc, col);
+                }
+            }
+        }
+
+        function handleZoneClick(locType, colIdx) {
+            // This handles clicking on an EMPTY zone (Empty tableau col or Empty foundation)
+            if (!selectedCard) return;
+
+            if (locType === 'foundation') {
+                attemptMoveToFoundation(colIdx);
+            } else if (locType === 'tableau') {
+                // Moving to empty tableau column
+                attemptMoveToTableau(colIdx);
+            }
+        }
+
+        function select(card, loc, col, idx) {
+            selectedCard = { ...card, loc, col, idx };
+            renderBoard();
+            lucide.createIcons();
+        }
+
+        function deselect() {
+            selectedCard = null;
+            renderBoard();
+            lucide.createIcons();
+        }
+
+        // --- MOVE LOGIC ---
+
+        function attemptMoveToCard(targetCard, targetLoc, targetCol) {
+            if (targetLoc === 'foundation') {
+                attemptMoveToFoundation(targetCol);
+            } else if (targetLoc === 'tableau') {
+                attemptMoveToTableau(targetCol);
+            }
+        }
+
+        function attemptMoveToFoundation(fIdx) {
+            // Rule:
+            // Empty slot -> Needs Header
+            // Occupied -> Needs Item of same category
+            
+            const targetStack = foundations[fIdx];
+            const movingCard = selectedCard;
+
+            // Check validity
+            let isValid = false;
+
+            if (targetStack.length === 0) {
+                if (movingCard.type === 'header') isValid = true;
+            } else {
+                const topCard = targetStack[targetStack.length - 1];
+                if (movingCard.type === 'item' && movingCard.catId === topCard.catId) isValid = true;
+            }
+
+            if (isValid) {
+                executeMove('foundation', fIdx);
+            } else {
+                shakeBoard();
+            }
+        }
+
+        function attemptMoveToTableau(tIdx) {
+            // Rule:
+            // Solitaire usually requires alternating colors.
+            // HERE: We allow ANY move to Tableau to help the user sort. 
+            // The challenge is limited space and finding the headers.
+            
+            // Constraint: Can't move a card to its own column (redundant)
+            if (selectedCard.loc === 'tableau' && selectedCard.col === tIdx) {
+                deselect();
+                return;
+            }
+
+            executeMove('tableau', tIdx);
+        }
+
+        function executeMove(targetLocType, targetIdx) {
+            // 1. Remove from source
+            let cardsToMove = [];
+            
+            if (selectedCard.loc === 'waste') {
+                cardsToMove.push(waste.pop());
+            } else if (selectedCard.loc === 'tableau') {
+                const sourceCol = tableau[selectedCard.col];
+                // Slice from the selected index to the end (handling stacks)
+                // BUT: Can we move a stack to Foundation? NO. Only single card.
+                // Stack move is only allowed to Tableau.
+                
+                if (targetLocType === 'foundation') {
+                    // Only allow if it's the last card in the column
+                    if (selectedCard.idx !== sourceCol.length - 1) {
+                        shakeBoard(); 
+                        return; // Can't move a card from middle to foundation
+                    }
+                    cardsToMove.push(sourceCol.pop());
+                } else {
+                    // Tableau to Tableau -> Move stack
+                    cardsToMove = sourceCol.splice(selectedCard.idx);
+                }
+            }
+
+            // 2. Add to destination
+            if (targetLocType === 'foundation') {
+                foundations[targetIdx].push(cardsToMove[0]);
+            } else if (targetLocType === 'tableau') {
+                tableau[targetIdx].push(...cardsToMove);
+            }
+
+            moveCount++;
+            updateMoveCount();
+            deselect();
+            checkWin();
+        }
+
+        // ================= HELPERS =================
+        function updateMoveCount() {
+            document.getElementById('move-count').innerText = moveCount;
+        }
+
+        function checkWin() {
+            // Check if all foundations have 13 cards (1 header + 12 items)
+            // Total 52 cards.
+            let total = 0;
+            foundations.forEach(f => total += f.length);
+            if (total === 52) {
+                document.getElementById('win-modal').classList.remove('hidden');
+            }
+        }
+
+        function shakeBoard() {
+            const b = document.getElementById('game-board');
+            b.style.transform = "translateX(5px)";
+            setTimeout(() => b.style.transform = "translateX(-5px)", 50);
+            setTimeout(() => b.style.transform = "translateX(5px)", 100);
+            setTimeout(() => b.style.transform = "none", 150);
+        }
+
+        function showDef(card) {
+            document.getElementById('def-icon').innerText = card.type === 'header' ? card.icon : '📖';
+            document.getElementById('def-title').innerText = card.text;
+            document.getElementById('def-text').innerText = card.def || card.definition;
+            document.getElementById('def-modal').classList.remove('hidden');
+        }
+
+        function closeDefModal() {
+            document.getElementById('def-modal').classList.add('hidden');
+        }
+
+        function goHome() {
+            document.getElementById('game-board').classList.add('hidden');
+            document.getElementById('main-menu').classList.remove('hidden');
+        }
+
+        function restartGame() {
+            document.getElementById('win-modal').classList.add('hidden');
+            initGame();
+        }
+
+        function showSettings() {
+            document.getElementById('settings-modal').classList.remove('hidden');
+        }
+        function closeSettings() {
+            document.getElementById('settings-modal').classList.add('hidden');
+        }
+
+        // Init icons
+        lucide.createIcons();
+
+    </script>
+</body>
+</html>
+
+
