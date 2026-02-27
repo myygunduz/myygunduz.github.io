@@ -2,379 +2,248 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Profil — StudyDeck</title>
 <script src="data.js"></script>
 <script src="app.js"></script>
 <style>
-.profile-page { padding-bottom: 100px; }
+.prof-pg { padding-bottom: calc(var(--nb-h) + var(--sb) + 12px); }
 
-.profile-hero {
-  text-align: center; padding: 32px 20px 24px;
-  background: linear-gradient(135deg, #f8f4ff, #f2fbf9);
-  border: 1.5px solid var(--border); border-radius: 24px; margin-bottom: 16px;
+/* hero */
+.p-hero {
+  text-align: center; padding: 24px 16px 20px;
+  background: linear-gradient(135deg,#f8f4ff,#f2fbf9);
+  border: 1.5px solid var(--border); border-radius: 18px; margin-bottom: 12px;
 }
-.ph-avatar {
-  width: 84px; height: 84px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--lav), var(--mint));
+.p-av {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: linear-gradient(135deg,var(--lav),var(--mint));
   display: flex; align-items: center; justify-content: center;
-  font-size: 2.4rem; margin: 0 auto 14px;
-  box-shadow: 0 4px 20px rgba(181,168,224,0.4);
-  cursor: pointer; transition: transform 0.2s;
-  position: relative;
+  font-size: 2.2rem; margin: 0 auto 12px;
+  box-shadow: 0 4px 18px rgba(181,168,224,.35);
+  cursor: pointer; position: relative; touch-action: manipulation;
 }
-.ph-avatar:hover { transform: scale(1.06); }
-.ph-avatar .av-edit-hint {
-  position: absolute; bottom: -4px; right: -4px;
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--dark); color: white;
+.p-av-hint {
+  position: absolute; bottom: -3px; right: -3px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--dark); color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; border: 2px solid white;
+  font-size: .6rem; border: 2px solid #fff;
 }
-.ph-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; }
-.ph-age  { font-size: 0.8rem; color: var(--mid); margin-top: 3px; }
+.p-name { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.2rem; }
+.p-age  { font-size:.74rem; color:var(--mid); margin-top:3px; }
 
-/* Stats grid */
-.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-.stat-tile { background: white; border-radius: 16px; border: 1.5px solid var(--border); padding: 16px; text-align: center; }
-.stat-tile .st-num   { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--dark); }
-.stat-tile .st-label { font-size: 0.72rem; color: var(--mid); margin-top: 4px; font-family: 'Nunito', sans-serif; font-weight: 600; }
+/* stats grid */
+.sg { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:12px; }
+.st {
+  background:var(--white); border-radius:14px; border:1.5px solid var(--border);
+  padding:13px; text-align:center;
+}
+.st-n { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.65rem; color:var(--dark); }
+.st-l { font-size:.68rem; color:var(--mid); margin-top:3px; font-family:'Nunito',sans-serif; font-weight:700; }
 
-/* Per-subject stat */
-.subject-stat { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--light); }
-.subject-stat:last-child { border-bottom: none; }
-.ss-icon { font-size: 1.3rem; width: 32px; text-align: center; }
-.ss-info { flex: 1; }
-.ss-info h5    { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; }
-.ss-info .ss-sub { font-size: 0.72rem; color: var(--mid); }
-.ss-pct { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; }
-.ss-bar-wrap { width: 100%; height: 5px; background: var(--light); border-radius: 99px; margin-top: 5px; overflow: hidden; }
-.ss-bar { height: 100%; border-radius: 99px; transition: width 0.8s ease; }
+/* subject stat row */
+.s-stat { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--light); }
+.s-stat:last-child { border-bottom:none; }
+.ss-ic  { font-size:1.2rem; width:28px; text-align:center; flex-shrink:0; }
+.ss-inf { flex:1; min-width:0; }
+.ss-inf h5    { font-family:'Nunito',sans-serif; font-weight:800; font-size:.84rem; }
+.ss-inf .ss-s { font-size:.7rem; color:var(--mid); }
+.ss-bar-w { width:100%; height:5px; background:var(--light); border-radius:99px; margin-top:4px; overflow:hidden; }
+.ss-bar   { height:100%; border-radius:99px; transition:width .8s ease; }
+.ss-pct   { font-family:'Nunito',sans-serif; font-weight:900; font-size:.9rem; flex-shrink:0; }
 
-/* Danger zone */
-.danger-zone { background: #fff8f8; border: 1.5px solid rgba(244,124,124,0.25); border-radius: 18px; padding: 18px; margin-top: 4px; }
-.danger-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; color: var(--wrong); margin-bottom: 12px; }
+/* card heading */
+.ch { font-family:'Nunito',sans-serif; font-weight:800; font-size:.94rem; margin-bottom:13px; }
 
-/* Icon picker (same as index.html) */
-.icon-picker-label {
-  display: block; font-family: 'Nunito', sans-serif; font-weight: 700;
-  font-size: 0.72rem; color: var(--mid); margin-bottom: 8px;
-  text-transform: uppercase; letter-spacing: 0.6px;
+/* danger */
+.danger {
+  background:#fff8f8; border:1.5px solid rgba(244,124,124,.22);
+  border-radius:16px; padding:15px; margin-top:4px;
 }
-.icon-preview-btn {
-  display: flex; align-items: center; gap: 12px; padding: 10px 14px;
-  background: var(--cream); border: 1.5px solid var(--border);
-  border-radius: 14px; cursor: pointer; margin-bottom: 18px;
-  transition: border-color 0.2s; width: 100%;
-}
-.icon-preview-btn:hover { border-color: var(--mint); }
-.icon-preview-btn .ipb-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--lav), var(--mint));
-  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-}
-.icon-preview-btn .ipb-text { flex: 1; text-align: left; }
-.icon-preview-btn .ipb-text strong { display: block; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
-.icon-preview-btn .ipb-text span   { font-size: 0.75rem; color: var(--mid); }
-.icon-preview-btn .ipb-arrow { color: var(--mid); font-size: 0.9rem; }
+.danger h4 { font-family:'Nunito',sans-serif; font-weight:800; font-size:.84rem; color:var(--err); margin-bottom:11px; }
 
-/* Modal */
-.icon-modal-overlay {
-  position: fixed; inset: 0; background: rgba(30,30,42,0.5);
-  display: flex; align-items: flex-end; justify-content: center;
-  z-index: 999; backdrop-filter: blur(4px);
-  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+/* wrong summary row */
+.wr-row {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 0; border-bottom:1px solid var(--light);
 }
-.icon-modal-overlay.open { opacity: 1; pointer-events: all; }
-.icon-modal {
-  background: white; border-radius: 28px 28px 0 0;
-  width: 100%; max-width: 480px; padding: 24px 20px 40px;
-  transform: translateY(40px); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-  max-height: 80vh; overflow-y: auto;
-}
-.icon-modal-overlay.open .icon-modal { transform: translateY(0); }
-.icon-modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 99px; margin: 0 auto 20px; }
-.icon-modal-title  { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; text-align: center; margin-bottom: 20px; }
-.icon-category { margin-bottom: 20px; }
-.icon-category-label {
-  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.7rem;
-  text-transform: uppercase; letter-spacing: 0.6px; color: var(--mid); margin-bottom: 10px;
-}
-.icon-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
-.icon-option {
-  aspect-ratio: 1; border-radius: 14px; border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; cursor: pointer; background: white; transition: all 0.15s;
-}
-.icon-option:hover  { border-color: var(--mint); transform: scale(1.08); background: rgba(126,206,196,0.08); }
-.icon-option.chosen { border-color: var(--mint); background: rgba(126,206,196,0.12); box-shadow: 0 0 0 2px var(--mint); }
+.wr-row:last-child { border-bottom:none; }
 </style>
 </head>
 <body>
-
-<!-- Icon picker modal -->
-<div class="icon-modal-overlay" id="icon-modal-overlay" onclick="handleModalOutsideClick(event)">
-  <div class="icon-modal">
-    <div class="icon-modal-handle"></div>
-    <div class="icon-modal-title">Bir ikon seç ✨</div>
-    <div id="icon-grid-container"></div>
-    <button class="btn btn-dark" onclick="closeIconModal()" style="margin-top:8px;">Tamam</button>
-  </div>
-</div>
-
-<div class="page profile-page">
+<div class="page prof-pg">
   <div class="navbar">
     <a class="back-btn" href="index.html">←</a>
-    <span style="font-family:'Nunito',sans-serif; font-weight:800;">Profilim 👤</span>
-    <div style="width:38px"></div>
+    <span style="font-family:'Nunito',sans-serif;font-weight:800">Profilim 👤</span>
+    <div style="width:40px"></div>
   </div>
 
-  <!-- Hero — avatar tıklanınca ikon seçici açılır -->
-  <div class="profile-hero fade-up">
-    <div class="ph-avatar" id="ph-av" onclick="openIconModal()" title="İkon değiştir">
+  <!-- Hero -->
+  <div class="p-hero fade-up">
+    <div class="p-av" id="p-av" onclick="openIconPicker(_pickerIcon, onProfilePick)">
       😊
-      <div class="av-edit-hint">✏️</div>
+      <div class="p-av-hint">✏️</div>
     </div>
-    <div class="ph-name" id="ph-name">—</div>
-    <div class="ph-age"  id="ph-age">—</div>
+    <div class="p-name" id="p-name">—</div>
+    <div class="p-age"  id="p-age">—</div>
   </div>
 
-  <!-- Quick stats -->
-  <div class="stats-grid fade-up" id="stats-grid" style="animation-delay:0.05s"></div>
+  <!-- Stats -->
+  <div class="sg fade-up" id="sg" style="animation-delay:.05s"></div>
 
-  <!-- Edit form -->
-  <div class="card fade-up" style="animation-delay:0.1s">
-    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">✏️ Bilgileri Düzenle</div>
+  <!-- Edit -->
+  <div class="card fade-up" style="animation-delay:.1s">
+    <div class="ch">✏️ Bilgileri Düzenle</div>
 
-    <!-- Icon picker button -->
-    <span class="icon-picker-label">Profil İkonu</span>
-    <div class="icon-preview-btn" onclick="openIconModal()">
-      <div class="ipb-icon" id="profile-icon-preview">😊</div>
-      <div class="ipb-text">
-        <strong id="profile-icon-name">Gülümseyen Yüz</strong>
-        <span>Değiştirmek için tıkla</span>
-      </div>
-      <span class="ipb-arrow">›</span>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.65rem;color:var(--mid);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px">Profil İkonu</div>
+    <div class="icon-pick-row" onclick="openIconPicker(_pickerIcon, onProfilePick)">
+      <div class="ipr-face" id="p-pick-face">😊</div>
+      <div class="ipr-info"><b id="p-pick-name">Gülümseyen</b><span>Değiştirmek için dokun</span></div>
+      <span style="color:var(--mid)">›</span>
     </div>
 
     <div class="field">
       <label>Adın</label>
-      <input type="text" id="edit-name" placeholder="Adın..."/>
+      <input id="e-name" type="text" placeholder="Adın…" autocorrect="off"/>
     </div>
     <div class="field">
       <label>Yaşın</label>
-      <input type="number" id="edit-age" min="10" max="99" placeholder="Yaşın..."/>
+      <input id="e-age" type="number" inputmode="numeric" min="1" max="99" placeholder="Yaşın…"/>
     </div>
     <button class="btn btn-mint" onclick="saveProfile()">💾 Kaydet</button>
   </div>
 
-  <!-- Per-subject stats -->
-  <div class="card fade-up" style="animation-delay:0.15s">
-    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">📊 Konu Başarıları</div>
-    <div id="subject-stats"><p style="font-size:0.85rem;color:var(--mid);">Henüz test çözmedin.</p></div>
+  <!-- Subject stats -->
+  <div class="card fade-up" style="animation-delay:.15s">
+    <div class="ch">📊 Konu Başarıları</div>
+    <div id="subj-stats"><p style="font-size:.82rem;color:var(--mid)">Henüz test çözmedin.</p></div>
   </div>
 
-  <!-- Wrong answers summary -->
-  <div class="card fade-up" style="animation-delay:0.2s">
-    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">❌ Birikmiş Yanlışlar</div>
-    <div id="wrong-summary"></div>
+  <!-- Wrong summary -->
+  <div class="card fade-up" style="animation-delay:.2s">
+    <div class="ch">❌ Birikmiş Yanlışlar</div>
+    <div id="wrong-sum"></div>
   </div>
 
-  <!-- Danger zone -->
-  <div class="danger-zone fade-up" style="animation-delay:0.25s">
+  <!-- Danger -->
+  <div class="danger fade-up" style="animation-delay:.25s">
     <h4>⚠️ Tehlikeli Bölge</h4>
-    <button class="btn btn-ghost" onclick="clearWrong()" style="margin-bottom:8px;border-color:rgba(244,124,124,0.3);color:var(--wrong);">
-      🗑 Yanlış Listesini Sıfırla
-    </button>
-    <button class="btn btn-ghost" onclick="clearAll()" style="border-color:rgba(244,124,124,0.3);color:var(--wrong);">
-      💀 Tüm Verileri Sil
-    </button>
+    <button class="btn btn-ghost" onclick="clearWrong()"
+      style="margin-bottom:8px;border-color:rgba(244,124,124,.3);color:var(--err)">🗑 Yanlış Listesini Sıfırla</button>
+    <button class="btn btn-ghost" onclick="clearAll()"
+      style="border-color:rgba(244,124,124,.3);color:var(--err)">💀 Tüm Verileri Sil</button>
   </div>
 </div>
 
-<nav class="bottom-nav">
-  <a href="index.html"><span class="nav-icon">🏠</span>Ana Sayfa</a>
-  <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
-  <a href="test.html"><span class="nav-icon">📝</span>Test</a>
-  <a href="profile.html" class="active"><span class="nav-icon">👤</span>Profil</a>
+<nav class="bnav">
+  <a href="index.html"><span class="ni">🏠</span>Ana Sayfa</a>
+  <a href="cards.html"><span class="ni">🃏</span>Kartlar</a>
+  <a href="test.html"><span class="ni">📝</span>Test</a>
+  <a href="profile.html" class="active"><span class="ni">👤</span>Profil</a>
 </nav>
 
 <script>
 if (!SD.requireUser()) {}
 
-// ── Icon data ──────────────────────────────────────────────
-const ICON_CATEGORIES = [
-  { label: '😀 Yüzler', icons: [
-    ['😊','Gülümseyen'],['😎','Güneş Gözlüklü'],['🤓','Okumuş'],['🥸','Gizli'],
-    ['😄','Sevinçli'],['🤩','Yıldız Gözlü'],['😇','Melek'],['🥳','Partici'],
-    ['😤','Kararlı'],['🤔','Düşünceli'],['😴','Uykulu'],['🥱','Bıkkın']
-  ]},
-  { label: '🐾 Hayvanlar', icons: [
-    ['🦊','Tilki'],['🐼','Panda'],['🦁','Aslan'],['🐯','Kaplan'],
-    ['🐻','Ayı'],['🐨','Koala'],['🦄','Unicorn'],['🐸','Kurbağa'],
-    ['🦋','Kelebek'],['🐧','Penguen'],['🦉','Baykuş'],['🐙','Ahtapot']
-  ]},
-  { label: '🌟 Semboller', icons: [
-    ['⚡','Şimşek'],['🔥','Ateş'],['💎','Elmas'],['🌈','Gökkuşağı'],
-    ['🌙','Ay'],['⭐','Yıldız'],['🎯','Hedef'],['🏆','Kupa'],
-    ['🚀','Roket'],['💡','Fikir'],['🎮','Oyun'],['🎵','Müzik']
-  ]},
-  { label: '📚 Okul', icons: [
-    ['📚','Kitaplar'],['✏️','Kalem'],['🔬','Mikroskop'],['🧪','Deney'],
-    ['🧮','Hesap Makinesi'],['📐','Gönye'],['🗺️','Harita'],['🎨','Sanat'],
-    ['💻','Bilgisayar'],['📊','Grafik'],['🔭','Teleskop'],['🧬','DNA']
-  ]}
-];
+let _selIcon = '😊', _selName = 'Gülümseyen';
 
-let selectedIcon     = '😊';
-let selectedIconName = 'Gülümseyen Yüz';
+window.addEventListener('DOMContentLoaded', renderProfile);
 
-// ── Init ───────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
-  renderProfile();
-});
+function onProfilePick(em, name) {
+  _selIcon = em; _selName = name;
+  // Update hero avatar
+  const av = document.getElementById('p-av');
+  av.innerHTML = em + '<div class="p-av-hint">✏️</div>';
+  // Update picker row
+  document.getElementById('p-pick-face').textContent = em;
+  document.getElementById('p-pick-name').textContent = name;
+}
 
 function renderProfile() {
-  const user = SD.getUser();
-  if (!user) return;
+  const user = SD.getUser(); if (!user) return;
 
-  selectedIcon     = user.icon     || '😊';
-  selectedIconName = user.iconName || 'Gülümseyen Yüz';
+  _selIcon = user.icon || '😊';
+  _selName = user.iconName || 'Gülümseyen';
+  _pickerIcon = _selIcon;
 
   // Hero
-  document.getElementById('ph-av').childNodes[0].textContent = selectedIcon; // text node
-  document.getElementById('ph-av').firstChild.nodeValue = selectedIcon;
-  document.getElementById('ph-av').querySelector('.av-edit-hint').textContent = '✏️';
+  const av = document.getElementById('p-av');
+  av.innerHTML = _selIcon + '<div class="p-av-hint">✏️</div>';
+  document.getElementById('p-name').textContent = user.name;
+  document.getElementById('p-age').textContent  = user.age + ' yaşında';
 
-  // Easier: just set a data attribute and re-render
-  const avEl = document.getElementById('ph-av');
-  avEl.innerHTML = selectedIcon + '<div class="av-edit-hint">✏️</div>';
+  // Edit fields
+  document.getElementById('e-name').value = user.name;
+  document.getElementById('e-age').value  = user.age;
+  document.getElementById('p-pick-face').textContent = _selIcon;
+  document.getElementById('p-pick-name').textContent = _selName;
 
-  document.getElementById('ph-name').textContent = user.name;
-  document.getElementById('ph-age').textContent  = user.age + ' yaşında';
-  document.getElementById('edit-name').value = user.name;
-  document.getElementById('edit-age').value  = user.age;
-  document.getElementById('profile-icon-preview').textContent = selectedIcon;
-  document.getElementById('profile-icon-name').textContent    = selectedIconName;
-
-  // Stats
+  // Stats grid
   const stats = SD.getStats();
-  const grid  = document.getElementById('stats-grid');
-  let totalAttempts = 0, totalQ = 0, totalCorrect = 0;
-  Object.values(stats).forEach(s => { totalAttempts += s.attempts; totalQ += s.totalQ; totalCorrect += s.totalCorrect; });
-  const overallPct = totalQ > 0 ? Math.round(totalCorrect / totalQ * 100) : 0;
-  const totalWrong = SD.totalWrongCount();
-
-  grid.innerHTML = `
-    <div class="stat-tile"><div class="st-num">${totalAttempts}</div><div class="st-label">Test Çözüldü</div></div>
-    <div class="stat-tile"><div class="st-num" style="color:var(--mint)">${overallPct}%</div><div class="st-label">Genel Başarı</div></div>
-    <div class="stat-tile"><div class="st-num" style="color:var(--correct)">${totalCorrect}</div><div class="st-label">Doğru Cevap</div></div>
-    <div class="stat-tile"><div class="st-num" style="color:var(--wrong)">${totalWrong}</div><div class="st-label">Biriken Yanlış</div></div>
-  `;
+  let att=0,tq=0,tc=0;
+  Object.values(stats).forEach(s=>{att+=s.attempts;tq+=s.totalQ;tc+=s.totalCorrect;});
+  const ovr = tq>0?Math.round(tc/tq*100):0;
+  const tw  = SD.totalWrongCount();
+  document.getElementById('sg').innerHTML = `
+    <div class="st"><div class="st-n">${att}</div><div class="st-l">Test Çözüldü</div></div>
+    <div class="st"><div class="st-n" style="color:var(--mint)">${ovr}%</div><div class="st-l">Genel Başarı</div></div>
+    <div class="st"><div class="st-n" style="color:var(--ok)">${tc}</div><div class="st-l">Doğru Cevap</div></div>
+    <div class="st"><div class="st-n" style="color:var(--err)">${tw}</div><div class="st-l">Biriken Yanlış</div></div>`;
 
   // Per-subject
-  const ssEl    = document.getElementById('subject-stats');
-  const hasStats = Object.keys(stats).length > 0;
-  ssEl.innerHTML = '';
-  if (hasStats) {
+  const ssel = document.getElementById('subj-stats');
+  if (Object.keys(stats).length) {
+    ssel.innerHTML = '';
     SUBJECTS.forEach(s => {
       const st = stats[s.id]; if (!st) return;
-      const pct   = Math.round(st.totalCorrect / st.totalQ * 100);
-      const color = pct >= 70 ? 'var(--correct)' : pct >= 50 ? 'var(--peach)' : 'var(--wrong)';
-      const div = document.createElement('div');
-      div.className = 'subject-stat';
-      div.innerHTML = `
-        <div class="ss-icon">${s.icon}</div>
-        <div class="ss-info">
+      const p = Math.round(st.totalCorrect/st.totalQ*100);
+      const col = p>=70?'var(--ok)':p>=50?'var(--peach)':'var(--err)';
+      const d = document.createElement('div');
+      d.className = 's-stat';
+      d.innerHTML = `
+        <div class="ss-ic">${s.icon}</div>
+        <div class="ss-inf">
           <h5>${s.title}</h5>
-          <div class="ss-sub">${st.attempts} deneme · ${st.totalCorrect}/${st.totalQ} doğru</div>
-          <div class="ss-bar-wrap"><div class="ss-bar" style="width:${pct}%;background:${color}"></div></div>
+          <div class="ss-s">${st.attempts} deneme · ${st.totalCorrect}/${st.totalQ} doğru</div>
+          <div class="ss-bar-w"><div class="ss-bar" style="width:${p}%;background:${col}"></div></div>
         </div>
-        <div class="ss-pct" style="color:${color}">${pct}%</div>`;
-      ssEl.appendChild(div);
+        <div class="ss-pct" style="color:${col}">${p}%</div>`;
+      ssel.appendChild(d);
     });
-  } else {
-    ssEl.innerHTML = '<p style="font-size:0.85rem;color:var(--mid);">Henüz test çözmedin.</p>';
   }
 
   // Wrong summary
-  const wrongEl      = document.getElementById('wrong-summary');
-  const allWrong     = SD.getWrong();
-  const wrongSubjects = Object.entries(allWrong).filter(([,ids]) => ids.length > 0);
-  wrongEl.innerHTML  = '';
-  if (wrongSubjects.length === 0) {
-    wrongEl.innerHTML = '<p style="font-size:0.85rem;color:var(--mid);">Hiç birikmiş yanlışın yok! 🎉</p>';
+  const wel = document.getElementById('wrong-sum');
+  const allW = SD.getWrong();
+  const wSubs = Object.entries(allW).filter(([,ids])=>ids.length>0);
+  if (!wSubs.length) {
+    wel.innerHTML = '<p style="font-size:.82rem;color:var(--mid)">Hiç birikmiş yanlışın yok! 🎉</p>';
   } else {
-    wrongSubjects.forEach(([sid, ids]) => {
-      const sub = SUBJECTS.find(s => s.id === sid); if (!sub) return;
-      const div = document.createElement('div');
-      div.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--light);';
-      div.innerHTML = `
-        <span style="font-weight:600;font-size:0.88rem;">${sub.icon} ${sub.title}</span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="chip chip-wrong">${ids.length} soru</span>
-          <a href="test.html?subject=${sid}&wrong=1" class="btn btn-ghost btn-sm" style="width:auto;padding:6px 12px;font-size:0.72rem;">Çalış</a>
+    wel.innerHTML = '';
+    wSubs.forEach(([sid,ids]) => {
+      const sub = SUBJECTS.find(s=>s.id===sid); if (!sub) return;
+      const d = document.createElement('div');
+      d.className = 'wr-row';
+      d.innerHTML = `
+        <span style="font-weight:600;font-size:.84rem">${sub.icon} ${sub.title}</span>
+        <div style="display:flex;align-items:center;gap:7px">
+          <span class="chip chip-err">${ids.length} soru</span>
+          <a href="test.html?subject=${sid}&wrong=1" class="btn btn-ghost btn-sm" style="width:auto;padding:7px 12px">Çalış</a>
         </div>`;
-      wrongEl.appendChild(div);
+      wel.appendChild(d);
     });
   }
 }
 
-// ── Icon modal ─────────────────────────────────────────────
-function buildIconGrid() {
-  const container = document.getElementById('icon-grid-container');
-  if (container.children.length > 0) return;
-  ICON_CATEGORIES.forEach(cat => {
-    const catDiv = document.createElement('div');
-    catDiv.className = 'icon-category';
-    catDiv.innerHTML = `<div class="icon-category-label">${cat.label}</div>`;
-    const grid = document.createElement('div');
-    grid.className = 'icon-grid';
-    cat.icons.forEach(([emoji, name]) => {
-      const btn = document.createElement('div');
-      btn.className = 'icon-option' + (emoji === selectedIcon ? ' chosen' : '');
-      btn.dataset.emoji = emoji; btn.dataset.name = name;
-      btn.textContent = emoji; btn.title = name;
-      btn.onclick = () => pickIcon(emoji, name);
-      grid.appendChild(btn);
-    });
-    catDiv.appendChild(grid);
-    container.appendChild(catDiv);
-  });
-}
-
-function openIconModal() {
-  buildIconGrid();
-  document.querySelectorAll('.icon-option').forEach(el =>
-    el.classList.toggle('chosen', el.dataset.emoji === selectedIcon));
-  document.getElementById('icon-modal-overlay').classList.add('open');
-}
-function closeIconModal() {
-  document.getElementById('icon-modal-overlay').classList.remove('open');
-}
-function handleModalOutsideClick(e) {
-  if (e.target === document.getElementById('icon-modal-overlay')) closeIconModal();
-}
-
-function pickIcon(emoji, name) {
-  selectedIcon = emoji; selectedIconName = name;
-  document.querySelectorAll('.icon-option').forEach(el =>
-    el.classList.toggle('chosen', el.dataset.emoji === emoji));
-  // Update preview button
-  document.getElementById('profile-icon-preview').textContent = emoji;
-  document.getElementById('profile-icon-name').textContent    = name;
-  // Update hero avatar live
-  document.getElementById('ph-av').innerHTML = emoji + '<div class="av-edit-hint">✏️</div>';
-}
-
-// ── Save ───────────────────────────────────────────────────
 function saveProfile() {
-  const name = document.getElementById('edit-name').value.trim();
-  const age  = document.getElementById('edit-age').value.trim();
+  const name = document.getElementById('e-name').value.trim();
+  const age  = parseInt(document.getElementById('e-age').value);
   if (!name || !age) { showToast('Tüm alanları doldur!'); return; }
-  SD.setUser({ name, age: parseInt(age), icon: selectedIcon, iconName: selectedIconName });
+  SD.setUser({ name, age, icon: _selIcon, iconName: _selName });
   renderProfile();
-  showToast('Profil kaydedildi! ✅', 'correct');
+  showToast('Profil kaydedildi! ✅');
 }
 
 function clearWrong() {
@@ -382,7 +251,7 @@ function clearWrong() {
   SD.del('sd_wrong'); renderProfile(); showToast('Yanlış listesi temizlendi!');
 }
 function clearAll() {
-  if (!confirm('TÜM veriler silinecek. Bu işlem geri alınamaz!')) return;
+  if (!confirm('TÜM veriler silinecek. Geri alınamaz!')) return;
   ['sd_user','sd_wrong','sd_stats','sd_fc','sd_session'].forEach(k => SD.del(k));
   window.location.href = 'index.html';
 }
