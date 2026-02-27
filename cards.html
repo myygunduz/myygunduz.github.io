@@ -2,323 +2,441 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bilgi Kartları — StudyDeck</title>
 <script src="data.js"></script>
 <script src="app.js"></script>
 <style>
-.cards-pg { padding-bottom: calc(var(--nb-h) + var(--sb) + 12px); }
+.cards-page { padding-bottom: 100px; }
 
-.filter-row {
-  display: flex; gap: 7px; overflow-x: auto;
-  padding-bottom: 2px; margin-bottom: 13px;
-  scrollbar-width: none; -webkit-overflow-scrolling: touch;
-}
-.filter-row::-webkit-scrollbar { display: none; }
-.fbtn {
-  flex-shrink: 0; padding: 7px 13px; border-radius: 99px;
-  font-family:'Nunito',sans-serif; font-weight:700; font-size:.73rem;
-  border: 1.5px solid var(--border); background: var(--white);
-  color: var(--mid); cursor: pointer; white-space: nowrap;
-  touch-action: manipulation;
-}
-.fbtn.on { background: var(--dark); color: #fff; border-color: var(--dark); }
-
-.prog-row { display:flex; align-items:center; gap:9px; margin-bottom:5px; }
-.prog-bar { flex:1; height:6px; background:var(--light); border-radius:99px; overflow:hidden; }
-.prog-fill{ height:100%; background:linear-gradient(90deg,var(--mint),var(--lav)); border-radius:99px; transition:width .35s; }
-.prog-cnt { font-family:'Nunito',sans-serif; font-weight:700; font-size:.72rem; color:var(--mid); }
-.swipe-leg{ display:flex; justify-content:space-between; font-size:.68rem; font-family:'Nunito',sans-serif; font-weight:700; margin-bottom:12px; }
-.sl { color:var(--err); } .sr { color:var(--ok); }
-
-/* ── Deck ── */
-.deck {
-  position: relative;
-  height: clamp(240px, 52vw + 80px, 300px);
+/* Deck area */
+.deck-area {
+  position: relative; height: 380px;
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-  touch-action: none; user-select: none;
+  margin-bottom: 20px; user-select: none; touch-action: pan-y;
 }
-.shad {
-  position: absolute; inset: 0; border-radius: 20px;
-  background: var(--white); border: 1.5px solid var(--border);
+
+/* Shadow cards */
+.shadow-card {
+  position: absolute; width: 100%; max-width: 360px;
+  height: 300px; border-radius: 24px;
+  background: white; border: 1.5px solid var(--border);
   pointer-events: none;
 }
-.shad:nth-child(1){ transform:rotate(5deg)  scaleY(.97); opacity:.38; }
-.shad:nth-child(2){ transform:rotate(-3deg) scaleY(.985); opacity:.6; }
+.shadow-card:nth-child(1) { transform: rotate(5deg)  translateY(8px); opacity: 0.45; }
+.shadow-card:nth-child(2) { transform: rotate(-3deg) translateY(4px); opacity: 0.7;  }
 
-.fc {
-  position: absolute; inset: 0; border-radius: 20px;
+/* Main flash card */
+.flash-card {
+  position: absolute; width: 100%; max-width: 360px; height: 300px;
   cursor: grab; z-index: 10;
-  transform-style: preserve-3d; perspective: 900px;
+  transform-style: preserve-3d; perspective: 1000px;
 }
-.fc:active { cursor: grabbing; }
-.fc-inner {
+.flash-card:active { cursor: grabbing; }
+
+.card-inner {
   position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
-  transition: transform .44s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.48s cubic-bezier(.4,0,.2,1);
 }
-.fc.flipped .fc-inner { transform: rotateY(180deg); }
+.flash-card.flipped .card-inner { transform: rotateY(180deg); }
 
-.face {
-  position: absolute; inset: 0; border-radius: 20px;
-  background: var(--white); border: 1.5px solid var(--border);
-  box-shadow: var(--sh2); backface-visibility: hidden;
-  display: flex; flex-direction: column; padding: 18px 16px; overflow: hidden;
+.card-face {
+  position: absolute; inset: 0;
+  background: white; border-radius: 24px;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 4px 28px rgba(30,30,42,0.10);
+  backface-visibility: hidden;
+  display: flex; flex-direction: column;
+  padding: 28px 24px; overflow: hidden;
 }
-.face::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:4px;
-  background:linear-gradient(90deg,var(--mint),var(--lav));
-  border-radius:20px 20px 0 0;
+.card-face::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--mint), var(--lav));
+  border-radius: 24px 24px 0 0;
 }
-.face-back { transform: rotateY(180deg); }
-.face-back::before { background: linear-gradient(90deg,var(--peach),#f4d07c); }
+.card-back { transform: rotateY(180deg); }
+.card-back::before { background: linear-gradient(90deg, var(--peach), #f4d07c); }
 
-.f-subj {
-  font-family:'Nunito',sans-serif; font-weight:800; font-size:.67rem;
-  text-transform:uppercase; letter-spacing:.5px; padding:3px 9px;
-  border-radius:99px; align-self:flex-start; margin-bottom:11px;
+.card-subject {
+  font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.6px;
+  padding: 4px 10px; border-radius: 99px; display: inline-flex;
+  align-self: flex-start; margin-bottom: 16px;
 }
-.f-q {
-  font-weight:600; font-size:.97rem; line-height:1.5;
-  flex:1; display:flex; align-items:center;
+.card-question-text {
+  font-weight: 600; font-size: 1.05rem; line-height: 1.55;
+  flex: 1; display: flex; align-items: center;
 }
-.f-hint {
-  text-align:center; font-size:.68rem; color:var(--mid);
-  font-family:'Nunito',sans-serif; font-weight:600;
-  animation:pulse 2s ease-in-out infinite;
+.card-hint {
+  text-align: center; font-size: 0.72rem; color: var(--mid);
+  font-family: 'Nunito', sans-serif; font-weight: 600;
+  animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
-.f-albl { font-family:'Nunito',sans-serif; font-weight:800; font-size:.67rem; text-transform:uppercase; letter-spacing:.5px; color:var(--peach); margin-bottom:8px; }
-.f-ans  { font-size:.86rem; line-height:1.6; flex:1; white-space:pre-line; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+@keyframes pulse { 0%,100%{opacity:.45} 50%{opacity:1} }
 
-.swipe-ind {
-  position:absolute; inset:0; border-radius:20px;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:1.2rem;
-  opacity:0; pointer-events:none; border:3px solid transparent;
+.card-answer-label {
+  font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 0.72rem; text-transform: uppercase;
+  letter-spacing: 0.6px; color: var(--peach); margin-bottom: 10px;
 }
-.si-l{ background:rgba(244,124,124,.08); border-color:rgba(244,124,124,.3); color:var(--err); }
-.si-r{ background:rgba(107,203,139,.08); border-color:rgba(107,203,139,.3); color:var(--ok); }
+.card-answer-text { font-size: 0.9rem; line-height: 1.65; flex: 1; white-space: pre-line; overflow-y: auto; }
 
-/* ── Action buttons ── */
-.act-btns { display:flex; gap:12px; align-items:center; justify-content:center; margin-bottom:18px; }
-.abtn {
-  width:58px; height:58px; border-radius:50%;
-  border:2px solid var(--border); background:var(--white);
-  display:flex; align-items:center; justify-content:center;
-  font-size:1.4rem; cursor:pointer; box-shadow:var(--sh);
-  touch-action:manipulation;
+/* Swipe indicators */
+.swipe-indicator {
+  position: absolute; inset: 0; border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.4rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.08s; border: 3px solid transparent;
 }
-.abtn:active{ transform:scale(.88); }
-.abtn.flip{ width:46px; height:46px; font-size:1.1rem; background:var(--light); }
+.swipe-indicator.left  { background: rgba(244,124,124,0.08); border-color: rgba(244,124,124,0.3); color: var(--wrong); }
+.swipe-indicator.right { background: rgba(107,203,139,0.08); border-color: rgba(107,203,139,0.3); color: var(--correct); }
 
-/* ── Done ── */
-.done{ display:none; text-align:center; padding:28px 12px; }
-.done.show{ display:block; }
-.done-em { font-size:3.2rem; margin-bottom:10px; }
-.done-t  { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.22rem; margin-bottom:5px; }
-.done-s  { font-size:.8rem; color:var(--mid); margin-bottom:20px; }
-.done-stats{ display:flex; gap:10px; justify-content:center; margin-bottom:20px; }
-.dst{
-  flex:1; max-width:110px; padding:12px 8px; border-radius:14px;
-  border:1.5px solid var(--border); background:var(--white);
-  text-align:center;
+/* Swipe buttons */
+.swipe-btns {
+  display: flex; gap: 16px; align-items: center;
+  justify-content: center; margin-bottom: 24px;
 }
-.dst-n{ font-family:'Nunito',sans-serif; font-weight:900; font-size:1.6rem; }
-.dst-l{ font-size:.68rem; color:var(--mid); margin-top:2px; }
-.dst.ok  .dst-n{ color:var(--ok); }
-.dst.err .dst-n{ color:var(--err); }
-.done-btns{ display:flex; flex-direction:column; gap:9px; max-width:320px; margin:0 auto; }
+.swipe-btn {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid var(--border); background: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; cursor: pointer;
+  box-shadow: var(--shadow); transition: all 0.18s;
+}
+.swipe-btn:hover { transform: scale(1.08); }
+.swipe-btn.dir-left:hover  { border-color: var(--wrong);   box-shadow: 0 4px 16px rgba(244,124,124,0.3); }
+.swipe-btn.dir-right:hover { border-color: var(--correct); box-shadow: 0 4px 16px rgba(107,203,139,0.3); }
+.flip-btn { width: 50px; height: 50px; font-size: 1.2rem; background: var(--light); }
+
+/* Progress */
+.cards-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.cp-bar { flex: 1; height: 6px; background: var(--light); border-radius: 99px; overflow: hidden; }
+.cp-fill { height: 100%; background: linear-gradient(90deg, var(--mint), var(--lav)); border-radius: 99px; transition: width 0.4s; }
+.cp-count { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.78rem; color: var(--mid); white-space: nowrap; }
+
+.swipe-legend {
+  display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--mid);
+  font-family: 'Nunito', sans-serif; font-weight: 600; margin-bottom: 20px;
+}
+.swipe-legend .sl-left  { color: var(--wrong); }
+.swipe-legend .sl-right { color: var(--correct); }
+
+/* Done screen */
+.done-screen { display: none; text-align: center; padding: 40px 20px; }
+.done-screen.show { display: block; }
+.done-big   { font-size: 4rem; margin-bottom: 16px; }
+.done-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 8px; }
+.done-sub   { font-size: 0.85rem; color: var(--mid); margin-bottom: 28px; }
+.done-stats { display: flex; gap: 12px; justify-content: center; margin-bottom: 28px; }
+.done-stat  { flex: 1; padding: 16px; border-radius: 16px; border: 1.5px solid var(--border); background: white; }
+.done-stat .ds-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; }
+.done-stat .ds-label { font-size: 0.75rem; color: var(--mid); margin-top: 4px; }
+.known .ds-num   { color: var(--correct); }
+.unknown .ds-num { color: var(--wrong); }
+
+/* Filter bar */
+.filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 99px; font-family: 'Nunito', sans-serif;
+  font-weight: 700; font-size: 0.75rem; border: 1.5px solid var(--border);
+  background: white; cursor: pointer; transition: all 0.15s; color: var(--mid);
+}
+.filter-btn.active { background: var(--dark); color: white; border-color: var(--dark); }
 </style>
 </head>
 <body>
-<div class="page cards-pg">
+<div class="page cards-page">
   <div class="navbar">
     <button class="back-btn" onclick="handleBack()">←</button>
-    <span style="font-family:'Nunito',sans-serif;font-weight:800">Bilgi Kartları 🃏</span>
-    <a class="nav-av" id="c-av" href="profile.html">😊</a>
+    <span style="font-family:'Nunito',sans-serif; font-weight:800;">Bilgi Kartları 🃏</span>
+    <a class="nav-avatar" id="cards-av" href="profile.html">?</a>
   </div>
 
-  <div class="filter-row" id="fbar">
-    <button class="fbtn on" data-f="all" onclick="setFilter('all',this)">✨ Tümü</button>
+  <div class="filter-bar" id="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">Tümü</button>
   </div>
 
-  <div class="prog-row">
-    <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
-    <div class="prog-cnt" id="pc">0/0</div>
+  <div class="cards-progress">
+    <div class="cp-bar"><div class="cp-fill" id="cp-fill" style="width:0%"></div></div>
+    <div class="cp-count" id="cp-count">0/0</div>
   </div>
-  <div class="swipe-leg"><span class="sl">← Bilmiyorum</span><span class="sr">Biliyorum →</span></div>
+  <div class="swipe-legend">
+    <span class="sl-left">← Bilmiyorum</span>
+    <span class="sl-right">Biliyorum →</span>
+  </div>
 
-  <div class="deck" id="deck">
-    <div class="shad"></div><div class="shad"></div>
-    <div class="fc" id="fc">
-      <div class="fc-inner">
-        <div class="face">
-          <div class="f-subj" id="f-subj">Konu</div>
-          <div class="f-q"    id="f-q">Yükleniyor…</div>
-          <div class="f-hint">Cevap için dokun 👆</div>
+  <div class="deck-area" id="deck-area">
+    <div class="shadow-card"></div>
+    <div class="shadow-card"></div>
+    <div class="flash-card" id="flash-card">
+      <div class="card-inner" id="card-inner">
+        <div class="card-face">
+          <div class="card-subject" id="cf-subject">Konu</div>
+          <div class="card-question-text" id="cf-question">Yükleniyor...</div>
+          <div class="card-hint">Cevabı görmek için tıkla 👆</div>
         </div>
-        <div class="face face-back">
-          <div class="f-albl">💡 Cevap</div>
-          <div class="f-ans" id="f-ans">—</div>
+        <div class="card-face card-back">
+          <div class="card-answer-label">💡 Cevap</div>
+          <div class="card-answer-text" id="cb-answer">—</div>
         </div>
       </div>
-      <div class="swipe-ind si-l" id="si-l">❌ Bilmiyorum</div>
-      <div class="swipe-ind si-r" id="si-r">✅ Biliyorum</div>
+      <div class="swipe-indicator left"  id="si-left">❌ Bilmiyorum</div>
+      <div class="swipe-indicator right" id="si-right">✅ Biliyorum</div>
     </div>
   </div>
 
-  <div class="act-btns" id="abtns">
-    <button class="abtn" onclick="doSwipe('left')"  style="border-color:rgba(244,124,124,.35)">❌</button>
-    <button class="abtn flip" onclick="flipCard()">🔄</button>
-    <button class="abtn" onclick="doSwipe('right')" style="border-color:rgba(107,203,139,.35)">✅</button>
+  <div class="swipe-btns" id="swipe-btns">
+    <button class="swipe-btn dir-left"  onclick="swipeCard('left')"  title="Bilmiyorum">❌</button>
+    <button class="swipe-btn flip-btn"  onclick="flipCard()"         title="Çevir">🔄</button>
+    <button class="swipe-btn dir-right" onclick="swipeCard('right')" title="Biliyorum">✅</button>
   </div>
 
-  <div class="done" id="done">
-    <div class="done-em">🎉</div>
-    <div class="done-t">Tüm kartlar bitti!</div>
-    <div class="done-s" id="done-s">—</div>
+  <div class="done-screen" id="done-screen">
+    <div class="done-big">🎉</div>
+    <div class="done-title">Tüm kartları tamamladın!</div>
+    <div class="done-sub" id="done-sub">—</div>
     <div class="done-stats">
-      <div class="dst ok"><div class="dst-n" id="dn-ok">0</div><div class="dst-l">✅ Bildim</div></div>
-      <div class="dst err"><div class="dst-n" id="dn-err">0</div><div class="dst-l">❌ Bilmedim</div></div>
+      <div class="done-stat known">
+        <div class="ds-num" id="done-known">0</div>
+        <div class="ds-label">✅ Bildim</div>
+      </div>
+      <div class="done-stat unknown">
+        <div class="ds-num" id="done-unknown">0</div>
+        <div class="ds-label">❌ Bilmedim</div>
+      </div>
     </div>
-    <div class="done-btns">
-      <button class="btn btn-dark"  onclick="resetAll()">🔁 Tümünü Tekrar Et</button>
-      <button class="btn btn-ghost" onclick="resetUnk()" id="btn-unk">❌ Sadece Bilmediklerimi</button>
-      <a href="index.html" class="btn btn-ghost">🏠 Ana Sayfa</a>
-    </div>
+    <button class="btn btn-dark"  onclick="resetDeck()"    style="max-width:300px;margin:0 auto 10px;">🔁 Tümünü Tekrar Et</button>
+    <button class="btn btn-ghost" onclick="resetUnknown()" id="btn-repeat-unknown" style="max-width:300px;margin:0 auto;">❌ Sadece Bilmediklerimi</button>
+    <a href="index.html" class="btn btn-ghost" style="max-width:300px;margin:10px auto 0;">🏠 Ana Sayfa</a>
   </div>
 </div>
 
-<nav class="bnav">
-  <a id="n-home"    href="index.html"><span class="ni">🏠</span>Ana Sayfa</a>
-  <a id="n-cards"   href="cards.html" class="active"><span class="ni">🃏</span>Kartlar</a>
-  <a id="n-test"    href="test.html"><span class="ni">📝</span>Test</a>
-  <a id="n-profile" href="profile.html"><span class="ni">👤</span>Profil</a>
+<!-- Bottom nav — locked during card session -->
+<nav class="bottom-nav">
+  <a id="nav-home"    href="index.html" ><span class="nav-icon">🏠</span>Ana Sayfa</a>
+  <a id="nav-cards"   href="cards.html"  class="active"><span class="nav-icon">🃏</span>Kartlar</a>
+  <a id="nav-test"    href="test.html"  ><span class="nav-icon">📝</span>Test</a>
+  <a id="nav-profile" href="profile.html"><span class="nav-icon">👤</span>Profil</a>
 </nav>
 
 <script>
 if (!SD.requireUser()) {}
-const u = SD.getUser();
-document.getElementById('c-av').textContent = u.icon || SD.initials(u.name);
 
-let deck=[], idx=0, knownN=0, unkIds=[], flipped=false;
-let drag=false, sx=0, cx=0;
-const TH=70, NAVS=['n-home','n-test','n-profile'];
-const HREFS={'n-home':'index.html','n-test':'test.html','n-profile':'profile.html'};
-let active=false, curF='all';
+const user = SD.getUser();
+document.getElementById('cards-av').textContent = SD.initials(user.name);
 
-function lockNav(){
-  active=true;
-  NAVS.forEach(id=>{const e=document.getElementById(id);e.removeAttribute('href');e.onclick=ev=>{ev.preventDefault();showToast('Önce kartları tamamla 😊');};});
-}
-function unlockNav(){
-  active=false;
-  NAVS.forEach(id=>{const e=document.getElementById(id);e.href=HREFS[id];e.onclick=null;});
-}
-function handleBack(){if(active)showToast('Önce kartları tamamla 😊');else history.back();}
+// ── State ──────────────────────────────────────────────────
+let deck = [], currentIndex = 0, knownCount = 0, unknownIds = [];
+let isFlipped = false, isDragging = false;
+let startX = 0, currentX = 0;
+const THRESHOLD = 80;
+let sessionActive = false;
+let currentFilter = 'all';
 
-window.addEventListener('DOMContentLoaded',()=>{
-  const bar=document.getElementById('fbar');
-  SUBJECTS.forEach(s=>{
-    const b=document.createElement('button');
-    b.className='fbtn';b.dataset.f=s.id;
-    b.textContent=s.icon+' '+s.title;
-    b.onclick=()=>setFilter(s.id,b);bar.appendChild(b);
+// ── Nav lock ───────────────────────────────────────────────
+const NAV_IDS   = ['nav-home','nav-test','nav-profile'];
+const NAV_HREFS = { 'nav-home':'index.html','nav-test':'test.html','nav-profile':'profile.html' };
+
+function lockNav() {
+  sessionActive = true;
+  NAV_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    el.removeAttribute('href');
+    el.onclick = e => { e.preventDefault(); showToast('Önce kartları bitir ya da filtreden çık 😊'); };
   });
-  setFilter('all',document.querySelector('[data-f="all"]'));
+}
+function unlockNav() {
+  sessionActive = false;
+  NAV_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    el.href = NAV_HREFS[id];
+    el.onclick = null;
+  });
+}
+
+function handleBack() {
+  if (sessionActive) showToast('Önce kartları tamamla 😊');
+  else history.back();
+}
+
+// ── Init ───────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  // Build filter buttons
+  const bar = document.getElementById('filter-bar');
+  SUBJECTS.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.dataset.filter = s.id;
+    btn.textContent = s.icon + ' ' + s.title;
+    btn.onclick = () => setFilter(s.id, btn);
+    bar.appendChild(btn);
+  });
+
+  setFilter('all', document.querySelector('[data-filter="all"]'));
 });
 
-function setFilter(f,btn){
-  curF=f;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  deck=f==='all'
-    ?SD.shuffle([...FLASHCARDS])
-    :SD.shuffle(FLASHCARDS.filter(fc=>{const s=SUBJECTS.find(s=>s.id===f);return s&&fc.subject===s.title;}));
-  idx=0;knownN=0;unkIds=[];flipped=false;
-  document.getElementById('done').classList.remove('show');
-  document.getElementById('deck').style.display='flex';
-  document.getElementById('abtns').style.display='flex';
-  if(deck.length>0){lockNav();render();}else{showToast('Bu konuya kart yok!');unlockNav();}
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  deck = filter === 'all'
+    ? SD.shuffle([...FLASHCARDS])
+    : SD.shuffle(FLASHCARDS.filter(f => {
+        const sub = SUBJECTS.find(s => s.id === filter);
+        return sub && f.subject === sub.title;
+      }));
+
+  currentIndex = 0; knownCount = 0; unknownIds = []; isFlipped = false;
+
+  document.getElementById('done-screen').classList.remove('show');
+  document.getElementById('deck-area').style.display = 'flex';
+  document.getElementById('swipe-btns').style.display = 'flex';
+
+  if (deck.length > 0) {
+    lockNav();
+    renderCard();
+  } else {
+    showToast('Bu konuya ait kart yok!');
+    unlockNav();
+  }
 }
 
-function render(){
-  if(idx>=deck.length){showDone();return;}
-  const fc=deck[idx]; flipped=false;
-  const el=document.getElementById('fc');
-  el.style.transition='';el.style.transform='';el.style.opacity='1';
-  el.classList.remove('flipped');
-  document.getElementById('f-subj').textContent=fc.subject;
-  document.getElementById('f-subj').style.background=fc.subjectColor+'1e';
-  document.getElementById('f-subj').style.color=fc.subjectColor;
-  document.getElementById('f-q').textContent=fc.question;
-  document.getElementById('f-ans').textContent=fc.answer;
-  document.getElementById('si-l').style.opacity='0';
-  document.getElementById('si-r').style.opacity='0';
-  const pct=deck.length>0?idx/deck.length*100:0;
-  document.getElementById('pf').style.width=pct+'%';
-  document.getElementById('pc').textContent=idx+'/'+deck.length;
+// ── Render ─────────────────────────────────────────────────
+function renderCard() {
+  if (currentIndex >= deck.length) { showDone(); return; }
+  const fc = deck[currentIndex];
+  isFlipped = false;
+
+  const cardEl = document.getElementById('flash-card');
+  cardEl.style.transition = '';
+  cardEl.style.transform  = '';
+  cardEl.style.opacity    = '1';
+  cardEl.classList.remove('flipped');
+
+  document.getElementById('cf-subject').textContent = fc.subject;
+  document.getElementById('cf-subject').style.background = fc.subjectColor + '22';
+  document.getElementById('cf-subject').style.color      = fc.subjectColor;
+  document.getElementById('cf-question').textContent = fc.question;
+  document.getElementById('cb-answer').textContent   = fc.answer;
+
+  document.getElementById('si-left').style.opacity  = '0';
+  document.getElementById('si-right').style.opacity = '0';
+
+  updateProgress();
 }
 
-function flipCard(){flipped=!flipped;document.getElementById('fc').classList.toggle('flipped',flipped);}
-
-function doSwipe(dir){
-  const el=document.getElementById('fc');
-  if(dir==='right')knownN++;else unkIds.push(deck[idx].id);
-  el.style.transition='transform .32s ease,opacity .32s ease';
-  el.style.transform=dir==='right'?'translateX(130%) rotate(22deg)':'translateX(-130%) rotate(-22deg)';
-  el.style.opacity='0';
-  setTimeout(()=>{idx++;render();},300);
+function updateProgress() {
+  const total = deck.length, done = currentIndex;
+  const pct = total > 0 ? done / total * 100 : 0;
+  document.getElementById('cp-fill').style.width = pct + '%';
+  document.getElementById('cp-count').textContent = done + '/' + total;
 }
 
-// Drag
-const fcEl=document.getElementById('fc');
-function onS(x){drag=true;sx=x;cx=x;fcEl.style.transition='none';}
-function onM(x){
-  if(!drag)return;cx=x;
-  const dx=x-sx;fcEl.style.transform=`translateX(${dx}px) rotate(${dx*.08}deg)`;
-  const p=Math.min(Math.abs(dx)/TH,1);
-  document.getElementById('si-r').style.opacity=dx>15?String(p):'0';
-  document.getElementById('si-l').style.opacity=dx<-15?String(p):'0';
+function flipCard() {
+  isFlipped = !isFlipped;
+  document.getElementById('flash-card').classList.toggle('flipped', isFlipped);
 }
-function onE(){
-  if(!drag)return;drag=false;
-  const dx=cx-sx;
-  fcEl.style.transition='transform .22s ease,opacity .22s ease';
-  if(dx>TH)doSwipe('right');
-  else if(dx<-TH)doSwipe('left');
-  else{fcEl.style.transform='';document.getElementById('si-l').style.opacity='0';document.getElementById('si-r').style.opacity='0';}
-}
-fcEl.addEventListener('click',()=>{if(Math.abs(cx-sx)<8)flipCard();});
-fcEl.addEventListener('mousedown',e=>onS(e.clientX));
-window.addEventListener('mousemove',e=>{if(drag)onM(e.clientX);});
-window.addEventListener('mouseup',()=>onE());
-fcEl.addEventListener('touchstart',e=>onS(e.touches[0].clientX),{passive:true});
-fcEl.addEventListener('touchmove',e=>{onM(e.touches[0].clientX);e.preventDefault();},{passive:false});
-fcEl.addEventListener('touchend',()=>onE());
 
-function showDone(){
+// ── Swipe ──────────────────────────────────────────────────
+function swipeCard(dir) {
+  const cardEl = document.getElementById('flash-card');
+  const fc = deck[currentIndex];
+
+  if (dir === 'right') {
+    knownCount++;
+    cardEl.style.transition = 'transform 0.38s ease, opacity 0.38s ease';
+    cardEl.style.transform  = 'translateX(130%) rotate(22deg)';
+    cardEl.style.opacity    = '0';
+  } else {
+    unknownIds.push(fc.id);
+    cardEl.style.transition = 'transform 0.38s ease, opacity 0.38s ease';
+    cardEl.style.transform  = 'translateX(-130%) rotate(-22deg)';
+    cardEl.style.opacity    = '0';
+  }
+
+  setTimeout(() => { currentIndex++; renderCard(); }, 360);
+}
+
+// ── Drag (mouse + touch) ───────────────────────────────────
+const cardEl = document.getElementById('flash-card');
+
+function onStart(x) { isDragging = true; startX = x; currentX = x; cardEl.style.transition = 'none'; }
+function onMove(x) {
+  if (!isDragging) return;
+  currentX = x;
+  const dx = x - startX, rot = dx * 0.08;
+  cardEl.style.transform = `translateX(${dx}px) rotate(${rot}deg)`;
+  const prog = Math.min(Math.abs(dx) / THRESHOLD, 1);
+  if (dx > 20) {
+    document.getElementById('si-right').style.opacity = String(prog);
+    document.getElementById('si-left').style.opacity  = '0';
+  } else if (dx < -20) {
+    document.getElementById('si-left').style.opacity  = String(prog);
+    document.getElementById('si-right').style.opacity = '0';
+  } else {
+    document.getElementById('si-left').style.opacity  = '0';
+    document.getElementById('si-right').style.opacity = '0';
+  }
+}
+function onEnd() {
+  if (!isDragging) return;
+  isDragging = false;
+  const dx = currentX - startX;
+  cardEl.style.transition = 'transform 0.28s ease, opacity 0.28s ease';
+  if (dx >  THRESHOLD) swipeCard('right');
+  else if (dx < -THRESHOLD) swipeCard('left');
+  else {
+    cardEl.style.transform = '';
+    document.getElementById('si-left').style.opacity  = '0';
+    document.getElementById('si-right').style.opacity = '0';
+  }
+}
+
+// Mouse
+cardEl.addEventListener('mousedown',  e => onStart(e.clientX));
+document.addEventListener('mousemove', e => onMove(e.clientX));
+document.addEventListener('mouseup',   () => onEnd());
+
+// Touch
+cardEl.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
+cardEl.addEventListener('touchmove',  e => { onMove(e.touches[0].clientX); e.preventDefault(); }, { passive: false });
+cardEl.addEventListener('touchend',   () => onEnd());
+
+// Click to flip (only if not a significant drag)
+cardEl.addEventListener('click', () => {
+  if (Math.abs(currentX - startX) < 10) flipCard();
+});
+
+// ── Done ───────────────────────────────────────────────────
+function showDone() {
   unlockNav();
-  document.getElementById('deck').style.display='none';
-  document.getElementById('abtns').style.display='none';
-  document.getElementById('done').classList.add('show');
-  document.getElementById('dn-ok').textContent=knownN;
-  document.getElementById('dn-err').textContent=unkIds.length;
-  document.getElementById('done-s').textContent=
-    knownN===deck.length?'Mükemmel! Hepsini bildin! 🏆':`${knownN}/${deck.length} kartı bildin.`;
-  document.getElementById('btn-unk').style.display=unkIds.length>0?'flex':'none';
+  document.getElementById('deck-area').style.display = 'none';
+  document.getElementById('swipe-btns').style.display = 'none';
+  document.getElementById('done-screen').classList.add('show');
+  document.getElementById('done-known').textContent   = knownCount;
+  document.getElementById('done-unknown').textContent = unknownIds.length;
+  document.getElementById('done-sub').textContent =
+    knownCount === deck.length ? 'Mükemmel! Hepsini bildin! 🏆' :
+    `${knownCount}/${deck.length} kartı bildin.`;
+  document.getElementById('btn-repeat-unknown').style.display =
+    unknownIds.length > 0 ? 'flex' : 'none';
 }
-function resetAll(){setFilter(curF,document.querySelector(`[data-f="${curF}"]`));}
-function resetUnk(){
-  deck=SD.shuffle([...unkIds].map(id=>FLASHCARDS.find(f=>f.id===id)).filter(Boolean));
-  idx=0;knownN=0;unkIds=[];flipped=false;
-  document.getElementById('done').classList.remove('show');
-  document.getElementById('deck').style.display='flex';
-  document.getElementById('abtns').style.display='flex';
-  if(deck.length>0){lockNav();render();}
+
+function resetDeck() {
+  setFilter(currentFilter, document.querySelector(`[data-filter="${currentFilter}"]`));
+}
+
+function resetUnknown() {
+  const ids = [...unknownIds];
+  deck = SD.shuffle(ids.map(id => FLASHCARDS.find(f => f.id === id)).filter(Boolean));
+  currentIndex = 0; knownCount = 0; unknownIds = []; isFlipped = false;
+  document.getElementById('done-screen').classList.remove('show');
+  document.getElementById('deck-area').style.display = 'flex';
+  document.getElementById('swipe-btns').style.display = 'flex';
+  if (deck.length > 0) { lockNav(); renderCard(); }
 }
 </script>
 </body>

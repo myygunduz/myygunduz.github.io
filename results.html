@@ -2,269 +2,293 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sonuçlar — StudyDeck</title>
 <script src="data.js"></script>
 <script src="app.js"></script>
 <style>
-.res-pg { padding-bottom: calc(var(--nb-h) + var(--sb) + 12px); }
+.results-page { padding-bottom: 100px; }
 
-/* hero */
-.r-hero {
+/* Hero */
+.result-hero {
   text-align: center;
-  background: linear-gradient(135deg,#f6f2ff,#f0fbf9);
-  border: 1.5px solid var(--border); border-radius: 20px;
-  padding: 28px 16px 22px; margin-bottom: 12px;
-  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #f6f2ff, #f0fbf9);
+  border: 1.5px solid var(--border);
+  border-radius: 24px; padding: 36px 24px 28px;
+  margin-bottom: 16px; position: relative; overflow: hidden;
 }
-.r-hero::before {
-  content:''; position:absolute; inset:0;
-  background: radial-gradient(circle at 80% 20%, rgba(181,168,224,.18), transparent 60%);
-  pointer-events:none;
+.result-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(181,168,224,0.2), transparent 60%);
 }
-.r-trophy { font-size: 3.2rem; margin-bottom: 8px; position:relative; }
-.r-name   { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.15rem; position:relative; }
-.r-sub    { font-size:.74rem; color:var(--mid); margin-top:3px; position:relative; }
-
-/* score ring */
-.score-ring-wrap { display:flex; justify-content:center; margin:16px 0 14px; }
-.score-ring-outer { position:relative; width:110px; height:110px; }
-.score-ring-outer svg { transform:rotate(-90deg); }
-.score-ring-label {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  text-align:center;
-}
-.srl-pct   { font-family:'Nunito',sans-serif; font-weight:900; font-size:1.6rem; color:var(--dark); line-height:1; }
-.srl-label { font-size:.6rem; color:var(--mid); font-family:'Nunito',sans-serif; font-weight:700; margin-top:2px; }
-
-.r-badge {
-  display:inline-flex; align-items:center; gap:5px;
-  padding:7px 18px; background:var(--dark); color:#fff;
-  border-radius:99px; font-family:'Nunito',sans-serif;
-  font-weight:800; font-size:.84rem; position:relative;
+.rh-trophy { font-size: 4rem; margin-bottom: 12px; }
+.rh-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.25rem; }
+.rh-sub { font-size: 0.78rem; color: var(--mid); margin-top: 3px; }
+.rh-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 16px; padding: 8px 22px;
+  background: var(--dark); color: white;
+  border-radius: 99px; font-family: 'Nunito', sans-serif;
+  font-weight: 800; font-size: 0.9rem;
 }
 
-/* stat rows */
+/* Stat cards */
 .stat-row {
-  display:flex; align-items:center; gap:12px;
-  padding:13px; background:var(--white);
-  border-radius:14px; border:1.5px solid var(--border);
-  margin-bottom:9px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px; background: white;
+  border-radius: 18px; border: 1.5px solid var(--border);
+  margin-bottom: 10px;
 }
-.stat-info h4 { font-family:'Nunito',sans-serif; font-weight:800; font-size:.88rem; }
-.stat-info p  { font-size:.74rem; color:var(--mid); margin-top:2px; }
+.stat-info h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; }
+.stat-info p { font-size: 0.78rem; color: var(--mid); margin-top: 2px; }
 
-/* ring util */
-.r-ring { position:relative; width:52px; height:52px; flex-shrink:0; }
-.r-ring svg { transform:rotate(-90deg); }
-.r-ring-val {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  font-family:'Nunito',sans-serif; font-weight:900; font-size:.65rem; color:var(--dark);
+/* Wrong list */
+.wrong-item {
+  background: white; border-radius: 16px;
+  border: 1.5px solid rgba(244,124,124,0.25);
+  padding: 16px 18px; margin-bottom: 10px;
 }
+.wrong-item .wi-q { font-weight: 600; font-size: 0.88rem; margin-bottom: 8px; }
+.wrong-item .wi-chosen {
+  font-size: 0.78rem; color: var(--wrong);
+  font-family: 'Nunito', sans-serif; font-weight: 700;
+  margin-bottom: 4px;
+}
+.wrong-item .wi-correct {
+  font-size: 0.78rem; color: var(--correct);
+  font-family: 'Nunito', sans-serif; font-weight: 700;
+  margin-bottom: 8px;
+}
+.wrong-item .wi-exp { font-size: 0.8rem; color: var(--mid); line-height: 1.55; }
 
-/* wrong list */
-.w-item {
-  background:var(--white); border-radius:14px;
-  border:1.5px solid rgba(244,124,124,.22);
-  padding:13px; margin-bottom:9px;
+/* Score big text */
+.score-ring-wrap {
+  display: flex; justify-content: center;
+  margin: 20px 0;
 }
-.w-item .wi-q   { font-weight:600; font-size:.86rem; margin-bottom:7px; line-height:1.4; }
-.w-item .wi-ch  { font-size:.74rem; font-family:'Nunito',sans-serif; font-weight:700; color:var(--err); margin-bottom:3px; }
-.w-item .wi-ok  { font-size:.74rem; font-family:'Nunito',sans-serif; font-weight:700; color:var(--ok); margin-bottom:7px; }
-.w-item .wi-exp { font-size:.78rem; color:var(--mid); line-height:1.5; }
+.score-ring-outer {
+  position: relative; width: 120px; height: 120px;
+}
+.score-ring-outer svg { transform: rotate(-90deg); }
+.score-ring-label {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+.score-ring-label .pct {
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 1.7rem; color: var(--dark); line-height: 1;
+}
+.score-ring-label .pct-label { font-size: 0.65rem; color: var(--mid); font-family: 'Nunito', sans-serif; font-weight: 700; }
 
-/* confetti */
-.cft {
-  position:fixed; border-radius:2px; pointer-events:none;
-  animation:cftFall linear forwards;
+/* Confetti */
+.confetti-dot {
+  position: fixed; width: 8px; height: 8px;
+  border-radius: 2px; pointer-events: none;
+  animation: confettiFall linear forwards;
 }
-@keyframes cftFall {
-  0%   { transform:translateY(-20px) rotate(0deg); opacity:1; }
-  100% { transform:translateY(100dvh) rotate(720deg); opacity:0; }
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
-
-/* action buttons */
-.act-btns { margin-top:18px; display:flex; flex-direction:column; gap:9px; }
 </style>
 </head>
 <body>
-<div class="page res-pg">
+<div class="page results-page">
   <div class="navbar">
     <a class="back-btn" href="test.html">←</a>
-    <span style="font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;color:var(--mid)">Test Sonuçları</span>
-    <div style="width:40px"></div>
+    <span style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.92rem; color:var(--mid);">Test Sonuçları</span>
+    <div style="width:38px"></div>
   </div>
 
   <!-- Hero -->
-  <div class="r-hero fade-up">
-    <div class="r-trophy" id="r-trophy">🎉</div>
-    <div class="r-name" id="r-name">—</div>
-    <div class="r-sub"  id="r-sub">—</div>
+  <div class="result-hero fade-up">
+    <div class="rh-trophy" id="rh-trophy">🎉</div>
+    <div class="rh-name" id="rh-name">—</div>
+    <div class="rh-sub" id="rh-sub">—</div>
     <div class="score-ring-wrap">
       <div class="score-ring-outer">
-        <svg width="110" height="110" viewBox="0 0 110 110">
-          <circle cx="55" cy="55" r="46" fill="none" stroke="#f0ece6" stroke-width="10"/>
-          <circle cx="55" cy="55" r="46" fill="none" stroke="#7ecec4" stroke-width="10"
-            stroke-dasharray="289.03" stroke-dashoffset="289.03" id="main-ring"
-            stroke-linecap="round"
-            style="transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1) .2s"/>
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#f0ece6" stroke-width="12"/>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="#7ecec4" stroke-width="12"
+            stroke-dasharray="314.16" id="score-ring-circle" stroke-dashoffset="314.16" stroke-linecap="round"
+            style="transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1) 0.2s"/>
         </svg>
         <div class="score-ring-label">
-          <div class="srl-pct"   id="r-pct">0%</div>
-          <div class="srl-label">BAŞARI</div>
+          <div class="pct" id="rh-pct">0%</div>
+          <div class="pct-label">BAŞARI</div>
         </div>
       </div>
     </div>
-    <div class="r-badge" id="r-badge">0/0 Doğru</div>
+    <div class="rh-badge" id="rh-badge">0/0 Doğru</div>
   </div>
 
-  <!-- Stat rows -->
-  <div class="stat-row fade-up" style="animation-delay:.08s">
-    <div class="r-ring">
-      <svg width="52" height="52" viewBox="0 0 52 52">
-        <circle cx="26" cy="26" r="20" fill="none" stroke="#f0ece6" stroke-width="6"/>
-        <circle cx="26" cy="26" r="20" fill="none" stroke="#6bcb8b" stroke-width="6"
-          stroke-dasharray="125.66" stroke-dashoffset="125.66" id="ring-ok"
-          stroke-linecap="round"
-          style="transition:stroke-dashoffset .8s ease .35s"/>
+  <!-- Stats -->
+  <div class="stat-row fade-up" style="animation-delay:0.1s">
+    <div class="ring-wrap">
+      <svg width="56" height="56" viewBox="0 0 56 56">
+        <circle cx="28" cy="28" r="22" fill="none" stroke="#f0ece6" stroke-width="6"/>
+        <circle cx="28" cy="28" r="22" fill="none" stroke="#6bcb8b" stroke-width="6"
+          stroke-dasharray="138.2" id="ring-correct" stroke-dashoffset="138.2" stroke-linecap="round"
+          style="transition: stroke-dashoffset 0.8s ease 0.4s"/>
       </svg>
-      <div class="r-ring-val" id="rv-ok">0%</div>
+      <div class="ring-val" id="rv-correct">0%</div>
     </div>
     <div class="stat-info">
       <h4>✅ Doğru Cevaplar</h4>
-      <p id="si-ok">—</p>
+      <p id="si-correct-text">—</p>
     </div>
   </div>
 
-  <div class="stat-row fade-up" style="animation-delay:.14s">
-    <div class="r-ring">
-      <svg width="52" height="52" viewBox="0 0 52 52">
-        <circle cx="26" cy="26" r="20" fill="none" stroke="#f0ece6" stroke-width="6"/>
-        <circle cx="26" cy="26" r="20" fill="none" stroke="#f47c7c" stroke-width="6"
-          stroke-dasharray="125.66" stroke-dashoffset="125.66" id="ring-err"
-          stroke-linecap="round"
-          style="transition:stroke-dashoffset .8s ease .45s"/>
+  <div class="stat-row fade-up" style="animation-delay:0.18s">
+    <div class="ring-wrap">
+      <svg width="56" height="56" viewBox="0 0 56 56">
+        <circle cx="28" cy="28" r="22" fill="none" stroke="#f0ece6" stroke-width="6"/>
+        <circle cx="28" cy="28" r="22" fill="none" stroke="#f47c7c" stroke-width="6"
+          stroke-dasharray="138.2" id="ring-wrong" stroke-dashoffset="138.2" stroke-linecap="round"
+          style="transition: stroke-dashoffset 0.8s ease 0.5s"/>
       </svg>
-      <div class="r-ring-val" id="rv-err">0%</div>
+      <div class="ring-val" id="rv-wrong">0%</div>
     </div>
     <div class="stat-info">
       <h4>❌ Yanlış / Boş</h4>
-      <p id="si-err">—</p>
+      <p id="si-wrong-text">—</p>
     </div>
   </div>
 
-  <!-- Wrong list -->
-  <div id="w-section"></div>
+  <!-- Wrong items -->
+  <div id="wrong-section" style="margin-top:8px;"></div>
 
   <!-- Actions -->
-  <div class="act-btns">
-    <button class="btn btn-dark"  id="btn-retake" onclick="retakeWrong()" style="display:none">❌ Yanlışlarımla Tekrar Et</button>
-    <button class="btn btn-mint"  onclick="retakeAll()">🔁 Tamamını Tekrar Et</button>
+  <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+    <button class="btn btn-dark" onclick="retakeWrong()" id="btn-retake" style="display:none;">
+      ❌ Sadece Yanlışlarımla Tekrar Et
+    </button>
+    <button class="btn btn-mint" onclick="retakeAll()">🔁 Tamamını Tekrar Et</button>
     <a href="index.html" class="btn btn-ghost">🏠 Ana Sayfaya Dön</a>
   </div>
 </div>
 
-<nav class="bnav">
-  <a href="index.html"><span class="ni">🏠</span>Ana Sayfa</a>
-  <a href="cards.html"><span class="ni">🃏</span>Kartlar</a>
-  <a href="test.html" class="active"><span class="ni">📝</span>Test</a>
-  <a href="profile.html"><span class="ni">👤</span>Profil</a>
+<!-- Bottom nav -->
+<nav class="bottom-nav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Ana Sayfa</a>
+  <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
+  <a href="test.html"><span class="nav-icon">📝</span>Test</a>
+  <a href="profile.html"><span class="nav-icon">👤</span>Profil</a>
 </nav>
 
 <script>
 if (!SD.requireUser()) {}
 
-let _sid = null;
-
 window.addEventListener('DOMContentLoaded', () => {
-  const s = SD.getSession();
-  if (!s) { window.location.href = 'test.html'; return; }
+  const session = SD.getSession();
+  if (!session) { window.location.href = 'test.html'; return; }
   SD.clearSession();
-  _sid = s.subjectId;
-  render(s);
+  renderResults(session);
 });
 
-function render(s) {
-  const user  = SD.getUser();
-  const sub   = SUBJECTS.find(x => x.id === s.subjectId);
-  const total = s.total, cor = s.correct, sk = s.skipped;
-  const wrong = total - cor - sk;
-  const pct   = Math.round(total > 0 ? cor / total * 100 : 0);
-  const errPct = Math.round(total > 0 ? (total - cor) / total * 100 : 0);
-  const okPct  = 100 - errPct;
+function renderResults(s) {
+  const user = SD.getUser();
+  const sub = SUBJECTS.find(x => x.id === s.subjectId);
+  const total = s.total;
+  const correct = s.correct;
+  const skipped = s.skipped;
+  const wrong = total - correct - skipped;
+  const pct = Math.round(total > 0 ? correct / total * 100 : 0);
+  const wrongPct = Math.round(total > 0 ? (total - correct) / total * 100 : 0);
+  const correctPct = 100 - wrongPct;
 
-  document.getElementById('r-trophy').textContent = pct>=90?'🏆':pct>=70?'🎉':pct>=50?'😊':'💪';
-  document.getElementById('r-name').textContent   = user.name;
-  document.getElementById('r-sub').textContent    = (sub?.title||'—')+' Testi'+(s.wrongOnly?' · Yanlışlar':'');
-  document.getElementById('r-badge').textContent  = cor+'/'+total+' Doğru';
-  document.getElementById('r-pct').textContent    = pct+'%';
+  // Hero
+  const trophy = pct >= 90 ? '🏆' : pct >= 70 ? '🎉' : pct >= 50 ? '😊' : '💪';
+  document.getElementById('rh-trophy').textContent = trophy;
+  document.getElementById('rh-name').textContent = user.name;
+  document.getElementById('rh-sub').textContent = (sub?.title || '—') + ' Testi' + (s.wrongOnly ? ' · Yanlışlar Modu' : '');
+  document.getElementById('rh-badge').textContent = correct + '/' + total + ' Doğru';
+  document.getElementById('rh-pct').textContent = pct + '%';
 
-  // Animate rings (r=46 → circ=289.03; r=20 → circ=125.66)
+  // Animate score ring (circumference = 2π×50 = 314.16)
   requestAnimationFrame(() => {
-    const c1 = 289.03;
-    const mr = document.getElementById('main-ring');
-    mr.style.strokeDashoffset = String(c1 - c1 * pct / 100);
-    mr.style.stroke = pct>=70?'#6bcb8b':pct>=50?'#f4c47c':'#f47c7c';
-
-    const c2 = 125.66;
-    document.getElementById('ring-ok').style.strokeDashoffset  = String(c2 - c2 * okPct  / 100);
-    document.getElementById('ring-err').style.strokeDashoffset = String(c2 - c2 * errPct / 100);
+    const circ = 314.16;
+    document.getElementById('score-ring-circle').style.strokeDashoffset = String(circ - circ * pct / 100);
+    document.getElementById('score-ring-circle').style.stroke =
+      pct >= 70 ? '#6bcb8b' : pct >= 50 ? '#f4c47c' : '#f47c7c';
   });
 
-  document.getElementById('rv-ok').textContent  = okPct+'%';
-  document.getElementById('rv-err').textContent = errPct+'%';
-  document.getElementById('si-ok').textContent  = cor+' soru doğru'+(sk>0?' · '+sk+' boş':'');
-  document.getElementById('si-err').textContent = wrong+' yanlış'+(sk>0?' + '+sk+' boş':'');
+  // Small rings (circumference = 138.2)
+  const circ2 = 138.2;
+  requestAnimationFrame(() => {
+    document.getElementById('ring-correct').style.strokeDashoffset = String(circ2 - circ2 * correctPct / 100);
+    document.getElementById('ring-wrong').style.strokeDashoffset = String(circ2 - circ2 * wrongPct / 100);
+  });
+  document.getElementById('rv-correct').textContent = correctPct + '%';
+  document.getElementById('rv-wrong').textContent = wrongPct + '%';
+  document.getElementById('si-correct-text').textContent = correct + ' soru doğru' + (skipped > 0 ? ` · ${skipped} boş` : '');
+  document.getElementById('si-wrong-text').textContent = wrong + ' yanlış' + (skipped > 0 ? ` + ${skipped} boş bırakılan` : '');
 
   // Wrong list
-  const ws  = document.getElementById('w-section');
-  const wqs = s.questions.filter(q => q.chosen !== q.correct);
-  if (wqs.length > 0) {
-    const h = document.createElement('div');
-    h.style.cssText = 'font-family:Nunito,sans-serif;font-weight:900;font-size:.94rem;color:var(--err);margin:14px 0 10px';
-    h.textContent = '❌ Yanlış / Boş Bıraktıkların';
-    ws.appendChild(h);
-    wqs.forEach(q => {
-      const d = document.createElement('div');
-      d.className = 'w-item fade-up';
-      const ch = q.chosen===null
+  const wrongSection = document.getElementById('wrong-section');
+  const wrongQs = s.questions.filter(q => q.chosen !== q.correct);
+  if (wrongQs.length > 0) {
+    const heading = document.createElement('div');
+    heading.style.cssText = 'font-family:Nunito,sans-serif; font-weight:900; font-size:1rem; color:var(--wrong); margin-bottom:12px;';
+    heading.textContent = '❌ Yanlış / Boş Bıraktıkların';
+    wrongSection.appendChild(heading);
+    wrongQs.forEach(q => {
+      const div = document.createElement('div');
+      div.className = 'wrong-item fade-up';
+      const chosenLabel = q.chosen === null
         ? '<span style="color:var(--lav)">⏭ Boş bıraktın</span>'
         : `<span>Seçtiğin: <strong>"${q.options[q.chosen]}"</strong></span>`;
-      d.innerHTML = `
+      div.innerHTML = `
         <div class="wi-q">${q.question}</div>
-        <div class="wi-ch">${ch}</div>
-        <div class="wi-ok">✅ Doğru: "${q.options[q.correct]}"</div>
-        <div class="wi-exp">${q.explanation}</div>`;
-      ws.appendChild(d);
+        <div class="wi-chosen">${chosenLabel}</div>
+        <div class="wi-correct">✅ Doğru: "${q.options[q.correct]}"</div>
+        <div class="wi-exp">${q.explanation}</div>
+      `;
+      wrongSection.appendChild(div);
     });
   }
 
   // Retake btn
-  const rw = SD.getWrongForSubject(s.subjectId).length;
-  const rb = document.getElementById('btn-retake');
-  if (rw > 0) { rb.style.display='flex'; rb.textContent=`❌ Yanlışlarımla Tekrar Et (${rw} soru)`; }
+  const remainingWrong = SD.getWrongForSubject(s.subjectId).length;
+  const btn = document.getElementById('btn-retake');
+  if (remainingWrong > 0) {
+    btn.style.display = 'flex';
+    btn.textContent = `❌ Sadece Yanlışlarımla Tekrar Et (${remainingWrong} soru)`;
+  }
 
-  if (pct >= 80) confetti();
+  // Confetti for good scores
+  if (pct >= 80) spawnConfetti();
 }
 
-function retakeWrong() { window.location.href = `test.html?subject=${_sid}&wrong=1`; }
-function retakeAll()   { window.location.href = `test.html?subject=${_sid}`; }
+function retakeWrong() {
+  const session = SD.get('sd_session', null) || {};
+  const sid = document.querySelector('.rh-sub')?.dataset?.sid ||
+    (() => { /* re-read from page */ })();
+  // Navigate back to test with wrong mode
+  history.back();
+}
 
-function confetti() {
-  const cols = ['#7ecec4','#f4a47c','#b5a8e0','#6bcb8b','#f4d07c'];
-  for (let i = 0; i < 38; i++) {
+function retakeAll() { history.back(); }
+
+// Confetti
+function spawnConfetti() {
+  const colors = ['#7ecec4','#f4a47c','#b5a8e0','#6bcb8b','#f4d07c'];
+  for (let i = 0; i < 40; i++) {
     setTimeout(() => {
       const el = document.createElement('div');
-      el.className = 'cft';
-      el.style.cssText = `left:${Math.random()*100}vw;top:0;z-index:999;
-        background:${cols[Math.floor(Math.random()*cols.length)]};
-        animation-duration:${1.4+Math.random()*2}s;
-        animation-delay:${Math.random()*.4}s;
-        width:${6+Math.random()*7}px;height:${6+Math.random()*7}px;`;
+      el.className = 'confetti-dot';
+      el.style.cssText = `
+        left: ${Math.random()*100}vw;
+        top: 0; z-index: 999;
+        background: ${colors[Math.floor(Math.random()*colors.length)]};
+        animation-duration: ${1.5 + Math.random()*2}s;
+        animation-delay: ${Math.random()*0.5}s;
+        width: ${6+Math.random()*8}px; height: ${6+Math.random()*8}px;
+      `;
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 3800);
-    }, i * 55);
+      setTimeout(() => el.remove(), 4000);
+    }, i * 50);
   }
 }
 </script>
