@@ -12,49 +12,116 @@
 .profile-hero {
   text-align: center; padding: 32px 20px 24px;
   background: linear-gradient(135deg, #f8f4ff, #f2fbf9);
-  border: 1.5px solid var(--border); border-radius: 24px;
-  margin-bottom: 16px;
+  border: 1.5px solid var(--border); border-radius: 24px; margin-bottom: 16px;
 }
 .ph-avatar {
-  width: 80px; height: 80px; border-radius: 50%;
+  width: 84px; height: 84px; border-radius: 50%;
   background: linear-gradient(135deg, var(--lav), var(--mint));
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Nunito', sans-serif; font-weight: 900;
-  font-size: 2rem; color: white; margin: 0 auto 14px;
+  font-size: 2.4rem; margin: 0 auto 14px;
   box-shadow: 0 4px 20px rgba(181,168,224,0.4);
+  cursor: pointer; transition: transform 0.2s;
+  position: relative;
+}
+.ph-avatar:hover { transform: scale(1.06); }
+.ph-avatar .av-edit-hint {
+  position: absolute; bottom: -4px; right: -4px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--dark); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; border: 2px solid white;
 }
 .ph-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; }
-.ph-age { font-size: 0.8rem; color: var(--mid); margin-top: 3px; }
+.ph-age  { font-size: 0.8rem; color: var(--mid); margin-top: 3px; }
 
 /* Stats grid */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-.stat-tile {
-  background: white; border-radius: 16px; border: 1.5px solid var(--border);
-  padding: 16px; text-align: center;
-}
-.stat-tile .st-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--dark); }
+.stat-tile { background: white; border-radius: 16px; border: 1.5px solid var(--border); padding: 16px; text-align: center; }
+.stat-tile .st-num   { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--dark); }
 .stat-tile .st-label { font-size: 0.72rem; color: var(--mid); margin-top: 4px; font-family: 'Nunito', sans-serif; font-weight: 600; }
 
 /* Per-subject stat */
-.subject-stat {
-  display: flex; align-items: center; gap: 14px;
-  padding: 13px 0; border-bottom: 1px solid var(--light);
-}
+.subject-stat { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--light); }
 .subject-stat:last-child { border-bottom: none; }
 .ss-icon { font-size: 1.3rem; width: 32px; text-align: center; }
 .ss-info { flex: 1; }
-.ss-info h5 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; }
+.ss-info h5    { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; }
 .ss-info .ss-sub { font-size: 0.72rem; color: var(--mid); }
 .ss-pct { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; }
-.ss-bar-wrap { width: 100%; height: 5px; background: var(--light); border-radius: 99px; margin-top: 5px; overflow:hidden; }
+.ss-bar-wrap { width: 100%; height: 5px; background: var(--light); border-radius: 99px; margin-top: 5px; overflow: hidden; }
 .ss-bar { height: 100%; border-radius: 99px; transition: width 0.8s ease; }
 
 /* Danger zone */
 .danger-zone { background: #fff8f8; border: 1.5px solid rgba(244,124,124,0.25); border-radius: 18px; padding: 18px; margin-top: 4px; }
 .danger-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; color: var(--wrong); margin-bottom: 12px; }
+
+/* Icon picker (same as index.html) */
+.icon-picker-label {
+  display: block; font-family: 'Nunito', sans-serif; font-weight: 700;
+  font-size: 0.72rem; color: var(--mid); margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.6px;
+}
+.icon-preview-btn {
+  display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+  background: var(--cream); border: 1.5px solid var(--border);
+  border-radius: 14px; cursor: pointer; margin-bottom: 18px;
+  transition: border-color 0.2s; width: 100%;
+}
+.icon-preview-btn:hover { border-color: var(--mint); }
+.icon-preview-btn .ipb-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--lav), var(--mint));
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.icon-preview-btn .ipb-text { flex: 1; text-align: left; }
+.icon-preview-btn .ipb-text strong { display: block; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; }
+.icon-preview-btn .ipb-text span   { font-size: 0.75rem; color: var(--mid); }
+.icon-preview-btn .ipb-arrow { color: var(--mid); font-size: 0.9rem; }
+
+/* Modal */
+.icon-modal-overlay {
+  position: fixed; inset: 0; background: rgba(30,30,42,0.5);
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 999; backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.icon-modal-overlay.open { opacity: 1; pointer-events: all; }
+.icon-modal {
+  background: white; border-radius: 28px 28px 0 0;
+  width: 100%; max-width: 480px; padding: 24px 20px 40px;
+  transform: translateY(40px); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  max-height: 80vh; overflow-y: auto;
+}
+.icon-modal-overlay.open .icon-modal { transform: translateY(0); }
+.icon-modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 99px; margin: 0 auto 20px; }
+.icon-modal-title  { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; text-align: center; margin-bottom: 20px; }
+.icon-category { margin-bottom: 20px; }
+.icon-category-label {
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--mid); margin-bottom: 10px;
+}
+.icon-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+.icon-option {
+  aspect-ratio: 1; border-radius: 14px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; cursor: pointer; background: white; transition: all 0.15s;
+}
+.icon-option:hover  { border-color: var(--mint); transform: scale(1.08); background: rgba(126,206,196,0.08); }
+.icon-option.chosen { border-color: var(--mint); background: rgba(126,206,196,0.12); box-shadow: 0 0 0 2px var(--mint); }
 </style>
 </head>
 <body>
+
+<!-- Icon picker modal -->
+<div class="icon-modal-overlay" id="icon-modal-overlay" onclick="handleModalOutsideClick(event)">
+  <div class="icon-modal">
+    <div class="icon-modal-handle"></div>
+    <div class="icon-modal-title">Bir ikon seç ✨</div>
+    <div id="icon-grid-container"></div>
+    <button class="btn btn-dark" onclick="closeIconModal()" style="margin-top:8px;">Tamam</button>
+  </div>
+</div>
+
 <div class="page profile-page">
   <div class="navbar">
     <a class="back-btn" href="index.html">←</a>
@@ -62,11 +129,14 @@
     <div style="width:38px"></div>
   </div>
 
-  <!-- Hero -->
+  <!-- Hero — avatar tıklanınca ikon seçici açılır -->
   <div class="profile-hero fade-up">
-    <div class="ph-avatar" id="ph-av">?</div>
+    <div class="ph-avatar" id="ph-av" onclick="openIconModal()" title="İkon değiştir">
+      😊
+      <div class="av-edit-hint">✏️</div>
+    </div>
     <div class="ph-name" id="ph-name">—</div>
-    <div class="ph-age" id="ph-age">—</div>
+    <div class="ph-age"  id="ph-age">—</div>
   </div>
 
   <!-- Quick stats -->
@@ -74,7 +144,19 @@
 
   <!-- Edit form -->
   <div class="card fade-up" style="animation-delay:0.1s">
-    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">✏️ Bilgileri Düzenle</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">✏️ Bilgileri Düzenle</div>
+
+    <!-- Icon picker button -->
+    <span class="icon-picker-label">Profil İkonu</span>
+    <div class="icon-preview-btn" onclick="openIconModal()">
+      <div class="ipb-icon" id="profile-icon-preview">😊</div>
+      <div class="ipb-text">
+        <strong id="profile-icon-name">Gülümseyen Yüz</strong>
+        <span>Değiştirmek için tıkla</span>
+      </div>
+      <span class="ipb-arrow">›</span>
+    </div>
+
     <div class="field">
       <label>Adın</label>
       <input type="text" id="edit-name" placeholder="Adın..."/>
@@ -88,31 +170,28 @@
 
   <!-- Per-subject stats -->
   <div class="card fade-up" style="animation-delay:0.15s">
-    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">📊 Konu Başarıları</div>
-    <div id="subject-stats">
-      <p style="font-size:0.85rem; color:var(--mid);">Henüz test çözmedin.</p>
-    </div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">📊 Konu Başarıları</div>
+    <div id="subject-stats"><p style="font-size:0.85rem;color:var(--mid);">Henüz test çözmedin.</p></div>
   </div>
 
   <!-- Wrong answers summary -->
   <div class="card fade-up" style="animation-delay:0.2s">
-    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">❌ Birikmiş Yanlışlar</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:14px;">❌ Birikmiş Yanlışlar</div>
     <div id="wrong-summary"></div>
   </div>
 
   <!-- Danger zone -->
   <div class="danger-zone fade-up" style="animation-delay:0.25s">
     <h4>⚠️ Tehlikeli Bölge</h4>
-    <button class="btn btn-ghost" onclick="clearWrong()" style="margin-bottom:8px; border-color:rgba(244,124,124,0.3); color:var(--wrong);">
+    <button class="btn btn-ghost" onclick="clearWrong()" style="margin-bottom:8px;border-color:rgba(244,124,124,0.3);color:var(--wrong);">
       🗑 Yanlış Listesini Sıfırla
     </button>
-    <button class="btn btn-ghost" onclick="clearAll()" style="border-color:rgba(244,124,124,0.3); color:var(--wrong);">
+    <button class="btn btn-ghost" onclick="clearAll()" style="border-color:rgba(244,124,124,0.3);color:var(--wrong);">
       💀 Tüm Verileri Sil
     </button>
   </div>
 </div>
 
-<!-- Bottom nav -->
 <nav class="bottom-nav">
   <a href="index.html"><span class="nav-icon">🏠</span>Ana Sayfa</a>
   <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
@@ -123,6 +202,34 @@
 <script>
 if (!SD.requireUser()) {}
 
+// ── Icon data ──────────────────────────────────────────────
+const ICON_CATEGORIES = [
+  { label: '😀 Yüzler', icons: [
+    ['😊','Gülümseyen'],['😎','Güneş Gözlüklü'],['🤓','Okumuş'],['🥸','Gizli'],
+    ['😄','Sevinçli'],['🤩','Yıldız Gözlü'],['😇','Melek'],['🥳','Partici'],
+    ['😤','Kararlı'],['🤔','Düşünceli'],['😴','Uykulu'],['🥱','Bıkkın']
+  ]},
+  { label: '🐾 Hayvanlar', icons: [
+    ['🦊','Tilki'],['🐼','Panda'],['🦁','Aslan'],['🐯','Kaplan'],
+    ['🐻','Ayı'],['🐨','Koala'],['🦄','Unicorn'],['🐸','Kurbağa'],
+    ['🦋','Kelebek'],['🐧','Penguen'],['🦉','Baykuş'],['🐙','Ahtapot']
+  ]},
+  { label: '🌟 Semboller', icons: [
+    ['⚡','Şimşek'],['🔥','Ateş'],['💎','Elmas'],['🌈','Gökkuşağı'],
+    ['🌙','Ay'],['⭐','Yıldız'],['🎯','Hedef'],['🏆','Kupa'],
+    ['🚀','Roket'],['💡','Fikir'],['🎮','Oyun'],['🎵','Müzik']
+  ]},
+  { label: '📚 Okul', icons: [
+    ['📚','Kitaplar'],['✏️','Kalem'],['🔬','Mikroskop'],['🧪','Deney'],
+    ['🧮','Hesap Makinesi'],['📐','Gönye'],['🗺️','Harita'],['🎨','Sanat'],
+    ['💻','Bilgisayar'],['📊','Grafik'],['🔭','Teleskop'],['🧬','DNA']
+  ]}
+];
+
+let selectedIcon     = '😊';
+let selectedIconName = 'Gülümseyen Yüz';
+
+// ── Init ───────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   renderProfile();
 });
@@ -131,23 +238,33 @@ function renderProfile() {
   const user = SD.getUser();
   if (!user) return;
 
-  const init = SD.initials(user.name);
-  document.getElementById('ph-av').textContent = init;
-  document.getElementById('ph-name').textContent = user.name;
-  document.getElementById('ph-age').textContent = user.age + ' yaşında';
-  document.getElementById('edit-name').value = user.name;
-  document.getElementById('edit-age').value = user.age;
+  selectedIcon     = user.icon     || '😊';
+  selectedIconName = user.iconName || 'Gülümseyen Yüz';
 
-  // Quick stats
+  // Hero
+  document.getElementById('ph-av').childNodes[0].textContent = selectedIcon; // text node
+  document.getElementById('ph-av').firstChild.nodeValue = selectedIcon;
+  document.getElementById('ph-av').querySelector('.av-edit-hint').textContent = '✏️';
+
+  // Easier: just set a data attribute and re-render
+  const avEl = document.getElementById('ph-av');
+  avEl.innerHTML = selectedIcon + '<div class="av-edit-hint">✏️</div>';
+
+  document.getElementById('ph-name').textContent = user.name;
+  document.getElementById('ph-age').textContent  = user.age + ' yaşında';
+  document.getElementById('edit-name').value = user.name;
+  document.getElementById('edit-age').value  = user.age;
+  document.getElementById('profile-icon-preview').textContent = selectedIcon;
+  document.getElementById('profile-icon-name').textContent    = selectedIconName;
+
+  // Stats
   const stats = SD.getStats();
+  const grid  = document.getElementById('stats-grid');
   let totalAttempts = 0, totalQ = 0, totalCorrect = 0;
-  Object.values(stats).forEach(s => {
-    totalAttempts += s.attempts; totalQ += s.totalQ; totalCorrect += s.totalCorrect;
-  });
+  Object.values(stats).forEach(s => { totalAttempts += s.attempts; totalQ += s.totalQ; totalCorrect += s.totalCorrect; });
   const overallPct = totalQ > 0 ? Math.round(totalCorrect / totalQ * 100) : 0;
   const totalWrong = SD.totalWrongCount();
 
-  const grid = document.getElementById('stats-grid');
   grid.innerHTML = `
     <div class="stat-tile"><div class="st-num">${totalAttempts}</div><div class="st-label">Test Çözüldü</div></div>
     <div class="stat-tile"><div class="st-num" style="color:var(--mint)">${overallPct}%</div><div class="st-label">Genel Başarı</div></div>
@@ -156,14 +273,13 @@ function renderProfile() {
   `;
 
   // Per-subject
-  const sStatsEl = document.getElementById('subject-stats');
+  const ssEl    = document.getElementById('subject-stats');
   const hasStats = Object.keys(stats).length > 0;
+  ssEl.innerHTML = '';
   if (hasStats) {
-    sStatsEl.innerHTML = '';
     SUBJECTS.forEach(s => {
-      const st = stats[s.id];
-      if (!st) return;
-      const pct = Math.round(st.totalCorrect / st.totalQ * 100);
+      const st = stats[s.id]; if (!st) return;
+      const pct   = Math.round(st.totalCorrect / st.totalQ * 100);
       const color = pct >= 70 ? 'var(--correct)' : pct >= 50 ? 'var(--peach)' : 'var(--wrong)';
       const div = document.createElement('div');
       div.className = 'subject-stat';
@@ -172,57 +288,101 @@ function renderProfile() {
         <div class="ss-info">
           <h5>${s.title}</h5>
           <div class="ss-sub">${st.attempts} deneme · ${st.totalCorrect}/${st.totalQ} doğru</div>
-          <div class="ss-bar-wrap"><div class="ss-bar" style="width:${pct}%; background:${color}"></div></div>
+          <div class="ss-bar-wrap"><div class="ss-bar" style="width:${pct}%;background:${color}"></div></div>
         </div>
-        <div class="ss-pct" style="color:${color}">${pct}%</div>
-      `;
-      sStatsEl.appendChild(div);
+        <div class="ss-pct" style="color:${color}">${pct}%</div>`;
+      ssEl.appendChild(div);
     });
+  } else {
+    ssEl.innerHTML = '<p style="font-size:0.85rem;color:var(--mid);">Henüz test çözmedin.</p>';
   }
 
   // Wrong summary
-  const wrongEl = document.getElementById('wrong-summary');
-  const allWrong = SD.getWrong();
-  const wrongSubjects = Object.entries(allWrong).filter(([_, ids]) => ids.length > 0);
+  const wrongEl      = document.getElementById('wrong-summary');
+  const allWrong     = SD.getWrong();
+  const wrongSubjects = Object.entries(allWrong).filter(([,ids]) => ids.length > 0);
+  wrongEl.innerHTML  = '';
   if (wrongSubjects.length === 0) {
-    wrongEl.innerHTML = '<p style="font-size:0.85rem; color:var(--mid);">Hiç birikmiş yanlışın yok! 🎉</p>';
+    wrongEl.innerHTML = '<p style="font-size:0.85rem;color:var(--mid);">Hiç birikmiş yanlışın yok! 🎉</p>';
   } else {
-    wrongEl.innerHTML = '';
     wrongSubjects.forEach(([sid, ids]) => {
-      const sub = SUBJECTS.find(s => s.id === sid);
-      if (!sub) return;
+      const sub = SUBJECTS.find(s => s.id === sid); if (!sub) return;
       const div = document.createElement('div');
-      div.style.cssText = 'display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--light);';
+      div.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--light);';
       div.innerHTML = `
-        <span style="font-weight:600; font-size:0.88rem;">${sub.icon} ${sub.title}</span>
-        <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-weight:600;font-size:0.88rem;">${sub.icon} ${sub.title}</span>
+        <div style="display:flex;align-items:center;gap:8px;">
           <span class="chip chip-wrong">${ids.length} soru</span>
-          <a href="test.html?subject=${sid}&wrong=1" class="btn btn-ghost btn-sm" style="width:auto; padding:6px 12px; font-size:0.72rem;">Çalış</a>
-        </div>
-      `;
+          <a href="test.html?subject=${sid}&wrong=1" class="btn btn-ghost btn-sm" style="width:auto;padding:6px 12px;font-size:0.72rem;">Çalış</a>
+        </div>`;
       wrongEl.appendChild(div);
     });
   }
 }
 
+// ── Icon modal ─────────────────────────────────────────────
+function buildIconGrid() {
+  const container = document.getElementById('icon-grid-container');
+  if (container.children.length > 0) return;
+  ICON_CATEGORIES.forEach(cat => {
+    const catDiv = document.createElement('div');
+    catDiv.className = 'icon-category';
+    catDiv.innerHTML = `<div class="icon-category-label">${cat.label}</div>`;
+    const grid = document.createElement('div');
+    grid.className = 'icon-grid';
+    cat.icons.forEach(([emoji, name]) => {
+      const btn = document.createElement('div');
+      btn.className = 'icon-option' + (emoji === selectedIcon ? ' chosen' : '');
+      btn.dataset.emoji = emoji; btn.dataset.name = name;
+      btn.textContent = emoji; btn.title = name;
+      btn.onclick = () => pickIcon(emoji, name);
+      grid.appendChild(btn);
+    });
+    catDiv.appendChild(grid);
+    container.appendChild(catDiv);
+  });
+}
+
+function openIconModal() {
+  buildIconGrid();
+  document.querySelectorAll('.icon-option').forEach(el =>
+    el.classList.toggle('chosen', el.dataset.emoji === selectedIcon));
+  document.getElementById('icon-modal-overlay').classList.add('open');
+}
+function closeIconModal() {
+  document.getElementById('icon-modal-overlay').classList.remove('open');
+}
+function handleModalOutsideClick(e) {
+  if (e.target === document.getElementById('icon-modal-overlay')) closeIconModal();
+}
+
+function pickIcon(emoji, name) {
+  selectedIcon = emoji; selectedIconName = name;
+  document.querySelectorAll('.icon-option').forEach(el =>
+    el.classList.toggle('chosen', el.dataset.emoji === emoji));
+  // Update preview button
+  document.getElementById('profile-icon-preview').textContent = emoji;
+  document.getElementById('profile-icon-name').textContent    = name;
+  // Update hero avatar live
+  document.getElementById('ph-av').innerHTML = emoji + '<div class="av-edit-hint">✏️</div>';
+}
+
+// ── Save ───────────────────────────────────────────────────
 function saveProfile() {
   const name = document.getElementById('edit-name').value.trim();
-  const age = document.getElementById('edit-age').value.trim();
+  const age  = document.getElementById('edit-age').value.trim();
   if (!name || !age) { showToast('Tüm alanları doldur!'); return; }
-  SD.setUser({ name, age: parseInt(age) });
+  SD.setUser({ name, age: parseInt(age), icon: selectedIcon, iconName: selectedIconName });
   renderProfile();
   showToast('Profil kaydedildi! ✅', 'correct');
 }
 
 function clearWrong() {
   if (!confirm('Tüm birikmiş yanlışlar silinecek. Emin misin?')) return;
-  SD.del('sd_wrong');
-  renderProfile();
-  showToast('Yanlış listesi temizlendi!');
+  SD.del('sd_wrong'); renderProfile(); showToast('Yanlış listesi temizlendi!');
 }
-
 function clearAll() {
-  if (!confirm('TÜM veriler (profil, istatistikler, yanlışlar) silinecek. Bu işlem geri alınamaz!')) return;
+  if (!confirm('TÜM veriler silinecek. Bu işlem geri alınamaz!')) return;
   ['sd_user','sd_wrong','sd_stats','sd_fc','sd_session'].forEach(k => SD.del(k));
   window.location.href = 'index.html';
 }

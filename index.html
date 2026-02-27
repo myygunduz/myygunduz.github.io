@@ -7,19 +7,14 @@
 <script src="data.js"></script>
 <script src="app.js"></script>
 <style>
-/* ── Onboarding ─────────────────────────────────────── */
+/* ── Login ──────────────────────────────────────────── */
 #screen-login {
   display: flex; flex-direction: column;
   min-height: 100vh; max-width: 480px; margin: 0 auto;
   padding: 48px 24px 40px;
 }
-.login-blobs {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  overflow: hidden;
-}
-.blob {
-  position: absolute; border-radius: 50%;
-}
+.login-blobs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; }
 .blob1 { width: 320px; height: 320px; background: rgba(126,206,196,0.18); top: -80px; right: -60px; }
 .blob2 { width: 260px; height: 260px; background: rgba(244,164,124,0.14); bottom: 60px; left: -60px; }
 .blob3 { width: 200px; height: 200px; background: rgba(181,168,224,0.16); top: 40%; left: 30%; }
@@ -29,129 +24,182 @@
   align-items: center; justify-content: center;
   text-align: center; position: relative; z-index: 1;
 }
-.logo-big {
-  font-family: 'Nunito', sans-serif; font-weight: 900;
-  font-size: 3rem; line-height: 1; color: var(--dark);
-}
+.logo-big { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 3rem; line-height: 1; color: var(--dark); }
 .logo-big em { color: var(--mint); font-style: normal; }
 .login-tagline { font-size: 0.9rem; color: var(--mid); margin-top: 8px; }
 
-.floating-cards {
-  display: flex; justify-content: center; gap: -8px;
-  margin: 32px 0; position: relative; height: 80px;
-}
+.floating-cards { display: flex; justify-content: center; margin: 32px 0; position: relative; height: 80px; }
 .fc-mini {
-  width: 56px; height: 72px; border-radius: 14px;
-  border: 2px solid var(--border);
+  width: 56px; height: 72px; border-radius: 14px; border: 2px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem; background: white;
-  box-shadow: var(--shadow);
-  position: absolute;
+  font-size: 1.8rem; background: white; box-shadow: var(--shadow); position: absolute;
 }
 
 .login-form {
-  position: relative; z-index: 1;
-  background: white; border-radius: 24px;
-  border: 1.5px solid var(--border);
-  padding: 24px; box-shadow: var(--shadow-lg);
-  margin-bottom: 16px;
+  position: relative; z-index: 1; background: white; border-radius: 24px;
+  border: 1.5px solid var(--border); padding: 24px; box-shadow: var(--shadow-lg); margin-bottom: 16px;
 }
-.login-form-title {
-  font-family: 'Nunito', sans-serif; font-weight: 900;
-  font-size: 1.1rem; margin-bottom: 4px;
-}
+.login-form-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; margin-bottom: 4px; }
 .login-form p { font-size: 0.82rem; color: var(--mid); margin-bottom: 20px; }
+
+/* ── Icon picker (shared) ───────────────────────────── */
+.icon-picker-label {
+  display: block; font-family: 'Nunito', sans-serif; font-weight: 700;
+  font-size: 0.72rem; color: var(--mid); margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.6px;
+}
+.icon-preview-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: var(--cream);
+  border: 1.5px solid var(--border); border-radius: 14px;
+  cursor: pointer; margin-bottom: 18px; transition: border-color 0.2s;
+  width: 100%;
+}
+.icon-preview-btn:hover { border-color: var(--mint); }
+.icon-preview-btn .ipb-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--lav), var(--mint));
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.icon-preview-btn .ipb-text { flex: 1; text-align: left; }
+.icon-preview-btn .ipb-text strong {
+  display: block; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem;
+}
+.icon-preview-btn .ipb-text span { font-size: 0.75rem; color: var(--mid); }
+.icon-preview-btn .ipb-arrow { color: var(--mid); font-size: 0.9rem; }
+
+/* Icon picker modal */
+.icon-modal-overlay {
+  position: fixed; inset: 0; background: rgba(30,30,42,0.5);
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 999; backdrop-filter: blur(4px);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.icon-modal-overlay.open { opacity: 1; pointer-events: all; }
+.icon-modal {
+  background: white; border-radius: 28px 28px 0 0;
+  width: 100%; max-width: 480px; padding: 24px 20px 40px;
+  transform: translateY(40px); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  max-height: 80vh; overflow-y: auto;
+}
+.icon-modal-overlay.open .icon-modal { transform: translateY(0); }
+.icon-modal-handle {
+  width: 40px; height: 4px; background: var(--border);
+  border-radius: 99px; margin: 0 auto 20px;
+}
+.icon-modal-title {
+  font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem;
+  text-align: center; margin-bottom: 20px;
+}
+.icon-category { margin-bottom: 20px; }
+.icon-category-label {
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.6px; color: var(--mid);
+  margin-bottom: 10px;
+}
+.icon-grid {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+}
+.icon-option {
+  aspect-ratio: 1; border-radius: 14px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; cursor: pointer; background: white;
+  transition: all 0.15s;
+}
+.icon-option:hover  { border-color: var(--mint); transform: scale(1.08); background: rgba(126,206,196,0.08); }
+.icon-option.chosen { border-color: var(--mint); background: rgba(126,206,196,0.12);
+  box-shadow: 0 0 0 2px var(--mint); }
 
 /* ── Home ───────────────────────────────────────────── */
 #screen-home { display: none; }
 
 .profile-bar {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 16px;
-  background: white; border-radius: 16px;
-  border: 1.5px solid var(--border);
-  margin-bottom: 20px; cursor: pointer;
-  transition: border-color 0.2s;
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  background: white; border-radius: 16px; border: 1.5px solid var(--border);
+  margin-bottom: 20px; cursor: pointer; transition: border-color 0.2s;
 }
 .profile-bar:hover { border-color: var(--mint); }
 .pbar-av {
-  width: 42px; height: 42px; border-radius: 50%;
+  width: 46px; height: 46px; border-radius: 50%;
   background: linear-gradient(135deg, var(--lav), var(--mint));
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Nunito', sans-serif; font-weight: 900;
-  font-size: 1.1rem; color: white; flex-shrink: 0;
+  font-size: 1.5rem; flex-shrink: 0;
 }
 .pbar-info { flex: 1; }
 .pbar-info strong { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; display: block; }
 .pbar-info span { font-size: 0.76rem; color: var(--mid); }
-.pbar-edit { font-size: 1rem; }
 
 .subject-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 16px 18px; background: white;
-  border-radius: 18px; border: 1.5px solid var(--border);
-  margin-bottom: 10px; cursor: pointer; text-decoration: none;
-  color: var(--dark); transition: all 0.18s;
+  display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: white;
+  border-radius: 18px; border: 1.5px solid var(--border); margin-bottom: 10px;
+  cursor: pointer; text-decoration: none; color: var(--dark); transition: all 0.18s;
 }
 .subject-item:hover { border-color: var(--mint); transform: translateX(3px); box-shadow: var(--shadow); }
-.sitem-icon {
-  width: 46px; height: 46px; border-radius: 13px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; flex-shrink: 0;
-}
+.sitem-icon { width: 46px; height: 46px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
 .sitem-info { flex: 1; }
 .sitem-info h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; margin-bottom: 2px; }
 .sitem-info p { font-size: 0.74rem; color: var(--mid); }
 .sitem-arrow { color: var(--mid); font-size: 1rem; }
 
 .wrong-badge-sm {
-  display: inline-flex; align-items: center; gap: 3px;
-  margin-top: 4px; padding: 2px 7px;
+  display: inline-flex; align-items: center; gap: 3px; margin-top: 4px; padding: 2px 7px;
   background: rgba(244,124,124,0.12); border-radius: 99px;
-  font-size: 0.68rem; font-family: 'Nunito', sans-serif;
-  font-weight: 700; color: var(--wrong);
+  font-size: 0.68rem; font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--wrong);
 }
-
-.home-actions {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 10px; margin-bottom: 24px;
-}
+.home-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
 .action-card {
-  padding: 16px; background: white; border-radius: 16px;
-  border: 1.5px solid var(--border); cursor: pointer;
-  text-decoration: none; color: var(--dark);
-  transition: all 0.18s; display: block;
+  padding: 16px; background: white; border-radius: 16px; border: 1.5px solid var(--border);
+  cursor: pointer; text-decoration: none; color: var(--dark); transition: all 0.18s; display: block;
 }
 .action-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
 .action-card .ac-icon { font-size: 1.6rem; margin-bottom: 6px; }
 .action-card .ac-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; }
-.action-card .ac-sub { font-size: 0.72rem; color: var(--mid); margin-top: 2px; }
+.action-card .ac-sub   { font-size: 0.72rem; color: var(--mid); margin-top: 2px; }
 </style>
 </head>
 <body>
 
-<!-- ── LOGIN ───────────────────────────────────────────── -->
+<!-- ── ICON PICKER MODAL (shared) ──────────────────────── -->
+<div class="icon-modal-overlay" id="icon-modal-overlay" onclick="handleModalOutsideClick(event)">
+  <div class="icon-modal">
+    <div class="icon-modal-handle"></div>
+    <div class="icon-modal-title">Bir ikon seç ✨</div>
+    <div id="icon-grid-container"></div>
+    <button class="btn btn-dark" onclick="closeIconModal()" style="margin-top:8px;">Tamam</button>
+  </div>
+</div>
+
+<!-- ── LOGIN ────────────────────────────────────────────── -->
 <div id="screen-login">
   <div class="login-blobs">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
+    <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
   </div>
 
   <div class="login-hero fade-up">
     <div class="logo-big">Study<em>Deck</em></div>
     <div class="login-tagline">Akıllı sınav hazırlık platformu</div>
-
     <div class="floating-cards">
-      <div class="fc-mini" style="left:50px; top:0; transform:rotate(-8deg);">🔢</div>
-      <div class="fc-mini" style="left:130px; top:-8px; transform:rotate(3deg);">📖</div>
-      <div class="fc-mini" style="left:210px; top:4px; transform:rotate(-4deg);">🏛️</div>
+      <div class="fc-mini" style="left:50px;top:0;transform:rotate(-8deg);">🔢</div>
+      <div class="fc-mini" style="left:130px;top:-8px;transform:rotate(3deg);">📖</div>
+      <div class="fc-mini" style="left:210px;top:4px;transform:rotate(-4deg);">🏛️</div>
     </div>
   </div>
 
   <div class="login-form fade-up" style="animation-delay:0.1s">
     <div class="login-form-title">👋 Merhaba!</div>
-    <p>Sana özel deneyim için adını ve yaşını öğrenelim.</p>
+    <p>Sana özel deneyim için birkaç bilgi alalım.</p>
+
+    <!-- Icon picker trigger -->
+    <span class="icon-picker-label">Profil İkonu</span>
+    <div class="icon-preview-btn" onclick="openIconModal()">
+      <div class="ipb-icon" id="login-icon-preview">😊</div>
+      <div class="ipb-text">
+        <strong id="login-icon-name">Gülümseyen Yüz</strong>
+        <span>Değiştirmek için tıkla</span>
+      </div>
+      <span class="ipb-arrow">›</span>
+    </div>
+
     <div class="field">
       <label>Adın</label>
       <input type="text" id="inp-name" placeholder="Adını yaz..." autocomplete="given-name"/>
@@ -162,25 +210,25 @@
     </div>
     <button class="btn btn-dark" onclick="doLogin()">Hadi Başlayalım 🚀</button>
   </div>
-  <p style="text-align:center; font-size:0.72rem; color:var(--mid); position:relative; z-index:1;">
+  <p style="text-align:center;font-size:0.72rem;color:var(--mid);position:relative;z-index:1;">
     Bilgilerin yalnızca bu cihazda saklanır.
   </p>
 </div>
 
-<!-- ── HOME ───────────────────────────────────────────── -->
+<!-- ── HOME ─────────────────────────────────────────────── -->
 <div id="screen-home" class="page">
   <div class="navbar">
     <a class="logo" href="index.html">Study<em>Deck</em></a>
-    <a class="nav-avatar" id="home-av" href="profile.html">?</a>
+    <a class="nav-avatar" id="home-av" href="profile.html" style="font-size:1.2rem; background:transparent; border-color:var(--border);">😊</a>
   </div>
 
   <div class="profile-bar" onclick="window.location='profile.html'">
-    <div class="pbar-av" id="home-pbar-av">?</div>
+    <div class="pbar-av" id="home-pbar-av">😊</div>
     <div class="pbar-info">
       <strong id="home-name">—</strong>
       <span id="home-age">—</span>
     </div>
-    <span class="pbar-edit">✏️</span>
+    <span style="font-size:1rem;">✏️</span>
   </div>
 
   <div class="home-actions">
@@ -189,7 +237,8 @@
       <div class="ac-title">Bilgi Kartları</div>
       <div class="ac-sub">Sürükle & Öğren</div>
     </a>
-    <a class="action-card" id="btn-wrong-home" href="test.html?wrong=1" style="display:none; border-color:rgba(244,124,124,0.3);">
+    <a class="action-card" id="btn-wrong-home" href="test.html?wrong=1"
+      style="display:none; border-color:rgba(244,124,124,0.3);">
       <div class="ac-icon">❌</div>
       <div class="ac-title">Yanlışlarım</div>
       <div class="ac-sub" id="wrong-count-home">—</div>
@@ -198,11 +247,9 @@
 
   <div class="sec-title">Konular</div>
   <div class="sec-sub">Bir konuya tıkla ve teste başla</div>
-
   <div id="subject-list"></div>
 </div>
 
-<!-- Bottom nav -->
 <nav class="bottom-nav" id="bnav" style="display:none;">
   <a href="index.html" class="active"><span class="nav-icon">🏠</span>Ana Sayfa</a>
   <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
@@ -211,12 +258,105 @@
 </nav>
 
 <script>
+// ── Icon data ──────────────────────────────────────────────
+const ICON_CATEGORIES = [
+  { label: '😀 Yüzler', icons: [
+    ['😊','Gülümseyen'],['😎','Güneş Gözlüklü'],['🤓','Okumuş'],['🥸','Gizli'],
+    ['😄','Sevinçli'],['🤩','Yıldız Gözlü'],['😇','Melek'],['🥳','Partici'],
+    ['😤','Kararlı'],['🤔','Düşünceli'],['😴','Uykulu'],['🥱','Bıkkın']
+  ]},
+  { label: '🐾 Hayvanlar', icons: [
+    ['🦊','Tilki'],['🐼','Panda'],['🦁','Aslan'],['🐯','Kaplan'],
+    ['🐻','Ayı'],['🐨','Koala'],['🦄','Unicorn'],['🐸','Kurbağa'],
+    ['🦋','Kelebek'],['🐧','Penguen'],['🦉','Baykuş'],['🐙','Ahtapot']
+  ]},
+  { label: '🌟 Semboller', icons: [
+    ['⚡','Şimşek'],['🔥','Ateş'],['💎','Elmas'],['🌈','Gökkuşağı'],
+    ['🌙','Ay'],['⭐','Yıldız'],['🎯','Hedef'],['🏆','Kupa'],
+    ['🚀','Roket'],['💡','Fikir'],['🎮','Oyun'],['🎵','Müzik']
+  ]},
+  { label: '📚 Okul', icons: [
+    ['📚','Kitaplar'],['✏️','Kalem'],['🔬','Mikroskop'],['🧪','Deney'],
+    ['🧮','Hesap Makinesi'],['📐','Gönye'],['🗺️','Harita'],['🎨','Sanat'],
+    ['💻','Bilgisayar'],['📊','Grafik'],['🔭','Teleskop'],['🧬','DNA']
+  ]}
+];
+
+let selectedIcon = '😊';
+let selectedIconName = 'Gülümseyen Yüz';
+
+// ── Icon modal ─────────────────────────────────────────────
+function buildIconGrid() {
+  const container = document.getElementById('icon-grid-container');
+  if (container.children.length > 0) return; // already built
+
+  ICON_CATEGORIES.forEach(cat => {
+    const catDiv = document.createElement('div');
+    catDiv.className = 'icon-category';
+    catDiv.innerHTML = `<div class="icon-category-label">${cat.label}</div>`;
+
+    const grid = document.createElement('div');
+    grid.className = 'icon-grid';
+
+    cat.icons.forEach(([emoji, name]) => {
+      const btn = document.createElement('div');
+      btn.className = 'icon-option' + (emoji === selectedIcon ? ' chosen' : '');
+      btn.dataset.emoji = emoji;
+      btn.dataset.name  = name;
+      btn.textContent   = emoji;
+      btn.title = name;
+      btn.onclick = () => pickIcon(emoji, name);
+      grid.appendChild(btn);
+    });
+
+    catDiv.appendChild(grid);
+    container.appendChild(catDiv);
+  });
+}
+
+function openIconModal() {
+  buildIconGrid();
+  // Sync chosen state
+  document.querySelectorAll('.icon-option').forEach(el => {
+    el.classList.toggle('chosen', el.dataset.emoji === selectedIcon);
+  });
+  document.getElementById('icon-modal-overlay').classList.add('open');
+}
+
+function closeIconModal() {
+  document.getElementById('icon-modal-overlay').classList.remove('open');
+}
+
+function handleModalOutsideClick(e) {
+  if (e.target === document.getElementById('icon-modal-overlay')) closeIconModal();
+}
+
+function pickIcon(emoji, name) {
+  selectedIcon     = emoji;
+  selectedIconName = name;
+  // Update all icon preview buttons
+  document.querySelectorAll('.icon-option').forEach(el =>
+    el.classList.toggle('chosen', el.dataset.emoji === emoji));
+  // Update login preview
+  const lp = document.getElementById('login-icon-preview');
+  const ln = document.getElementById('login-icon-name');
+  if (lp) lp.textContent = emoji;
+  if (ln) ln.textContent = name;
+  // Update profile preview if present
+  const pp = document.getElementById('profile-icon-preview');
+  const pn = document.getElementById('profile-icon-name');
+  if (pp) pp.textContent = emoji;
+  if (pn) pn.textContent = name;
+}
+
+// ── Login ──────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   const user = SD.getUser();
   if (user) {
+    // Pre-load selected icon from saved user
+    if (user.icon) { selectedIcon = user.icon; selectedIconName = user.iconName || ''; }
     showHome(user);
   }
-  // Enter key on login
   document.getElementById('inp-age').addEventListener('keydown', e => {
     if (e.key === 'Enter') doLogin();
   });
@@ -224,50 +364,45 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function doLogin() {
   const name = document.getElementById('inp-name').value.trim();
-  const age = document.getElementById('inp-age').value.trim();
-  if (!name) { showToast('Adını girermisin? 😊'); return; }
+  const age  = document.getElementById('inp-age').value.trim();
+  if (!name)        { showToast('Adını girermisin? 😊'); return; }
   if (!age || age < 1) { showToast('Yaşını girer misin?'); return; }
-  SD.setUser({ name, age: parseInt(age) });
-  showHome({ name, age });
+  const user = { name, age: parseInt(age), icon: selectedIcon, iconName: selectedIconName };
+  SD.setUser(user);
+  showHome(user);
   showToast('Hoş geldin, ' + name + '! 🎉');
 }
 
 function showHome(user) {
   document.getElementById('screen-login').style.display = 'none';
-  document.getElementById('screen-home').style.display = 'block';
+  document.getElementById('screen-home').style.display  = 'block';
   document.getElementById('bnav').style.display = 'flex';
 
-  const init = SD.initials(user.name);
-  document.getElementById('home-av').textContent = init;
-  document.getElementById('home-pbar-av').textContent = init;
+  const icon = user.icon || SD.initials(user.name);
+  document.getElementById('home-av').textContent      = icon;
+  document.getElementById('home-pbar-av').textContent = icon;
   document.getElementById('home-name').textContent = user.name;
-  document.getElementById('home-age').textContent = user.age + ' yaşında';
+  document.getElementById('home-age').textContent  = user.age + ' yaşında';
 
-  // Wrong btn
   const totalWrong = SD.totalWrongCount();
   const wrongBtn = document.getElementById('btn-wrong-home');
-  if (totalWrong > 0) {
-    wrongBtn.style.display = 'block';
-    document.getElementById('wrong-count-home').textContent = totalWrong + ' soru bekliyor';
-  }
+  wrongBtn.style.display = totalWrong > 0 ? 'block' : 'none';
+  if (totalWrong > 0) document.getElementById('wrong-count-home').textContent = totalWrong + ' soru bekliyor';
 
-  // Subject list
   const list = document.getElementById('subject-list');
   list.innerHTML = '';
   SUBJECTS.forEach(s => {
-    const wrongCount = SD.getWrongForSubject(s.id).length;
+    const wc = SD.getWrongForSubject(s.id).length;
     const a = document.createElement('a');
     a.className = 'subject-item fade-up';
     a.href = `test.html?subject=${s.id}`;
     a.innerHTML = `
       <div class="sitem-icon" style="background:${s.color}22;">${s.icon}</div>
       <div class="sitem-info">
-        <h4>${s.title}</h4>
-        <p>${s.description}</p>
-        ${wrongCount > 0 ? `<div class="wrong-badge-sm">❌ ${wrongCount} yanlış</div>` : ''}
+        <h4>${s.title}</h4><p>${s.description}</p>
+        ${wc > 0 ? `<div class="wrong-badge-sm">❌ ${wc} yanlış</div>` : ''}
       </div>
-      <div class="sitem-arrow">→</div>
-    `;
+      <div class="sitem-arrow">→</div>`;
     list.appendChild(a);
   });
 }
