@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil — StudyDeck</title>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<style>
+.profile-page { padding-bottom: 100px; }
+
+.profile-hero {
+  text-align: center; padding: 32px 20px 24px;
+  background: linear-gradient(135deg, #f8f4ff, #f2fbf9);
+  border: 1.5px solid var(--border); border-radius: 24px;
+  margin-bottom: 16px;
+}
+.ph-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--lav), var(--mint));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 2rem; color: white; margin: 0 auto 14px;
+  box-shadow: 0 4px 20px rgba(181,168,224,0.4);
+}
+.ph-name { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.3rem; }
+.ph-age { font-size: 0.8rem; color: var(--mid); margin-top: 3px; }
+
+/* Stats grid */
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.stat-tile {
+  background: white; border-radius: 16px; border: 1.5px solid var(--border);
+  padding: 16px; text-align: center;
+}
+.stat-tile .st-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--dark); }
+.stat-tile .st-label { font-size: 0.72rem; color: var(--mid); margin-top: 4px; font-family: 'Nunito', sans-serif; font-weight: 600; }
+
+/* Per-subject stat */
+.subject-stat {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--light);
+}
+.subject-stat:last-child { border-bottom: none; }
+.ss-icon { font-size: 1.3rem; width: 32px; text-align: center; }
+.ss-info { flex: 1; }
+.ss-info h5 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; }
+.ss-info .ss-sub { font-size: 0.72rem; color: var(--mid); }
+.ss-pct { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1rem; }
+.ss-bar-wrap { width: 100%; height: 5px; background: var(--light); border-radius: 99px; margin-top: 5px; overflow:hidden; }
+.ss-bar { height: 100%; border-radius: 99px; transition: width 0.8s ease; }
+
+/* Danger zone */
+.danger-zone { background: #fff8f8; border: 1.5px solid rgba(244,124,124,0.25); border-radius: 18px; padding: 18px; margin-top: 4px; }
+.danger-zone h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.88rem; color: var(--wrong); margin-bottom: 12px; }
+</style>
+</head>
+<body>
+<div class="page profile-page">
+  <div class="navbar">
+    <a class="back-btn" href="index.html">←</a>
+    <span style="font-family:'Nunito',sans-serif; font-weight:800;">Profilim 👤</span>
+    <div style="width:38px"></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="profile-hero fade-up">
+    <div class="ph-avatar" id="ph-av">?</div>
+    <div class="ph-name" id="ph-name">—</div>
+    <div class="ph-age" id="ph-age">—</div>
+  </div>
+
+  <!-- Quick stats -->
+  <div class="stats-grid fade-up" id="stats-grid" style="animation-delay:0.05s"></div>
+
+  <!-- Edit form -->
+  <div class="card fade-up" style="animation-delay:0.1s">
+    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">✏️ Bilgileri Düzenle</div>
+    <div class="field">
+      <label>Adın</label>
+      <input type="text" id="edit-name" placeholder="Adın..."/>
+    </div>
+    <div class="field">
+      <label>Yaşın</label>
+      <input type="number" id="edit-age" min="10" max="99" placeholder="Yaşın..."/>
+    </div>
+    <button class="btn btn-mint" onclick="saveProfile()">💾 Kaydet</button>
+  </div>
+
+  <!-- Per-subject stats -->
+  <div class="card fade-up" style="animation-delay:0.15s">
+    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">📊 Konu Başarıları</div>
+    <div id="subject-stats">
+      <p style="font-size:0.85rem; color:var(--mid);">Henüz test çözmedin.</p>
+    </div>
+  </div>
+
+  <!-- Wrong answers summary -->
+  <div class="card fade-up" style="animation-delay:0.2s">
+    <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:1rem; margin-bottom:14px;">❌ Birikmiş Yanlışlar</div>
+    <div id="wrong-summary"></div>
+  </div>
+
+  <!-- Danger zone -->
+  <div class="danger-zone fade-up" style="animation-delay:0.25s">
+    <h4>⚠️ Tehlikeli Bölge</h4>
+    <button class="btn btn-ghost" onclick="clearWrong()" style="margin-bottom:8px; border-color:rgba(244,124,124,0.3); color:var(--wrong);">
+      🗑 Yanlış Listesini Sıfırla
+    </button>
+    <button class="btn btn-ghost" onclick="clearAll()" style="border-color:rgba(244,124,124,0.3); color:var(--wrong);">
+      💀 Tüm Verileri Sil
+    </button>
+  </div>
+</div>
+
+<!-- Bottom nav -->
+<nav class="bottom-nav">
+  <a href="index.html"><span class="nav-icon">🏠</span>Ana Sayfa</a>
+  <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
+  <a href="test.html"><span class="nav-icon">📝</span>Test</a>
+  <a href="profile.html" class="active"><span class="nav-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+if (!SD.requireUser()) {}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderProfile();
+});
+
+function renderProfile() {
+  const user = SD.getUser();
+  if (!user) return;
+
+  const init = SD.initials(user.name);
+  document.getElementById('ph-av').textContent = init;
+  document.getElementById('ph-name').textContent = user.name;
+  document.getElementById('ph-age').textContent = user.age + ' yaşında';
+  document.getElementById('edit-name').value = user.name;
+  document.getElementById('edit-age').value = user.age;
+
+  // Quick stats
+  const stats = SD.getStats();
+  let totalAttempts = 0, totalQ = 0, totalCorrect = 0;
+  Object.values(stats).forEach(s => {
+    totalAttempts += s.attempts; totalQ += s.totalQ; totalCorrect += s.totalCorrect;
+  });
+  const overallPct = totalQ > 0 ? Math.round(totalCorrect / totalQ * 100) : 0;
+  const totalWrong = SD.totalWrongCount();
+
+  const grid = document.getElementById('stats-grid');
+  grid.innerHTML = `
+    <div class="stat-tile"><div class="st-num">${totalAttempts}</div><div class="st-label">Test Çözüldü</div></div>
+    <div class="stat-tile"><div class="st-num" style="color:var(--mint)">${overallPct}%</div><div class="st-label">Genel Başarı</div></div>
+    <div class="stat-tile"><div class="st-num" style="color:var(--correct)">${totalCorrect}</div><div class="st-label">Doğru Cevap</div></div>
+    <div class="stat-tile"><div class="st-num" style="color:var(--wrong)">${totalWrong}</div><div class="st-label">Biriken Yanlış</div></div>
+  `;
+
+  // Per-subject
+  const sStatsEl = document.getElementById('subject-stats');
+  const hasStats = Object.keys(stats).length > 0;
+  if (hasStats) {
+    sStatsEl.innerHTML = '';
+    SUBJECTS.forEach(s => {
+      const st = stats[s.id];
+      if (!st) return;
+      const pct = Math.round(st.totalCorrect / st.totalQ * 100);
+      const color = pct >= 70 ? 'var(--correct)' : pct >= 50 ? 'var(--peach)' : 'var(--wrong)';
+      const div = document.createElement('div');
+      div.className = 'subject-stat';
+      div.innerHTML = `
+        <div class="ss-icon">${s.icon}</div>
+        <div class="ss-info">
+          <h5>${s.title}</h5>
+          <div class="ss-sub">${st.attempts} deneme · ${st.totalCorrect}/${st.totalQ} doğru</div>
+          <div class="ss-bar-wrap"><div class="ss-bar" style="width:${pct}%; background:${color}"></div></div>
+        </div>
+        <div class="ss-pct" style="color:${color}">${pct}%</div>
+      `;
+      sStatsEl.appendChild(div);
+    });
+  }
+
+  // Wrong summary
+  const wrongEl = document.getElementById('wrong-summary');
+  const allWrong = SD.getWrong();
+  const wrongSubjects = Object.entries(allWrong).filter(([_, ids]) => ids.length > 0);
+  if (wrongSubjects.length === 0) {
+    wrongEl.innerHTML = '<p style="font-size:0.85rem; color:var(--mid);">Hiç birikmiş yanlışın yok! 🎉</p>';
+  } else {
+    wrongEl.innerHTML = '';
+    wrongSubjects.forEach(([sid, ids]) => {
+      const sub = SUBJECTS.find(s => s.id === sid);
+      if (!sub) return;
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--light);';
+      div.innerHTML = `
+        <span style="font-weight:600; font-size:0.88rem;">${sub.icon} ${sub.title}</span>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="chip chip-wrong">${ids.length} soru</span>
+          <a href="test.html?subject=${sid}&wrong=1" class="btn btn-ghost btn-sm" style="width:auto; padding:6px 12px; font-size:0.72rem;">Çalış</a>
+        </div>
+      `;
+      wrongEl.appendChild(div);
+    });
+  }
+}
+
+function saveProfile() {
+  const name = document.getElementById('edit-name').value.trim();
+  const age = document.getElementById('edit-age').value.trim();
+  if (!name || !age) { showToast('Tüm alanları doldur!'); return; }
+  SD.setUser({ name, age: parseInt(age) });
+  renderProfile();
+  showToast('Profil kaydedildi! ✅', 'correct');
+}
+
+function clearWrong() {
+  if (!confirm('Tüm birikmiş yanlışlar silinecek. Emin misin?')) return;
+  SD.del('sd_wrong');
+  renderProfile();
+  showToast('Yanlış listesi temizlendi!');
+}
+
+function clearAll() {
+  if (!confirm('TÜM veriler (profil, istatistikler, yanlışlar) silinecek. Bu işlem geri alınamaz!')) return;
+  ['sd_user','sd_wrong','sd_stats','sd_fc','sd_session'].forEach(k => SD.del(k));
+  window.location.href = 'index.html';
+}
+</script>
+</body>
+</html>

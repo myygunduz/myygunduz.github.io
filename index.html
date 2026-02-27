@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyDeck</title>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<style>
+/* ── Onboarding ─────────────────────────────────────── */
+#screen-login {
+  display: flex; flex-direction: column;
+  min-height: 100vh; max-width: 480px; margin: 0 auto;
+  padding: 48px 24px 40px;
+}
+.login-blobs {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.blob {
+  position: absolute; border-radius: 50%;
+}
+.blob1 { width: 320px; height: 320px; background: rgba(126,206,196,0.18); top: -80px; right: -60px; }
+.blob2 { width: 260px; height: 260px; background: rgba(244,164,124,0.14); bottom: 60px; left: -60px; }
+.blob3 { width: 200px; height: 200px; background: rgba(181,168,224,0.16); top: 40%; left: 30%; }
+
+.login-hero {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; position: relative; z-index: 1;
+}
+.logo-big {
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 3rem; line-height: 1; color: var(--dark);
+}
+.logo-big em { color: var(--mint); font-style: normal; }
+.login-tagline { font-size: 0.9rem; color: var(--mid); margin-top: 8px; }
+
+.floating-cards {
+  display: flex; justify-content: center; gap: -8px;
+  margin: 32px 0; position: relative; height: 80px;
+}
+.fc-mini {
+  width: 56px; height: 72px; border-radius: 14px;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; background: white;
+  box-shadow: var(--shadow);
+  position: absolute;
+}
+
+.login-form {
+  position: relative; z-index: 1;
+  background: white; border-radius: 24px;
+  border: 1.5px solid var(--border);
+  padding: 24px; box-shadow: var(--shadow-lg);
+  margin-bottom: 16px;
+}
+.login-form-title {
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 1.1rem; margin-bottom: 4px;
+}
+.login-form p { font-size: 0.82rem; color: var(--mid); margin-bottom: 20px; }
+
+/* ── Home ───────────────────────────────────────────── */
+#screen-home { display: none; }
+
+.profile-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: white; border-radius: 16px;
+  border: 1.5px solid var(--border);
+  margin-bottom: 20px; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.profile-bar:hover { border-color: var(--mint); }
+.pbar-av {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--lav), var(--mint));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Nunito', sans-serif; font-weight: 900;
+  font-size: 1.1rem; color: white; flex-shrink: 0;
+}
+.pbar-info { flex: 1; }
+.pbar-info strong { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; display: block; }
+.pbar-info span { font-size: 0.76rem; color: var(--mid); }
+.pbar-edit { font-size: 1rem; }
+
+.subject-item {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 18px; background: white;
+  border-radius: 18px; border: 1.5px solid var(--border);
+  margin-bottom: 10px; cursor: pointer; text-decoration: none;
+  color: var(--dark); transition: all 0.18s;
+}
+.subject-item:hover { border-color: var(--mint); transform: translateX(3px); box-shadow: var(--shadow); }
+.sitem-icon {
+  width: 46px; height: 46px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.sitem-info { flex: 1; }
+.sitem-info h4 { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.92rem; margin-bottom: 2px; }
+.sitem-info p { font-size: 0.74rem; color: var(--mid); }
+.sitem-arrow { color: var(--mid); font-size: 1rem; }
+
+.wrong-badge-sm {
+  display: inline-flex; align-items: center; gap: 3px;
+  margin-top: 4px; padding: 2px 7px;
+  background: rgba(244,124,124,0.12); border-radius: 99px;
+  font-size: 0.68rem; font-family: 'Nunito', sans-serif;
+  font-weight: 700; color: var(--wrong);
+}
+
+.home-actions {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 10px; margin-bottom: 24px;
+}
+.action-card {
+  padding: 16px; background: white; border-radius: 16px;
+  border: 1.5px solid var(--border); cursor: pointer;
+  text-decoration: none; color: var(--dark);
+  transition: all 0.18s; display: block;
+}
+.action-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.action-card .ac-icon { font-size: 1.6rem; margin-bottom: 6px; }
+.action-card .ac-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; }
+.action-card .ac-sub { font-size: 0.72rem; color: var(--mid); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ───────────────────────────────────────────── -->
+<div id="screen-login">
+  <div class="login-blobs">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
+
+  <div class="login-hero fade-up">
+    <div class="logo-big">Study<em>Deck</em></div>
+    <div class="login-tagline">Akıllı sınav hazırlık platformu</div>
+
+    <div class="floating-cards">
+      <div class="fc-mini" style="left:50px; top:0; transform:rotate(-8deg);">🔢</div>
+      <div class="fc-mini" style="left:130px; top:-8px; transform:rotate(3deg);">📖</div>
+      <div class="fc-mini" style="left:210px; top:4px; transform:rotate(-4deg);">🏛️</div>
+    </div>
+  </div>
+
+  <div class="login-form fade-up" style="animation-delay:0.1s">
+    <div class="login-form-title">👋 Merhaba!</div>
+    <p>Sana özel deneyim için adını ve yaşını öğrenelim.</p>
+    <div class="field">
+      <label>Adın</label>
+      <input type="text" id="inp-name" placeholder="Adını yaz..." autocomplete="given-name"/>
+    </div>
+    <div class="field">
+      <label>Yaşın</label>
+      <input type="number" id="inp-age" placeholder="Kaç yaşındasın?" min="10" max="99"/>
+    </div>
+    <button class="btn btn-dark" onclick="doLogin()">Hadi Başlayalım 🚀</button>
+  </div>
+  <p style="text-align:center; font-size:0.72rem; color:var(--mid); position:relative; z-index:1;">
+    Bilgilerin yalnızca bu cihazda saklanır.
+  </p>
+</div>
+
+<!-- ── HOME ───────────────────────────────────────────── -->
+<div id="screen-home" class="page">
+  <div class="navbar">
+    <a class="logo" href="index.html">Study<em>Deck</em></a>
+    <a class="nav-avatar" id="home-av" href="profile.html">?</a>
+  </div>
+
+  <div class="profile-bar" onclick="window.location='profile.html'">
+    <div class="pbar-av" id="home-pbar-av">?</div>
+    <div class="pbar-info">
+      <strong id="home-name">—</strong>
+      <span id="home-age">—</span>
+    </div>
+    <span class="pbar-edit">✏️</span>
+  </div>
+
+  <div class="home-actions">
+    <a class="action-card" href="cards.html">
+      <div class="ac-icon">🃏</div>
+      <div class="ac-title">Bilgi Kartları</div>
+      <div class="ac-sub">Sürükle & Öğren</div>
+    </a>
+    <a class="action-card" id="btn-wrong-home" href="test.html?wrong=1" style="display:none; border-color:rgba(244,124,124,0.3);">
+      <div class="ac-icon">❌</div>
+      <div class="ac-title">Yanlışlarım</div>
+      <div class="ac-sub" id="wrong-count-home">—</div>
+    </a>
+  </div>
+
+  <div class="sec-title">Konular</div>
+  <div class="sec-sub">Bir konuya tıkla ve teste başla</div>
+
+  <div id="subject-list"></div>
+</div>
+
+<!-- Bottom nav -->
+<nav class="bottom-nav" id="bnav" style="display:none;">
+  <a href="index.html" class="active"><span class="nav-icon">🏠</span>Ana Sayfa</a>
+  <a href="cards.html"><span class="nav-icon">🃏</span>Kartlar</a>
+  <a href="test.html"><span class="nav-icon">📝</span>Test</a>
+  <a href="profile.html"><span class="nav-icon">👤</span>Profil</a>
+</nav>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  const user = SD.getUser();
+  if (user) {
+    showHome(user);
+  }
+  // Enter key on login
+  document.getElementById('inp-age').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+});
+
+function doLogin() {
+  const name = document.getElementById('inp-name').value.trim();
+  const age = document.getElementById('inp-age').value.trim();
+  if (!name) { showToast('Adını girermisin? 😊'); return; }
+  if (!age || age < 1) { showToast('Yaşını girer misin?'); return; }
+  SD.setUser({ name, age: parseInt(age) });
+  showHome({ name, age });
+  showToast('Hoş geldin, ' + name + '! 🎉');
+}
+
+function showHome(user) {
+  document.getElementById('screen-login').style.display = 'none';
+  document.getElementById('screen-home').style.display = 'block';
+  document.getElementById('bnav').style.display = 'flex';
+
+  const init = SD.initials(user.name);
+  document.getElementById('home-av').textContent = init;
+  document.getElementById('home-pbar-av').textContent = init;
+  document.getElementById('home-name').textContent = user.name;
+  document.getElementById('home-age').textContent = user.age + ' yaşında';
+
+  // Wrong btn
+  const totalWrong = SD.totalWrongCount();
+  const wrongBtn = document.getElementById('btn-wrong-home');
+  if (totalWrong > 0) {
+    wrongBtn.style.display = 'block';
+    document.getElementById('wrong-count-home').textContent = totalWrong + ' soru bekliyor';
+  }
+
+  // Subject list
+  const list = document.getElementById('subject-list');
+  list.innerHTML = '';
+  SUBJECTS.forEach(s => {
+    const wrongCount = SD.getWrongForSubject(s.id).length;
+    const a = document.createElement('a');
+    a.className = 'subject-item fade-up';
+    a.href = `test.html?subject=${s.id}`;
+    a.innerHTML = `
+      <div class="sitem-icon" style="background:${s.color}22;">${s.icon}</div>
+      <div class="sitem-info">
+        <h4>${s.title}</h4>
+        <p>${s.description}</p>
+        ${wrongCount > 0 ? `<div class="wrong-badge-sm">❌ ${wrongCount} yanlış</div>` : ''}
+      </div>
+      <div class="sitem-arrow">→</div>
+    `;
+    list.appendChild(a);
+  });
+}
+</script>
+</body>
+</html>
