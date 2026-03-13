@@ -157,11 +157,11 @@
 <div class="confirm-overlay" id="confirm-overlay" style="display:none;">
   <div class="confirm-box">
     <h3>Testi bırakmak istiyor musun?</h3>
-    <p>Cevaplanmayan sorular boş sayılacak ve sonuç sayfası açılacak.<br>Sadece çıkmak için "Çık" seç.</p>
-    <div class="confirm-btns">
-      <button class="btn btn-ghost" onclick="closeConfirm()">Devam Et</button>
-      <button class="btn btn-peach" onclick="finishTest()">Bitir & Sonuç</button>
-      <button class="btn btn-dark"  onclick="leaveTest()">Çık</button>
+    <p>İlerlemeyi kaydederek çıkabilir, daha sonra kaldığın yerden devam edebilirsin.</p>
+    <div class="confirm-btns" style="flex-wrap:wrap; gap:8px;">
+      <button class="btn btn-ghost" onclick="closeConfirm()" style="flex:1 1 100%;">Devam Et</button>
+      <button class="btn btn-mint"  onclick="saveAndLeave()" style="flex:1;">💾 Kaydet & Çık</button>
+      <button class="btn btn-dark"  onclick="leaveTest()"    style="flex:1;">Kaydetme & Çık</button>
     </div>
   </div>
 </div>
@@ -185,6 +185,13 @@ let testActive = false;
 // ── Boot ───────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   renderSubjectSelect();
+
+  // Check for saved draft
+  const draft = SD.get('sd_test_draft', null);
+  if (draft) {
+    showResumeBanner(draft);
+  }
+
   const p = new URLSearchParams(location.search);
   if (p.get('subject')) {
     selectSubjectById(p.get('subject'));
@@ -222,7 +229,93 @@ function handleBack() {
 }
 function showConfirm()  { document.getElementById('confirm-overlay').style.display = 'flex'; }
 function closeConfirm() { document.getElementById('confirm-overlay').style.display = 'none'; }
-function leaveTest()    { testActive = false; unlockNav(); window.location.href = 'index.html'; }
+
+function saveAndLeave() {
+  // Save current test state
+  SD.set('sd_test_draft', {
+    subjectId: selectedSubjectId,
+    wrongOnly: wrongOnlyMode,
+    questionIds: questions.map(q => q.id),
+    answers,
+    currentQ
+  });
+  testActive = false;
+  unlockNav();
+  window.location.href = 'index.html';
+}
+
+function leaveTest() {
+  SD.del('sd_test_draft');
+  testActive = false;
+  unlockNav();
+  window.location.href = 'index.html';
+}
+
+// ── Resume banner ──────────────────────────────────────────
+function showResumeBanner(draft) {
+  const sub = SUBJECTS.find(s => s.id === draft.subjectId);
+  if (!sub) { SD.del('sd_test_draft'); return; }
+  const answered = Object.keys(draft.answers).length;
+  const total    = draft.questionIds.length;
+
+  const banner = document.createElement('div');
+  banner.id = 'resume-banner';
+  banner.style.cssText = `
+    background: linear-gradient(135deg,rgba(126,206,196,0.15),rgba(181,168,224,0.15));
+    border: 1.5px solid var(--mint); border-radius: 16px;
+    padding: 14px 16px; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  `;
+  banner.innerHTML = `
+    <span style="font-size:1.4rem">📝</span>
+    <div style="flex:1; min-width:0;">
+      <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.88rem;">Yarım kalan test</div>
+      <div style="font-size:0.75rem; color:var(--mid); margin-top:2px;">${sub.icon} ${sub.title} · ${answered}/${total} cevaplandı</div>
+    </div>
+    <button id="btn-resume-test" class="btn btn-mint btn-sm" style="white-space:nowrap;">Devam Et →</button>
+    <button id="btn-discard-test" class="btn btn-ghost btn-sm" style="white-space:nowrap;">Sil</button>
+  `;
+  const intro = document.getElementById('view-intro');
+  intro.insertBefore(banner, intro.firstChild);
+
+  document.getElementById('btn-resume-test').onclick = () => resumeTest(draft);
+  document.getElementById('btn-discard-test').onclick = () => {
+    SD.del('sd_test_draft');
+    banner.remove();
+  };
+}
+
+function resumeTest(draft) {
+  const sub = SUBJECTS.find(s => s.id === draft.subjectId);
+  if (!sub) return;
+
+  selectedSubjectId = draft.subjectId;
+  subjectData       = sub;
+  wrongOnlyMode     = draft.wrongOnly;
+  answers           = draft.answers || {};
+  currentQ          = draft.currentQ || 0;
+
+  // Rebuild questions array from saved IDs
+  questions = draft.questionIds
+    .map(id => sub.questions.find(q => q.id === id))
+    .filter(Boolean);
+
+  if (questions.length === 0) { SD.del('sd_test_draft'); return; }
+
+  SD.del('sd_test_draft');
+
+  testActive = true;
+  lockNav();
+
+  document.getElementById('view-intro').style.display = 'none';
+  document.getElementById('view-test').style.display  = 'block';
+  document.getElementById('btn-finish').style.display = 'flex';
+
+  buildNavDots();
+  // Restore dot colors for already-answered questions
+  Object.keys(answers).forEach(i => refreshDot(parseInt(i)));
+  renderQuestion(currentQ);
+}
 
 // ── Intro ──────────────────────────────────────────────────
 function renderSubjectSelect() {

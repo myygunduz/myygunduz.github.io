@@ -4,364 +4,1147 @@
 
 const SUBJECTS = [
   {
-    id: "biyokimya_final",
+    id: "biyokimya_karbonhidratlar",
     title: "Biyokimya: Karbonhidratlar",
-    icon: "🧪",
+    icon: "🍞",
     color: "#e67e22",
-    description: "50 Soruluk Kapsamlı Bilgi Testi",
+    description: "50 Soruluk Kapsamlı Bilgi Testi - Karbonhidratlar",
     questions: [
       {
-        id: "q1",
-        question: "Yeryüzünde en bol bulunan biyomolekül sınıfı hangisidir?",
-        options: ["Nükleik asitler", "Proteinler", "Karbonhidratlar", "Lipitler"],
+        id: "k1",
+        question:
+          "Yeryüzünde en çok bulunan biyomoleküller aşağıdakilerden hangisidir?",
+        options: [
+          "Proteinler",
+          "Lipitler",
+          "Karbonhidratlar",
+          "Nükleik asitler",
+        ],
         correct: 2,
-        explanation: "Karbonhidratlar yeryüzündeki en yaygın biyomoleküllerdir[cite: 1, 3]."
+        explanation:
+          "Karbonhidratlar ve glikobiyoloji yeryüzünde en çok bulunan biyomoleküllerdir[cite: 1, 2, 3].",
       },
       {
-        id: "q2",
-        question: "Eklemlerde kayganlaştırıcı, hücre duvarında ise koruyucu eleman olarak görev yapan yapı hangisidir?",
-        options: ["Karbonhidrat polimerleri", "Basit şekerler", "Amino asitler", "Serbest radikaller"],
+        id: "k2",
+        question:
+          "Karbonhidrat polimerleri (glikanlar) eklemlerde hangi görevi üstlenir?",
+        options: [
+          "Enerji üretimi",
+          "Kayganlaştırıcı",
+          "Isı yalıtımı",
+          "Sinyal iletimi",
+        ],
+        correct: 1,
+        explanation:
+          "Karbonhidrat polimerleri eklemlerde kayganlaştırıcıdır[cite: 7, 9].",
+      },
+      {
+        id: "k3",
+        question:
+          "Protein ve lipitlere kovalent bağlanarak hücredeki yeri belirleyen sinyaller olarak davranan moleküller hangisidir?",
+        options: [
+          "Glikokonjugatlar",
+          "Monosakkaritler",
+          "Ketozlar",
+          "Aldozlar",
+        ],
         correct: 0,
-        explanation: "Glikanlar olarak da bilinen polimerler eklemlerde kayganlaştırıcı ve hücre duvarlarında yapısal koruyucudur[cite: 7, 8, 9]."
+        explanation:
+          "Glikokonjugatlar (karmaşık karbonhidrat polimerleri) protein ve lipitlere kovalent bağlanır ve sinyaller olarak davranır[cite: 11, 12].",
       },
       {
-        id: "q3",
-        question: "Karbonil grubu zincirin sonunda bulunan şekerlere ne ad verilir?",
-        options: ["Ketoz", "Trioz", "Aldoz", "Heksoz"],
+        id: "k4",
+        question:
+          "Karbonil grubu zincirin sonunda yer alan şekerlere ne ad verilir?",
+        options: ["Ketoz", "Trioz", "Aldoz", "Pentoz"],
         correct: 2,
-        explanation: "Karbonil grubu zincir sonundaysa aldehit grubunu oluşturur ve bu şekerlere aldoz denir[cite: 22]."
+        explanation:
+          "Karbonil grubu zincirin sonundaysa aldehit grubunda aldoz olarak adlandırılır[cite: 22].",
       },
       {
-        id: "q4",
-        question: "En basit monosakkarit olan 3 karbonlu 'ketotrioz' aşağıdakilerden hangisidir?",
-        options: ["Gliseraldehit", "Eritroz", "Riboz", "Dihidroksiaseton"],
-        correct: 3,
-        explanation: "Dihidroksiaseton 3 karbonlu en basit ketozdur[cite: 30, 68]."
-      },
-      {
-        id: "q5",
-        question: "D-Gliseraldehit ve L-Gliseraldehit arasındaki farkı belirleyen temel kriter nedir?",
-        options: ["Karbon sayısı", "Referans karbonun kiral merkezi", "Halka yapısı", "Fosfat grubu"],
+        id: "k5",
+        question:
+          "En basit monosakkarit olan ketotrioz aşağıdakilerden hangisidir?",
+        options: ["Gliseraldehit", "Dihidroksiaseton", "Eritroz", "Riboz"],
         correct: 1,
-        explanation: "Referans kiral merkezin düzenlenişine göre D veya L izomerliği belirlenir[cite: 72, 77]."
+        explanation:
+          "En basit monosakkaritler 3 karbonludur ve ketotrioz örneği dihidroksiasetondur[cite: 24, 30].",
       },
       {
-        id: "q6",
-        question: "Sadece tek bir karbon atomu etrafındaki düzenlenişi farklı olan şekerlere ne ad verilir?",
-        options: ["Anomer", "Enantiyomer", "Epimer", "Diastereomer"],
+        id: "k6",
+        question:
+          "Hangi monosakkarit asimetrik karbon atomu içermediği için optik olarak aktif değildir?",
+        options: [
+          "D-Gliseraldehit",
+          "D-Riboz",
+          "Dihidroksiaseton",
+          "D-Fruktoz",
+        ],
         correct: 2,
-        explanation: "Sadece bir karbon etrafındaki konfigürasyonu farklı olan şekerler epimerdir[cite: 96]."
+        explanation:
+          "Dihidroksiaseton hariç tüm monosakkaritlerin bir veya birden fazla asimetrik karbon atomu vardır ve optikçe aktiftir[cite: 65].",
       },
       {
-        id: "q7",
-        question: "D-Glukoz'un C-2 epimeri aşağıdakilerden hangisidir?",
-        options: ["D-Mannoz", "D-Galaktoz", "D-Riboz", "D-Fruktoz"],
+        id: "k7",
+        question:
+          "D ve L izomerliği hangi karbon atomunun düzenlenmesine göre belirlenir?",
+        options: [
+          "Karbonil karbonu",
+          "Anomerik karbon",
+          "En uzaktaki kiral merkez",
+          "C-2 karbonu",
+        ],
+        correct: 2,
+        explanation:
+          "Monosakkaritlerin stereoizomerleri, karbonil grubundan en uzaktaki kiral merkezin düzenlenmesine göre belirlenir[cite: 71, 72, 73].",
+      },
+      {
+        id: "k8",
+        question:
+          "Sadece tek bir karbon atomu etrafındaki düzenlenişi farklı olan şekerlere ne denir?",
+        options: ["Anomer", "Enantiyomer", "Epimer", "İzotop"],
+        correct: 2,
+        explanation:
+          "Sadece 1 C atomu etrafındaki düzenlenişi farklı 2 şeker epimer olarak adlandırılır[cite: 96].",
+      },
+      {
+        id: "k9",
+        question: "D-Glukoz ve D-Mannoz birbirinin nesidir?",
+        options: ["C-4 epimeri", "C-2 epimeri", "Anomeri", "Enantiyomeri"],
+        correct: 1,
+        explanation: "D-Mannoz, D-Glukozun C-2'de epimeridir[cite: 98].",
+      },
+      {
+        id: "k10",
+        question: "Halkalı yapı oluşturan karbon atomuna ne ad verilir?",
+        options: [
+          "Kiral karbon",
+          "Merkezi karbon",
+          "Anomerik merkez",
+          "Epimerik merkez",
+        ],
+        correct: 2,
+        explanation:
+          "Halkalı yapı oluşturan karbona anomerik merkez denir[cite: 107].",
+      },
+      {
+        id: "k11",
+        question: "Altı üyeli halkalı bileşiklere ne ad verilir?",
+        options: ["Furanoz", "Piranoz", "Heksoz", "Heptoz"],
+        correct: 1,
+        explanation:
+          "6 üyeli halkalı bileşikler piranoz olarak adlandırılır[cite: 136].",
+      },
+      {
+        id: "k12",
+        question: "Beş üyeli halkalı bileşiklere ne ad verilir?",
+        options: ["Piranoz", "Furanoz", "Pentoz", "Ketoz"],
+        correct: 1,
+        explanation: "5 üyeli halka yapılarına furanozlar denir[cite: 150].",
+      },
+      {
+        id: "k13",
+        question:
+          "Sadece yarı asetal veya yarı ketal karbonundaki düzenlenişi farklı olan izomerlere ne denir?",
+        options: ["Anomer", "Epimer", "Enantiyomer", "Diastereomer"],
         correct: 0,
-        explanation: "D-Mannoz, glukozun C-2 konumundaki epimeridir[cite: 98]."
+        explanation:
+          "Sadece yarı asetal veya yarı ketal karbonundaki düzenlenişi farklı olan monosakkaritlerin izomerlerine anomer denir[cite: 163].",
       },
       {
-        id: "q8",
-        question: "D-Glukoz'un C-4 epimeri olan şeker hangisidir?",
-        options: ["D-Riboz", "D-Galaktoz", "D-Mannoz", "D-Ksiloz"],
+        id: "k14",
+        question:
+          "Glukozun a ve b izomerlerinin sulu çözeltide birbirine dönüşmesine ne denir?",
+        options: ["Hidroliz", "Mutarotasyon", "Kondenzasyon", "Deaminasyon"],
         correct: 1,
-        explanation: "D-Galaktoz, glukozun C-4 konumundaki epimeridir[cite: 98]."
+        explanation:
+          "Glukozun a ve B izomerleri sulu çözeltide mutarotasyon ile birbirine dönüşür[cite: 166].",
       },
       {
-        id: "q9",
-        question: "Karbonhidratlarda halkalı yapı oluşturan karbon atomuna ne ad verilir?",
-        options: ["Anomerik merkez", "Kiral merkez", "Merkezi karbon", "Uç karbon"],
+        id: "k15",
+        question:
+          "Glukozun karbonil karbonu karboksile yükseltgenirse hangi asit oluşur?",
+        options: [
+          "Glukuronik asit",
+          "Glukonik asit",
+          "Muramik asit",
+          "Sorbitol",
+        ],
+        correct: 1,
+        explanation:
+          "Glukozun karbonil C, karboksile yükseltgenirse glukonik asit oluşur[cite: 179].",
+      },
+      {
+        id: "k16",
+        question:
+          "Glukozun C-6 karbonu yükseltgenirse hangi asit grubu oluşur?",
+        options: ["Glukonik asit", "Uronik asit", "Aldonik asit", "Amino asit"],
+        correct: 1,
+        explanation:
+          "Zincirin diğer ucundaki C yükseltgenirse uronik asitler oluşur[cite: 186].",
+      },
+      {
+        id: "k17",
+        question:
+          "Hücrede şekerlerin tutulmasını ve aktifleştirilmesini sağlayan modifikasyon nedir?",
+        options: ["Fosforillenme", "Oksidasyon", "Deaminasyon", "Asetilasyon"],
         correct: 0,
-        explanation: "Halkalı yapı oluşturan karbona anomerik merkez denir[cite: 107]."
+        explanation:
+          "Şeker fosforillenmesi, şekeri hücrede tutar ve sonraki dönüşümler için aktifleştirir[cite: 200, 201].",
       },
       {
-        id: "q10",
-        question: "Altı üyeli halkalı şeker yapıları hangi genel isimle anılır?",
-        options: ["Furanoz", "Heptoz", "Piranoz", "Tetroz"],
+        id: "k18",
+        question:
+          "Bir şekerin -OH grubu ile diğerinin anomerik karbonu arasındaki kovalent bağın adı nedir?",
+        options: [
+          "Peptit bağı",
+          "Fosfodiester bağı",
+          "O-glikozit bağı",
+          "Hidrojen bağı",
+        ],
         correct: 2,
-        explanation: "Altı üyeli halkalı bileşiklere piranoz denir[cite: 136]."
+        explanation:
+          "Bir şekerin -OH grubu ile diğerinin anomerik C rxn ile O-glikozit bağı oluşur[cite: 208].",
       },
       {
-        id: "q11",
-        question: "Sulu çözeltide alfa ve beta anomerlerinin birbirine dönüşmesi olayına ne denir?",
-        options: ["Hidroliz", "Mutarotasyon", "Kondenzasyon", "Yükseltgenme"],
+        id: "k19",
+        question: "Glikozit bağı hangi kimyasal maddeye karşı dirençlidir?",
+        options: ["Sıcak asit", "Seyreltik asit", "Baz", "Su"],
+        correct: 2,
+        explanation:
+          "Glikozit bağı asitle kolayca hidroliz olur, baza dirençlidir[cite: 210].",
+      },
+      {
+        id: "k20",
+        question:
+          "Serbest anomerik karbon içermediği için indirgen olmayan disakkarit hangisidir?",
+        options: ["Maltoz", "Laktoz", "Sükroz", "Selobiyoz"],
+        correct: 2,
+        explanation:
+          "Sukroz (çay şekeri) serbest anomerik C yok, indirgen değil[cite: 262, 263].",
+      },
+      {
+        id: "k21",
+        question: "Laktoz hangi iki monosakkaritten oluşur?",
+        options: [
+          "Glukoz ve Fruktoz",
+          "D-galaktoz ve D-glukoz",
+          "Glukoz ve Glukoz",
+          "Galaktoz ve Fruktoz",
+        ],
         correct: 1,
-        explanation: "Alfa ve beta formlarının çözeltide birbirine dönüşmesine mutarotasyon denir[cite: 166]."
+        explanation:
+          "Laktoz (süt şekeri) hidroliz edildiğinde D-galaktoz + D-glukoz oluşur[cite: 259, 260].",
       },
       {
-        id: "q12",
-        question: "Glukozun C-2 konumundaki -OH grubu amino grubu ile yer değiştirirse hangi molekül oluşur?",
-        options: ["Glukuronik asit", "Glukonik asit", "Glukozamin", "Muramik asit"],
-        correct: 2,
-        explanation: "OH grubu amino grubu ile yer değiştirdiğinde glukozamin oluşur[cite: 176]."
-      },
-      {
-        id: "q13",
-        question: "Glukozun karbonil karbonu (C-1) karboksil grubuna yükseltgenirse ne oluşur?",
-        options: ["Glukuronik asit", "Glukonik asit", "Muramik asit", "Sorbitol"],
+        id: "k22",
+        question:
+          "Her iki anomerik karbonun da bağa katıldığı Glukoz+Glukoz disakkariti hangisidir?",
+        options: ["Maltoz", "Trehaloz", "Laktoz", "Sükroz"],
         correct: 1,
-        explanation: "Karbonil karbonu yükseltgenirse aldonik asit (glukoz için glukonik asit) oluşur[cite: 179, 180]."
+        explanation:
+          "Trehaloz glukoz + glukozdan oluşur ancak her 2 anomerik C da bağa katıldığı için maltoz değildir[cite: 297, 314].",
       },
       {
-        id: "q14",
-        question: "Glukozun C-6 karbonu karboksil grubuna yükseltgenirse hangi yapı meydana gelir?",
-        options: ["Glukonik asit", "Glukoz-6-fosfat", "Glukuronik asit", "Glukarik asit"],
-        correct: 2,
-        explanation: "Zincirin diğer ucundaki C-6 karbonu yükseltgenirse uronik asitler oluşur[cite: 186, 187]."
-      },
-      {
-        id: "q15",
-        question: "Şekerlerin hücre içinde tutulmasını ve kimyasal olarak aktifleştirilmesini sağlayan modifikasyon nedir?",
-        options: ["Yükseltgenme", "Fosforillenme", "Amino grup eklenmesi", "Deoksijenasyon"],
+        id: "k23",
+        question:
+          "Polisakkaritlerin (glikanlar) proteinlerden temel farkı nedir?",
+        options: [
+          "Daha küçük olmaları",
+          "Belli bir molekül ağırlığının olmaması",
+          "Suda çok iyi çözünmeleri",
+          "Sadece bitkilerde bulunmaları",
+        ],
         correct: 1,
-        explanation: "Fosforillenme şekerleri negatif yüklü yapar ve hücrede tutar[cite: 200, 201]."
+        explanation:
+          "Polisakkaritlerin proteinlerden farklı olarak belli molekül ağırlığı yok, kalıpsız sentezlenir[cite: 319].",
       },
       {
-        id: "q16",
-        question: "Sükroz (çay şekeri) neden indirgen bir şeker değildir?",
-        options: ["Çok büyük olduğu için", "Suda çözünmediği için", "Serbest anomerik karbonu bulunmadığı için", "Fruktoz içerdiği için"],
-        correct: 2,
-        explanation: "Sükrozda her iki anomerik karbon da bağa katıldığı için indirgen özellik gösteremez[cite: 263, 314]."
-      },
-      {
-        id: "q17",
-        question: "Süt şekeri olarak bilinen ve galaktoz ile glukozdan oluşan disakkarit hangisidir?",
-        options: ["Maltoz", "Sükroz", "Laktoz", "Trehaloz"],
-        correct: 2,
-        explanation: "Laktoz, D-galaktoz ve D-glukozdan oluşur[cite: 259, 260]."
-      },
-      {
-        id: "q18",
-        question: "Bitkilerde enerji depolama formu olan nişasta hangi iki polimerden oluşur?",
-        options: ["Selüloz ve Kitin", "Amiloz ve Amilopektin", "Glikojen ve Amiloz", "Dekstran ve Agaroz"],
-        correct: 1,
-        explanation: "Nişasta, amiloz ve amilopektin birleşiminden oluşur[cite: 324]."
-      },
-      {
-        id: "q19",
-        question: "Nişastanın dallanmamış ve alfa 1-4 bağları içeren yapısı hangisidir?",
+        id: "k24",
+        question:
+          "Nişastayı oluşturan uzun, dallanmamış glukoz polimeri hangisidir?",
         options: ["Amilopektin", "Glikojen", "Amiloz", "Selüloz"],
         correct: 2,
-        explanation: "Amiloz, uzun ve dallanmamış bir alfa 1-4 glukoz polimeridir[cite: 325]."
+        explanation:
+          "Amiloz, uzun ve dallanmamış alfa(1-4) glikozit bağı içeren D-glukoz zinciridir[cite: 325].",
       },
       {
-        id: "q20",
+        id: "k25",
+        question:
+          "Nişastada alfa(1-6) bağlarıyla dallanma yapan polimer hangisidir?",
+        options: ["Amiloz", "Amilopektin", "Dekstran", "Kitin"],
+        correct: 1,
+        explanation:
+          "Amilopektin, alfa(1-6) dallanma noktaları içeren çok dallanmış bir D-glukoz polimeridir[cite: 326].",
+      },
+      {
+        id: "k26",
+        question: "Hayvan hücrelerinin ana depo polisakkariti hangisidir?",
+        options: ["Nişasta", "Selüloz", "Glikojen", "Dekstran"],
+        correct: 2,
+        explanation:
+          "Glikojen hayvan hücrelerinin ana depo polisakkaritidir[cite: 330].",
+      },
+      {
+        id: "k27",
         question: "Glikojenin amilopektinden temel farkı nedir?",
-        options: ["Bağ tiplerinin farklı olması", "Daha az dallanmış olması", "Daha sık dallanmış olması", "Sadece bitkilerde bulunması"],
+        options: [
+          "Bağ tipleri",
+          "Daha seyrek dallanması",
+          "Daha sık dallanmış olması",
+          "Bitkilerde bulunması",
+        ],
         correct: 2,
-        explanation: "Glikojen, nişastadan daha sık dallanmış bir yapıya sahiptir[cite: 330]."
+        explanation:
+          "Glikojen nişastadan daha çok dallanmıştır; her 8-12 kalıntıda dallanma yapar[cite: 330].",
       },
       {
-        id: "q21",
-        question: "Selülozun insanlar tarafından sindirilememesinin nedeni nedir?",
-        options: ["Alfa 1-4 bağlarını kıramamak", "Beta 1-4 bağlarını kıramamak", "Çok yüksek molekül ağırlığı", "Suda çözünmemesi"],
+        id: "k28",
+        question:
+          "Bakteri ve mayalarda bulunan alfa(1-6) bağlı glukoz polimeri hangisidir?",
+        options: ["Selüloz", "Dekstranlar", "Glikojen", "Kitin"],
         correct: 1,
-        explanation: "İnsanlarda beta 1-4 bağlarını parçalayacak selülaz enzimi yoktur[cite: 335, 337, 340]."
+        explanation:
+          "Dekstranlar bakteri ve maya polisakkaritleri olup alfa(1-6) bağlı poli-D-glukozdur[cite: 332].",
       },
       {
-        id: "q22",
-        question: "Eklem bacaklıların dış kabuğunda bulunan N-asetilglukozamin homopolimeri hangisidir?",
-        options: ["Selüloz", "Dekstran", "Kitin", "Glikojen"],
+        id: "k29",
+        question:
+          "Bitkilerin hücre duvarı ve odunsu kısımlarını oluşturan homopolisakkarit hangisidir?",
+        options: ["Nişasta", "Glikojen", "Selüloz", "Agar"],
         correct: 2,
-        explanation: "Kitin, eklem bacaklıların sert dış kabuğunu oluşturur[cite: 344, 345]."
+        explanation:
+          "Selüloz bitkilerin hücre duvarı, bütün odunsu kısımlarını oluşturan polisakkarittir[cite: 334].",
       },
       {
-        id: "q23",
-        question: "Nişasta ve glikojen için en kararlı yapı aşağıdakilerden hangisidir?",
-        options: ["Düz zincir", "Sıkı katlanmış sarmal", "Beta kırmalı sayfa", "Kavisli halka"],
+        id: "k30",
+        question: "İnsanlarda selülozun sindirilememesinin temel nedeni nedir?",
+        options: [
+          "Molekülün çok büyük olması",
+          "Beta(1-4) bağlarını parçalayacak selülaz enziminin olmaması",
+          "Suda çözünmemesi",
+          "Sadece alfa(1-4) bağlarını içermesi",
+        ],
         correct: 1,
-        explanation: "Alfa 1-4 bağları için en kararlı yapı sıkı katlanmış sarmaldır[cite: 349]."
+        explanation:
+          "Hayvanlarda beta(1-4) bağlarını parçalayacak selülaz enzimi yoktur ve selüloz sindirilemez[cite: 337, 338, 340].",
       },
       {
-        id: "q24",
-        question: "Bakteri hücre duvarında bulunan peptidoglikan hangi iki şeker türevini içerir?",
-        options: ["Glukoz ve Fruktoz", "N-asetilglukozamin ve N-asetilmuramik asit", "Galaktoz ve Mannoz", "Riboz ve Deoksiriboz"],
-        correct: 1,
-        explanation: "Peptidoglikan tabakası GlcNAc ve Mur2Ac birimlerinden oluşur[cite: 360]."
-      },
-      {
-        id: "q25",
-        question: "Hücre dışı matrisin (ECM) temel bileşeni olan heteropolisakkarit grubu hangisidir?",
-        options: ["Glikozaminoglikanlar", "Homoglikanlar", "Triozlar", "Lektinler"],
-        correct: 0,
-        explanation: "ECM boşluğunu dolduran matris maddeleri glikozaminoglikanlardır[cite: 366, 369]."
-      },
-      {
-        id: "q26",
-        question: "Biyolojik makromoleküller arasında en yüksek negatif yük yoğunluğuna sahip olan hangisidir?",
-        options: ["Hiyaluronan", "Heparin", "Nişasta", "Keratan sülfat"],
-        correct: 1,
-        explanation: "Heparin, biyolojik sistemlerdeki en yüksek negatif yük yoğunluğuna sahip moleküldür[cite: 384]."
-      },
-      {
-        id: "q27",
-        question: "Karbonhidratlara yüksek özgüllükle bağlanan ve 'şeker kodunu' okuyan proteinler hangisidir?",
-        options: ["Müsinler", "Selektinler", "Lektinler", "Glikolipitler"],
+        id: "k31",
+        question:
+          "Eklem bacaklıların sert dış kabuğunu oluşturan yapı hangisidir?",
+        options: ["Selüloz", "Dekstran", "Kitin", "Peptidoglikan"],
         correct: 2,
-        explanation: "Lektinler şeker kodunu okuyan ve biyolojik işlemlere aracılık eden proteinlerdir[cite: 415, 416]."
+        explanation:
+          "Kitin, eklem bacaklıların sert dış kabuklarının bileşeni olan homopolisakkarittir[cite: 344, 345].",
       },
       {
-        id: "q28",
-        question: "Enflamatuar yanıtlarda lökositlerin damar duvarına yapışmasını sağlayan lektin ailesi hangisidir?",
-        options: ["Selektinler", "İmmünoglobulinler", "İnsülinler", "Glikokaliksler"],
-        correct: 0,
-        explanation: "Selektinler hücre-hücre tanıması ve adezyonuna aracılık eder[cite: 419]."
-      },
-      {
-        id: "q29",
-        question: "D-Riboz şekerinin 2. karbonundan bir oksijen atomu ayrılırsa ne oluşur?",
-        options: ["D-Arabinoz", "2-deoksi-D-riboz", "D-Ksiloz", "D-Liksoz"],
+        id: "k32",
+        question: "Kitin homopolisakkaritinin selülozdan farkı nedir?",
+        options: [
+          "Daha kısa olması",
+          "C-2'deki -OH yerine asetillenmiş amino grubu içermesi",
+          "Alfa bağları içermesi",
+          "Dallanmış olması",
+        ],
         correct: 1,
-        explanation: "Ribozun 2. karbonunda oksijen eksilmesi deoksiribozu oluşturur[cite: 42]."
+        explanation:
+          "Selülozdan farkı C-2'deki -OH yerine asetillenmiş amino grubu olmasıdır[cite: 343].",
       },
       {
-        id: "q30",
-        question: "Hangi polisakkarit türü enzimlerin etkisiyle belirli bir noktada durmaksızın 'kalıpsız' sentezlenir?",
-        options: ["Proteinler", "DNA", "Polisakkariitler", "RNA"],
+        id: "k33",
+        question:
+          "Bakteri hücre duvarında yer alan heteropolisakkarit tabakasının adı nedir?",
+        options: [
+          "Peptidoglikan",
+          "Glikozaminoglikan",
+          "Amilopektin",
+          "Dekstran",
+        ],
+        correct: 0,
+        explanation:
+          "Bakteri hücre duvarı peptidoglikan heteropolisakkarit içerir[cite: 360].",
+      },
+      {
+        id: "k34",
+        question:
+          "Göz yaşında bulunup bakteriyel hücre duvarını parçalayan enzim hangisidir?",
+        options: ["Amilaz", "Selülaz", "Lizozim", "Hiyaluronidaz"],
         correct: 2,
-        explanation: "Polisakkariitlerin proteinlerden farkı, belirli bir molekül ağırlıklarının olmaması ve kalıpsız sentezlenmeleridir[cite: 319]."
+        explanation:
+          "Lizozim göz yaşında bakteriyel enfeksiyona karşı savunma yapar[cite: 361].",
       },
       {
-        id: "q31",
-        question: "Sıvı tutma kapasitesi yüksek olan ve eklem sıvısında bulunan glikozaminoglikan hangisidir?",
-        options: ["Dermatan sülfat", "Hiyaluronan", "Heparin", "Kitin"],
-        correct: 1,
-        explanation: "Hiyaluronan eklem sıvısında kayganlaştırıcı olarak görev yapar[cite: 376]."
-      },
-      {
-        id: "q32",
-        question: "Hangisi indirgen bir disakkarit örneğidir?",
-        options: ["Sükroz", "Maltoz", "Trehaloz", "Nişasta"],
-        correct: 1,
-        explanation: "Maltoz, serbest bir anomerik karbona sahip olduğu için indirgendir[cite: 253, 285]."
-      },
-      {
-        id: "q33",
-        question: "Bakteri ve mayalarda bulunan, alfa 1-6 bağlı glukoz polimerleri hangisidir?",
-        options: ["Glikojen", "Dekstranlar", "Selüloz", "Amiloz"],
-        correct: 1,
-        explanation: "Dekstranlar bakteri ve maya polisakkaritleridir[cite: 332]."
-      },
-      {
-        id: "q34",
-        question: "Keratan sülfat vücudun hangi yapılarında bolca bulunur?",
-        options: ["Eklem sıvısı", "Kıkırdak", "Saç, tırnak ve boynuzumsu yapılar", "Kan plazması"],
+        id: "k35",
+        question:
+          "Elektroforez ve laboratuvar besi yerlerinde kullanılan agar bileşeni hangisidir?",
+        options: ["Peptidoglikan", "Kitin", "Agaroz", "Müsin"],
         correct: 2,
-        explanation: "Keratan sülfatlar saç, toynak ve tırnak gibi yapılarda bulunur[cite: 381]."
+        explanation:
+          "Agaroz yüksek jelleşme, elektroforez ve besi yeri olan agar bileşenidir[cite: 364, 365].",
       },
       {
-        id: "q35",
-        question: "Glikozidik bağların parçalanması için hangi işlem gereklidir?",
-        options: ["Asitle kaynatma", "Bazla nötralizasyon", "Dondurma", "Sadece su ekleme"],
-        correct: 0,
-        explanation: "Glikozit bağı asitle kolayca hidroliz olur ancak baza dirençlidir[cite: 210]."
-      },
-      {
-        id: "q36",
-        question: "Hangisi beş karbonlu bir ketoz (ketopentoz) örneğidir?",
-        options: ["Riboz", "Ribuloz", "Fruktoz", "Glukoz"],
-        correct: 1,
-        explanation: "Ribuloz, 5 karbonlu bir ketozdur[cite: 92, 94]."
-      },
-      {
-        id: "q37",
-        question: "D-Glukoz ve L-Glukoz arasındaki ilişki nedir?",
-        options: ["Epimer", "Anomer", "Enantiyomer", "İzotop"],
+        id: "k36",
+        question:
+          "Hücre dışı matrisin (ECM) boşluğunu dolduran heteropolisakkarit ailesi hangisidir?",
+        options: [
+          "Homoglikanlar",
+          "Dekstranlar",
+          "Glikozaminoglikanlar",
+          "Lektinler",
+        ],
         correct: 2,
-        explanation: "Birbirinin ayna görüntüsü olan D ve L formları enantiyomerdir[cite: 14]."
+        explanation:
+          "Glikozaminoglikanlar hücre dışı matrisin heteropolisakkaritleridir[cite: 366].",
       },
       {
-        id: "q38",
-        question: "Beş üyeli halkalı yapı oluşturan şekerlere ne ad verilir?",
-        options: ["Piranoz", "Furanoz", "Heksoz", "Heptoz"],
+        id: "k37",
+        question: "Glikozaminoglikanlar (GAG) bitkilerde bulunur mu?",
+        options: [
+          "Evet, hücre duvarında",
+          "Evet, kloroplastlarda",
+          "Hayır, hayvan ve bakterilere özgüdür",
+          "Hayır, sadece virüslerde bulunur",
+        ],
+        correct: 2,
+        explanation:
+          "Glikozaminoglikanlar hayvan ve bakterilere özgüdür, bitkilerde yoktur[cite: 369].",
+      },
+      {
+        id: "k38",
+        question:
+          "Eklem sıvısında kayganlaştırıcı olarak görev yapan GAG hangisidir?",
+        options: [
+          "Kondroitin sülfat",
+          "Hiyaluronan",
+          "Heparin",
+          "Dermatan sülfat",
+        ],
         correct: 1,
-        explanation: "Beş üyeli halkalara furanoz denir[cite: 150]."
+        explanation:
+          "Hiyaluronan (hiyaluronik asit) eklem sinovial sıvısında kayganlaştırıcıdır[cite: 376].",
       },
       {
-        id: "q39",
-        question: "D-Glukoz sulu çözeltide en çok hangi formda bulunur?",
-        options: ["Çizgisel yapı", "Halkalı yapı", "Ketoz yapı", "Dallanmış yapı"],
-        correct: 1,
-        explanation: "5 karbonlu ve daha büyük şekerler çözeltide çoğunlukla halkalı formdadır[cite: 100]."
-      },
-      {
-        id: "q40",
-        question: "Proteoglikanların glikoproteinlerden temel farkı nedir?",
-        options: ["Daha kısa olmaları", "Glikozaminoglikan zinciri içermeleri", "Sadece lipit içermeleri", "Hücre içinde bulunmamaları"],
-        correct: 1,
-        explanation: "Proteoglikanlar uzun glikozaminoglikan zincirlerinin bir proteine bağlanmasıyla oluşur[cite: 393, 400]."
-      },
-      {
-        id: "q41",
-        question: "Hücre zarının stabilitesini ve hücresel tanınmayı sağlayan karbonhidrat-lipit bileşikleri hangisidir?",
-        options: ["Glikolipitler", "Glikoproteinler", "Serebrositler", "Fosfolipitler"],
+        id: "k39",
+        question:
+          "Saç, toynak, tırnak gibi ölü hücre yapılarında bolca bulunan GAG hangisidir?",
+        options: [
+          "Keratan sülfat",
+          "Hiyaluronan",
+          "Dermatan sülfat",
+          "Heparan sülfat",
+        ],
         correct: 0,
-        explanation: "Glikolipitler hücre zarında tanıma ve stabilite görevleri üstlenir[cite: 405]."
+        explanation:
+          "Keratan sülfatlar saç, toynak, tırnak, pençe gibi yapılarda bulunur[cite: 381].",
       },
       {
-        id: "q42",
-        question: "Gram negatif bakterilerin dış zarında bulunan ve endotoksin olarak davranan yapı hangisidir?",
-        options: ["Peptidoglikan", "Lipopolisakkarit", "Glikokaliks", "Müsin"],
+        id: "k40",
+        question:
+          "Kan pıhtılaşmasını baskılamak için kullanılan ve en yüksek negatif yüke sahip biyomolekül hangisidir?",
+        options: ["Hiyaluronan", "Keratan sülfat", "Heparin", "Müsin"],
+        correct: 2,
+        explanation:
+          "Heparin pıhtılaşmanın baskılanması tedavisinde kullanılır ve en yüksek (-) yük yoğunluğuna sahiptir[cite: 383, 384].",
+      },
+      {
+        id: "k41",
+        question:
+          "Hücre yüzeyinin ve dış matrisinin makromolekülü olan, GAG zincirlerinin proteine bağlanmasıyla oluşan yapı nedir?",
+        options: ["Glikolipit", "Proteoglikan", "Lektin", "Kitin"],
         correct: 1,
-        explanation: "Lipopolisakkaritler gram negatif bakterilerin zar parçasıdır ve toksik etki yapabilir[cite: 407]."
+        explanation:
+          "Glikozaminoglikan zincirinin bir proteine kovalent bağlanmasıyla proteoglikanlar oluşur[cite: 393].",
       },
       {
-        id: "q43",
-        question: "Şekerlerin asimetrik merkezlerinin sayısını ne belirler?",
-        options: ["Karbon sayısı", "Hidrojen sayısı", "Oksijen sayısı", "Halka büyüklüğü"],
+        id: "k42",
+        question: "Salgılarda bulunan bir çeşit zar glikoproteini hangisidir?",
+        options: ["Müsinler", "Lektinler", "Selektinler", "Endotoksinler"],
         correct: 0,
-        explanation: "Monosakkaritler karbon sayılarına bağlı olarak bir veya daha fazla asimetrik merkeze sahiptir[cite: 52, 65]."
+        explanation:
+          "Müsinler genelde salgılarda bulunan bir çeşit zar glikoproteinidir[cite: 404].",
       },
       {
-        id: "q44",
-        question: "Dört karbonlu aldoz şekerlere ne ad verilir?",
-        options: ["Aldotrioz", "Aldotetroz", "Aldopentoz", "Aldoheksoz"],
+        id: "k43",
+        question:
+          "Gram negatif bakterilerin zarında bulunan ve endotoksin olarak davranan lipit bileşeni hangisidir?",
+        options: [
+          "Glikokaliks",
+          "Lipopolisakkarit",
+          "Serebrosit",
+          "Glikozaminoglikan",
+        ],
         correct: 1,
-        explanation: "4 karbonlu şekerler tetroz, aldehit grubu taşıyanlar ise aldotetroz olarak adlandırılır[cite: 35, 100]."
+        explanation:
+          "Lipopolisakkaritler Gram negatif bakterilerin zarının parçasıdır ve endotoksin görevi görür[cite: 407].",
       },
       {
-        id: "q45",
-        question: "Alfa ve beta anomerlerini birbirinden ayıran temel özellik nedir?",
-        options: ["Karbon sayıları", "Anomerik karbondaki -OH grubunun yönü", "Halkadaki atom sayısı", "Suda çözünürlükleri"],
+        id: "k44",
+        question:
+          "Hücrelerin birbirini tanımasını sağlayan, karbonhidratları yüksek özgüllükle bağlayan proteinlere ne denir?",
+        options: ["Müsinler", "Lektinler", "Enzimler", "Glikolipitler"],
         correct: 1,
-        explanation: "Anomerik karbonun -OH grubunun konumu alfa veya beta formunu belirler[cite: 107, 120, 141]."
+        explanation:
+          "Lektinler şeker kodunu okuyan, karbonhidratları yüksek özgüllükle bağlayan proteinlerdir[cite: 415, 416].",
       },
       {
-        id: "q46",
-        question: "Bitki hücre duvarının temel yapısal bileşeni hangisidir?",
-        options: ["Nişasta", "Selüloz", "Glikojen", "Agaroz"],
-        correct: 1,
-        explanation: "Selüloz bitkilerin hücre duvarı ve odunsu kısımlarının ana bileşenidir[cite: 334]."
-      },
-      {
-        id: "q47",
-        question: "Sandalye konformasyonu ile ilgili hangisi doğrudur?",
-        options: ["Bağ kırılması gerekir", "Bağ kırılmasına gerek yoktur", "Sadece ketozlarda görülür", "Sadece suda oluşur"],
-        correct: 1,
-        explanation: "Sandalye konformasyonuna geçiş için bağların kırılmasına gerek yoktur[cite: 168]."
-      },
-      {
-        id: "q48",
-        question: "Maltozda glukoz birimleri arasındaki bağ tipi nedir?",
-        options: ["Alfa 1-4", "Beta 1-4", "Alfa 1-6", "Alfa 1-1"],
+        id: "k45",
+        question:
+          "İmmün hücrelerinin kan damarlarından dokulara geçişine (adezyon) aracılık eden lektin ailesi hangisidir?",
+        options: [
+          "Selektinler",
+          "Müsinler",
+          "Peptidoglikanlar",
+          "Fibrinojenler",
+        ],
         correct: 0,
-        explanation: "Maltoz, iki glukoz biriminin alfa 1-4 bağıyla bağlanmasıyla oluşur[cite: 248, 285]."
+        explanation:
+          "Selektinler immün hücrelerinin kandan dokulara geçişine (adezyonuna) aracılık eden plazma zar lektinleri ailesidir[cite: 419, 420].",
       },
       {
-        id: "q49",
-        question: "Bir polimerin 'indirgen ucu' neyi ifade eder?",
-        options: ["En son eklenen şekeri", "Bağa katılmayan serbest anomerik karbonu", "Dallanma noktasını", "En yüksek enerjili bağı"],
-        correct: 1,
-        explanation: "Bağa katılmayan serbest anomerik karbon içeren uç indirgen uçtur[cite: 253]."
+        id: "k46",
+        question: "D-Riboz hangi sınıf şekere örnektir?",
+        options: ["Aldotetroz", "Ketopentoz", "Aldopentoz", "Aldoheksoz"],
+        correct: 2,
+        explanation: "D-Riboz bir aldopentozdur[cite: 42].",
       },
       {
-        id: "q50",
-        question: "D-Fruktoz'un halkalı yapısı genellikle hangi formdadır?",
-        options: ["Piranoz", "Furanoz", "Heptoz", "Düz zincir"],
+        id: "k47",
+        question:
+          "Glikoproteinlerde karbonhidrat kısmı proteine hangi atomlar üzerinden bağlanabilir?",
+        options: [
+          "Oksijen veya Azot",
+          "Kükürt veya Karbon",
+          "Fosfor veya Sodyum",
+          "Klor veya Demir",
+        ],
+        correct: 0,
+        explanation:
+          "Karbonhidrat anomerik C üzerinden -OH grubuna O-bağlı veya amit azotuna N-bağlı olabilir[cite: 403].",
+      },
+      {
+        id: "k48",
+        question: "Hangi disakkarit Cu2+ iyonlarını indirgeyebilir?",
+        options: ["Trehaloz", "Sükroz", "Maltoz", "Nişasta"],
+        correct: 2,
+        explanation:
+          "Maltoz serbest anomerik karbon içerdiği için Cu2+ iyonlarını indirgeyebilir (indirgen şekerdir)[cite: 205, 253, 285].",
+      },
+      {
+        id: "k49",
+        question: "D-Galaktoz, Glukozun kaçıncı karbonunda epimeridir?",
+        options: ["C-1", "C-2", "C-3", "C-4"],
+        correct: 3,
+        explanation: "D-Galaktoz, D-Glukozun C-4'te epimeridir[cite: 98].",
+      },
+      {
+        id: "k50",
+        question: "Şeker kodu (sugar code) hücrede ne işe yarar?",
+        options: [
+          "Sadece enerji üretimi",
+          "Bilgilerin şifrelenmesi ve tanınma",
+          "Suyun tutulması",
+          "Zarın akışkanlığını sağlama",
+        ],
         correct: 1,
-        explanation: "Yaygın fruktoz anomeri beta-D-fruktofuranozdur[cite: 160, 167]."
-      }
-    ]
-  }
+        explanation:
+          "Hücreler bilgilerin şifrelenmesinde özgül oligosakkaritleri (şeker kodunu) kullanır[cite: 408, 414].",
+      },
+    ],
+  },
+  {
+    id: "biyokimya_nukleik_asitler",
+    title: "Biyokimya: Nükleik Asitler",
+    icon: "🧬",
+    color: "#3498db",
+    description:
+      "50 Soruluk Kapsamlı Bilgi Testi - Nükleotidler ve Nükleik Asitler",
+    questions: [
+      {
+        id: "n1",
+        question:
+          "Nükleotidlerin hücre metabolizmasındaki görevlerinden biri DEĞİLDİR?",
+        options: [
+          "Enerji birimi olmak",
+          "Hücre zarı iskeletini oluşturmak",
+          "Enzim kofaktörü olmak",
+          "Genetik bilginin kaynağı olmak",
+        ],
+        correct: 1,
+        explanation:
+          "Nükleotidler enerji birimi, kofaktör ve genetik bilgi deposudur ancak hücre zarı iskeleti lipitlerden oluşur[cite: 429, 430, 432].",
+      },
+      {
+        id: "n2",
+        question:
+          "DNA molekülünün işlevsel bir biyolojik ürün (protein veya RNA) sentezi için bilgi içeren bölümüne ne ad verilir?",
+        options: ["Gen", "Kromozom", "Nükleozit", "Sistron"],
+        correct: 0,
+        explanation:
+          "DNA'nın işlevsel bir ürün sentezi için gereken bilgiyi içeren bölümüne gen denir[cite: 436, 437].",
+      },
+      {
+        id: "n3",
+        question:
+          "Protein sentezinin gerçekleştiği ribozomların parçası olan RNA türü hangisidir?",
+        options: ["mRNA", "tRNA", "rRNA", "snRNA"],
+        correct: 2,
+        explanation:
+          "Ribozomal RNA'lar (rRNA) protein sentezinin gerçekleştiği ribozomların parçalarıdır[cite: 440].",
+      },
+      {
+        id: "n4",
+        question:
+          "İlgili proteinlerin sentezlenebilmesi için genetik bilgiyi DNA'dan ribozoma taşıyan ara molekül hangisidir?",
+        options: ["tRNA", "mRNA", "rRNA", "miRNA"],
+        correct: 1,
+        explanation:
+          "Mesajcı RNA'lar (mRNA) genetik bilgiyi ribozoma taşıyan ara moleküllerdir[cite: 441].",
+      },
+      {
+        id: "n5",
+        question:
+          "mRNA'daki bilgileri özgün bir amino asit dizisine dönüştüren aracı molekül hangisidir?",
+        options: ["tRNA", "rRNA", "mRNA", "DNA"],
+        correct: 0,
+        explanation:
+          "Taşıyıcı RNA'lar (tRNA) bilgileri amino asit dizisine dönüştüren aracı moleküllerdir[cite: 442].",
+      },
+      {
+        id: "n6",
+        question: "Nükleotitler hangi 3 tipik bileşenden oluşur?",
+        options: [
+          "Azotlu baz, heksoz, sülfat",
+          "Pürin, pirimidin, amino asit",
+          "Azotlu baz, pentoz, fosfat",
+          "Yağ asidi, gliserol, baz",
+        ],
+        correct: 2,
+        explanation:
+          "Nükleotitler azot içeren bir baz, bir pentoz ve bir fosfattan oluşurlar[cite: 443].",
+      },
+      {
+        id: "n7",
+        question:
+          "DNA ve RNA'da bulunan iki ana pürin bazı aşağıdakilerden hangisidir?",
+        options: [
+          "Sitozin ve Timin",
+          "Adenin ve Guanin",
+          "Urasil ve Adenin",
+          "Guanin ve Sitozin",
+        ],
+        correct: 1,
+        explanation:
+          "DNA ve RNA, 2 ana pürin olan adenin ve guaninden oluşur[cite: 460].",
+      },
+      {
+        id: "n8",
+        question: "RNA'da timin yerine bulunan pirimidin bazı hangisidir?",
+        options: ["Sitozin", "Urasil", "Adenin", "Guanin"],
+        correct: 1,
+        explanation:
+          "Hem DNA hem RNA sitozin içerir; ancak DNA'da timin bulunurken RNA'da urasil bulunur[cite: 461, 462].",
+      },
+      {
+        id: "n9",
+        question:
+          "Sadece baz ve şekerden oluşan, fosfat grubu içermeyen yapıya ne denir?",
+        options: ["Nükleotit", "Nükleik asit", "Nükleozit", "Polinükleotit"],
+        correct: 2,
+        explanation: "Nükleozit sadece baz ve şekerden oluşur[cite: 465].",
+      },
+      {
+        id: "n10",
+        question: "DNA'nın yapısında bulunan pentoz şekerinin tam adı nedir?",
+        options: ["D-riboz", "2'-deoksi-D-riboz", "D-glukoz", "D-fruktoz"],
+        correct: 1,
+        explanation:
+          "DNA'nın birimlerinde pentoz olarak 2'-deoksi-D-riboz bulunur[cite: 469].",
+      },
+      {
+        id: "n11",
+        question:
+          "Ardışık nükleotitleri birbirine bağlayan kovalent bağın adı nedir?",
+        options: [
+          "Peptit bağı",
+          "N-glikozil bağı",
+          "Fosfodiester bağı",
+          "Hidrojen bağı",
+        ],
+        correct: 2,
+        explanation:
+          "Bir nükleotidin 5'-fosfat grubu diğerinin 3'-hidroksiline bağlanarak fosfodiester bağını oluşturur[cite: 521, 522].",
+      },
+      {
+        id: "n12",
+        question: "Nükleik asit omurgalarının pH 7'deki durumu nasıldır?",
+        options: [
+          "Hidrofobik ve pozitif yüklü",
+          "Hidrofilik ve tümüyle iyonlaşmış (negatif yüklü)",
+          "Nötr ve çözünmez",
+          "Sadece kovalent bağlı",
+        ],
+        correct: 1,
+        explanation:
+          "Omurgalar hidrofiliktir ve pH 7'de fosfat grupları tümüyle iyonlaşmış biçimdedir[cite: 524, 525].",
+      },
+      {
+        id: "n13",
+        question: "Nükleik asit dizileri yazılırken yönelim nasıldır?",
+        options: [
+          "3' ucu solda, 5' ucu sağda",
+          "5' ucu solda, 3' ucu sağda",
+          "Yönelim rastgeledir",
+          "Sadece 5' ucu yazılır",
+        ],
+        correct: 1,
+        explanation:
+          "Bir nükleik asitin dizisi her zaman 5' ucu solda ve 3' ucu sağda olacak şekilde gösterilir[cite: 549, 561].",
+      },
+      {
+        id: "n14",
+        question:
+          "Tüm nükleotitlerin en kuvvetli ışık soğurması yaptığı dalga boyu kaçtır?",
+        options: ["200 nm", "260 nm", "280 nm", "340 nm"],
+        correct: 1,
+        explanation:
+          "Tüm nükleotitler rezonans yapıları sonucunda yaklaşık 260 nm dalga boyunda kuvvetli soğurma yaparlar[cite: 568, 569, 571, 572].",
+      },
+      {
+        id: "n15",
+        question:
+          "DNA çift sarmalının kararlılığına en büyük katkıyı sağlayan etkileşim hangisidir?",
+        options: [
+          "Hidrojen bağları",
+          "Fosfodiester bağları",
+          "Baz istiflenme etkileşimleri",
+          "Disülfit köprüleri",
+        ],
+        correct: 2,
+        explanation:
+          "Baz istiflenme etkileşimleri, özgül olmayan etkileşimler olup çift sarmalın kararlılığına en büyük katkıyı sağlar[cite: 603].",
+      },
+      {
+        id: "n16",
+        question: "DNA molekülündeki pürin ve pirimidin eşleşmeleri nasıldır?",
+        options: ["A=G, T=C", "A=T, G=C", "A=C, G=T", "A=U, G=C"],
+        correct: 1,
+        explanation:
+          "A'nın T ile ve G'nin C ile bağlandığı hidrojen bağı kurma kalıbı görülür[cite: 579, 597].",
+      },
+      {
+        id: "n17",
+        question: "Chargaff yasalarına göre hangi eşitlik doğrudur?",
+        options: ["A + T = G + C", "A = G", "A + G = T + C", "T = C"],
+        correct: 2,
+        explanation:
+          "Hücre DNA'sında A=T ve G=C'dir. Buradan A+G = T+C eşitliği çıkartılabilir[cite: 587, 588].",
+      },
+      {
+        id: "n18",
+        question:
+          "Watson ve Crick modeline göre DNA ipliklerinin yönelimi nasıldır?",
+        options: ["Paralel", "Antiparalel", "Dikey", "Karmaşık"],
+        correct: 1,
+        explanation:
+          "Hidrojen bağı ile bağlı baz çiftleri ve zincirler antiparaleldir[cite: 597].",
+      },
+      {
+        id: "n19",
+        question: "DNA replikasyonu sırasında mevcut zincirlerin görevi nedir?",
+        options: [
+          "Parçalanıp yok olmak",
+          "Yeni zincirlere kalıp olarak görev görmek",
+          "Sadece enerji sağlamak",
+          "Urasil üretmek",
+        ],
+        correct: 1,
+        explanation:
+          "Mevcut zincirler, yeni oluşan zincirler için kalıp olarak görev görür[cite: 605].",
+      },
+      {
+        id: "n20",
+        question: "DNA kalıbından mRNA oluşturulması olayına ne ad verilir?",
+        options: ["Replikasyon", "Translasyon", "Transkripsiyon", "Mutasyon"],
+        correct: 2,
+        explanation:
+          "DNA kalıbından mRNA oluşturulması transkripsiyondur[cite: 609].",
+      },
+      {
+        id: "n21",
+        question:
+          "Bakteri ve arkelerde birden fazla polipeptit kodlayan mRNA'lara ne denir?",
+        options: [
+          "Monosistronik",
+          "Polisistronik",
+          "Ribozomal",
+          "Oligonükleotit",
+        ],
+        correct: 1,
+        explanation:
+          "Birden çok polipeptit kodluyorsa polisistronik mRNA denir[cite: 610, 612].",
+      },
+      {
+        id: "n22",
+        question:
+          "'Sistron' kelimesi genetik terminolojide hangi anlama gelir?",
+        options: ["Protein", "Gen", "Şeker", "Fosfat"],
+        correct: 1,
+        explanation: "Sistron gen anlamındadır[cite: 615].",
+      },
+      {
+        id: "n23",
+        question:
+          "DNA'nın ısı veya pH etkisiyle ipliklerinin birbirinden ayrılmasına ne denir?",
+        options: [
+          "Renatürasyon",
+          "Replikasyon",
+          "Denatürasyon (erime)",
+          "Polimerizasyon",
+        ],
+        correct: 2,
+        explanation:
+          "Sıcaklık ve pH değerleri DNA'nın denatürasyonuna veya erimesine neden olur ve iki iplik ayrılır[cite: 630, 631].",
+      },
+      {
+        id: "n24",
+        question: "DNA'nın denatürasyonu sırasında hangi bağlar kopar?",
+        options: [
+          "Kovalent bağlar",
+          "Peptit bağları",
+          "Glikozit bağları",
+          "Hidrojen bağları",
+        ],
+        correct: 3,
+        explanation:
+          "Eşleşmiş bazlar arasındaki H bağları kopar, kovalent bağlar kırılmaz![cite: 631, 632].",
+      },
+      {
+        id: "n25",
+        question:
+          "Çift sarmallı DNA'nın tek sarmallı haline göre UV ışığını daha az soğurmasına ne denir?",
+        options: [
+          "Renatürasyon",
+          "Hipokromik etki",
+          "Hiperkromik etki",
+          "Hibridizasyon",
+        ],
+        correct: 1,
+        explanation:
+          "DNA çift sarmalı doğal halindeyken ışığı daha az soğurmasına hipokromik etki denir[cite: 639].",
+      },
+      {
+        id: "n26",
+        question:
+          "DNA'nın erime sıcaklığı (Tm) hangi baz çiftinin artmasıyla yükselir?",
+        options: ["A-T", "G-C", "A-U", "T-C"],
+        correct: 1,
+        explanation:
+          "G-C miktarı arttıkça erime sıcaklığı artar, çünkü G-C arasındaki 3 H bağını ayırmak için daha fazla ısı gerekir[cite: 642, 643].",
+      },
+      {
+        id: "n27",
+        question:
+          "İki farklı türün DNA ipliklerinin eşleşerek çift sarmal oluşturabilme yeteneği neyi gösterir?",
+        options: [
+          "Sadece mutasyonu",
+          "Ortak evrimsel kalıtımın varlığını (yakınlığı)",
+          "Aynı yaşta olduklarını",
+          "Tamamen aynı genoma sahip olduklarını",
+        ],
+        correct: 1,
+        explanation:
+          "Farklı türlerin melez oluşturması ortak evrimsel kalıtımın varlığını gösterir, yakınlık arttıkça hibridleşme artar[cite: 646, 647].",
+      },
+      {
+        id: "n28",
+        question:
+          "Sitozinin amino grubunu kaybederek urasile dönüşmesine ne ad verilir?",
+        options: ["Oksidasyon", "Alkilleme", "Deaminasyon", "Fosforilasyon"],
+        correct: 2,
+        explanation:
+          "Sitozin deaminasyonu sonucu amino grubunu kaybeder ve ürünü urasildir[cite: 650, 651].",
+      },
+      {
+        id: "n29",
+        question:
+          "DNA'nın urasil yerine timin içermesinin evrimsel avantajı nedir?",
+        options: [
+          "Daha güçlü bağ yapması",
+          "Sitozin deaminasyonundan kaynaklı hataların (yabancı urasilin) tanınmasını sağlaması",
+          "Daha kolay kopyalanması",
+          "Işık soğurmasını engellemesi",
+        ],
+        correct: 1,
+        explanation:
+          "DNA'da timin olması urasilin yabancı madde olarak tanınıp uzaklaştırılmasını sağlar, bu da bilginin korunmasına katkı yapar[cite: 651, 652, 653, 654].",
+      },
+      {
+        id: "n30",
+        question:
+          "UV ışınlarının (güneş ışığı) DNA üzerinde neden olduğu en yaygın hasar hangisidir?",
+        options: [
+          "AP lezyonu",
+          "Siklobütan pirimidin dimeri",
+          "Omurga kırılması",
+          "Deaminasyon",
+        ],
+        correct: 1,
+        explanation:
+          "UV ışını bitişik pirimidin bazları arasında siklobütan pirimidin dimeri oluşturur[cite: 657, 658].",
+      },
+      {
+        id: "n31",
+        question:
+          "İyonlaştırıcı ışınlar (X-ışınları) DNA üzerinde nasıl bir hasara neden olur?",
+        options: [
+          "Sadece ısınma",
+          "Halka açılması ve kovalent iskelet kırılması",
+          "Fosfat eklenmesi",
+          "Dimer oluşumu",
+        ],
+        correct: 1,
+        explanation:
+          "İyonlaşmış ışınlar halka açılmasına, baz parçalanmasına ve NA kovalent iskeletinde kırılmaya neden olur[cite: 659].",
+      },
+      {
+        id: "n32",
+        question: "Nitröz asit (HNO2) DNA'ya nasıl zarar verir?",
+        options: [
+          "Alkilleme yaparak",
+          "Bazların deaminasyonunu hızlandırarak",
+          "Dimer oluşturarak",
+          "Fosfatı yok ederek",
+        ],
+        correct: 1,
+        explanation:
+          "Nitröz asit bazların deaminasyonunu hızlandırır[cite: 665].",
+      },
+      {
+        id: "n33",
+        question:
+          "DNA'daki mutajenik değişimlerin en önemli kaynağı aşağıdakilerden hangisidir?",
+        options: [
+          "Düşük pH",
+          "Yüksek basınç",
+          "Oksidatif hasar (hidroksil radikalleri)",
+          "Deaminasyon edici asitler",
+        ],
+        correct: 2,
+        explanation:
+          "DNA'daki mutajenik değişimlerin en önemli kaynağı oksidatif hasardır (OH radikalleri vb.)[cite: 667, 668].",
+      },
+      {
+        id: "n34",
+        question:
+          "Biyokimyasal onarım sistemlerinden yararlanan tek makromolekül hangisidir?",
+        options: ["Protein", "RNA", "DNA", "Glikojen"],
+        correct: 2,
+        explanation:
+          "DNA biyokimyasal onarım sistemlerinden yararlanan tek makromoleküldür[cite: 672].",
+      },
+      {
+        id: "n35",
+        question:
+          "Genetik bilginin DNA'dan RNA'ya ve oradan proteine aktarımı sırasına ne denir?",
+        options: [
+          "Mutasyon",
+          "Santral dogma (Bilgi Akışı)",
+          "Denatürasyon",
+          "Hibridizasyon",
+        ],
+        correct: 1,
+        explanation:
+          "Genetik bilginin akışı: DNA -> RNA -> Protein sırasını takip eder[cite: 675, 678].",
+      },
+      {
+        id: "n36",
+        question: "DNA replikasyonunun yöntemi nasıldır?",
+        options: [
+          "Tam korunumlu",
+          "Rastgele korunumlu",
+          "Semi-konservatif (yarı-korunumlu)",
+          "Kalıpsız",
+        ],
+        correct: 2,
+        explanation: "DNA replikasyonu semi-konservatifdir[cite: 681].",
+      },
+      {
+        id: "n37",
+        question: "Adenin ve Timin arasında kaç adet hidrojen bağı bulunur?",
+        options: ["1", "2", "3", "4"],
+        correct: 1,
+        explanation: "A-T arasında 2 H bağı bulunur[cite: 642, 643].",
+      },
+      {
+        id: "n38",
+        question:
+          "DNA çift sarmalında hidrofilik şeker-fosfat iskeleti nerede yer alır?",
+        options: [
+          "Sarmalın içinde",
+          "Dış kısımda (suya doğru)",
+          "Sadece uçlarda",
+          "Merkezde istiflenmiş",
+        ],
+        correct: 1,
+        explanation:
+          "Hidrofilik deoksiriboz ve fosfat iskeleti çevreleyen suya doğru dış kısımda yer alır[cite: 593].",
+      },
+      {
+        id: "n39",
+        question: "Kanserojen bileşikler etkilerini hücrede nasıl gösterirler?",
+        options: [
+          "Enerji üretimini durdurarak",
+          "Proteinleri parçalayarak",
+          "DNA bazlarını değiştirerek",
+          "RNA sentezini artırarak",
+        ],
+        correct: 2,
+        explanation:
+          "Karsinojenik bileşikler kanser yapıcı etkilerini DNA bazlarını değiştirerek gösterirler[cite: 669, 670].",
+      },
+      {
+        id: "n40",
+        question: "Pürin bazları DNA omurgasına hangi bağ ile bağlanır?",
+        options: [
+          "N-B-glikozil bağı",
+          "Fosfodiester bağı",
+          "Peptit bağı",
+          "Hidrojen bağı",
+        ],
+        correct: 0,
+        explanation:
+          "Bir nükleotidin bazı pentozun 1 C'a N-B-glikozil bağıyla bağlanır[cite: 457, 458].",
+      },
+      {
+        id: "n41",
+        question:
+          "Kısa nükleik asit zincirlerine (genelde 50 nükleotide kadar) ne ad verilir?",
+        options: ["Polinükleotit", "Oligonükleotit", "Ribozom", "Kromozom"],
+        correct: 1,
+        explanation:
+          "Kısa nükleik asit (<= 50 nükleotid) oligonükleotid olarak adlandırılır[cite: 566].",
+      },
+      {
+        id: "n42",
+        question:
+          "Daha uzun nükleik asit zincirlerine (>50 nükleotid) ne ad verilir?",
+        options: ["Oligonükleotit", "Nükleozit", "Polinükleotit", "Pürin"],
+        correct: 2,
+        explanation:
+          ">50 nükleotid polinükleotid olarak adlandırılır[cite: 567].",
+      },
+      {
+        id: "n43",
+        question:
+          "DNA sarmalının tamamen ayrıldıktan sonra yeniden oluşması (renatürasyon) sürecindeki ilk basamak nasıldır?",
+        options: [
+          "Çok hızlıdır",
+          "Enzim gerektirir",
+          "Yavaştır ve rastgele buluşma içerir",
+          "Sadece soğukta olur",
+        ],
+        correct: 2,
+        explanation:
+          "Renatürasyonun ilk basamağı ipliklerin rastgele birbirini bulduğu yavaş basamaktır[cite: 636, 637].",
+      },
+      {
+        id: "n44",
+        question: "Renatürasyon sürecinin ikinci basamağı nasıldır?",
+        options: [
+          "Fermuar gibi hızla kapanır",
+          "Yavaşça hidrojen bağları kurulur",
+          "Sadece kovalent bağlar oluşur",
+          "Ribozomlar görev alır",
+        ],
+        correct: 0,
+        explanation:
+          "İkinci basamak eşleşmemiş bazların fermuar gibi kapandığı hızlı basamaktır[cite: 637, 638].",
+      },
+      {
+        id: "n45",
+        question: "AP lezyonu (apürinik/apirimidinik bölge) ne anlama gelir?",
+        options: [
+          "Şekerin kopması",
+          "Fosfatın kopması",
+          "Baz ile pentoz arasındaki N-B glikozit bağının kırılması (bazsız bölge)",
+          "İskeletin tamamen ayrılması",
+        ],
+        correct: 2,
+        explanation:
+          "AP lezyonu baz ve pentoz arasındaki N-B glikozit bağının kırılmasıdır ve bazsız bölge oluşturur[cite: 655, 656].",
+      },
+      {
+        id: "n46",
+        question:
+          "DNA yapısında pürinler ve pirimidinlerin hidrofobik etkileşimle üst üste dizilmesine ne denir?",
+        options: [
+          "Baz eşleşmesi",
+          "Baz istiflenmesi",
+          "Hibridizasyon",
+          "Mutasyon",
+        ],
+        correct: 1,
+        explanation:
+          "Bazların halkaları aynı düzlemde olup hidrofobik etkileşimlerle üst üste istiflenmişlerdir[cite: 601, 603, 620].",
+      },
+      {
+        id: "n47",
+        question:
+          "Sadece bir amino asit şifreleyen nükleotit dizisinin uzunluğu ne kadardır?",
+        options: [
+          "Bir nükleotit",
+          "İki nükleotit",
+          "Nükleotit üçlüsü",
+          "On nükleotit",
+        ],
+        correct: 2,
+        explanation:
+          "Her amino asit bir nükleotit üçlüsü tarafından kodlanır[cite: 616].",
+      },
+      {
+        id: "n48",
+        question: "mRNA'da kodlamayan dizilerin görevi nedir?",
+        options: [
+          "Enerji üretmek",
+          "Sadece yapıyı uzatmak",
+          "Protein sentezini düzenlemek",
+          "DNA'yı parçalamak",
+        ],
+        correct: 2,
+        explanation:
+          "Kodlamayan dizi (sekanslar) protein sentezini düzenlerler[cite: 616].",
+      },
+      {
+        id: "n49",
+        question:
+          "Adenin nükleotidleri hücrede nükleik asit olmak dışında hangi yapının bileşenidir?",
+        options: [
+          "Zar proteinleri",
+          "Birçok enzimin kofaktörü",
+          "Glikojen polimerleri",
+          "Lipit damlacıkları",
+        ],
+        correct: 1,
+        explanation:
+          "Adenin nükleotidleri pek çok enzim kofaktörünün bileşenidir[cite: 676, 677].",
+      },
+      {
+        id: "n50",
+        question:
+          "DNA replikasyonunda 'Semi-konservatif' mekanizma neyi ifade eder?",
+        options: [
+          "DNA'nın yarısının parçalanmasını",
+          "Ana sarmalın her ipliğinin bir yavru sarmal için tamamlayıcı vazifesi görmesini",
+          "Sadece belli genlerin kopyalanmasını",
+          "Hatasız mutasyon mekanizmasını",
+        ],
+        correct: 1,
+        explanation:
+          "Semi-konservatif replikasyonda ana sarmalın her ipliği yeni sarmal için tamamlayıcı kalıp vazifesi görür[cite: 681, 682].",
+      },
+    ],
+  },
 ];
 // ═══════════════════════════════════════════════════════════
 // 📚 StudyDeck — BİYOKİMYA 2 (Genişletilmiş Flash Card Seti)
@@ -372,120 +1155,265 @@ const FLASHCARDS = [
     id: "fc1",
     subject: "Biyokimya",
     question: "Şeker Kodu (Sugar Code) nedir?",
-    answer: "Hücrelerin bilgi şifrelemek ve iletmek için kullandığı özgül oligosakkarit dizileri ve bunların 3 boyutlu yapılarıdır[cite: 408, 414]."
+    answer:
+      "Hücrelerin bilgi şifrelemek ve iletmek için kullandığı özgül oligosakkarit dizileri ve bunların 3 boyutlu yapılarıdır[cite: 408, 414].",
   },
   {
     id: "fc2",
     subject: "Biyokimya",
     question: "Epimer ve Anomer farkı nedir?",
-    answer: "Epimer, herhangi bir karbon atomunda konfigürasyon farkı gösterirken [cite: 96]; anomer, sadece halkalaşma sırasında oluşan karbonil karbonundaki (anomerik karbon) farklılığı ifade eder[cite: 163, 164]."
+    answer:
+      "Epimer, herhangi bir karbon atomunda konfigürasyon farkı gösterirken [cite: 96]; anomer, sadece halkalaşma sırasında oluşan karbonil karbonundaki (anomerik karbon) farklılığı ifade eder[cite: 163, 164].",
   },
   {
     id: "fc3",
     subject: "Biyokimya",
     question: "Neden selülozu sindiremeyiz?",
-    answer: "İnsanlarda beta 1-4 glikozit bağlarını koparacak selülaz enzimi bulunmaz; bu enzim sadece bazı mantar ve bakterilerde vardır[cite: 337, 340]."
+    answer:
+      "İnsanlarda beta 1-4 glikozit bağlarını koparacak selülaz enzimi bulunmaz; bu enzim sadece bazı mantar ve bakterilerde vardır[cite: 337, 340].",
   },
   {
     id: "fc4",
     subject: "Biyokimya",
     question: "Amilopektin ve Glikojen dallanma farkı?",
-    answer: "Glikojen daha sık dallanmıştır (her 8-12 kalıntıda bir)[cite: 330]. Amilopektin ise daha seyrek dallanmıştır (her 24-30 kalıntıda bir)[cite: 326]."
+    answer:
+      "Glikojen daha sık dallanmıştır (her 8-12 kalıntıda bir)[cite: 330]. Amilopektin ise daha seyrek dallanmıştır (her 24-30 kalıntıda bir)[cite: 326].",
   },
   {
     id: "fc5",
     subject: "Biyokimya",
     question: "Lektinlerin ana görevi nedir?",
-    answer: "Karbonhidratları yüksek özgüllükle tanıyıp bağlayarak hücre-hücre tanıması, sinyalleşme ve adezyonu sağlamaktır[cite: 396, 416]."
+    answer:
+      "Karbonhidratları yüksek özgüllükle tanıyıp bağlayarak hücre-hücre tanıması, sinyalleşme ve adezyonu sağlamaktır[cite: 396, 416].",
   },
   {
     id: "fc6",
     subject: "Biyokimya",
     question: "Mutarotasyon nedir?",
-    answer: "Glukozun alfa ve beta izomerlerinin sulu çözeltide birbirine dönüşerek dengeye gelmesi olayıdır[cite: 166]."
+    answer:
+      "Glukozun alfa ve beta izomerlerinin sulu çözeltide birbirine dönüşerek dengeye gelmesi olayıdır[cite: 166].",
   },
   {
     id: "fc7",
     subject: "Biyokimya",
     question: "Hangi monosakkarit optik olarak aktif değildir?",
-    answer: "Dihidroksiaseton; çünkü kiral (asimetrik) karbon atomu içermeyen tek monosakkarittir[cite: 65, 68]."
+    answer:
+      "Dihidroksiaseton; çünkü kiral (asimetrik) karbon atomu içermeyen tek monosakkarittir[cite: 65, 68].",
   },
   {
     id: "fc8",
     subject: "Biyokimya",
     question: "Glikozaminoglikanlar (GAG) bitkilerde bulunur mu?",
-    answer: "Hayır, glikozaminoglikanlar hayvanlara ve bakterilere özgüdür; bitkilerde bulunmazlar[cite: 369]."
+    answer:
+      "Hayır, glikozaminoglikanlar hayvanlara ve bakterilere özgüdür; bitkilerde bulunmazlar[cite: 369].",
   },
   {
     id: "fc9",
     subject: "Biyokimya",
     question: "Heparin molekülünün tıbbi önemi nedir?",
-    answer: "En yüksek negatif yük yoğunluğuna sahip moleküldür ve kan pıhtılaşmasını baskılamak (antitrombin etkileşimi) için kullanılır[cite: 383, 384]."
+    answer:
+      "En yüksek negatif yük yoğunluğuna sahip moleküldür ve kan pıhtılaşmasını baskılamak (antitrombin etkileşimi) için kullanılır[cite: 383, 384].",
   },
   {
     id: "fc10",
     subject: "Biyokimya",
     question: "Müsinlerin (Mucins) temel özelliği nedir?",
-    answer: "Genellikle salgılarda bulunan ve yoğun karbonhidrat içeren bir çeşit zar glikoproteinidir[cite: 404]."
+    answer:
+      "Genellikle salgılarda bulunan ve yoğun karbonhidrat içeren bir çeşit zar glikoproteinidir[cite: 404].",
   },
   {
     id: "fc11",
     subject: "Biyokimya",
     question: "Aldonik asit ve Uronik asit farkı?",
-    answer: "Aldonik asitte karbonil karbonu (C-1) yükseltgenir[cite: 180]. Uronik asitte ise zincirin diğer ucundaki (C-6) karbon yükseltgenir[cite: 186]."
+    answer:
+      "Aldonik asitte karbonil karbonu (C-1) yükseltgenir[cite: 180]. Uronik asitte ise zincirin diğer ucundaki (C-6) karbon yükseltgenir[cite: 186].",
   },
   {
     id: "fc12",
     subject: "Biyokimya",
     question: "Lizozim enzimi bakteri duvarında nereyi parçalar?",
-    answer: "N-asetilglukozamin ile N-asetilmuramik asit arasındaki beta 1-4 glikozit bağlarını hidroliz eder[cite: 360, 361]."
+    answer:
+      "N-asetilglukozamin ile N-asetilmuramik asit arasındaki beta 1-4 glikozit bağlarını hidroliz eder[cite: 360, 361].",
   },
   {
     id: "fc13",
     subject: "Biyokimya",
     question: "Hiyaluronan (Hiyaluronik asit) nerede bulunur?",
-    answer: "Eklem sinovial sıvısında kayganlaştırıcı olarak, kıkırdak ve tendonlarda ise ECM bileşeni olarak bulunur[cite: 376, 377]."
+    answer:
+      "Eklem sinovial sıvısında kayganlaştırıcı olarak, kıkırdak ve tendonlarda ise ECM bileşeni olarak bulunur[cite: 376, 377].",
   },
   {
     id: "fc14",
     subject: "Biyokimya",
     question: "Şekerlerin fosforillenmesi hücreye ne sağlar?",
-    answer: "Negatif yük kazandırarak şekerin hücre içinde kalmasını sağlar ve sonraki kimyasal dönüşümler için onu aktifleştirir[cite: 200, 201]."
+    answer:
+      "Negatif yük kazandırarak şekerin hücre içinde kalmasını sağlar ve sonraki kimyasal dönüşümler için onu aktifleştirir[cite: 200, 201].",
   },
   {
     id: "fc15",
     subject: "Biyokimya",
     question: "Homopolisakkarit ve Heteropolisakkarit farkı?",
-    answer: "Homopolisakkarit tek tip monomer içerirken (Örn: Nişasta) [cite: 317], heteropolisakkarit iki veya daha fazla farklı tip monomer içerir (Örn: Peptidoglikan)[cite: 317, 360]."
+    answer:
+      "Homopolisakkarit tek tip monomer içerirken (Örn: Nişasta) [cite: 317], heteropolisakkarit iki veya daha fazla farklı tip monomer içerir (Örn: Peptidoglikan)[cite: 317, 360].",
   },
   {
     id: "fc16",
     subject: "Biyokimya",
     question: "Kitin (Chitin) molekülünün selülozdan farkı nedir?",
-    answer: "Selülozda C-2'de -OH grubu varken, kitinde bu grupta asetillenmiş bir amino grubu bulunur[cite: 343]."
+    answer:
+      "Selülozda C-2'de -OH grubu varken, kitinde bu grupta asetillenmiş bir amino grubu bulunur[cite: 343].",
   },
   {
     id: "fc17",
     subject: "Biyokimya",
     question: "Sükroz neden indirgen değildir?",
-    answer: "Çünkü hem glukozun hem de fruktozun anomerik karbonları glikozit bağına katılmıştır; serbest anomerik uç yoktur[cite: 263, 314]."
+    answer:
+      "Çünkü hem glukozun hem de fruktozun anomerik karbonları glikozit bağına katılmıştır; serbest anomerik uç yoktur[cite: 263, 314].",
   },
   {
     id: "fc18",
     subject: "Biyokimya",
     question: "D ve L izomerliği neye göre belirlenir?",
-    answer: "Karbonil grubuna en uzak olan kiral merkezin (referans karbon) düzenlenişine göre belirlenir[cite: 71, 72]."
+    answer:
+      "Karbonil grubuna en uzak olan kiral merkezin (referans karbon) düzenlenişine göre belirlenir[cite: 71, 72].",
   },
   {
     id: "fc19",
     subject: "Biyokimya",
     question: "Peptidoglikan hangi canlı grubuna özgüdür?",
-    answer: "Bakterilere özgüdür ve hücre duvarının yapısal dayanıklılığını sağlar[cite: 358, 360]."
+    answer:
+      "Bakterilere özgüdür ve hücre duvarının yapısal dayanıklılığını sağlar[cite: 358, 360].",
   },
   {
     id: "fc20",
     subject: "Biyokimya",
     question: "Selektinlerin (Selectins) görevi nedir?",
-    answer: "Plazma zarında bulunan bu lektinler, bağışıklık hücrelerinin kan damarlarından dokulara geçişine (adezyon) aracılık eder[cite: 419, 420]."
-  }
+    answer:
+      "Plazma zarında bulunan bu lektinler, bağışıklık hücrelerinin kan damarlarından dokulara geçişine (adezyon) aracılık eder[cite: 419, 420].",
+  },
+  {
+    id: "fcn1",
+    subject: "Biyokimya",
+    question: "Nükleozit ile Nükleotit farkı nedir?",
+    answer:
+      "Nükleozit baz ve şekerden oluşurken [cite: 465], nükleotit bu yapıya fosfat grubunun eklenmiş halidir[cite: 464].",
+  },
+  {
+    id: "fcn2",
+    subject: "Biyokimya",
+    question: "Hipokromik etki nedir?",
+    answer:
+      "Çift sarmallı DNA'nın doğal halindeyken, tek sarmallı haline göre ışığı daha az soğurmasıdır[cite: 639].",
+  },
+  {
+    id: "fcn3",
+    subject: "Biyokimya",
+    question: "Santral Dogma (Bilgi Akışı) sırası nasıldır?",
+    answer:
+      "DNA replikasyonu (DNA sentezi) -> Transkripsiyon (RNA sentezi) -> Translasyon (Protein sentezi) şeklinde ilerler[cite: 678, 680].",
+  },
+  {
+    id: "fcn4",
+    subject: "Biyokimya",
+    question: "Chargaff kuralı nedir?",
+    answer:
+      "Hücre DNA'sında Adenin sayısının Timine (A=T) ve Guanin sayısının Sitozine (G=C) eşit olması kuralıdır[cite: 587, 588].",
+  },
+  {
+    id: "fcn5",
+    subject: "Biyokimya",
+    question: "DNA'da neden urasil yerine timin vardır?",
+    answer:
+      "Sitozinin kendiliğinden urasile dönüşmesi (deaminasyon) hatasını yabancı madde olarak tanıyıp onarabilmek ve genetik bilgiyi uzun süreli koruyabilmek için[cite: 651, 652, 654].",
+  },
+  {
+    id: "fcn6",
+    subject: "Biyokimya",
+    question: "Fosfodiester bağı hangi uçları birbirine bağlar?",
+    answer:
+      "Bir nükleotidin 5'-fosfat grubu ile diğer nükleotidin 3'-hidroksil grubunu bağlar[cite: 522].",
+  },
+  {
+    id: "fcn7",
+    subject: "Biyokimya",
+    question: "mRNA'nın temel görevi nedir?",
+    answer:
+      "DNA'dan genetik mesajı çekirdekten sitoplazmaya taşıyarak, özgül amino asit dizilerine kalıplık etmektir[cite: 607, 608].",
+  },
+  {
+    id: "fcn8",
+    subject: "Biyokimya",
+    question: "Tm (Erime Sıcaklığı) neye bağlıdır?",
+    answer:
+      "DNA'daki G-C baz çifti oranına bağlıdır; G-C oranı arttıkça (3 hidrojen bağı nedeniyle) koparmak için gereken ısı (Tm) artar[cite: 641, 642].",
+  },
+  {
+    id: "fcn9",
+    subject: "Biyokimya",
+    question: "DNA replikasyonu nasıl bir mekanizma ile gerçekleşir?",
+    answer:
+      "Semi-konservatiftir; ana sarmalın her ipliği yeni (yavru) bir sarmal için tamamlayıcı kalıp vazifesi görür[cite: 681, 682].",
+  },
+  {
+    id: "fcn10",
+    subject: "Biyokimya",
+    question: "tRNA'nın görevi nedir?",
+    answer:
+      "mRNA'daki bilgileri okuyarak, ribozomda ilgili amino asitleri doğru dizilimde eklenmek üzere taşıyan aracı moleküllerdir[cite: 442, 618].",
+  },
+  {
+    id: "fcn11",
+    subject: "Biyokimya",
+    question: "DNA çift sarmalını stabilize eden en büyük kuvvet hangisidir?",
+    answer:
+      "Bazların üst üste istiflenmesi (stacking) etkileşimleri, çift sarmalın kararlılığına en büyük katkıyı sağlar[cite: 601, 603].",
+  },
+  {
+    id: "fcn12",
+    subject: "Biyokimya",
+    question: "UV ışığının DNA üzerindeki tipik hasarı nedir?",
+    answer:
+      "Bitişik pirimidin bazları arasında kovalent bağ kurdurarak 'siklobütan pirimidin dimerleri' oluşturmasıdır[cite: 657, 658].",
+  },
+  {
+    id: "fcn13",
+    subject: "Biyokimya",
+    question:
+      "Nükleik asitler hangi dalga boyunda en yüksek ışık soğurmasını yapar?",
+    answer:
+      "Pürin ve pirimidinlerin rezonans yapıları sonucunda yaklaşık 260 nm dalga boyunda[cite: 571, 572].",
+  },
+  {
+    id: "fcn14",
+    subject: "Biyokimya",
+    question: "Transkripsiyon nedir?",
+    answer: "DNA kalıbından mRNA oluşturulması işlemidir[cite: 609].",
+  },
+  {
+    id: "fcn15",
+    subject: "Biyokimya",
+    question: "Sitozinin deaminasyonu sonucunda hangi molekül oluşur?",
+    answer: "Sitozinin amino grubunu kaybetmesiyle urasil oluşur[cite: 651].",
+  },
+  {
+    id: "fcn16",
+    subject: "Biyokimya",
+    question: "Polisistronik mRNA ne demektir?",
+    answer:
+      "Özellikle bakteri ve arkelerde görülen, bir mRNA molekülünün birden fazla polipeptit zincirini (geni) kodlamasıdır[cite: 610, 612].",
+  },
+  {
+    id: "fcn17",
+    subject: "Biyokimya",
+    question: "A-T ve G-C eşleşmesi kuralı nasıl gerçekleşir?",
+    answer:
+      "Adeninin özgül olarak timin ile, guaninin de sitozin ile aynı düzlemde hidrojen bağı kurmasıyla gerçekleşir[cite: 579, 597].",
+  },
+  {
+    id: "fcn18",
+    subject: "Biyokimya",
+    question: "DNA iskeleti nerede yer alır ve nasıldır?",
+    answer:
+      "Hidrofilik deoksiriboz ve fosfat iskeleti, suyla H bağları kuracak şekilde dış kısımda (suya doğru) yer alır[cite: 524, 593].",
+  },
 ];

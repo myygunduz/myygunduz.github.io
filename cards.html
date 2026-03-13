@@ -241,24 +241,34 @@ const NAV_HREFS = { 'nav-home':'index.html','nav-test':'test.html','nav-profile'
 
 function lockNav() {
   sessionActive = true;
-  NAV_IDS.forEach(id => {
-    const el = document.getElementById(id);
-    el.removeAttribute('href');
-    el.onclick = e => { e.preventDefault(); showToast('Önce kartları bitir ya da filtreden çık 😊'); };
-  });
 }
 function unlockNav() {
   sessionActive = false;
-  NAV_IDS.forEach(id => {
-    const el = document.getElementById(id);
-    el.href = NAV_HREFS[id];
-    el.onclick = null;
-  });
 }
 
 function handleBack() {
-  if (sessionActive) showToast('Önce kartları tamamla 😊');
-  else history.back();
+  saveProgress();
+  history.back();
+}
+
+// ── Save / restore progress ────────────────────────────────
+function saveProgress() {
+  if (!sessionActive || deck.length === 0) return;
+  SD.set('sd_fc_progress', {
+    filter: currentFilter,
+    deckIds: deck.map(f => f.id),
+    currentIndex,
+    knownCount,
+    unknownIds
+  });
+}
+
+function loadProgress() {
+  return SD.get('sd_fc_progress', null);
+}
+
+function clearProgress() {
+  SD.del('sd_fc_progress');
 }
 
 // ── Init ───────────────────────────────────────────────────
@@ -270,12 +280,79 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.className = 'filter-btn';
     btn.dataset.filter = s.id;
     btn.textContent = s.icon + ' ' + s.title;
-    btn.onclick = () => setFilter(s.id, btn);
+    btn.onclick = () => { clearProgress(); setFilter(s.id, btn); };
     bar.appendChild(btn);
   });
 
-  setFilter('all', document.querySelector('[data-filter="all"]'));
+  // Check for saved progress
+  const saved = loadProgress();
+  if (saved && saved.deckIds && saved.deckIds.length > 0 && saved.currentIndex < saved.deckIds.length) {
+    showResumeToast(saved);
+  } else {
+    setFilter('all', document.querySelector('[data-filter="all"]'));
+  }
 });
+
+function showResumeToast(saved) {
+  // Show inline resume banner instead of blocking toast
+  const bar = document.getElementById('filter-bar');
+  const banner = document.createElement('div');
+  banner.id = 'resume-banner';
+  banner.style.cssText = `
+    background: linear-gradient(135deg,rgba(126,206,196,0.15),rgba(181,168,224,0.15));
+    border: 1.5px solid var(--mint); border-radius: 16px;
+    padding: 14px 16px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  `;
+  const remaining = saved.deckIds.length - saved.currentIndex;
+  banner.innerHTML = `
+    <span style="font-size:1.4rem">🃏</span>
+    <div style="flex:1; min-width:0;">
+      <div style="font-family:'Nunito',sans-serif; font-weight:800; font-size:0.88rem;">Yarım kalan oturum</div>
+      <div style="font-size:0.75rem; color:var(--mid); margin-top:2px;">${remaining} kart kaldı · ${saved.knownCount} bildin, ${saved.unknownIds.length} bilmedin</div>
+    </div>
+    <button id="btn-resume" class="btn btn-mint btn-sm" style="white-space:nowrap;">Devam Et →</button>
+    <button id="btn-resume-discard" class="btn btn-ghost btn-sm" style="white-space:nowrap;">Yeniden Başla</button>
+  `;
+  bar.parentNode.insertBefore(banner, bar);
+
+  document.getElementById('btn-resume').onclick = () => {
+    banner.remove();
+    resumeProgress(saved);
+  };
+  document.getElementById('btn-resume-discard').onclick = () => {
+    clearProgress();
+    banner.remove();
+    setFilter('all', document.querySelector('[data-filter="all"]'));
+  };
+}
+
+function resumeProgress(saved) {
+  currentFilter = saved.filter;
+  // Restore filter button active state
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === currentFilter);
+  });
+
+  // Rebuild deck from saved IDs
+  const allCards = [...FLASHCARDS];
+  deck = saved.deckIds.map(id => allCards.find(f => f.id === id)).filter(Boolean);
+  currentIndex = saved.currentIndex;
+  knownCount   = saved.knownCount;
+  unknownIds   = saved.unknownIds || [];
+  isFlipped    = false;
+
+  document.getElementById('done-screen').classList.remove('show');
+  document.getElementById('deck-area').style.display = 'flex';
+  document.getElementById('swipe-btns').style.display = 'flex';
+
+  if (deck.length > 0 && currentIndex < deck.length) {
+    lockNav();
+    renderCard();
+  } else {
+    showDone();
+  }
+}
 
 function setFilter(filter, btn) {
   currentFilter = filter;
@@ -290,6 +367,7 @@ function setFilter(filter, btn) {
       }));
 
   currentIndex = 0; knownCount = 0; unknownIds = []; isFlipped = false;
+  clearProgress();
 
   document.getElementById('done-screen').classList.remove('show');
   document.getElementById('deck-area').style.display = 'flex';
@@ -357,7 +435,7 @@ function swipeCard(dir) {
     cardEl.style.opacity    = '0';
   }
 
-  setTimeout(() => { currentIndex++; renderCard(); }, 360);
+  setTimeout(() => { currentIndex++; saveProgress(); renderCard(); }, 360);
 }
 
 // ── Drag (mouse + touch) ───────────────────────────────────
@@ -412,6 +490,7 @@ cardEl.addEventListener('click', () => {
 
 // ── Done ───────────────────────────────────────────────────
 function showDone() {
+  clearProgress();
   unlockNav();
   document.getElementById('deck-area').style.display = 'none';
   document.getElementById('swipe-btns').style.display = 'none';
