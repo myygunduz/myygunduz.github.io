@@ -1145,6 +1145,601 @@ const SUBJECTS = [
       },
     ],
   },
+  {
+    id: "biyokimya_lipitler",
+    title: "Biyokimya: Lipitler",
+    icon: "💧",
+    color: "#f1c40f",
+    description: "50 Soruluk Test ve 20 Bilgi Kartı - Lipitler",
+    questions: [
+      {
+        id: "l1",
+        question:
+          "Lipitlerin en temel ve ortak belirleyici özelliği aşağıdakilerden hangisidir?",
+        options: [
+          "Suda çözünmemeleri",
+          "Suda çözünmeleri",
+          "Polimer yapıda olmaları",
+          "Protein sentezini durdurmaları",
+        ],
+        correct: 0,
+        explanation:
+          "Lipitlerin ortak ve belirleyici özelliği hidrofobik olmaları, yani suda çözünmemeleridir.",
+      },
+      {
+        id: "l2",
+        question:
+          "Doğada bulunan yağ asitlerinin karbon zincir uzunluğu genellikle hangi aralıktadır?",
+        options: ["1-3", "4-36", "50-100", "100-200"],
+        correct: 1,
+        explanation:
+          "Yağ asitleri genellikle uzunluğu 4-36 karbon olan hidrokarbon zincirine sahip karboksilik asitlerdir.",
+      },
+      {
+        id: "l3",
+        question:
+          "Doğal doymamış yağ asitlerindeki çift bağlar neredeyse her zaman hangi konfigürasyondadır?",
+        options: ["Trans", "Düz zincir", "Cis", "Çapraz"],
+        correct: 2,
+        explanation:
+          "Neredeyse tüm doğal doymamış yağ asitlerinde çift bağ cis düzenlenişindedir.",
+      },
+      {
+        id: "l4",
+        question:
+          "İnsanlar için elzem (esansiyel) olan ve dışarıdan alınması gereken çoklu doymamış yağ asidi (PUFA) hangisidir?",
+        options: [
+          "Palmitik asit",
+          "Linoleik asit",
+          "Oleik asit",
+          "Stearik asit",
+        ],
+        correct: 1,
+        explanation:
+          "Omega-6 PUFA'lardan olan linoleik asit insanlar için elzemdir, vücutta enzimatik olarak sentezlenemez.",
+      },
+      {
+        id: "l5",
+        question:
+          "Sağlıklı bir insanda omega-6 / omega-3 PUFA oranı hangi aralıkta olmalıdır?",
+        options: [
+          "10:1 ile 20:1",
+          "1:1 ile 1:4",
+          "5:1 ile 10:1",
+          "1:10 ile 1:20",
+        ],
+        correct: 1,
+        explanation:
+          "Omega-6/Omega-3 PUFA oranı 1:1 ile 1:4 arasında olmalıdır; oran artarsa kalp hastalığı ve felç riski artar.",
+      },
+      {
+        id: "l6",
+        question:
+          "Yağ asitlerinde karbon zinciri uzadıkça ve çift bağ sayısı azaldıkça sudaki çözünürlük nasıl değişir?",
+        options: ["Artar", "Değişmez", "Azalır", "Önce artar sonra azalır"],
+        correct: 2,
+        explanation:
+          "Hidrokarbon zinciri uzadıkça ve çift bağ azaldıkça apolarlık artar, dolayısıyla çözünürlük düşer.",
+      },
+      {
+        id: "l7",
+        question:
+          "Doymamış yağların (bitkisel yağlar) oda sıcaklığında sıvı olmasının temel nedeni nedir?",
+        options: [
+          "Kovalent bağ eksikliği",
+          "Trans bağ içermeleri",
+          "Cis çift bağların bükülme yaparak sıkı istiflenmeyi engellemesi",
+          "Molekül ağırlıklarının çok düşük olması",
+        ],
+        correct: 2,
+        explanation:
+          "Cis çift bağlar zinciri büktüğü için moleküller arası zayıf etkileşim azalır ve sıkı istiflenemez, bu yüzden erime noktası düşüktür.",
+      },
+      {
+        id: "l8",
+        question: "Triasilgliserollerin (trigliserit) kimyasal yapısı nedir?",
+        options: [
+          "Gliserol ve fosfat",
+          "Sfingozin ve 3 yağ asidi",
+          "Kolesterol ve yağ asidi",
+          "Gliserol ve 3 yağ asidi",
+        ],
+        correct: 3,
+        explanation:
+          "Triasilgliseroller gliserolün 3 yağ asidi ile yaptığı esterleşme ürünleridir.",
+      },
+      {
+        id: "l9",
+        question:
+          "Adipositlerde depolanan trigliseritleri hidroliz ederek serbest yağ asidi açığa çıkaran enzim hangisidir?",
+        options: ["Amilaz", "Lipaz", "Proteaz", "Nükleaz"],
+        correct: 1,
+        explanation:
+          "Adipositlerde ve tohumlarda lipaz enzimi ile yağlar hidroliz olur.",
+      },
+      {
+        id: "l10",
+        question:
+          "Yağların karbonhidratlara göre daha fazla enerji vermesinin (yaklaşık 2 kat) temel kimyasal sebebi nedir?",
+        options: [
+          "Daha fazla oksijen içermeleri",
+          "Daha fazla indirgenmiş olmaları",
+          "Daha fazla su tutmaları",
+          "Hidrofilik olmaları",
+        ],
+        correct: 1,
+        explanation:
+          "Yağ asidi karbon atomları şekerlerin karbonlarından daha fazla indirgenmiştir, bu nedenle yükseltgenmeleri daha çok enerji verir.",
+      },
+      {
+        id: "l11",
+        question:
+          "Triasilgliserollerin enerji deposu olarak glikojene göre avantajı nedir?",
+        options: [
+          "Hidrofobik olup su tutmamaları (hafif olmaları)",
+          "Daha ağır olmaları",
+          "Enzim gerektirmemeleri",
+          "Daha hızlı sentezlenmeleri",
+        ],
+        correct: 0,
+        explanation:
+          "Yağlar hidrofobiktir ve su tutmazlar; bu da aynı ağırlıktaki şekere göre daha yoğun enerji depolamalarını sağlar.",
+      },
+      {
+        id: "l12",
+        question:
+          "Yemek yağlarının raf ömrünü uzatmak için yapılan kısmi hidrojenlenme (margarinleşme) sonucunda ne oluşur?",
+        options: [
+          "Cis yağ asitleri",
+          "Trans yağ asitleri",
+          "Esansiyel yağlar",
+          "Omega-3 yağ asitleri",
+        ],
+        correct: 1,
+        explanation:
+          "Kısmi hidrojenlenme çift bağların kırılmasını engeller ancak trans yağ asitlerinin üretimine yol açar.",
+      },
+      {
+        id: "l13",
+        question:
+          "Trans yağ asitlerinin kandaki kolesterol seviyelerine etkisi nedir?",
+        options: [
+          "LDL azalır, HDL artar",
+          "Her ikisi de azalır",
+          "LDL artar, HDL azalır",
+          "Her ikisi de artar",
+        ],
+        correct: 2,
+        explanation:
+          "Trans yağ asitleri kötü kolesterolü (LDL) artırıp, iyi kolesterolü (HDL) düşürerek kalp hastalığı riskini yükseltir.",
+      },
+      {
+        id: "l14",
+        question:
+          "Biyolojik zar lipitlerinin hem hidrofilik hem de hidrofobik uç taşıması özelliğine ne ad verilir?",
+        options: ["Amfoterik", "Amfipatik", "İzomerik", "Anabolik"],
+        correct: 1,
+        explanation:
+          "Zar lipitleri amfipatiktir; bir ucu hidrofilik (suyu seven) diğer ucu hidrofobik (suyu sevmeyen) özelliktedir.",
+      },
+      {
+        id: "l15",
+        question:
+          "Gliserofosfolipitlerin (fosfogliseritler) tüm alt türleri hangi temel molekülün türevidir?",
+        options: [
+          "Sfingozin",
+          "Kolesterol",
+          "Fosfatidik asit",
+          "Araşidonik asit",
+        ],
+        correct: 2,
+        explanation:
+          "Gliserofosfolipitlerde ana bileşik fosfatidik asittir ve baş grubuna bağlanan alkole göre adlandırılır.",
+      },
+      {
+        id: "l16",
+        question:
+          "Gliserofosfolipitlerde polar baş grubu gliserole hangi kovalent bağ ile bağlanır?",
+        options: [
+          "Peptit bağı",
+          "Fosfodiester bağı",
+          "Amit bağı",
+          "Glikozit bağı",
+        ],
+        correct: 1,
+        explanation:
+          "Baş grubu gliserolün 3. karbonuna fosfodiester bağıyla bağlanır.",
+      },
+      {
+        id: "l17",
+        question:
+          "Bitkilerde kloroplast zarlarında ağırlıklı olarak bulunan zar lipitleri hangileridir?",
+        options: [
+          "Sfingomiyelin",
+          "Kolesterol",
+          "Galaktolipitler ve sülfolipitler",
+          "Gangliositler",
+        ],
+        correct: 2,
+        explanation:
+          "Kloroplastlar zar lipiti olarak ağırlıklı biçimde galaktolipitleri ve sülfolipitleri içerir.",
+      },
+      {
+        id: "l18",
+        question:
+          "Arkelerin zorlu çevre şartlarında yaşamasını sağlayan hidrolize dayanıklı zar lipitleri hangisidir?",
+        options: ["Sfingolipit", "Sterol", "Mum", "Tetraeter lipitleri"],
+        correct: 3,
+        explanation:
+          "Arkeler eşsiz eter bağlarına sahip tetraeter lipitleri içerir; eter bağları hidrolize çok daha dayanıklıdır.",
+      },
+      {
+        id: "l19",
+        question:
+          "Gliserol içermeyen, temelinde sfingozin omurgası bulunan zar lipitlerine ne ad verilir?",
+        options: [
+          "Fosfogliseritler",
+          "Steroller",
+          "Sfingolipitler",
+          "Trigliseritler",
+        ],
+        correct: 2,
+        explanation:
+          "Sfingolipitler sfingozin türevleridir ve gliserol içermezler.",
+      },
+      {
+        id: "l20",
+        question:
+          "Sfingolipitlerde yağ asidi sfingozine hangi bağ ile katılarak 'seramit' oluşturur?",
+        options: ["Ester bağı", "Amit bağı", "Eter bağı", "Fosfodiester bağı"],
+        correct: 1,
+        explanation:
+          "Bir yağ asidi sfingozinin C-2'sindeki amino grubuna amit bağıyla bağlanırsa seramit oluşur.",
+      },
+      {
+        id: "l21",
+        question:
+          "Kan gruplarını belirleyen ve sfingolipitlerin en karmaşık alt türü olan moleküller hangisidir?",
+        options: [
+          "Seramitler",
+          "Sfingomiyelinler",
+          "Plazmalojenler",
+          "Gangliositler",
+        ],
+        correct: 3,
+        explanation:
+          "En karmaşık sfingolipitler gangliositlerdir ve oligosakkarit kısımları kan gruplarını belirler.",
+      },
+      {
+        id: "l22",
+        question:
+          "Sterollerin (örneğin kolesterolün) yapısal iskeleti aşağıdakilerden hangisidir?",
+        options: [
+          "Kaynaşmış dört karbon halkası",
+          "Düz zincirli alkan",
+          "İki halkalı pürin tabanı",
+          "Altı karbonlu tek halka",
+        ],
+        correct: 0,
+        explanation:
+          "Steroller kaynaşmış dört karbon halkasına (steroid çekirdek) sahiptirler.",
+      },
+      {
+        id: "l23",
+        question:
+          "Hayvansal dokulardaki zarlarda bulunan en önemli sterol hangisidir?",
+        options: ["Ergosterol", "Stigmasterol", "Kolesterol", "Eikozanoit"],
+        correct: 2,
+        explanation:
+          "Hayvansal dokulardaki en önemli yapısal sterol kolesteroldür.",
+      },
+      {
+        id: "l24",
+        question:
+          "Sterol sentezleyemediği için mebranlarındaki sterolleri dışarıdan almak zorunda olan canlı grubu hangisidir?",
+        options: ["İnsanlar", "Bakteriler", "Mantarlar", "Bitkiler"],
+        correct: 1,
+        explanation:
+          "Bakteriler sterol sentezleyemez, zarlarındakiler dış kaynaklıdır.",
+      },
+      {
+        id: "l25",
+        question:
+          "Kanda taşınarak hücre çekirdeğine giren ve gen ifadesini değiştirerek etki eden sinyal lipitleri hangisidir?",
+        options: [
+          "Eikozanoitler",
+          "Steroid hormonlar",
+          "Sfingomiyelinler",
+          "Mumlar",
+        ],
+        correct: 1,
+        explanation:
+          "Steroid hormonlar endokrin mesajcılardır, çekirdeğe girerek gen ifadesini değiştirirler.",
+      },
+      {
+        id: "l26",
+        question:
+          "Eikozanoitler (prostaglandinler, tromboksanlar) nasıl sinyal iletirler?",
+        options: [
+          "Sadece sinir hücrelerinde",
+          "Sentezlendikleri dokunun etrafındaki komşu hücrelere etki ederek (parakrin)",
+          "Kana karışıp tüm vücudu dolaşarak (endokrin)",
+          "Çekirdeğe girerek",
+        ],
+        correct: 1,
+        explanation:
+          "Eikozanoitler parakrin hormonlardır; kanla taşınmazlar, sentezlendikleri doku etrafında etkilidirler.",
+      },
+      {
+        id: "l27",
+        question: "Eikozanoitler hangi 3 ana sınıfa ayrılır?",
+        options: [
+          "Seramit, Gangliosit, Sfingomiyelin",
+          "A, D, E vitaminleri",
+          "Kolesterol, Ergosterol, Stigmasterol",
+          "Prostaglandin, Tromboksan, Lökotrien",
+        ],
+        correct: 3,
+        explanation:
+          "Eikozanoitlerin 3 sınıfı prostaglandinler, tromboksanlar ve lökotrienlerdir.",
+      },
+      {
+        id: "l28",
+        question:
+          "Ateş, ağrı ve inflamasyon yanıtlarını oluşturan, NSAID'ler (Aspirin vb.) ile sentezi engellenen lipit grubu hangisidir?",
+        options: [
+          "Steroidler",
+          "Prostaglandinler",
+          "Lökotrienler",
+          "Vitaminler",
+        ],
+        correct: 1,
+        explanation:
+          "Prostaglandinler ateş, inflamasyon ve ağrı yapar; NSAID'ler bunların sentezini bloke eder.",
+      },
+      {
+        id: "l29",
+        question:
+          "Kan pıhtılaşmasını sağlayan ve trombositler tarafından sentezlenen eikozanoit hangisidir?",
+        options: ["Prostaglandin", "Lökotrien", "Tromboksan", "Kolesterol"],
+        correct: 2,
+        explanation:
+          "Tromboksanlar pıhtı oluşumu ve kan akışının azalmasını sağlarlar.",
+      },
+      {
+        id: "l30",
+        question:
+          "Aşırı üretimi astım veya anafilaktik şoka neden olan ve NSAID'lerin etki etmediği eikozanoit hangisidir?",
+        options: ["Tromboksan", "Prostaglandin", "Lökotrien", "Sterol"],
+        correct: 2,
+        explanation:
+          "Lökotrienler akciğer düz kaslarının kasılmasında görev alır, aşırı üretimi astım yapar ve NSAID'ler burada etkili değildir.",
+      },
+      {
+        id: "l31",
+        question:
+          "Hangi vitamin deride UV ışığı (güneş) etkisiyle 7-dehidrokolesterolden sentezlenir?",
+        options: ["A vitamini", "E vitamini", "K vitamini", "D vitamini"],
+        correct: 3,
+        explanation:
+          "Provitamin D3 (7-dehidrokolesterol) deride UV ile fotokimyasal tepkimeye girerek kolekalsiferole (D3) dönüşür.",
+      },
+      {
+        id: "l32",
+        question:
+          "D vitamininin karaciğer ve böbrekte sentezlenen aktif hormon formu hangisidir?",
+        options: [
+          "Retinol",
+          "Tokoferol",
+          "Filokinon",
+          "1,25-dihidroksikolekalsiferol",
+        ],
+        correct: 3,
+        explanation:
+          "D3 aktif değildir; böbrek ve karaciğer enzimleri ile 1,25-dihidroksikolekalsiferol (aktif hormon) oluşur.",
+      },
+      {
+        id: "l33",
+        question:
+          "D vitamini eksikliğinde kalsiyum emilim bozukluğuna bağlı olarak hangi hastalık görülür?",
+        options: ["Raşitizm", "Gece körlüğü", "Kanamalar", "Astım"],
+        correct: 0,
+        explanation:
+          "D vitamini bağırsakta kalsiyum emilimini sağlar; eksikliği kemik zayıflığına yani raşitizme yol açar.",
+      },
+      {
+        id: "l34",
+        question:
+          "Omurgalılarda hem görme pigmenti hem de epitel doku gelişimini sağlayan vitamin hangisidir?",
+        options: ["A Vitamini", "D Vitamini", "E Vitamini", "K Vitamini"],
+        correct: 0,
+        explanation:
+          "A vitamini (Retinol) görme pigmenti ve hormon işlevine sahiptir.",
+      },
+      {
+        id: "l35",
+        question:
+          "Karanlıkta retinada bulunan ve ışık etkisiyle all-trans formuna izomerleşerek görme sinyalini başlatan molekül hangisidir?",
+        options: [
+          "Tokoferol",
+          "11-cis retinal",
+          "Ergosterol",
+          "Kolekalsiferol",
+        ],
+        correct: 1,
+        explanation:
+          "Karanlıkta 11-cis retinal ışıkla etkileşime girerek all-trans retinale dönüşür ve görme başlar.",
+      },
+      {
+        id: "l36",
+        question:
+          "Zar lipitlerindeki doymamış yağ asitlerini oksidasyondan koruyan biyolojik antioksidan vitamin hangisidir?",
+        options: ["A", "D", "E", "K"],
+        correct: 2,
+        explanation:
+          "E vitamini (Tokoferoller) hidrofobik biyolojik antioksidandır ve lipitlerin oksidatif bozunmasını önler.",
+      },
+      {
+        id: "l37",
+        question:
+          "E vitamini eksikliğinde insanda görülen nadir belirti hangisidir?",
+        options: [
+          "Kırılgan eritrosit (alyuvar)",
+          "Gece körlüğü",
+          "Raşitizm",
+          "Pıhtılaşmama",
+        ],
+        correct: 0,
+        explanation:
+          "E vitamini eksikliği nadirdir ve en temel belirtisi kırılgan eritrositlerdir.",
+      },
+      {
+        id: "l38",
+        question:
+          "Protrombin oluşumunu sağlayarak kanın pıhtılaşmasında kritik rol oynayan vitamin hangisidir?",
+        options: ["A", "D", "E", "K"],
+        correct: 3,
+        explanation:
+          "K vitamini protrombin oluşumunda önemlidir ve kan pıhtılarının oluşmasını (fibrinojen -> fibrin) sağlar.",
+      },
+      {
+        id: "l39",
+        question:
+          "K vitamininin etkisini sentetik olarak engelleyen ve antikoagülan (kan sulandırıcı) olarak kullanılan ilaç hangisidir?",
+        options: ["Aspirin", "Varfarin", "İbuprofen", "Retinol"],
+        correct: 1,
+        explanation:
+          "Varfarin sentetik bir antikoagülandır, protrombin oluşumunu (K vitaminini) engeller.",
+      },
+      {
+        id: "l40",
+        question:
+          "ATP sentezi sırasında mitokondri zarında elektron taşıyıcı olarak görev yapan lipit hangisidir?",
+        options: ["Kolesterol", "Mum", "Übikinon (Koenzim Q)", "Gangliosit"],
+        correct: 2,
+        explanation:
+          "Übikinon (Koenzim Q), ATP sentezindeki yükseltgenme-indirgenme reaksiyonlarında görev alır.",
+      },
+      {
+        id: "l41",
+        question:
+          "Doğal renk pigmentlerinin çoğunun kimyasal yapısını oluşturan lipit formu nedir?",
+        options: ["Sfingolipitler", "Steroidler", "Eşlenik dienler", "Mumlar"],
+        correct: 2,
+        explanation:
+          "Doğal pigmentlerin çoğu lipit yapılı eşlenik dienlerdir; tek ve çift bağların ardışık sıralanması renk oluşumunu sağlar.",
+      },
+      {
+        id: "l42",
+        question: "Omurgalılarda serbest yağ asitleri kanda nasıl taşınır?",
+        options: [
+          "Suda çözünerek",
+          "Taşıyıcı proteinlere bağlanarak",
+          "Glikozla birleşerek",
+          "Serbest halde",
+        ],
+        correct: 1,
+        explanation:
+          "Yağ asitleri suda çözünmedikleri için kanda dolaşmak için taşıyıcı proteine ihtiyaç duyarlar.",
+      },
+      {
+        id: "l43",
+        question:
+          "Doğada enerji depoları ve özellikle su iticiler (yalıtım) olarak görev yapan lipit sınıfı hangisidir?",
+        options: [
+          "Steroller",
+          "Gliserofosfolipitler",
+          "Eikozanoitler",
+          "Mumlar",
+        ],
+        correct: 3,
+        explanation:
+          "Mumlar yüksek erime noktalı enerji depoları ve su iticiler olarak görev yaparlar.",
+      },
+      {
+        id: "l44",
+        question:
+          "Gliserole bağlı açil zincirlerinden birinin ester yerine eter bağıyla bağlandığı lipitlere örnek hangisidir?",
+        options: [
+          "Trigliseritler",
+          "Plazmalojenler",
+          "Gangliositler",
+          "Kolesterol",
+        ],
+        correct: 1,
+        explanation:
+          "Plazmalojenler eter lipitlerine örnektir ve eter bağı içerirler.",
+      },
+      {
+        id: "l45",
+        question:
+          "Omurgalılarda trigliserit formunda yağ depolamak üzere özelleşmiş hücrelere ne ad verilir?",
+        options: ["Adiposit", "Eritrosit", "Lökosit", "Astrosit"],
+        correct: 0,
+        explanation:
+          "Omurgalılarda özelleşmiş yağ (trigliserit) hücrelerine adiposit denir.",
+      },
+      {
+        id: "l46",
+        question: "Safra asitlerinin bağırsaktaki temel görevi nedir?",
+        options: [
+          "Asitliği artırmak",
+          "Karbonhidratları parçalamak",
+          "Deterjan etkisiyle yağları çözerek lipaz erişimini kolaylaştırmak",
+          "Vitamin üretmek",
+        ],
+        correct: 2,
+        explanation:
+          "Sterol türevi olan safra asitleri bağırsakta deterjan görevi görerek enzimlerin (lipaz) yağlara erişimini kolaylaştırır.",
+      },
+      {
+        id: "l47",
+        question:
+          "Hücre zarının dış yüzeyinde yer alan sfingolipitlerin biyolojik amacı genellikle nedir?",
+        options: [
+          "ATP üretimi",
+          "Enerji depolama",
+          "Hücre içi iskelet yapımı",
+          "Hücresel tanınma bölgeleri oluşturma",
+        ],
+        correct: 3,
+        explanation:
+          "Hücre yüzeyindeki sfingolipitler dış hücrelerin, moleküllerin ve kan gruplarının tanınma bölgeleridir.",
+      },
+      {
+        id: "l48",
+        question:
+          "Hem bitkisel yağların kokusunda (polen çekici) hem de vitaminlerin (A, D, E, K) sentezinde temel yapı taşı olan birim nedir?",
+        options: ["İzopren türevleri", "Sfingozin", "Gliserol", "Glikoz"],
+        correct: 0,
+        explanation:
+          "Uçucu yağlar, pigmentler ve A, D, E, K vitaminleri izopren birimlerinin kondenzasyonundan türemiştir.",
+      },
+      {
+        id: "l49",
+        question:
+          "Prostaglandinler (PG) ismini vücuttaki hangi organdan/yapıdan almıştır?",
+        options: ["Pankreas", "Prostat bezi", "Karaciğer", "Mide"],
+        correct: 1,
+        explanation:
+          "İlk kez izole edildikleri için prostaglandinler ismini prostat bezinden almıştır.",
+      },
+      {
+        id: "l50",
+        question:
+          "Erkek ve dişi cinsiyet hormonları ile kortizol, lipitlerin hangi alt sınıfına aittir?",
+        options: [
+          "Steroid hormonlar",
+          "Eikozanoitler",
+          "Sfingolipitler",
+          "Trigliseritler",
+        ],
+        correct: 0,
+        explanation:
+          "Cinsiyet hormonları ile adrenal korteksten salgılanan kortizol ve aldosteron steroid hormonlardır.",
+      },
+    ],
+  },
 ];
 // ═══════════════════════════════════════════════════════════
 // 📚 StudyDeck — BİYOKİMYA 2 (Genişletilmiş Flash Card Seti)
@@ -1415,5 +2010,148 @@ const FLASHCARDS = [
     question: "DNA iskeleti nerede yer alır ve nasıldır?",
     answer:
       "Hidrofilik deoksiriboz ve fosfat iskeleti, suyla H bağları kuracak şekilde dış kısımda (suya doğru) yer alır[cite: 524, 593].",
+  },
+  {
+    id: "fcl1",
+    subject: "Biyokimya - Lipitler",
+    question: "Lipitlerin en temel ortak özelliği nedir?",
+    answer:
+      "Suda çözünmemeleri (hidrofobik olmaları) ve apolar organik çözücülerde çözünmeleridir.",
+  },
+  {
+    id: "fcl2",
+    subject: "Biyokimya - Lipitler",
+    question:
+      "Doymamış yağ asitleri (bitkisel yağlar) oda sıcaklığında neden sıvıdır?",
+    answer:
+      "İçerdikleri 'cis' konfigürasyonundaki çift bağlar hidrokarbon zincirini büker, bu da moleküllerin sıkıca istiflenmesini engelleyerek erime noktasını düşürür.",
+  },
+  {
+    id: "fcl3",
+    subject: "Biyokimya - Lipitler",
+    question:
+      "Trigliseritlerin enerji depolamada glikojene kıyasla avantajları nelerdir?",
+    answer:
+      "1) Daha fazla indirgenmiş oldukları için 2 kat fazla enerji verirler. 2) Hidrofobik oldukları için su tutmazlar, ekstra ağırlık yapmazlar.",
+  },
+  {
+    id: "fcl4",
+    subject: "Biyokimya - Lipitler",
+    question: "Trans yağ asitleri nasıl oluşur ve zararı nedir?",
+    answer:
+      "Sıvı yağların raf ömrünü uzatmak için yapılan 'kısmi hidrojenlenme' işlemiyle oluşur. Kanda LDL'yi (kötü kolesterol) artırıp HDL'yi düşürerek kalp hastalığı riskini yükseltirler.",
+  },
+  {
+    id: "fcl5",
+    subject: "Biyokimya - Lipitler",
+    question: "Zar lipitlerinin 'amfipatik' olması ne demektir?",
+    answer:
+      "Molekülün bir ucunun suyu seven (hidrofilik), diğer ucunun ise suyu sevmeyen (hidrofobik) özellikte olmasıdır.",
+  },
+  {
+    id: "fcl6",
+    subject: "Biyokimya - Lipitler",
+    question:
+      "Gliserofosfolipit ve Sfingolipit arasındaki temel yapısal fark nedir?",
+    answer:
+      "Gliserofosfolipitlerin omurgası gliserol iken, sfingolipitlerin omurgası gliserol içermeyen sfingozindir.",
+  },
+  {
+    id: "fcl7",
+    subject: "Biyokimya - Lipitler",
+    question: "Gangliositlerin tıbbi ve biyolojik önemi nedir?",
+    answer:
+      "Sfingolipitlerin en karmaşık üyesidirler ve taşıdıkları oligosakkarit zincirleriyle hücrelerin dış yüzeyindeki tanınma (örneğin kan grupları) bölgelerini oluştururlar.",
+  },
+  {
+    id: "fcl8",
+    subject: "Biyokimya - Lipitler",
+    question: "Kolesterol bitkilerde ve bakterilerde bulunur mu?",
+    answer:
+      "Hayır. Bitkilerde stigmasterol, mantarlarda ergosterol bulunur. Bakteriler ise hiçbir şekilde sterol sentezleyemezler.",
+  },
+  {
+    id: "fcl9",
+    subject: "Biyokimya - Lipitler",
+    question: "Eikozanoitler nedir ve 3 ana alt sınıfı nelerdir?",
+    answer:
+      "Kanda taşınmayan, sadece sentezlendiği hücrenin etrafına etki eden parakrin sinyal lipitleridir. 3 sınıfı: Prostaglandinler, Tromboksanlar, Lökotrienlerdir.",
+  },
+  {
+    id: "fcl10",
+    subject: "Biyokimya - Lipitler",
+    question: "Aspirin gibi NSAID ilaçlar ağrı ve ateşi nasıl düşürür?",
+    answer:
+      "Ağrı, ateş ve inflamasyona yol açan prostaglandinleri ve tromboksanları sentezleyen enzimlerin (COX) çalışmasını baskılayarak.",
+  },
+  {
+    id: "fcl11",
+    subject: "Biyokimya - Lipitler",
+    question: "Lökotrienlerin aşırı üretimi hangi duruma yol açar?",
+    answer:
+      "Akciğer düz kaslarının şiddetli kasılmasına neden olarak astım ataklarına veya anafilaktik şoka yol açar. NSAID'ler lökotrienleri engelleyemez.",
+  },
+  {
+    id: "fcl12",
+    subject: "Biyokimya - Lipitler",
+    question: "Steroid hormonların eikozanoitlerden çalışma farkı nedir?",
+    answer:
+      "Steroidler kanla tüm vücuda dağılan (endokrin) mesajcılardır ve hücre içine girip direkt olarak çekirdekteki gen ifadesini değiştirerek etki ederler.",
+  },
+  {
+    id: "fcl13",
+    subject: "Biyokimya - Lipitler",
+    question: "D vitamini sentezi nasıl gerçekleşir?",
+    answer:
+      "Derideki 7-dehidrokolesterol, güneşten gelen UV ışığı ile kolekalsiferole (D3) dönüşür. Karaciğer ve böbrekte ise aktif hormona (1,25-dihidroksikolekalsiferol) çevrilir.",
+  },
+  {
+    id: "fcl14",
+    subject: "Biyokimya - Lipitler",
+    question: "A vitamini (Retinal) görme olayında nasıl çalışır?",
+    answer:
+      "Karanlıkta '11-cis retinal' formunda bulunur, göze ışık gelince şekil değiştirerek 'all-trans retinal' formuna izomerleşir ve beyne elektrik sinyali gönderilir.",
+  },
+  {
+    id: "fcl15",
+    subject: "Biyokimya - Lipitler",
+    question: "E vitamininin (Tokoferol) temel biyolojik görevi nedir?",
+    answer:
+      "Güçlü bir hidrofobik biyolojik antioksidandır. Hücre zarındaki doymamış lipitleri oksitlenmekten (bozunmaktan) korur.",
+  },
+  {
+    id: "fcl16",
+    subject: "Biyokimya - Lipitler",
+    question: "K vitamini ve Varfarin ilacı arasındaki zıt ilişki nedir?",
+    answer:
+      "K vitamini, kanın pıhtılaşmasını sağlayan protrombin proteininin oluşumunu sağlar. Varfarin ise bunu engelleyen sentetik bir kan sulandırıcıdır (antikoagülandır).",
+  },
+  {
+    id: "fcl17",
+    subject: "Biyokimya - Lipitler",
+    question: "Übikinon (Koenzim Q) hücrede ne işe yarar?",
+    answer:
+      "Mitokondri zarında ATP sentezlenirken gerçekleşen yükseltgenme-indirgenme reaksiyonlarında elektron taşıyan bir lipit türevidir.",
+  },
+  {
+    id: "fcl18",
+    subject: "Biyokimya - Lipitler",
+    question: "Eşlenik dien nedir ve görevi nedir?",
+    answer:
+      "Tek ve çift bağların (C=C-C=C) peş peşe sıralandığı izopren zincirleridir. Düşük enerjili ışığı soğurarak doğadaki renk pigmentlerini oluştururlar.",
+  },
+  {
+    id: "fcl19",
+    subject: "Biyokimya - Lipitler",
+    question: "Safra asitlerinin bağırsaktaki görevi nedir?",
+    answer:
+      "Kolesterolden türetilmişlerdir; bağırsakta deterjan görevi görerek büyük yağ damlacıklarını parçalar ve lipaz enziminin yağları sindirmesini kolaylaştırırlar.",
+  },
+  {
+    id: "fcl20",
+    subject: "Biyokimya - Lipitler",
+    question: "Mumların (waxes) biyolojik görevi nedir?",
+    answer:
+      "Hayvan derilerinde, kuş tüylerinde ve bitki yapraklarında su kaybetmeyi önleyici (su itici) ve yüksek erime noktalı enerji deposu olarak görev yaparlar.",
   },
 ];
