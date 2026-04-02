@@ -1,0 +1,90 @@
+// ─── deploy.sh ────────────────────────────────────────────────────────────────
+// Run: bash deploy.sh
+// Builds and pushes dist/ to the gh-pages branch.
+//
+// #!/bin/bash
+// npm run build
+// cd dist
+// echo "" > .nojekyll          # Prevents Jekyll processing - REQUIRED
+// git init
+// git add -A
+// git commit -m "deploy"
+// git push -f git@github.com:<USERNAME>/<REPO>.git main:gh-pages
+// cd -
+
+// ─── public/404.html ──────────────────────────────────────────────────────────
+// GitHub Pages returns 404 for client-side routes. This script redirects all
+// 404s back to index.html so the React SPA router can handle them.
+// Place this file verbatim at: public/404.html
+
+/*
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Exam Prep</title>
+  <script>
+    // SPA redirect trick for GitHub Pages
+    // Encodes the path into a query string so index.html can decode it
+    const l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + 1).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(1).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+</html>
+*/
+
+// ─── index.html (add this script BEFORE your React bundle) ────────────────────
+// Place inside <head> of your index.html to decode the redirected URL:
+
+/*
+<script>
+  (function() {
+    var redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+    }
+    // Decode SPA path from query string
+    var l = window.location;
+    if (l.search[1] === '/') {
+      var decoded = l.search.slice(1).split('&').map(function(s) {
+        return s.replace(/~and~/g, '&');
+      });
+      window.history.replaceState(
+        null, null,
+        l.pathname.slice(0, -1) + decoded[0] +
+        (decoded[1] ? '?' + decoded[1] : '') + l.hash
+      );
+    }
+  })();
+</script>
+*/
+
+// ─── package.json scripts ─────────────────────────────────────────────────────
+/*
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "gh-pages": "^6.1.1",
+    "vite": "^5.1.0"
+  }
+}
+*/

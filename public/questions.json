@@ -1,0 +1,125 @@
+[
+  {
+    "category": "test",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "questionText": "Which law of thermodynamics states that energy cannot be created or destroyed?",
+        "options": [
+          { "optionText": "Zeroth Law", "explanation": "The Zeroth Law deals with thermal equilibrium." },
+          { "optionText": "First Law", "explanation": "Correct! The First Law is conservation of energy." },
+          { "optionText": "Second Law", "explanation": "The Second Law deals with entropy." },
+          { "optionText": "Third Law", "explanation": "The Third Law concerns absolute zero temperature." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Think about conservation principles in physics.",
+        "source": "Fundamentals of Physics, Halliday & Resnick"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Entropy in an isolated system always decreases over time.",
+        "correctAnswer": false,
+        "hint": "Consider the Second Law of Thermodynamics.",
+        "source": "Thermodynamics: An Engineering Approach"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "The process in which a gas expands without exchanging heat with its surroundings is called ________.",
+        "correctAnswer": "adiabatic",
+        "hint": "From the Greek 'adiabatos' meaning impassable.",
+        "source": "Physics for Scientists and Engineers"
+      },
+      {
+        "type": "matching",
+        "questionText": "Match each thermodynamic process with its defining characteristic.",
+        "options": [
+          { "leftText": "Isothermal",  "rightText": "Constant temperature" },
+          { "leftText": "Isobaric",    "rightText": "Constant pressure" },
+          { "leftText": "Isochoric",   "rightText": "Constant volume" },
+          { "leftText": "Adiabatic",   "rightText": "No heat exchange" }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Focus on what remains constant in each process.",
+        "source": "Engineering Thermodynamics"
+      }
+    ]
+  },
+  {
+    "category": "test",
+    "subject": "Biology",
+    "topic": "Cell Biology",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "questionText": "Which organelle is known as the 'powerhouse of the cell'?",
+        "options": [
+          { "optionText": "Nucleus", "explanation": "The nucleus controls gene expression but isn't the powerhouse." },
+          { "optionText": "Ribosome", "explanation": "Ribosomes synthesize proteins." },
+          { "optionText": "Mitochondria", "explanation": "Correct! Mitochondria produce ATP through cellular respiration." },
+          { "optionText": "Golgi apparatus", "explanation": "The Golgi processes and packages proteins." }
+        ],
+        "correctAnswer": 2,
+        "hint": "This organelle produces ATP through cellular respiration.",
+        "source": "Campbell Biology, 12th Edition"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "The process by which cells engulf large particles is called ________.",
+        "correctAnswer": "phagocytosis",
+        "hint": "From the Greek 'phagein' meaning to eat.",
+        "source": "Molecular Cell Biology, Lodish"
+      }
+    ]
+  },
+  {
+    "category": "flashcard",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "questions": [
+      {
+        "type": "flashcard",
+        "questionText": "What is the First Law of Thermodynamics?",
+        "correctAnswer": "Energy cannot be created or destroyed; the total energy of an isolated system is constant. ΔU = Q - W",
+        "hint": "Think of energy as a conserved quantity.",
+        "source": "Fundamentals of Physics"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Define entropy.",
+        "correctAnswer": "A thermodynamic quantity representing the unavailability of a system's thermal energy for conversion into mechanical work. It measures the degree of disorder or randomness in a system.",
+        "hint": "Related to disorder and the Second Law.",
+        "source": "Thermodynamics: An Engineering Approach"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "What is absolute zero?",
+        "correctAnswer": "The lowest possible temperature, 0 Kelvin (−273.15 °C), at which all molecular motion theoretically stops.",
+        "hint": "It's the coldest possible temperature.",
+        "source": "Physics for Scientists and Engineers"
+      }
+    ]
+  },
+  {
+    "category": "flashcard",
+    "subject": "Biology",
+    "topic": "Cell Biology",
+    "questions": [
+      {
+        "type": "flashcard",
+        "questionText": "What is the function of the mitochondria?",
+        "correctAnswer": "Produces ATP (adenosine triphosphate) through cellular respiration, supplying the cell with energy. Often called the powerhouse of the cell.",
+        "hint": "Think energy production.",
+        "source": "Campbell Biology"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "What is the difference between prokaryotic and eukaryotic cells?",
+        "correctAnswer": "Prokaryotic cells lack a membrane-bound nucleus and organelles (e.g., bacteria). Eukaryotic cells have a true nucleus and membrane-bound organelles (e.g., plant, animal, fungi cells).",
+        "hint": "Think about the presence of a nucleus.",
+        "source": "Molecular Cell Biology"
+      }
+    ]
+  }
+]
