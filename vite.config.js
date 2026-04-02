@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 // If deploying to a custom domain or root: base: '/'
 export default defineConfig({
   plugins: [react()],
-  base: '/myygunduz.github.io/',   // ← CHANGE THIS to your repo name
+  base: './',   // ← CHANGE THIS to your repo name
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
