@@ -10,15 +10,14 @@
 
   "allowed": [
     {
-      "id": "ORNEK-BURAYA-GERCEK-ID-GELECEK",
-      "label": "Benim bilgisayarım",
-      "addedAt": "2026-04-04"
-    },
-    {
       "id":"0D8D541CF68D1F5EBE183F352DEAF730",
       "label":"m-pc",
       "addedAt":"2026-04-04"
-
+    },
+    {
+      "id":"C22E57E491CD0508FCDA847651AFD338",
+      "label":"m-tel",
+      "addedAt":"2026-04-04"
     }
   ]
 }
