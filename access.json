@@ -1,0 +1,24 @@
+{
+  "_comment": "Bu dosyaya izin vermek istediğin cihazların fingerprint'lerini ekle.",
+  "_howto": "Bir kullanıcı ilk girişte kendi fingerprint'ini görecek, sen buraya ekleyeceksin.",
+
+  "mode": "whitelist",
+  "_mode_options": {
+    "whitelist": "Sadece listede olanlar girebilir",
+    "open":      "Herkes girebilir (geliştirme modu)"
+  },
+
+  "allowed": [
+    {
+      "id": "ORNEK-BURAYA-GERCEK-ID-GELECEK",
+      "label": "Benim bilgisayarım",
+      "addedAt": "2026-04-04"
+    },
+    {
+      "id":"0D8D541CF68D1F5EBE183F352DEAF730",
+      "label":"m-pc",
+      "addedAt":"2026-04-04"
+
+    }
+  ]
+}
