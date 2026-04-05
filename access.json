@@ -11,13 +11,18 @@
   "allowed": [
     {
       "id":"0D8D541CF68D1F5EBE183F352DEAF730",
-      "label":"m-pc",
+      "label":"m-g-pc",
       "addedAt":"2026-04-04"
     },
     {
       "id":"C22E57E491CD0508FCDA847651AFD338",
-      "label":"m-tel",
+      "label":"m-g-tel",
       "addedAt":"2026-04-04"
+    },
+    {
+      "id":"C4664199292E1CCFA811D954EDAAD31F",
+      "label":"m-r-tel",
+      "addedAt":"2026-04-05"
     }
   ]
 }
