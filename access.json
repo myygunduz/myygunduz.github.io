@@ -11,22 +11,22 @@
   "allowed": [
     {
       "id":"0D8D541CF68D1F5EBE183F352DEAF730",
-      "label":"m-g-pc",
+      "label":"Mücahit Gündüz",
       "addedAt":"2026-04-04"
     },
     {
       "id":"C22E57E491CD0508FCDA847651AFD338",
-      "label":"m-g-tel",
+      "label":"Mücahit Gündüz",
       "addedAt":"2026-04-04"
     },
     {
       "id":"C4664199292E1CCFA811D954EDAAD31F",
-      "label":"m-r-tel",
+      "label":"Melike Rüzgar",
       "addedAt":"2026-04-05"
     },
     {
       "id":"0BEF30BDBFEC63CA4295A0423F54877B",
-      "label":"y-tel",
+      "label":"Yasemin Mercan",
       "addedAt":"2026-04-07"
     }
   ]

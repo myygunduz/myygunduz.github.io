@@ -1,68 +1,546 @@
 [
   {
     "category": "test",
-    "subject": "Fizik",
-    "topic": "Termodinamik",
+    "subject": "Biyokimya",
+    "topic": "Hücre Zarından Madde Geçişi",
     "questions": [
-
       {
         "type": "multiple_choice",
-        "questionText": "Termodinamiğin kaçıncı yasası enerjinin korunumunu ifade eder?",
+        "questionText": "Biyolojik zarların yapısını açıklayan ve bileşenlerin zar düzleminde hareket edebildiğini belirten model hangisidir?",
         "options": [
-          { "optionText": "Sıfırıncı Yasa", "explanation": "Sıfırıncı Yasa ısıl denge ile ilgilidir." },
-          { "optionText": "Birinci Yasa",   "explanation": "Doğru! Birinci Yasa enerjinin korunumunu ifade eder." },
-          { "optionText": "İkinci Yasa",    "explanation": "İkinci Yasa entropi ile ilgilidir." },
-          { "optionText": "Üçüncü Yasa",    "explanation": "Üçüncü Yasa mutlak sıfır ile ilgilidir." }
+          { "optionText": "Sandviç Modeli", "explanation": "Bu eski bir modeldir, akışkanlığı tam açıklamaz." },
+          { "optionText": "Sıvı-Mozaik Modeli", "explanation": "Doğru! Proteinlerin ve lipitlerin hareketli bir yapı oluşturduğunu tanımlar." },
+          { "OptionText": "Birim Zar Modeli", "explanation": "Zarın sadece statik bir yapısını ifade eder." },
+          { "optionText": "Lipit Tabaka Modeli", "explanation": "Sadece lipitleri temel alır, proteinlerin konumunu açıklamaz." }
         ],
         "correctAnswer": 1,
-        "hint": "Enerji yoktan var edilemez, vardan yok edilemez.",
-        "source": "Fizik Ders Kitabı s.45"
+        "hint": "Zar bileşenleri kovalent olmayan etkileşimlerle bir arada tutulur.",
+        "source": "Biyokimya s.2 [cite: 31, 37]"
       },
-
+      {
+        "type": "multiple_choice",
+        "questionText": "Hangi molekül tipi zarın lipit çift tabakasından hiçbir yardım almadan (basit difüzyonla) geçebilir?",
+        "options": [
+          { "optionText": "Glikoz", "explanation": "Polar olduğu için taşıyıcı gerektirir." },
+          { "optionText": "Sodyum iyonu", "explanation": "Yüklü iyonlar kanallar olmadan geçemez." },
+          { "optionText": "Polar olmayan bileşikler", "explanation": "Doğru! Apolar maddeler lipit tabakasında çözünerek geçebilir." },
+          { "optionText": "Amino asitler", "explanation": "Polar yapıda oldukları için permeazlara ihtiyaç duyarlar." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Benzer benzeri çözer ilkesini düşünün.",
+        "source": "Biyokimya s.1, 4 [cite: 30, 120]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Zar füzyonunda (kaynaşmasında) görev alan ve vezikül üzerinde bulunan protein hangisidir?",
+        "options": [
+          { "optionText": "t-SNARE", "explanation": "Bu protein hedef zar (target) üzerindedir." },
+          { "optionText": "SNAP25", "explanation": "Hedef zardaki yardımcı bir proteindir." },
+          { "optionText": "v-SNARE", "explanation": "Doğru! 'v' harfi vezikülü (vesicle) temsil eder." },
+          { "optionText": "İntegral protein", "explanation": "Genel bir protein grubudur, füzyona özel ismi bu değildir." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Vezikül ve Hedef zar arasındaki protein eşleşmesini düşünün.",
+        "source": "Biyokimya s.4 [cite: 109, 113]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Düşük sıcaklıklarda zarın 'yarı-katı jel' fazından 'akışkan' faza geçişini sağlayan temel faktör nedir?",
+        "options": [
+          { "optionText": "ATP hidrolizi", "explanation": "Sıcaklık değişimi fiziksel bir süreçtir, ATP ile ilgisi yoktur." },
+          { "optionText": "Sıcaklık artışı", "explanation": "Doğru! Sıcaklık termal hareketi artırarak akışkanlığı sağlar." },
+          { "optionText": "Protein sentezi", "explanation": "Zarın faz değişimi doğrudan protein sentezine bağlı değildir." },
+          { "optionText": "Hücre bölünmesi", "explanation": "Bölünme bir sonuçtur, neden değildir." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Lipitlerin termal hareketini düşünün.",
+        "source": "Biyokimya s.3 [cite: 74, 77]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Birincil aktif taşımanın ikincil aktif taşımadan en temel farkı nedir?",
+        "options": [
+          { "optionText": "Derişim farkı yönünde olması", "explanation": "Aktif taşıma farka karşı yapılır." },
+          { "optionText": "Doğrudan ATP hidrolizi ile eşleşmesi", "explanation": "Doğru! Birincil taşımada enerji doğrudan ATP'den gelir." },
+          { "optionText": "Sadece iyonları taşıması", "explanation": "Her iki taşıma türü de iyon ve molekül taşıyabilir." },
+          { "optionText": "Zar proteini gerektirmemesi", "explanation": "Her iki tür de taşıyıcı protein gerektirir." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Ekzergonik tepkimenin doğrudan veya dolaylı kullanımına bakın.",
+        "source": "Biyokimya s.5 [cite: 161, 163]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Zardaki lipid asimetrisi hakkında hangisi doğrudur?",
+        "options": [
+          { "optionText": "Zarın her iki tabakası aynı lipit bileşimine sahiptir.", "explanation": "Zarlar asimetriktir." },
+          { "optionText": "Protein asimetrisi gibi mutlak bir kuraldır.", "explanation": "Lipit asimetrisi proteinlerinki kadar mutlak değildir." },
+          { "optionText": "Asimetrik dağılım işlevsel özellikler kazandırır.", "explanation": "Doğru! Farklı bölgeler farklı işlevlere izin verir." },
+          { "optionText": "Sadece prokaryotlarda görülür.", "explanation": "Ökaryotlarda da temel bir özelliktir." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Zarın 'taraflılık' özelliğini düşünün.",
+        "source": "Biyokimya s.2 [cite: 36, 62]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Misel oluşumu için lipit molekülünün şekli nasıl olmalıdır?",
+        "options": [
+          { "optionText": "Silindir şeklinde", "explanation": "Silindir şekli çift tabaka (bilayer) oluşturur." },
+          { "optionText": "Kama şeklinde", "explanation": "Doğru! Baş grubunun alanı yan zincirden büyükse kama yapısı oluşur." },
+          { "optionText": "Kare şeklinde", "explanation": "Biyolojik lipitlerde böyle bir geometrik tanımlama yoktur." },
+          { "optionText": "Düzlemsel", "explanation": "Bu bir molekül şekli değil, yerleşim biçimidir." }
+        ],
+        "correctAnswer": 1,
+        "hint": "SDS veya serbest yağ asitlerini hayal edin.",
+        "source": "Biyokimya s.2 [cite: 44, 51]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Aşağıdakilerden hangisi amfitropik proteinlerin bir özelliğidir?",
+        "options": [
+          { "optionText": "Sadece deterjanla zardan ayrılırlar.", "explanation": "Bu integral proteinlerin özelliğidir." },
+          { "optionText": "Zara sadece kovalent bağlarla bağlıdırlar.", "explanation": "Kovalent olmayan etkileşimlerle de bağlanabilirler." },
+          { "optionText": "Hem sitozolde hem de zara bağlı bulunabilirler.", "explanation": "Doğru! Konumları hücresel sinyallere göre değişebilir." },
+          { "optionText": "Zarın sadece dış yüzeyinde bulunurlar.", "explanation": "Böyle bir sınırlama yoktur." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Proteinlerin iki farklı ortamdaki varlığını düşünün.",
+        "source": "Biyokimya s.3 [cite: 70]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Zar akışkanlığını azaltarak yapıyı daha sert hale getiren bileşen hangisidir?",
+        "options": [
+          { "optionText": "Doymamış yağ asitleri", "explanation": "Doymamışlık akışkanlığı artırır." },
+          { "optionText": "Kısa zincirli yağ asitleri", "explanation": "Kısa zincirler paketlenmeyi zorlaştırıp akışkanlığı artırır." },
+          { "optionText": "Steroller (Steroit çekirdek)", "explanation": "Doğru! Sert halka yapısı hareketi kısıtlar." },
+          { "optionText": "İyonoforlar", "explanation": "Bunlar taşıyıcı moleküllerdir, yapısal sertliği etkilemezler." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Halkalı yapıdaki sert molekülleri hatırlayın.",
+        "source": "Biyokimya s.3 [cite: 88]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Vezikülün hedef zarla tam füzyonu sonucunda ne oluşur?",
+        "options": [
+          { "optionText": "Misel", "explanation": "Misel tek tabakalı küçük bir yapıdır." },
+          { "optionText": "Füzyon gözenegi", "explanation": "Doğru! İçeriğin salınması için bir kanal (gözenek) açılır." },
+          { "optionText": "Yarı-füzyon", "explanation": "Bu tam füzyondan önceki geçici aşamadır." },
+          { "optionText": "Hidrofobik bariyer", "explanation": "Füzyon bu bariyerin geçici olarak bozulmasıdır." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Nörotransmiterlerin sinaps boşluğuna nasıl döküldüğünü düşünün.",
+        "source": "Biyokimya s.4 [cite: 116]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "İkincil aktif taşımada enerjinin kaynağı nedir?",
+        "options": [
+          { "optionText": "Güneş ışığı", "explanation": "Sadece fotosentetik hücrelerde özel durumlarda kullanılır." },
+          { "optionText": "Doğrudan ATP tüketimi", "explanation": "Bu birincil aktif taşımanın özelliğidir." },
+          { "optionText": "Başka bir iyonun elektrokimyasal potansiyel farkı", "explanation": "Doğru! Bir iyonun aşağı akışı diğerinin yukarı taşınmasını sağlar." },
+          { "optionText": "Isı enerjisi", "explanation": "Taşıma için doğrudan kullanılmaz." }
+        ],
+        "correctAnswer": 2,
+        "hint": "Eşleşmiş (coupled) taşıma mekanizmasını düşünün.",
+        "source": "Biyokimya s.5 [cite: 163]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "İyonların yüklerini maskeleyerek lipit tabakasından geçişini sağlayan küçük moleküller nedir?",
+        "options": [
+          { "optionText": "Permeazlar", "explanation": "Bunlar büyük proteinlerdir." },
+          { "optionText": "İyonoforlar", "explanation": "Doğru! İyonu sararak hidrofobik ortamda taşınabilir hale getirirler." },
+          { "optionText": "Reseptörler", "explanation": "Sinyal algılarlar, taşıma yapmazlar." },
+          { "optionText": "Adezyon molekülleri", "explanation": "Hücreleri birbirine bağlarlar." }
+        ],
+        "correctAnswer": 1,
+        "hint": "İyon 'taşıyıcısı' anlamına gelen kelimeyi düşünün.",
+        "source": "Biyokimya s.4 [cite: 128]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Zar proteinlerini zarda tutan ve 'hidrofobik bağlantı' gibi görev yapan yapı nedir?",
+        "options": [
+          { "optionText": "Oligosakkaritler", "explanation": "Bunlar genelde dış tarafta tanıma için kullanılır." },
+          { "optionText": "Kovalent bağlı lipitler", "explanation": "Doğru! Lipit demiri proteini zarın içine sabitler." },
+          { "optionText": "Hidrojen bağları", "explanation": "Bunlar zayıf ve geçici bağlantılardır." },
+          { "optionText": "Elektrostatik etkileşimler", "explanation": "Periferal proteinlerde yaygındır ancak sabit bir 'bağlantı' değildir." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Proteine kovalent olarak eklenen molekülü düşünün.",
+        "source": "Biyokimya s.1 [cite: 28]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Bir proteinin 'integral zar proteini' sayılabilmesi için ne gereklidir?",
+        "options": [
+          { "optionText": "Sadece zarın yüzeyinde durması", "explanation": "Bu periferal proteinleri tanımlar." },
+          { "optionText": "Lipit çift tabakasına sıkıca (hidrofobik etkileşimlerle) gömülü olması", "explanation": "Doğru! Çıkarılmaları için zarı bozmak (deterjan vb.) gerekir." },
+          { "optionText": "Sitozolde serbest dolaşması", "explanation": "Bu çözünür proteinlerin özelliğidir." },
+          { "optionText": "Sadece karbonhidratlara bağlı olması", "explanation": "Karbonhidratlar proteini integral yapmaz." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Zarın içine 'entegre' olmuş proteini düşünün.",
+        "source": "Biyokimya s.2 [cite: 65]"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "SNARE proteinlerinin etkileşimi sırasında 'fermuar' gibi kapanma hangi uçtan başlar?",
+        "options": [
+          { "optionText": "Karboksil (C) ucu", "explanation": "Fermuar bu uçtan kapanmaz." },
+          { "optionText": "Amino (N) ucu", "explanation": "Doğru! N-ucundan başlayarak zarları birbirine çeker." },
+          { "optionText": "Hidrofobik uç", "explanation": "Böyle bir uç tanımı fermuar için kullanılmaz." },
+          { "optionText": "R grubu ucu", "explanation": "R grupları yan zincirlerdir." }
+        ],
+        "correctAnswer": 1,
+        "hint": "Proteinlerin sentez başlangıç yönünü hatırlayın.",
+        "source": "Biyokimya s.4 [cite: 113]"
+      },
       {
         "type": "true_false",
-        "questionText": "Entropi izole bir sistemde zamanla azalır.",
+        "questionText": "Hücre zarı, polar yapıdaki çözünmüş maddelere karşı yüksek derecede geçirgendir.",
         "correctAnswer": false,
-        "hint": "İkinci Yasa'yı düşün.",
-        "source": "Termodinamik: Mühendislik Yaklaşımı"
+        "hint": "Zarın iç kısmının hidrofobik olduğunu unutmayın.",
+        "source": "Biyokimya s.1 [cite: 12]"
       },
-
+      {
+        "type": "true_false",
+        "questionText": "Zar proteinleri oligosakkaritlere veya lipitlere kovalent olarak bağlı olabilir.",
+        "correctAnswer": true,
+        "hint": "Glikoproteinler ve lipit-bağlı proteinleri düşünün.",
+        "source": "Biyokimya s.1 [cite: 27, 28]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Misel oluşumu, lipit molekülünün baş kısmının kesit alanının yan zincirlerden küçük olduğu durumlarda tercih edilir.",
+        "correctAnswer": false,
+        "hint": "Kama şekli için baş mı yoksa kuyruk mu daha geniş olmalı?",
+        "source": "Biyokimya s.2 [cite: 44, 51]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Periferal zar proteinlerini ayırmak için deterjan veya organik çözücü kullanmak zorunludur.",
+        "correctAnswer": false,
+        "hint": "Bunlar yüzeyde hidrojen bağlarıyla tutunur, daha yumuşak yöntemler yeterlidir.",
+        "source": "Biyokimya s.3 [cite: 68, 69]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Doymamış yağ asitleri, zarın düzenli paketlenmesini engelleyerek akışkanlığı artırır.",
+        "correctAnswer": true,
+        "hint": "Doymamış yağlardaki 'kıvrımları' hayal edin.",
+        "source": "Biyokimya s.3 [cite: 87]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Zar füzyonu (birleşmesi) her zaman kendiliğinden gerçekleşir ve protein gerektirmez.",
+        "correctAnswer": false,
+        "hint": "Füzyon proteinleri (SNARE vb.) bu süreci katalizler.",
+        "source": "Biyokimya s.3 [cite: 95]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Yarı-füzyon (hemifusion) aşamasında zarların sadece dış yaprakçıkları birleşir.",
+        "correctAnswer": true,
+        "hint": "Tam füzyondan önceki 'yarım' birleşmeyi düşünün.",
+        "source": "Biyokimya s.4 [cite: 115]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Kolaylaştırılmış difüzyon, maddelerin derişim farkına karşı (azdan çoğa) taşınmasını sağlar.",
+        "correctAnswer": false,
+        "hint": "Difüzyon her zaman yüksekten düşüğe doğrudur; sadece 'hızlandırılmıştır'.",
+        "source": "Biyokimya s.4 [cite: 131, 145]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "İkincil aktif taşıma, birincil aktif taşıma ile oluşturulan iyon gradyanını kullanır.",
+        "correctAnswer": true,
+        "hint": "Enerjinin dolaylı kaynağını düşünün.",
+        "source": "Biyokimya s.5 [cite: 163]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Biyolojik zarlar 3 boyutlu yapılar oldukları için enzim katalizli işlemler çok yavaştır.",
+        "correctAnswer": false,
+        "hint": "Zarlar aslında 2 boyutludur ve çarpışma olasılığını artırırlar.",
+        "source": "Biyokimya s.1 [cite: 23]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Adezyon molekülleri, komşu hücreleri bir arada tutma görevi görür.",
+        "correctAnswer": true,
+        "hint": "Hücreler arası 'yapıştırıcı' proteinleri düşünün.",
+        "source": "Biyokimya s.1 [cite: 19]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Steroller (kolesterol), lipit çift tabakanın merkezindeki akışkanlığı artırır.",
+        "correctAnswer": false,
+        "hint": "Sterollerin sert düzlemsel yapısı hareketi kısıtlar.",
+        "source": "Biyokimya s.3 [cite: 88]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "İyon kanalları, iyonları elektrokimyasal fark yönünde taşır.",
+        "correctAnswer": true,
+        "hint": "Kanallar pasif taşıma araçlarıdır.",
+        "source": "Biyokimya s.5 [cite: 139]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "SNAP25 proteini, vezikül zarı üzerinde bulunur.",
+        "correctAnswer": false,
+        "hint": "Bu protein plazma zarı (hedef zar) üzerindedir.",
+        "source": "Biyokimya s.4 [cite: 106, 111]"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Zarlar kendi üzerlerine katlanarak 'kesecik' (vezikül) oluşturduğunda daha kararlı hale gelirler.",
+        "correctAnswer": true,
+        "hint": "Açık uçlardaki hidrofobik bölgelerin suyla temasının kesilmesi kararlılık sağlar.",
+        "source": "Biyokimya s.2 [cite: 48, 50]"
+      },
       {
         "type": "fill_in_the_blank",
-        "questionText": "Isı alışverişi olmadan gerçekleşen genişleme sürecine ________ denir.",
-        "correctAnswer": "adyabatik",
-        "hint": "Yunanca 'geçilmez' anlamına gelir.",
-        "source": "Fizik Ders Kitabı s.78"
+        "questionText": "Kolaylaştırılmış difüzyonla geçişi hızlandıran proteinlere taşıyıcılar veya ________ denir.",
+        "correctAnswer": "permeazlar",
+        "hint": "Zarın 'geçirgenliğini' artıran bir terim.",
+        "source": "Biyokimya s.4 [cite: 131]"
       },
-
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Zar lipitleri fizyolojik sıcaklıkların altında yarı-katı ________ fazında bulunur.",
+        "correctAnswer": "jel",
+        "hint": "Hareketliliğin çok kısıtlı olduğu durum.",
+        "source": "Biyokimya s.3 [cite: 74]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Birincil aktif taşımada enerji kaynağı olarak genellikle ________ hidrolizi kullanılır.",
+        "correctAnswer": "ATP",
+        "hint": "Hücrenin temel enerji birimi.",
+        "source": "Biyokimya s.5 [cite: 161]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "İyon yüklerini maskeleyerek lipit tabakasından geçişi sağlayan küçük moleküllere ________ denir.",
+        "correctAnswer": "iyonoforlar",
+        "hint": "Genelde antibiyotik veya özel taşıyıcı moleküllerdir.",
+        "source": "Biyokimya s.4 [cite: 128]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Vezikül üzerindeki proteinlere v-SNARE, hedef zardaki proteinlere ise ________ denir.",
+        "correctAnswer": "t-SNARE",
+        "hint": "'Target' kelimesinin baş harfi.",
+        "source": "Biyokimya s.4 [cite: 113]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Lipitlerin baş grubu ile açil yan zincirlerinin kesit alanları benzerse ________ yapısı oluşur.",
+        "correctAnswer": "çift tabaka",
+        "hint": "Silindir şeklindeki birimlerin yan yana gelmesi.",
+        "source": "Biyokimya s.2 [cite: 46]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Zar bileşenlerinin zar düzleminde yanal olarak serbestçe hareket edebilmesine ________ denir.",
+        "correctAnswer": "akışkanlık",
+        "hint": "Sıvı-mozaik modelinin temel karakteristiği.",
+        "source": "Biyokimya s.2 [cite: 37, 38]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Doymuş yağ asitleri sıvı-düzenli dizi paketlenmesini teşvik ederken, ________ yağ asitleri bunu engeller.",
+        "correctAnswer": "doymamış",
+        "hint": "Yapısında çift bağ bulunan asitler.",
+        "source": "Biyokimya s.3 [cite: 84, 87]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Zarın dış yüzeyinde sinyalleri algılayan proteinlere ________ denir.",
+        "correctAnswer": "reseptörler",
+        "hint": "Moleküler değişiklikleri tetikleyen yapılar.",
+        "source": "Biyokimya s.1 [cite: 18]"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Tam füzyon öncesi zarların dış yaprakçıklarının kaynaşmasına ________ denir.",
+        "correctAnswer": "yarı-füzyon",
+        "hint": "Hemifusion teriminin Türkçesi.",
+        "source": "Biyokimya s.4 [cite: 115]"
+      },
       {
         "type": "matching",
-        "questionText": "Termodinamik süreçleri özellikleriyle eşleştirin.",
+        "questionText": "Zar protein türlerini zara bağlanma şekilleriyle eşleştirin.",
         "options": [
-          { "leftText": "İzotermal",  "rightText": "Sabit sıcaklık" },
-          { "leftText": "İzobarik",   "rightText": "Sabit basınç"   },
-          { "leftText": "İzokorik",   "rightText": "Sabit hacim"    },
-          { "leftText": "Adyabatik",  "rightText": "Isı alışverişi yok" }
+          { "leftText": "İntegral Protein", "rightText": "Sıkı hidrofobik etkileşimler" },
+          { "leftText": "Periferal Protein", "rightText": "Hidrojen bağları ve elektrostatik" },
+          { "leftText": "Amfitropik Protein", "rightText": "Hem sitozol hem zar konumu" },
+          { "leftText": "Lipit-bağlı Protein", "rightText": "Kovalent hidrofobik bağlantı" }
         ],
         "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
-        "hint": "Her süreçte hangi nicelik sabit kalır?",
-        "source": "Fizik Ders Kitabı s.82"
+        "hint": "Hangi proteinin ayrılması için deterjan gerektiğini hatırlayın.",
+        "source": "Biyokimya s.2-3 [cite: 65, 68, 70, 71]"
+      },
+      {
+        "type": "matching",
+        "questionText": "Lipit yapılarını geometrik şekilleriyle eşleştirin.",
+        "options": [
+          { "leftText": "Misel", "rightText": "Kama şeklinde birimler" },
+          { "leftText": "Çift Tabaka", "rightText": "Silindir şeklinde birimler" },
+          { "leftText": "Kesecik", "rightText": "Kendi üzerine katlanmış tabaka" }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2 },
+        "hint": "Baş grubu ve yan zincir alanlarını karşılaştırın.",
+        "source": "Biyokimya s.2 [cite: 51, 54, 56]"
+      },
+      {
+        "type": "matching",
+        "questionText": "Taşıma türlerini enerji gereksinimleriyle eşleştirin.",
+        "options": [
+          { "leftText": "Basit Difüzyon", "rightText": "Enerji gerekmez (Apolar)" },
+          { "leftText": "Birincil Aktif Taşıma", "rightText": "Doğrudan ATP tüketimi" },
+          { "leftText": "İkincil Aktif Taşıma", "rightText": "İyon gradyanı (Dolaylı)" },
+          { "leftText": "Kolaylaştırılmış Difüzyon", "rightText": "Enerji gerekmez (Protein yardımıyla)" }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Hangi taşımada ATP'nin ADP'ye dönüştüğünü düşünün.",
+        "source": "Biyokimya s.5 [cite: 132, 144, 148, 157]"
+      },
+      {
+        "type": "matching",
+        "questionText": "Zar işlevlerini ilgili protein/yapı ile eşleştirin.",
+        "options": [
+          { "leftText": "Hücreler arası tutunma", "rightText": "Adezyon molekülleri" },
+          { "leftText": "Sinyal algılama", "rightText": "Reseptörler" },
+          { "leftText": "Seçici taşıma", "rightText": "Taşıyıcılar / Kanallar" },
+          { "leftText": "Enerji dönüşümü", "rightText": "Mitokondri/Kloroplast zarı" }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Zarın sadece bir duvar olmadığını hatırlayın.",
+        "source": "Biyokimya s.1 [cite: 18, 19, 22]"
+      },
+      {
+        "type": "matching",
+        "questionText": "Füzyon bileşenlerini görevleriyle eşleştirin.",
+        "options": [
+          { "leftText": "v-SNARE", "rightText": "Vezikül üzerindeki protein" },
+          { "leftText": "t-SNARE", "rightText": "Hedef zar üzerindeki protein" },
+          { "leftText": "Füzyon Gözenegi", "rightText": "İçerik salınımı için açılan yol" },
+          { "leftText": "SNAP25", "rightText": "Plazma zarı yardımcı proteini" }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Nörotransmiter salınım sürecini hayal edin.",
+        "source": "Biyokimya s.4 [cite: 106, 109, 116]"
       }
-
     ]
   },
-
   {
     "category": "flashcard",
-    "subject": "Fizik",
-    "topic": "Termodinamik",
+    "subject": "Biyokimya",
+    "topic": "Hücre Zarından Madde Geçişi",
     "questions": [
       {
         "type": "flashcard",
-        "questionText": "Termodinamiğin Birinci Yasası nedir?",
-        "correctAnswer": "Enerji korunur: ΔU = Q - W. Bir sisteme verilen ısı, iç enerjiyi artırır veya iş yapar.",
-        "hint": "Enerji dönüşümünü düşün.",
-        "source": "Fizik Ders Kitabı"
+        "questionText": "Sıvı-mozaik modeli nedir?",
+        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
+        "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
+        "source": "Biyokimya s.2 [cite: 31, 37]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
+        "hint": "Bu proteinler tabakaya gömülüdür.",
+        "source": "Biyokimya s.2 [cite: 66, 67]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Sıvı-mozaik modeli nedir?",
+        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
+        "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
+        "source": "Biyokimya s.2 [cite: 31, 37]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
+        "hint": "Bu proteinler tabakaya gömülüdür.",
+        "source": "Biyokimya s.2 [cite: 66, 67]"
+      },{
+        "type": "flashcard",
+        "questionText": "Sıvı-mozaik modeli nedir?",
+        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
+        "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
+        "source": "Biyokimya s.2 [cite: 31, 37]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
+        "hint": "Bu proteinler tabakaya gömülüdür.",
+        "source": "Biyokimya s.2 [cite: 66, 67]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Zar akışkanlığını etkileyen üç temel faktör nedir?",
+        "correctAnswer": "Sıcaklık, yağ asitlerinin doymuşluk/uzunluk derecesi ve sterol (kolesterol) içeriği.",
+        "hint": "Fiziksel ve kimyasal özellikleri birleştirin.",
+        "source": "Biyokimya s.3 [cite: 73, 84, 88]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "İkincil aktif taşıma mekanizması nasıl çalışır?",
+        "correctAnswer": "Bir iyonun elektrokimyasal farkı yönünde aşağı akışı (egzergonik), başka bir maddenin farka karşı yukarı taşınmasıyla (endergonik) eşleşir.",
+        "hint": "Taşımanın 'dolaylı' enerjisini düşünün.",
+        "source": "Biyokimya s.5 [cite: 163]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "SNARE proteinlerinin temel görevi nedir?",
+        "correctAnswer": "İki zarın birbirini tanımasını, yaklaşmasını ve dış yaprakçıkların birleşerek füzyonun gerçekleşmesini sağlamaktır.",
+        "hint": "Hücre içi trafik ve ekzositozu düşünün.",
+        "source": "Biyokimya s.4 [cite: 113, 115]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Misel ve Çift Tabaka (Bilayer) arasındaki yapısal fark nedir?",
+        "correctAnswer": "Misel küresel ve tek tabakalıdır; Çift Tabaka ise iki lipit tabakasının karşılıklı gelmesiyle oluşan 2 boyutlu bir düzlemdir.",
+        "hint": "Birim moleküllerin geometrisini (kama vs. silindir) düşünün.",
+        "source": "Biyokimya s.2 [cite: 40, 46]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Zar 'taraflılığı' (asimetri) ne anlama gelir?",
+        "correctAnswer": "Zarın bir tarafındaki protein ve lipit bileşiminin diğer taraftan farklı olması ve dolayısıyla iki yüzeyin farklı işlevler görmesidir.",
+        "hint": "İç ve dış yaprakçıkları kıyaslayın.",
+        "source": "Biyokimya s.2 [cite: 36]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "İyonofor nedir?",
+        "correctAnswer": "İyonların yüklerini maskeleyerek onların lipit çift tabakası içinden geçmesine izin veren küçük hidrofobik moleküllerdir.",
+        "hint": "İyonları taşıyan bir kılıf gibi hayal edin.",
+        "source": "Biyokimya s.4 [cite: 128]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Zar dinamiklerinde 'parakristal hal' neyi ifade eder?",
+        "correctAnswer": "Normal fizyolojik sıcaklıkların altında lipit hareketliliğinin kısıtlandığı yarı-katı jel fazıdır.",
+        "hint": "Düşük sıcaklıktaki zar durumunu düşünün.",
+        "source": "Biyokimya s.3 [cite: 74, 76]"
+      },
+      {
+        "type": "flashcard",
+        "questionText": "Endositoz ve Ekzositoz olaylarında zarın hangi fiziksel özelliği kritik rol oynar?",
+        "correctAnswer": "Zarın kırılma ve tekrar kapanabilme (kendiliğinden kapanma) yeteneği.",
+        "hint": "Zar bütünlüğünün sızıntı olmadan korunmasını düşünün.",
+        "source": "Biyokimya s.1 [cite: 15, 16]"
       }
     ]
   }
