@@ -2,84 +2,1196 @@
   {
     "category": "test",
     "subject": "english",
-    "topic": "İngilizce",
-    "questions": [
+    "topic": "YÖKDİL Fen Kelimeleri - Önemli Kelime Listesi",
+    "questions": 
+      [
+  {
+    "type": "multiple_choice",
+    "questionText": "'decade' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
       {
-        "type": "multiple_choice",
-        "questionText": "Biyolojik zarların yapısını açıklayan ve bileşenlerin zar düzleminde hareket edebildiğini belirten model hangisidir?",
-        "options": [
-          {
-            "optionText": "Sandviç Modeli",
-            "explanation": "Bu eski bir modeldir, akışkanlığı tam açıklamaz."
-          },
-          {
-            "optionText": "Sıvı-Mozaik Modeli",
-            "explanation": "Doğru! Proteinlerin ve lipitlerin hareketli bir yapı oluşturduğunu tanımlar."
-          },
-          {
-            "OptionText": "Birim Zar Modeli",
-            "explanation": "Zarın sadece statik bir yapısını ifade eder."
-          },
-          {
-            "optionText": "Lipit Tabaka Modeli",
-            "explanation": "Sadece lipitleri temel alır, proteinlerin konumunu açıklamaz."
-          }
-        ],
-        "correctAnswer": 1,
-        "hint": "Zar bileşenleri kovalent olmayan etkileşimlerle bir arada tutulur.",
-        "source": "Biyokimya s.2 [cite: 31, 37]"
+        "optionText": "yüzyıl",
+        "explanation": "Yanlış cevap. 'decade' kelimesi 'yüzyıl' anlamını taşımaz, bu başka bir kelimenin karşılığıdır."
       },
       {
-        "type": "multiple_choice",
-        "questionText": "Hangi molekül tipi zarın lipit çift tabakasından hiçbir yardım almadan (basit difüzyonla) geçebilir?",
-        "options": [
-          {
-            "optionText": "Glikoz",
-            "explanation": "Polar olduğu için taşıyıcı gerektirir."
-          },
-          {
-            "optionText": "Sodyum iyonu",
-            "explanation": "Yüklü iyonlar kanallar olmadan geçemez."
-          },
-          {
-            "optionText": "Polar olmayan bileşikler",
-            "explanation": "Doğru! Apolar maddeler lipit tabakasında çözünerek geçebilir."
-          },
-          {
-            "optionText": "Amino asitler",
-            "explanation": "Polar yapıda oldukları için permeazlara ihtiyaç duyarlar."
-          }
-        ],
-        "correctAnswer": 2,
-        "hint": "Benzer benzeri çözer ilkesini düşünün.",
-        "source": "Biyokimya s.1, 4 [cite: 30, 120]"
+        "optionText": "binyıl",
+        "explanation": "Hatalı bir seçim yaptınız. 'binyıl' doğru karşılık değildir."
       },
       {
-        "type": "multiple_choice",
-        "questionText": "Zar füzyonunda (kaynaşmasında) görev alan ve vezikül üzerinde bulunan protein hangisidir?",
-        "options": [
-          {
-            "optionText": "t-SNARE",
-            "explanation": "Bu protein hedef zar (target) üzerindedir."
-          },
-          {
-            "optionText": "SNAP25",
-            "explanation": "Hedef zardaki yardımcı bir proteindir."
-          },
-          {
-            "optionText": "v-SNARE",
-            "explanation": "Doğru! 'v' harfi vezikülü (vesicle) temsil eder."
-          },
-          {
-            "optionText": "İntegral protein",
-            "explanation": "Genel bir protein grubudur, füzyona özel ismi bu değildir."
-          }
-        ],
-        "correctAnswer": 2,
-        "hint": "Vezikül ve Hedef zar arasındaki protein eşleşmesini düşünün.",
-        "source": "Biyokimya s.4 [cite: 109, 113]"
+        "optionText": "ay",
+        "explanation": "Maalesef yanlış. 'decade' kelimesi 'ay' anlamına gelmez."
+      },
+      {
+        "optionText": "10 yıl",
+        "explanation": "Tebrikler! 'decade' kelimesinin tam karşılığı '10 yıl' ifadesidir."
       }
-    ]
+    ],
+    "correctAnswer": 3,
+    "hint": "Zaman belirten ifadeleri düşünün.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'affliction' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "sevinç",
+        "explanation": "Yanlış cevap. 'affliction' kelimesi 'sevinç' anlamını taşımaz."
+      },
+      {
+        "optionText": "acı, sıkıntı",
+        "explanation": "Tebrikler! 'affliction' kelimesinin tam karşılığı 'acı, sıkıntı' ifadesidir."
+      },
+      {
+        "optionText": "başarı",
+        "explanation": "Hatalı bir seçim yaptınız. 'başarı' doğru karşılık değildir."
+      },
+      {
+        "optionText": "hız",
+        "explanation": "Maalesef yanlış. 'affliction' kelimesi 'hız' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Olumsuz bir durumu ifade eden bir kelime.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'angle' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "açı",
+        "explanation": "Tebrikler! 'angle' kelimesinin tam karşılığı 'açı' ifadesidir."
+      },
+      {
+        "optionText": "kenar",
+        "explanation": "Yanlış cevap. 'angle' kelimesi 'kenar' anlamını taşımaz."
+      },
+      {
+        "optionText": "alan",
+        "explanation": "Maalesef yanlış. 'angle' kelimesi 'alan' anlamına gelmez."
+      },
+      {
+        "optionText": "uzunluk",
+        "explanation": "Hatalı bir seçim yaptınız. 'uzunluk' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Geometri ile ilgili temel bir terim.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'explicitly' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "kısmen",
+        "explanation": "Hatalı bir seçim yaptınız. 'kısmen' doğru karşılık değildir."
+      },
+      {
+        "optionText": "tesadüfen",
+        "explanation": "Maalesef yanlış. 'explicitly' kelimesi 'tesadüfen' anlamına gelmez."
+      },
+      {
+        "optionText": "açık bir şekilde",
+        "explanation": "Tebrikler! 'explicitly' kelimesinin tam karşılığı 'açık bir şekilde' ifadesidir."
+      },
+      {
+        "optionText": "gizlice",
+        "explanation": "Yanlış cevap. 'explicitly' kelimesi 'gizlice' anlamını taşımaz."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Bir şeyin çok net ifade edilmesini belirtir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'exposed' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "güvenli",
+        "explanation": "Hatalı bir seçim yaptınız. 'güvenli' doğru karşılık değildir."
+      },
+      {
+        "optionText": "kapalı",
+        "explanation": "Maalesef yanlış. 'exposed' kelimesi 'kapalı' anlamına gelmez."
+      },
+      {
+        "optionText": "gizli",
+        "explanation": "Yanlış cevap. 'exposed' kelimesi 'gizli' anlamını taşımaz."
+      },
+      {
+        "optionText": "açık, korumasız",
+        "explanation": "Tebrikler! 'exposed' kelimesinin tam karşılığı 'açık, korumasız' ifadesidir."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Dış etkilere karşı savunmasız olma durumudur.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'starve' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "uyumak",
+        "explanation": "Maalesef yanlış. 'starve' kelimesi 'uyumak' anlamına gelmez."
+      },
+      {
+        "optionText": "susamak",
+        "explanation": "Hatalı bir seçim yaptınız. 'susamak' doğru karşılık değildir."
+      },
+      {
+        "optionText": "çok yemek",
+        "explanation": "Yanlış cevap. 'starve' kelimesi 'çok yemek' anlamını taşımaz."
+      },
+      {
+        "optionText": "açlıktan ölmek",
+        "explanation": "Tebrikler! 'starve' kelimesinin tam karşılığı 'açlıktan ölmek' ifadesidir."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Yetersiz beslenme ile ilgili çok ileri bir durumu ifade eder.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'sufficiency' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "fazlalık",
+        "explanation": "Hatalı bir seçim yaptınız. 'fazlalık' doğru karşılık değildir."
+      },
+      {
+        "optionText": "eksiklik",
+        "explanation": "Yanlış cevap. 'sufficiency' kelimesi 'eksiklik' anlamını taşımaz."
+      },
+      {
+        "optionText": "yeterlilik",
+        "explanation": "Tebrikler! 'sufficiency' kelimesinin tam karşılığı 'yeterlilik' ifadesidir."
+      },
+      {
+        "optionText": "yokluk",
+        "explanation": "Maalesef yanlış. 'sufficiency' kelimesi 'yokluk' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Bir şeyin ihtiyacı karşılayacak oranda olmasını belirtir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'aggregate' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "boşluk",
+        "explanation": "Maalesef yanlış. 'aggregate' kelimesi 'boşluk' anlamına gelmez."
+      },
+      {
+        "optionText": "agrega, dolgu maddesi",
+        "explanation": "Tebrikler! 'aggregate' kelimesinin tam karşılığı 'agrega, dolgu maddesi' ifadesidir."
+      },
+      {
+        "optionText": "sıvı",
+        "explanation": "Yanlış cevap. 'aggregate' kelimesi 'sıvı' anlamını taşımaz."
+      },
+      {
+        "optionText": "gaz",
+        "explanation": "Hatalı bir seçim yaptınız. 'gaz' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Beton yapımında kullanılan malzemeleri düşünün.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'current' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "akım",
+        "explanation": "Tebrikler! 'current' kelimesinin tam karşılığı 'akım' ifadesidir."
+      },
+      {
+        "optionText": "direnç",
+        "explanation": "Hatalı bir seçim yaptınız. 'direnç' doğru karşılık değildir."
+      },
+      {
+        "optionText": "durgunluk",
+        "explanation": "Yanlış cevap. 'current' kelimesi 'durgunluk' anlamını taşımaz."
+      },
+      {
+        "optionText": "voltaj",
+        "explanation": "Maalesef yanlış. 'current' kelimesi 'voltaj' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Elektrikle veya nehir suyuyla ilgili bir terimdir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'tract' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "bina",
+        "explanation": "Yanlış cevap. 'tract' kelimesi 'bina' anlamını taşımaz."
+      },
+      {
+        "optionText": "alan, saha",
+        "explanation": "Tebrikler! 'tract' kelimesinin tam karşılığı 'alan, saha' ifadesidir."
+      },
+      {
+        "optionText": "gökyüzü",
+        "explanation": "Maalesef yanlış. 'tract' kelimesi 'gökyüzü' anlamına gelmez."
+      },
+      {
+        "optionText": "araç",
+        "explanation": "Hatalı bir seçim yaptınız. 'araç' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Coğrafi bir bölgeyi ifade eder.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'device' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "bitki",
+        "explanation": "Yanlış cevap. 'device' kelimesi 'bitki' anlamını taşımaz."
+      },
+      {
+        "optionText": "yiyecek",
+        "explanation": "Maalesef yanlış. 'device' kelimesi 'yiyecek' anlamına gelmez."
+      },
+      {
+        "optionText": "hayvan",
+        "explanation": "Hatalı bir seçim yaptınız. 'hayvan' doğru karşılık değildir."
+      },
+      {
+        "optionText": "alet, aygıt",
+        "explanation": "Tebrikler! 'device' kelimesinin tam karşılığı 'alet, aygıt' ifadesidir."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Elektronik ya da mekanik parçaları olan eşyalar.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'flame' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "alev",
+        "explanation": "Tebrikler! 'flame' kelimesinin tam karşılığı 'alev' ifadesidir."
+      },
+      {
+        "optionText": "su",
+        "explanation": "Yanlış cevap. 'flame' kelimesi 'su' anlamını taşımaz."
+      },
+      {
+        "optionText": "buz",
+        "explanation": "Hatalı bir seçim yaptınız. 'buz' doğru karşılık değildir."
+      },
+      {
+        "optionText": "toprak",
+        "explanation": "Maalesef yanlış. 'flame' kelimesi 'toprak' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Ateş ile ilgili bir kelime.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'perception' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "algılama",
+        "explanation": "Tebrikler! 'perception' kelimesinin tam karşılığı 'algılama' ifadesidir."
+      },
+      {
+        "optionText": "uyuma",
+        "explanation": "Maalesef yanlış. 'perception' kelimesi 'uyuma' anlamına gelmez."
+      },
+      {
+        "optionText": "görmezden gelme",
+        "explanation": "Yanlış cevap. 'perception' kelimesi 'görmezden gelme' anlamını taşımaz."
+      },
+      {
+        "optionText": "unutma",
+        "explanation": "Hatalı bir seçim yaptınız. 'unutma' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Duyularla elde edilen bilgileri zihinde işleme sürecidir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'mainland' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "göl",
+        "explanation": "Maalesef yanlış. 'mainland' kelimesi 'göl' anlamına gelmez."
+      },
+      {
+        "optionText": "anakara",
+        "explanation": "Tebrikler! 'mainland' kelimesinin tam karşılığı 'anakara' ifadesidir."
+      },
+      {
+        "optionText": "ada",
+        "explanation": "Yanlış cevap. 'mainland' kelimesi 'ada' anlamını taşımaz."
+      },
+      {
+        "optionText": "okyanus",
+        "explanation": "Hatalı bir seçim yaptınız. 'okyanus' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Bir kıtanın, adalardan oluşan kısmının dışındaki geniş toprak parçasıdır.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'treaty' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "savaş",
+        "explanation": "Yanlış cevap. 'treaty' kelimesi 'savaş' anlamını taşımaz."
+      },
+      {
+        "optionText": "çatışma",
+        "explanation": "Hatalı bir seçim yaptınız. 'çatışma' doğru karşılık değildir."
+      },
+      {
+        "optionText": "anlaşma, sözleşme",
+        "explanation": "Tebrikler! 'treaty' kelimesinin tam karşılığı 'anlaşma, sözleşme' ifadesidir."
+      },
+      {
+        "optionText": "tartışma",
+        "explanation": "Maalesef yanlış. 'treaty' kelimesi 'tartışma' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Devletler arası yazılı metinler.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'interim' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "ara, geçici",
+        "explanation": "Tebrikler! 'interim' kelimesinin tam karşılığı 'ara, geçici' ifadesidir."
+      },
+      {
+        "optionText": "kalıcı",
+        "explanation": "Yanlış cevap. 'interim' kelimesi 'kalıcı' anlamını taşımaz."
+      },
+      {
+        "optionText": "ebedi",
+        "explanation": "Maalesef yanlış. 'interim' kelimesi 'ebedi' anlamına gelmez."
+      },
+      {
+        "optionText": "sürekli",
+        "explanation": "Hatalı bir seçim yaptınız. 'sürekli' doğru karşılık değildir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Kısa bir süreliğine geçerli olan, asıl durum gelene kadar olan.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'sequence' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "kaos",
+        "explanation": "Maalesef yanlış. 'sequence' kelimesi 'kaos' anlamına gelmez."
+      },
+      {
+        "optionText": "ardışıklık, sıra",
+        "explanation": "Tebrikler! 'sequence' kelimesinin tam karşılığı 'ardışıklık, sıra' ifadesidir."
+      },
+      {
+        "optionText": "düzensizlik",
+        "explanation": "Hatalı bir seçim yaptınız. 'düzensizlik' doğru karşılık değildir."
+      },
+      {
+        "optionText": "karmaşa",
+        "explanation": "Yanlış cevap. 'sequence' kelimesi 'karmaşa' anlamını taşımaz."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Birbirini izleme durumu.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'refinement' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "arıtma, saflaştırma",
+        "explanation": "Tebrikler! 'refinement' kelimesinin tam karşılığı 'arıtma, saflaştırma' ifadesidir."
+      },
+      {
+        "optionText": "kirletme",
+        "explanation": "Yanlış cevap. 'refinement' kelimesi 'kirletme' anlamını taşımaz."
+      },
+      {
+        "optionText": "bozma",
+        "explanation": "Hatalı bir seçim yaptınız. 'bozma' doğru karşılık değildir."
+      },
+      {
+        "optionText": "karıştırma",
+        "explanation": "Maalesef yanlış. 'refinement' kelimesi 'karıştırma' anlamına gelmez."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Maddelerin yabancı unsurlardan temizlenmesi işlemidir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'scouring' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "koruma",
+        "explanation": "Hatalı bir seçim yaptınız. 'koruma' doğru karşılık değildir."
+      },
+      {
+        "optionText": "inşa etme",
+        "explanation": "Maalesef yanlış. 'scouring' kelimesi 'inşa etme' anlamına gelmez."
+      },
+      {
+        "optionText": "parlatma",
+        "explanation": "Yanlış cevap. 'scouring' kelimesi 'parlatma' anlamını taşımaz."
+      },
+      {
+        "optionText": "aşındırma",
+        "explanation": "Tebrikler! 'scouring' kelimesinin tam karşılığı 'aşındırma' ifadesidir."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Suların ya da rüzgarın yüzeyi yıpratması etkisidir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'exceed' kelimesinin Türkçe karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "azalmak",
+        "explanation": "Maalesef yanlış. 'exceed' kelimesi 'azalmak' anlamına gelmez."
+      },
+      {
+        "optionText": "geride kalmak",
+        "explanation": "Yanlış cevap. 'exceed' kelimesi 'geride kalmak' anlamını taşımaz."
+      },
+      {
+        "optionText": "durmak",
+        "explanation": "Hatalı bir seçim yaptınız. 'durmak' doğru karşılık değildir."
+      },
+      {
+        "optionText": "aşmak, geçmek",
+        "explanation": "Tebrikler! 'exceed' kelimesinin tam karşılığı 'aşmak, geçmek' ifadesidir."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Belirli bir sınırı ya da miktarı yukarı yönlü kırmak.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'ateşlenme' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "melting",
+        "explanation": "Yanlış cevap verdiniz. 'melting' kelimesi erime anlamına gelir."
+      },
+      {
+        "optionText": "extinction",
+        "explanation": "Bu seçenek yanlış. 'extinction' kelimesi neslin tükenmesi demektir."
+      },
+      {
+        "optionText": "freezing",
+        "explanation": "Hatalı tercih. 'freezing' kelimesi donma anlamını taşır."
+      },
+      {
+        "optionText": "ignition",
+        "explanation": "Doğru yanıt! 'ateşlenme' kelimesinin İngilizce karşılığı 'ignition' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Motorlarda veya kimyasal reaksiyonlarda başlangıç anını düşünün.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'ayak izi' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "shadow",
+        "explanation": "Yanlış cevap verdiniz. 'shadow' gölge demektir."
+      },
+      {
+        "optionText": "footprint",
+        "explanation": "Doğru yanıt! 'ayak izi' kelimesinin İngilizce karşılığı 'footprint' olmalıdır."
+      },
+      {
+        "optionText": "fingerprint",
+        "explanation": "Hatalı tercih. 'fingerprint' parmak izi demektir."
+      },
+      {
+        "optionText": "handprint",
+        "explanation": "Bu seçenek yanlış. 'handprint' el izi demektir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Ekolojik olarak karbon ile beraber de çok kullanılan bir terim.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'ayırt etmek' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "combine",
+        "explanation": "Yanlış cevap verdiniz. 'combine' birleştirmek anlamına gelir."
+      },
+      {
+        "optionText": "confuse",
+        "explanation": "Bu seçenek yanlış. 'confuse' kafasını karıştırmak demektir."
+      },
+      {
+        "optionText": "mix",
+        "explanation": "Hatalı tercih. 'mix' birbirine katmak, karıştırmak demektir."
+      },
+      {
+        "optionText": "distinguish",
+        "explanation": "Doğru yanıt! 'ayırt etmek' kelimesinin İngilizce karşılığı 'distinguish' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "İki şeyin farkını görebilmek.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'az bulunur, nadir' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "frequent",
+        "explanation": "Yanlış cevap verdiniz. 'frequent' sık görülen demektir."
+      },
+      {
+        "optionText": "scarce",
+        "explanation": "Doğru yanıt! 'az bulunur, nadir' kelimesinin İngilizce karşılığı 'scarce' olmalıdır."
+      },
+      {
+        "optionText": "abundant",
+        "explanation": "Hatalı tercih. 'abundant' bol, bereketli anlamlarına gelir."
+      },
+      {
+        "optionText": "common",
+        "explanation": "Bu seçenek yanlış. 'common' yaygın ve sıradan anlamına gelir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Bulması zor olan materyaller için kullanılır.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'azaltmak' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "enlarge",
+        "explanation": "Yanlış cevap verdiniz. 'enlarge' büyütmek demektir."
+      },
+      {
+        "optionText": "expand",
+        "explanation": "Hatalı tercih. 'expand' genişletmek anlamını taşır."
+      },
+      {
+        "optionText": "reduce",
+        "explanation": "Doğru yanıt! 'azaltmak' kelimesinin İngilizce karşılığı 'reduce' olmalıdır."
+      },
+      {
+        "optionText": "increase",
+        "explanation": "Bu seçenek yanlış. 'increase' artırmak demektir."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Bir şeyin hacmini, miktarını düşürmek.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'bakır' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "iron",
+        "explanation": "Yanlış cevap verdiniz. 'iron' demir demektir."
+      },
+      {
+        "optionText": "gold",
+        "explanation": "Bu seçenek yanlış. 'gold' altın demektir."
+      },
+      {
+        "optionText": "copper",
+        "explanation": "Doğru yanıt! 'bakır' kelimesinin İngilizce karşılığı 'copper' olmalıdır."
+      },
+      {
+        "optionText": "silver",
+        "explanation": "Hatalı tercih. 'silver' gümüş demektir."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Kabloların içinde sıkça kullanılan iletken bir metal.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'barındırmak, liman' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "harbour",
+        "explanation": "Doğru yanıt! 'barındırmak, liman' kelimesinin İngilizce karşılığı 'harbour' olmalıdır."
+      },
+      {
+        "optionText": "desert",
+        "explanation": "Bu seçenek yanlış. 'desert' terk etmek ya da çöl demektir."
+      },
+      {
+        "optionText": "expel",
+        "explanation": "Hatalı tercih. 'expel' dışarı atmak, kovmak anlamına gelir."
+      },
+      {
+        "optionText": "abandon",
+        "explanation": "Yanlış cevap verdiniz. 'abandon' terk etmek demektir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Gemilerin sığındığı yer.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'bastırmak' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "express",
+        "explanation": "Yanlış cevap verdiniz. 'express' ifade etmek demektir."
+      },
+      {
+        "optionText": "suppress",
+        "explanation": "Doğru yanıt! 'bastırmak' kelimesinin İngilizce karşılığı 'suppress' olmalıdır."
+      },
+      {
+        "optionText": "release",
+        "explanation": "Hatalı tercih. 'release' serbest bırakmak demektir."
+      },
+      {
+        "optionText": "free",
+        "explanation": "Bu seçenek yanlış. 'free' özgür bırakmak anlamını verir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Bir duygunun, gücün ya da tepkinin dışarı çıkmasını engellemek.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'tetiklemek' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "prevent",
+        "explanation": "Yanlış cevap verdiniz. 'prevent' önlemek demektir."
+      },
+      {
+        "optionText": "stop",
+        "explanation": "Bu seçenek yanlış. 'stop' durdurmak demektir."
+      },
+      {
+        "optionText": "halt",
+        "explanation": "Hatalı tercih. 'halt' duraksatmak demektir."
+      },
+      {
+        "optionText": "trigger",
+        "explanation": "Doğru yanıt! 'tetiklemek' kelimesinin İngilizce karşılığı 'trigger' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Silahın ateşlenmesini sağlayan parça ile aynı isimdedir.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'bataklık' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "desert",
+        "explanation": "Yanlış cevap verdiniz. 'desert' çöl demektir."
+      },
+      {
+        "optionText": "mountain",
+        "explanation": "Bu seçenek yanlış. 'mountain' dağ demektir."
+      },
+      {
+        "optionText": "swamp",
+        "explanation": "Doğru yanıt! 'bataklık' kelimesinin İngilizce karşılığı 'swamp' olmalıdır."
+      },
+      {
+        "optionText": "forest",
+        "explanation": "Hatalı tercih. 'forest' orman demektir."
+      }
+    ],
+    "correctAnswer": 2,
+    "hint": "Suyun fazla olduğu, yumuşak, çamurlu arazi.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'belirsiz' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "explicit",
+        "explanation": "Hatalı tercih. 'explicit' son derece belirgin demektir."
+      },
+      {
+        "optionText": "clear",
+        "explanation": "Yanlış cevap verdiniz. 'clear' net, temiz demektir."
+      },
+      {
+        "optionText": "obvious",
+        "explanation": "Bu seçenek yanlış. 'obvious' apaçık ortada olan demektir."
+      },
+      {
+        "optionText": "vague",
+        "explanation": "Doğru yanıt! 'belirsiz' kelimesinin İngilizce karşılığı 'vague' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Net olarak ifade edilmemiş durumlar için kullanılır.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'besin, gıda' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "poison",
+        "explanation": "Yanlış cevap verdiniz. 'poison' zehir demektir."
+      },
+      {
+        "optionText": "nutrient",
+        "explanation": "Doğru yanıt! 'besin, gıda' kelimesinin İngilizce karşılığı 'nutrient' olmalıdır."
+      },
+      {
+        "optionText": "toxin",
+        "explanation": "Hatalı tercih. 'toxin' toksin, zehir demektir."
+      },
+      {
+        "optionText": "waste",
+        "explanation": "Bu seçenek yanlış. 'waste' atık demektir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Canlıların hayatta kalmasını sağlayan besleyici ögeler.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'betonarme' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "reinforced concrete",
+        "explanation": "Doğru yanıt! 'betonarme' kelimesinin İngilizce karşılığı 'reinforced concrete' olmalıdır."
+      },
+      {
+        "optionText": "wood",
+        "explanation": "Bu seçenek yanlış. 'wood' odun, ahşap demektir."
+      },
+      {
+        "optionText": "plastic",
+        "explanation": "Hatalı tercih. 'plastic' plastik materyali temsil eder."
+      },
+      {
+        "optionText": "glass",
+        "explanation": "Yanlış cevap verdiniz. 'glass' cam demektir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Güçlendirilmiş beton anlamına gelen ifade.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'beyazlatıcı madde' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "paint",
+        "explanation": "Bu seçenek yanlış. 'paint' boya anlamına gelir."
+      },
+      {
+        "optionText": "bleach",
+        "explanation": "Doğru yanıt! 'beyazlatıcı madde' kelimesinin İngilizce karşılığı 'bleach' olmalıdır."
+      },
+      {
+        "optionText": "dye",
+        "explanation": "Yanlış cevap verdiniz. 'dye' boya maddesi demektir."
+      },
+      {
+        "optionText": "ink",
+        "explanation": "Hatalı tercih. 'ink' mürekkep demektir."
+      }
+    ],
+    "correctAnswer": 1,
+    "hint": "Temizlikte renkleri açmak için de kullanılan madde (çamaşır suyu vb.).",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'bilinçaltı' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "subconscious",
+        "explanation": "Doğru yanıt! 'bilinçaltı' kelimesinin İngilizce karşılığı 'subconscious' olmalıdır."
+      },
+      {
+        "optionText": "conscious",
+        "explanation": "Bu seçenek yanlış. 'conscious' bilinçli olma durumudur."
+      },
+      {
+        "optionText": "awake",
+        "explanation": "Yanlış cevap verdiniz. 'awake' uyanık olmak demektir."
+      },
+      {
+        "optionText": "aware",
+        "explanation": "Hatalı tercih. 'aware' farkında olmak anlamına gelir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Psikolojide insanın farkında olmadan kararlarını etkileyen zihin durumu.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'birim' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "total",
+        "explanation": "Hatalı tercih. 'total' toplam miktarı ifade eder."
+      },
+      {
+        "optionText": "whole",
+        "explanation": "Bu seçenek yanlış. 'whole' bütün, tam demektir."
+      },
+      {
+        "optionText": "all",
+        "explanation": "Yanlış cevap verdiniz. 'all' hepsi, tümü demektir."
+      },
+      {
+        "optionText": "denomination",
+        "explanation": "Doğru yanıt! 'birim' kelimesinin İngilizce karşılığı 'denomination' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Özellikle para veya ölçüm değerlerinde kullanılır.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'bitki örtüsü' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "vegetation",
+        "explanation": "Doğru yanıt! 'bitki örtüsü' kelimesinin İngilizce karşılığı 'vegetation' olmalıdır."
+      },
+      {
+        "optionText": "human",
+        "explanation": "Hatalı tercih. 'human' insan demektir."
+      },
+      {
+        "optionText": "animal",
+        "explanation": "Yanlış cevap verdiniz. 'animal' hayvan demektir."
+      },
+      {
+        "optionText": "machine",
+        "explanation": "Bu seçenek yanlış. 'machine' makine demektir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Bir bölgedeki bitkilerin genel adıdır.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'boğaz' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "mountain",
+        "explanation": "Yanlış cevap verdiniz. 'mountain' dağ demektir."
+      },
+      {
+        "optionText": "plain",
+        "explanation": "Hatalı tercih. 'plain' ova, düzlük demektir."
+      },
+      {
+        "optionText": "valley",
+        "explanation": "Bu seçenek yanlış. 'valley' vadi demektir."
+      },
+      {
+        "optionText": "strait",
+        "explanation": "Doğru yanıt! 'boğaz' kelimesinin İngilizce karşılığı 'strait' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Coğrafyada denizleri bağlayan dar suyolu.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'boya' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "dye",
+        "explanation": "Doğru yanıt! 'boya' kelimesinin İngilizce karşılığı 'dye' olmalıdır."
+      },
+      {
+        "optionText": "water",
+        "explanation": "Bu seçenek yanlış. 'water' su demektir."
+      },
+      {
+        "optionText": "soil",
+        "explanation": "Hatalı tercih. 'soil' toprak demektir."
+      },
+      {
+        "optionText": "air",
+        "explanation": "Yanlış cevap verdiniz. 'air' hava demektir."
+      }
+    ],
+    "correctAnswer": 0,
+    "hint": "Özellikle kumaş veya saç için rengi değiştiren madde.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "multiple_choice",
+    "questionText": "'böcek ilacı' ifadesinin İngilizce karşılığı aşağıdakilerden hangisidir?",
+    "options": [
+      {
+        "optionText": "water",
+        "explanation": "Hatalı tercih. 'water' su demektir."
+      },
+      {
+        "optionText": "fertilizer",
+        "explanation": "Yanlış cevap verdiniz. 'fertilizer' gübre demektir."
+      },
+      {
+        "optionText": "seed",
+        "explanation": "Bu seçenek yanlış. 'seed' tohum demektir."
+      },
+      {
+        "optionText": "insecticide",
+        "explanation": "Doğru yanıt! 'böcek ilacı' kelimesinin İngilizce karşılığı 'insecticide' olmalıdır."
+      }
+    ],
+    "correctAnswer": 3,
+    "hint": "Tarımda haşerelere karşı kullanılan kimyasallar.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "matching",
+    "questionText": "Aşağıdaki İngilizce kelimeleri doğru Türkçe anlamlarıyla eşleştirin.",
+    "options": [
+      {
+        "leftText": "vast",
+        "rightText": "çok geniş"
+      },
+      {
+        "leftText": "blur",
+        "rightText": "bulandırmak"
+      },
+      {
+        "leftText": "glacier",
+        "rightText": "buzul"
+      },
+      {
+        "leftText": "catastrophe",
+        "rightText": "büyük felaket"
+      }
+    ],
+    "correctAnswer": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "hint": "Kelime köklerinden yola çıkarak doğru Türkçe eşleşmeyi bulmaya çalışın.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "matching",
+    "questionText": "Aşağıdaki İngilizce kelimeleri doğru Türkçe anlamlarıyla eşleştirin.",
+    "options": [
+      {
+        "leftText": "magnitude",
+        "rightText": "büyüklük, boy"
+      },
+      {
+        "leftText": "thrive",
+        "rightText": "büyümek, gelişmek"
+      },
+      {
+        "leftText": "species",
+        "rightText": "canlı türleri"
+      },
+      {
+        "leftText": "spy",
+        "rightText": "casus"
+      }
+    ],
+    "correctAnswer": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "hint": "Kelime köklerinden yola çıkarak doğru Türkçe eşleşmeyi bulmaya çalışın.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "matching",
+    "questionText": "Aşağıdaki İngilizce kelimeleri doğru Türkçe anlamlarıyla eşleştirin.",
+    "options": [
+      {
+        "leftText": "apparatus",
+        "rightText": "cihaz"
+      },
+      {
+        "leftText": "circumstance",
+        "rightText": "koşul, durum"
+      },
+      {
+        "leftText": "collision",
+        "rightText": "çarpışma"
+      },
+      {
+        "leftText": "crack",
+        "rightText": "çatlak, çatlamak"
+      }
+    ],
+    "correctAnswer": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "hint": "Kelime köklerinden yola çıkarak doğru Türkçe eşleşmeyi bulmaya çalışın.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "matching",
+    "questionText": "Aşağıdaki İngilizce kelimeleri doğru Türkçe anlamlarıyla eşleştirin.",
+    "options": [
+      {
+        "leftText": "nucleus",
+        "rightText": "çekirdek"
+      },
+      {
+        "leftText": "diversity",
+        "rightText": "çeşitlilik"
+      },
+      {
+        "leftText": "avalanche",
+        "rightText": "çığ"
+      },
+      {
+        "leftText": "livestock",
+        "rightText": "çiftlik hayvanları"
+      }
+    ],
+    "correctAnswer": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "hint": "Kelime köklerinden yola çıkarak doğru Türkçe eşleşmeyi bulmaya çalışın.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "matching",
+    "questionText": "Aşağıdaki İngilizce kelimeleri doğru Türkçe anlamlarıyla eşleştirin.",
+    "options": [
+      {
+        "leftText": "enormous",
+        "rightText": "çok büyük, muazzam"
+      },
+      {
+        "leftText": "precipitation",
+        "rightText": "çökelme, yağma"
+      },
+      {
+        "leftText": "soluble",
+        "rightText": "çözülebilir"
+      },
+      {
+        "leftText": "rot",
+        "rightText": "çürümek"
+      }
+    ],
+    "correctAnswer": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3
+    },
+    "hint": "Kelime köklerinden yola çıkarak doğru Türkçe eşleşmeyi bulmaya çalışın.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "fill_in_the_blank",
+    "questionText": "The strong winds of the _______ destroyed the coastal city.",
+    "correctAnswer": "hurricane",
+    "hint": "İpucu: 'kasırga, hortum' anlamına gelen kelimeyi giriniz.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "fill_in_the_blank",
+    "questionText": "Adding heat will cause the ice to _______ into water.",
+    "correctAnswer": "melt",
+    "hint": "İpucu: 'erimek' anlamına gelen İngilizce kelimeyi giriniz.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "fill_in_the_blank",
+    "questionText": "The scientist used a microscope to observe the cell _______.",
+    "correctAnswer": "nucleus",
+    "hint": "İpucu: Hücrenin merkezini ifade eden 'çekirdek' kelimesinin İngilizcesini giriniz.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "fill_in_the_blank",
+    "questionText": "Solar panels are a popular source of _______ energy.",
+    "correctAnswer": "renewable",
+    "hint": "İpucu: 'yenilenebilir' anlamına gelen İngilizce kelimeyi bulunuz.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  },
+  {
+    "type": "fill_in_the_blank",
+    "questionText": "The factory releases a lot of _______ into the river.",
+    "correctAnswer": "waste product",
+    "hint": "İpucu: 'atık madde' anlamına gelen ifadeyi giriniz.",
+    "source": "YÖKDİL Sınavı Fen Bilimleri Kelimeleri"
+  }
+]
+    
   },
   {
     "category": "test",
