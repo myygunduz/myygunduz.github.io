@@ -1,0 +1,274 @@
+[
+  {
+    "word": "ephemeral",
+    "phonetic": "/ɪˈfɛm(ə)r(ə)l/",
+    "audio": "",
+    "category": "adjective",
+    "level": "C1",
+    "topics": ["Time", "Nature"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Lasting for a very short time; transitory.",
+            "example": "The ephemeral beauty of cherry blossoms lasts only a week.",
+            "synonyms": ["transient", "fleeting", "momentary", "brief", "short-lived"],
+            "antonyms": ["permanent", "eternal", "lasting", "enduring"]
+          }
+        ]
+      },
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "An ephemeral plant or insect that has a very short life cycle.",
+            "example": "Mayflies are ephemerals, living only a single day as adults.",
+            "synonyms": [],
+            "antonyms": []
+          }
+        ]
+      }
+    ],
+    "etymology": "From Greek ephemeros, from epi- (on) + hemera (day).",
+    "frequency": "medium",
+    "collocations": ["ephemeral beauty", "ephemeral nature", "ephemeral pleasure"],
+    "testable": true
+  },
+  {
+    "word": "serendipity",
+    "phonetic": "/ˌsɛr(ə)nˈdɪpɪti/",
+    "audio": "",
+    "category": "noun",
+    "level": "C1",
+    "topics": ["Luck", "Discovery"],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "The occurrence and development of events by chance in a happy or beneficial way.",
+            "example": "A fortunate stroke of serendipity led him to discover the cure while working on something entirely different.",
+            "synonyms": ["chance", "coincidence", "luck", "fortune", "providence"],
+            "antonyms": ["misfortune", "design", "intention"]
+          }
+        ]
+      }
+    ],
+    "etymology": "Coined by Horace Walpole in 1754, after the Persian fairy tale The Three Princes of Serendip.",
+    "frequency": "medium",
+    "collocations": ["by serendipity", "pure serendipity", "happy serendipity"],
+    "testable": true
+  },
+  {
+    "word": "ubiquitous",
+    "phonetic": "/juːˈbɪkwɪtəs/",
+    "audio": "",
+    "category": "adjective",
+    "level": "C1",
+    "topics": ["Frequency", "Society"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Present, appearing, or found everywhere.",
+            "example": "Smartphones have become ubiquitous in modern society, found in the hands of people of all ages.",
+            "synonyms": ["omnipresent", "pervasive", "universal", "prevalent", "widespread"],
+            "antonyms": ["rare", "scarce", "uncommon", "absent"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From medieval Latin ubiquitas, from ubique (everywhere).",
+    "frequency": "medium",
+    "collocations": ["ubiquitous presence", "ubiquitous technology", "seemingly ubiquitous"],
+    "testable": true
+  },
+  {
+    "word": "melancholy",
+    "phonetic": "/ˈmɛl(ə)nk(ə)li/",
+    "audio": "",
+    "category": "noun",
+    "level": "B2",
+    "topics": ["Emotions", "Psychology"],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "A feeling of pensive sadness, typically with no obvious cause.",
+            "example": "An air of melancholy hung over the abandoned town.",
+            "synonyms": ["sadness", "sorrow", "gloom", "despondency", "dejection"],
+            "antonyms": ["happiness", "joy", "cheerfulness", "elation"]
+          }
+        ]
+      },
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Having a feeling of melancholy; sad and pensive.",
+            "example": "He became melancholy at the thought of leaving his hometown.",
+            "synonyms": ["sad", "sorrowful", "gloomy", "despondent", "mournful"],
+            "antonyms": ["happy", "cheerful", "merry"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Greek melankholia, from melas (black) + khole (bile) — once thought to be caused by excess black bile.",
+    "frequency": "medium",
+    "collocations": ["deep melancholy", "feeling of melancholy", "autumnal melancholy"],
+    "testable": true
+  },
+  {
+    "word": "resilient",
+    "phonetic": "/rɪˈzɪlɪənt/",
+    "audio": "",
+    "category": "adjective",
+    "level": "B2",
+    "topics": ["Character", "Psychology"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Able to withstand or recover quickly from difficult conditions.",
+            "example": "Children are often more resilient than adults give them credit for.",
+            "synonyms": ["tough", "strong", "adaptable", "hardy", "flexible"],
+            "antonyms": ["fragile", "weak", "vulnerable", "brittle"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Latin resilire (to spring back), from re- (back) + salire (to jump).",
+    "frequency": "high",
+    "collocations": ["resilient community", "prove resilient", "resilient economy", "remarkably resilient"],
+    "testable": true
+  },
+  {
+    "word": "labyrinthine",
+    "phonetic": "/ˌlab(ə)ˈrɪnθʌɪn/",
+    "audio": "",
+    "category": "adjective",
+    "level": "C2",
+    "topics": ["Complexity", "Architecture"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Resembling a labyrinth in complexity or irregularity; intricate and confusing.",
+            "example": "The labyrinthine bureaucracy made it nearly impossible to obtain a simple permit.",
+            "synonyms": ["intricate", "complex", "convoluted", "tortuous", "tangled"],
+            "antonyms": ["simple", "straightforward", "clear", "uncomplicated"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From labyrinth, from Greek laburinthos — the maze of Crete built by Daedalus.",
+    "frequency": "low",
+    "collocations": ["labyrinthine corridors", "labyrinthine rules", "labyrinthine plot"],
+    "testable": true
+  },
+  {
+    "word": "ambivalent",
+    "phonetic": "/amˈbɪv(ə)l(ə)nt/",
+    "audio": "",
+    "category": "adjective",
+    "level": "C1",
+    "topics": ["Emotions", "Decision-making"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Having mixed feelings or contradictory ideas about something or someone.",
+            "example": "She felt ambivalent about leaving her job — excited for change but sad to leave her colleagues.",
+            "synonyms": ["undecided", "uncertain", "equivocal", "torn", "conflicted"],
+            "antonyms": ["certain", "decisive", "sure", "unambiguous"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Latin ambi- (both) + valentia (strength) — coined by Eugen Bleuler in 1910.",
+    "frequency": "medium",
+    "collocations": ["feel ambivalent", "ambivalent attitude", "deeply ambivalent", "remain ambivalent"],
+    "testable": true
+  },
+  {
+    "word": "eloquent",
+    "phonetic": "/ˈɛləkwənt/",
+    "audio": "",
+    "category": "adjective",
+    "level": "B2",
+    "topics": ["Communication", "Language"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Fluent or persuasive in speaking or writing; clearly expressing or indicating something.",
+            "example": "Her eloquent speech moved the entire audience to tears.",
+            "synonyms": ["articulate", "fluent", "expressive", "persuasive", "silver-tongued"],
+            "antonyms": ["inarticulate", "tongue-tied", "halting", "inexpressive"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Latin eloquentem, from eloqui (to speak out), from ex- (out) + loqui (to speak).",
+    "frequency": "medium",
+    "collocations": ["eloquent speech", "eloquent silence", "quietly eloquent", "eloquent testimony"],
+    "testable": true
+  },
+  {
+    "word": "tenacious",
+    "phonetic": "/tɪˈneɪʃəs/",
+    "audio": "",
+    "category": "adjective",
+    "level": "C1",
+    "topics": ["Character", "Determination"],
+    "meanings": [
+      {
+        "partOfSpeech": "adjective",
+        "definitions": [
+          {
+            "definition": "Tending to keep a firm hold of something; not readily relinquishing a position, principle, or course of action.",
+            "example": "Despite repeated setbacks, she remained tenacious in her pursuit of justice.",
+            "synonyms": ["persistent", "determined", "resolute", "stubborn", "dogged"],
+            "antonyms": ["weak", "irresolute", "vacillating", "yielding"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Latin tenax, from tenere (to hold).",
+    "frequency": "medium",
+    "collocations": ["tenacious grip", "tenacious defender", "tenacious in pursuit"],
+    "testable": true
+  },
+  {
+    "word": "nostalgia",
+    "phonetic": "/nɒˈstaldʒə/",
+    "audio": "",
+    "category": "noun",
+    "level": "B2",
+    "topics": ["Emotions", "Memory"],
+    "meanings": [
+      {
+        "partOfSpeech": "noun",
+        "definitions": [
+          {
+            "definition": "A sentimental longing or wistful affection for a period in the past.",
+            "example": "The old photographs filled her with nostalgia for her childhood summers.",
+            "synonyms": ["longing", "wistfulness", "yearning", "homesickness", "reminiscence"],
+            "antonyms": ["indifference", "forgetfulness"]
+          }
+        ]
+      }
+    ],
+    "etymology": "From Greek nostos (homecoming) + algos (pain) — originally a medical term for homesickness.",
+    "frequency": "high",
+    "collocations": ["wave of nostalgia", "sense of nostalgia", "nostalgic feeling", "tinged with nostalgia"],
+    "testable": true
+  }
+]

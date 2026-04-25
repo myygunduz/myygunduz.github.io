@@ -1,0 +1,31 @@
+{
+  "mode": "whitelist",
+  "_comment": "mode: 'whitelist' = only listed devices, 'open' = everyone",
+  "allowed": [
+    {
+      "id":"7B7251B9464E4D520FC87B2E38E8B541",
+      "label":"Mücahit Gündüz",
+      "addedAt":"2026-04-04"
+      
+    },
+    {
+      "id":"C22E57E491CD0508FCDA847651AFD338",
+      "label":"Mücahit Gündüz",
+      "addedAt":"2026-04-04"
+      
+
+    },
+    {
+      "id":"C4664199292E1CCFA811D954EDAAD31F",
+      "label":"Melike Rüzgar",
+      "addedAt":"2026-04-05"
+      
+    },
+    {
+      "id":"52E9D96312B1DF70E743959D1FDCE7C6",
+      "label":"Melike Rüzgar",
+      "addedAt":"2026-04-16"
+      
+    }
+  ]
+}
