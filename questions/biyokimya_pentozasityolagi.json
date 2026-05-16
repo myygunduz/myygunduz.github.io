@@ -1,0 +1,381 @@
+[
+  {
+    "subject": "Biyokimya",
+    "topic": "Pentoz fosfat yolağı",
+    "category": "test",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "questionText": "Pentoz fosfat yolağının net sonuçlarından biri aşağıdakilerden hangisidir?",
+        "options": [
+          "Yüksek miktarda ATP sentezi",
+          "Nükleotit sentezinin öncülü olan Riboz-5-fosfat üretimi",
+          "Piruvat molekülünün laktata dönüşmesi",
+          "Glukozun glikojen olarak depolanması"
+        ],
+        "correctAnswer": 1,
+        "hint": "Nükleik asitlerin (DNA/RNA) yapısına katılan beş karbonlu şekerlerin üretimini düşünün.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Pentoz fosfat yolağının ilk reaksiyonunu katalizleyen ve allosterik olarak düzenlenen kritik enzim hangisidir?",
+        "options": [
+          "Transketolaz",
+          "Transaldolaz",
+          "Glukoz-6-fosfat dehidrogenaz (G6FD)",
+          "Fosfofruktokinaz-1"
+        ],
+        "correctAnswer": 2,
+        "hint": "Bu enzim, ortamdaki NADP+ seviyesindeki artışla allosterik olarak uyarılır.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Hücrede NADPH molekülüne olan talep azaldığında, glukoz-6-fosfat molekülü temel olarak hangi yolağa yönlendirilir?",
+        "options": [
+          "Glikoliz yolağı",
+          "Pentoz fosfat yolağı",
+          "Glukoneojenez yolağı",
+          "Glikojenoliz yolağı"
+        ],
+        "correctAnswer": 0,
+        "hint": "Talep azalınca NADP+ seviyesi düşer ve glukoz-6-fosfat enerji elde etmek için yakıt olarak kullanılır.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Başlıca NADPH kullanan dokularda, yolağın oksidatif evresinde üretilen pentoz fosfatlar yeniden hangi moleküle dönüştürülür?",
+        "options": ["Piruvat", "Asetil-KoA", "Glukoz-6-fosfat", "Oksaloasetat"],
+        "correctAnswer": 2,
+        "hint": "Bu geri dönüşüm sayesinde glukoz-6-fosfat oksidasyonu ve NADPH üretimi sürekli olarak devam edebilir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Pentoz fosfat yolağının net reaksiyon denklemine göre, bir molekül Glukoz-6-fosfatın yükseltgenmesiyle kaç molekül NADPH üretilir?",
+        "options": ["1", "2", "3", "4"],
+        "correctAnswer": 1,
+        "hint": "Denklemde yer alan NADP+ ve NADPH katsayılarını hatırlayın.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Aşağıdaki gazlardan hangisi pentoz fosfat yolağının oksidatif evresinde yan ürün olarak açığa çıkar?",
+        "options": [
+          "Oksijen (O2)",
+          "Azot (N2)",
+          "Karbonmonoksit (CO)",
+          "Karbondioksit (CO2)"
+        ],
+        "correctAnswer": 3,
+        "hint": "6-Fosfoglukonat molekülü Ribuloz-5-fosfata dönüşürken bir karbon kaybeder.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Glukoz-6-fosfatın glikoliz ile pentoz fosfat yolağı arasındaki paylaşımı hücrede temel olarak neye bağlıdır?",
+        "options": [
+          "Hücrenin o anki ihtiyacına ve sitozoldeki NADP+ derişimine",
+          "Hücre dışı glukoz konsantrasyonuna",
+          "Mitokondrideki oksijen miktarına",
+          "Sitozoldaki su moleküllerinin sayısına"
+        ],
+        "correctAnswer": 0,
+        "hint": "Enzimin aktifleşmesi için gerekli olan elektron alıcısının konsantrasyonu belirleyicidir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Aşağıdaki biyomoleküllerden hangisinin sentezinde pentoz fosfat yolağında üretilen Riboz-5-fosfat doğrudan bir öncül olarak kullanılmaz?",
+        "options": ["Nükleotitler", "DNA", "RNA", "Yağ asitleri"],
+        "correctAnswer": 3,
+        "hint": "Beş karbonlu şekerler nükleik asit yapımına giderken, yağ asitleri indirgen güce (NADPH) ihtiyaç duyar.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Hücre NADPH'yi hızlıca NADP+'ye dönüştürdüğünde aşağıdakilerden hangisi gerçekleşir?",
+        "options": [
+          "G6FD allosterik olarak inhibe olur.",
+          "NADP+ seviyesi artar ve G6FD allosterik olarak uyarılır.",
+          "Glukoz-6-fosfat sadece glikolize girer.",
+          "Pentoz fosfat yolağı tamamen durur."
+        ],
+        "correctAnswer": 1,
+        "hint": "Hızlı dönüşüm ortamdaki elektron alıcısı miktarını artırarak yolağın akışını hızlandırır.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Bazı dokular için pentoz fosfat yolağının temel ve en önemli ürünü aşağıdakilerden hangisidir?",
+        "options": [
+          "ATP",
+          "Elektron vericisi olan NADPH",
+          "Piruvat",
+          "Fruktoz-6-fosfat"
+        ],
+        "correctAnswer": 1,
+        "hint": "Biyosentetik reaksiyonlarda indirgen kuvvet olarak kullanılan molekülü düşünün.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Elektron alıcısı olan NADP+ ortamda bulunmadan pentoz fosfat yolağının G6FD tarafından katalizlenen ilk tepkimesi devam edemez.",
+        "correctAnswer": true,
+        "hint": "Reaksiyonun yürüyebilmesi için yükseltgenme sırasında elektronları alacak bir koenzim şarttır.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Pentoz fosfat yolağının temel amacı, glikoliz gibi hücreye yüksek miktarda ATP enerjisi kazandırmaktır.",
+        "correctAnswer": false,
+        "hint": "Yolağın net ürünleri arasında ATP bulunmaz; indirgen güç ve şeker öncülleri üretilir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "NADP+ seviyesinin sitozolde artması, G6FD enzimini allosterik olarak uyararak glukoz-6-fosfatın bu yolağa akışını artırır.",
+        "correctAnswer": true,
+        "hint": "Hücrede NADPH harcandıkça oluşan NADP+, yolağın ilk enzimini aktive eder.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Pentoz fosfat yolağının karbondioksit (CO2) çıkışı gerçekleşen evresi 'oksidatif olmayan evre' olarak adlandırılır.",
+        "correctAnswer": false,
+        "hint": "Karbondioksit çıkışı ve NADPH üretimi, glukozun yükseltgendiği (okside olduğu) evrede meydana gelir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Yağ asitleri ve sterol sentezinin yoğun olduğu dokularda pentoz fosfat yolağı oldukça aktif çalışır.",
+        "correctAnswer": true,
+        "hint": "Bu tür anabolik ve indirgeyici biyosentez yolları yüksek miktarda NADPH gerektirir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Glukoz-6-fosfatın hücredeki ana katabolik akıbeti, glikolitik yıkım ile piruvata dönüşmektir.",
+        "correctAnswer": true,
+        "hint": "Glukozun büyük kısmı enerji üretimi amacıyla öncelikle glikolize girer.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "NADPH'ye olan talep azaldığında sitozoldeki NADP+ seviyesi yükselir.",
+        "correctAnswer": false,
+        "hint": "NADPH tüketilmiyorsa, NADP+'ye dönüşemez ve ortamdaki NADP+ miktarı azalır.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Riboz-5-fosfat molekülü; nükleotitler, koenzimler, DNA ve RNA sentezinde öncül görev üstlenir.",
+        "correctAnswer": true,
+        "hint": "Beş karbonlu pentoz şekerleri nükleik asit omurgasının temel bileşenidir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Oksidatif olmayan evrede, üretilen pentoz fosfatlar yeniden glukoz-6-fosfata dönüştürülebilir.",
+        "correctAnswer": true,
+        "hint": "Bu tersinir karbon iskeleti düzenlemeleri NADPH ihtiyacının sürekliliğini destekler.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Hücre içi NADP+ derişimi, glukoz-6-fosfatın glikoliz veya pentoz fosfat yolağı arasında paylaşılmasında hiçbir rol oynamaz.",
+        "correctAnswer": false,
+        "hint": "NADP+ derişimi, yolağın hız kısıtlayıcı ilk enziminin allosterik düzenleyicisidir.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Pentoz fosfat yolağının ilk tepkimesini katalizleyen hız kısıtlayıcı enzim ___ kısaltması ile ifade edilir.",
+        "correctAnswer": "G6FD",
+        "hint": "Glukoz-6-fosfat dehidrogenaz enziminin baş harflerini düşünün.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Hücrede NADPH'ye talep azalınca ___ seviyesi düşer ve bu durum pentoz fosfat yolağının yavaşlamasına neden olur.",
+        "correctAnswer": "NADP+",
+        "hint": "G6FD enzimini allosterik olarak uyaran elektron alıcısı koenzimi yazınız.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Başlıca NADPH kullanan dokularda, pentoz fosfatlar oksidatif olmayan evre reaksiyonlarıyla yeniden ___ molekülüne dönüştürülür.",
+        "correctAnswer": "Glukoz_6_fosfat",
+        "hint": "Yolağın başlangıç substratı olan ve glikolizle de paylaşılan molekülü yazınız (kelimeler arasına alt çizgi koyun).",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Nükleotit, koenzim, DNA ve RNA sentezinde öncül olarak kullanılan beş karbonlu fosfatlı şeker ___ fosfattır.",
+        "correctAnswer": "Riboz_5",
+        "hint": "Yolağın net denkleminde ürün olarak gösterilen pentoz türünü yazınız (boşluk yerine alt çizgi kullanın).",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Biyosentetik tepkimeler (yağ asidi, sterol sentezi vb.) için gerekli indirgen ihtiyacını karşılayan temel elektron verici molekül ___'tir.",
+        "correctAnswer": "NADPH",
+        "hint": "Pentoz fosfat yolağında glukozun yükseltgenmesiyle üretilen indirgenmiş koenzimi yazınız.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "matching",
+        "questionText": "Verilen metabolik olaylar ve moleküller ile en ilişkili tanımları eşleştiriniz.",
+        "pairs": [
+          {
+            "left": "G6FD Enzimi",
+            "right": "NADP+ seviyesindeki artışla allosterik olarak uyarılır"
+          },
+          {
+            "left": "NADPH",
+            "right": "Yağ asitleri ve sterol sentezinde indirgen güç"
+          },
+          {
+            "left": "Riboz-5-fosfat",
+            "right": "Nükleotit, koenzim ve nükleik asit öncülü"
+          },
+          {
+            "left": "CO2 Gazı",
+            "right": "Oksidatif evrede dekarboksillasyon ürünü"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Enzim uyarılması, indirgen rol, nükleik asit altyapısı ve gaz çıkışını eşleştirin.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "matching",
+        "questionText": "Hücre içi sinyal ve derişim durumları ile bunların metabolik sonuçlarını eşleştiriniz.",
+        "pairs": [
+          {
+            "left": "NADP+ seviyesinin artması",
+            "right": "Glukoz 6-fosfatın pentoz fosfat yolağına akışının artması"
+          },
+          {
+            "left": "NADPH'ye talebin azalması",
+            "right": "NADP+ seviyesinin düşmesi ve yolağın yavaşlaması"
+          },
+          {
+            "left": "Glikoliz yolağı",
+            "right": "Glukoz 6-fosfatın piruvata yıkılması"
+          },
+          {
+            "left": "Sitrik asit çevrimi",
+            "right": "Piruvatın yükseltgenmesiyle nihai ATP oluşturulması"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Hücrenin ihtiyaç durumuna göre karbon akışının nasıl yönlendiğini dikkate alın.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "matching",
+        "questionText": "Pentoz fosfat yolağının evreleri ile bu evrelerin temel niteliklerini eşleştiriniz.",
+        "pairs": [
+          {
+            "left": "Oksidatif Evre",
+            "right": "Glukoz 6-fosfat oksidasyonu ile NADPH ve CO2 üretimi"
+          },
+          {
+            "left": "Oksidatif Olmayan Evre",
+            "right": "Pentoz fosfatların yeniden Glukoz 6-fosfata dönüştürülmesi"
+          },
+          {
+            "left": "GSH / GSSG Sistemi",
+            "right": "Glutatyonun indirgenmiş ve yükseltgenmiş formları"
+          },
+          {
+            "left": "Transketolaz reaksiyonları",
+            "right": "Oksidatif olmayan evredeki karbon transferi dönüşümleri"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Hangi evrede yükseltgenme reaksiyonları ve hangi evrede şeker dönüşümleri olduğunu ayırt edin.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      }
+    ]
+  },
+  {
+    "subject": "Biyokimya",
+    "topic": "Pentoz fosfat yolağı",
+    "category": "flashcard",
+    "questions": [
+      {
+        "type": "flashcard",
+        "front": "Pentoz fosfat yolağının iki temel evresi nedir?",
+        "back": "Oksidatif evre ve Oksidatif olmayan evre.",
+        "hint": "Yolağın şemasındaki iki ana kolu hatırlayın.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Glukoz 6-fosfatın hücredeki ana katabolik akıbeti nedir?",
+        "back": "Glikolitik yıkım ile piruvata dönüşmektir.",
+        "hint": "Hücrenin en yaygın glukoz parçalama yolunu düşünün.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Hücrede piruvatın büyük kısmı hangi süreçle yükseltgenerek ATP oluşturur?",
+        "back": "Sitrik asit çevrimi (Krebs Döngüsü).",
+        "hint": "Mitokondride gerçekleşen ana solunum döngüsüdür.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Bazı dokular için pentoz fosfat yolağının temel ürünü pentozlar değil, hangi elektron vericisidir?",
+        "back": "NADPH",
+        "hint": "Biyosentezlerde kullanılan indirgenmiş koenzim.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "NADP+ seviyesinin sitozolde artması hangi enzimi allosterik olarak uyarır?",
+        "back": "Glukoz-6-fosfat dehidrogenaz (G6FD)",
+        "hint": "Yolağın ilk ve en önemli kontrol noktası olan enzim.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Pentoz fosfat yolağında nükleotit, koenzim, DNA ve RNA sentezinin öncülü olarak üretilen molekül hangisidir?",
+        "back": "Riboz 5-fosfat",
+        "hint": "Beş karbonlu, fosfat grubu içeren şeker türevi.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "NADPH'ye talep azalınca hangi molekülün seviyesi düşer ve yolağı yavaşlatır?",
+        "back": "NADP+",
+        "hint": "G6FD'yi aktifleştiren yükseltgenmiş koenzim formu.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Yolak yavaşladığında Glukoz 6-fosfat pentoz fosfat yolağı yerine nerede yakıt olarak kullanılır?",
+        "back": "Glikolizde",
+        "hint": "Hücrenin birincil enerji elde etme ve piruvat üretme yolu.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Glukoz 6-fosfatın hangi metabolik yolağa gireceğini belirleyen iki temel unsur nedir?",
+        "back": "Hücrenin o anki ihtiyacı ve sitozoldeki NADP+ derişimi.",
+        "hint": "Hücre dengesini ve allosterik düzenleyici konsantrasyonunu düşünün.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Başlıca NADPH kullanan dokularda pentoz fosfatların glukoz-6-fosfata geri dönüştürülmesinin amacı nedir?",
+        "back": "Glukoz 6-fosfat oksidasyonu ile NADPH üretiminin sürmesini sağlamak.",
+        "hint": "Sürekli indirgen güç üretimi sağlamak için karbonların döngüsel kullanımını amaçlar.",
+        "source": "Pentoz Fosfat Yolağı Ders Notu s.1"
+      }
+    ]
+  }
+]

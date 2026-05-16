@@ -1,0 +1,365 @@
+[
+  {
+    "subject": "Biyokimya",
+    "topic": "Fosforillenme",
+    "category": "test",
+    "questions": [
+      {
+        "type": "multiple_choice",
+        "questionText": "Oksidatif fosforillenme reaksiyonları aerobik hücrelerin hangi kısmında gerçekleşir?",
+        "options": ["Sitozol", "Mitokondri", "Lizozom", "Golgi aygıtı"],
+        "correctAnswer": 1,
+        "hint": "Hücrenin çift zarlı enerji santrali olarak bilinen organeldir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Katabolik tepkimelerden taşınan elektronları solunum zincirinin giriş noktası olan dehidrogenaz kompleksine bırakan suda çözünür elektron taşıyıcı molekül hangisidir?",
+        "options": ["NADPH", "FAD", "NADH", "Sitokrom c"],
+        "correctAnswer": 2,
+        "hint": "Yıkım reaksiyonlarından elde edilen ve solunum zincirinin başında yükseltgenen koenzimdir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Oksidatif fosforillenme sürecinde elektron taşıma zinciri boyunca aktarılan elektronların son alıcısı (akseptörü) olan molekül hangisidir?",
+        "options": ["$H_2O$", "$O_2$", "Ubikinon", "Sitokrom a"],
+        "correctAnswer": 1,
+        "hint": "Bu molekül elektronları ve protonları alarak indirgendiğinde su açığa çıkar.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Aşağıdakilerden hangisi mitokondriyal solunum zincirinde görev yapan zarda çözünmüş hidrofobik bir elektron taşıyıcı kinon moleküldür?",
+        "options": [
+          "Sitokrom c",
+          "NADH",
+          "Ubikinon (CoQ)",
+          "Demir-kükürt proteinleri"
+        ],
+        "correctAnswer": 2,
+        "hint": "Lipit çift tabakası içinde hareket edebilen, protein yapısında olmayan bir taşıyıcıdır.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Yükseltgenme-indirgenme tepkimelerinde aktarılan tek bir elektron eşdeğerini belirten biyokimyasal terim hangisidir?",
+        "options": [
+          "Hidrür iyonu",
+          "İndirgeyici eşdeğer",
+          "Flavoprotein",
+          "Oksidasyon enerjisi"
+        ],
+        "correctAnswer": 1,
+        "hint": "Elektron transfer birimlerini nicel olarak ifade etmek için kullanılan bir kavramdır.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "$FADH_2$ molekülü üzerinden solunum zincirine dahil olan elektronlar zincire hangi kompleks aracılığıyla giriş yapar?",
+        "options": ["Kompleks I", "Kompleks II", "Kompleks III", "Kompleks IV"],
+        "correctAnswer": 1,
+        "hint": "Süvsinat dehidrogenaz enzimini de barındıran ve proton pompalamayan komplekstir.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Mitokondriyal solunum zincirinde iki elektron taşıyan bir hidrür iyonu ($:H^-$) şeklinde gerçekleşen aktarım hangi yapılarda yaygın görülür?",
+        "options": [
+          "Doğrudan demir iyonu aktarımında",
+          "Nikotinamit nükleotit bağlı dehidrogenazlarda",
+          "Sitokrom sistemlerinde",
+          "Serbest oksijen indirgenmesinde"
+        ],
+        "correctAnswer": 1,
+        "hint": "NAD+ molekülünün NADH'a dönüşürken aldığı hidrojen formunu düşünün.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "NADPH molekülü hücre metabolizmasında genel olarak ne tür tepkimeler için indirgeyici güç (elektron) sağlar?",
+        "options": [
+          "Katabolik tepkimeler",
+          "Anabolik tepkimeler",
+          "Hidroliz reaksiyonları",
+          "Yıkım tepkimeleri"
+        ],
+        "correctAnswer": 1,
+        "hint": "Hücredeki sentez ve yapım süreçlerinde yaygın olarak kullanılan bir koenzimdir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Çizelge 19-1'de verilen bilgilere göre, aşağıdaki dehidrogenaz enzimlerinden hangisi sadece sitozolde (S) faaliyet gösterir?",
+        "options": [
+          "L-Malat dehidrogenaz",
+          "Piruvat dehidrogenaz",
+          "Laktat dehidrogenaz",
+          "İzositrat dehidrogenaz"
+        ],
+        "correctAnswer": 2,
+        "hint": "Anaerobik glikolizin devamlılığı için pirüvatı laktata dönüştüren enzimdir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "multiple_choice",
+        "questionText": "Aşağıdaki moleküllerden hangisi mitokondri iç zarından doğrudan geçemez ancak taşıdığı elektronları dolaylı yollarla aktarabilir?",
+        "options": ["Ubikinon", "NADH", "Sitokrom c", "Oksijen"],
+        "correctAnswer": 1,
+        "hint": "Suda çözünen ve katabolizmadan elektron toplayan büyük yapılı nikotinamit nükleotit koenzimidir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Hücresel solunum basamaklarından biri olan glikoliz evresi mitokondri matrisinde gerçekleşir.",
+        "correctAnswer": false,
+        "hint": "Glikoliz reaksiyonları hücrenin sıvı kısmında konumlanır.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Fotosetetik organizmalar güneş ışığından yararlanarak fotofosforillenme yoluyla ATP sentezlerler.",
+        "correctAnswer": true,
+        "hint": "Işık enerjisini kimyasal enerjiye dönüştürme fosforilasyon türüdür.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Flavoproteinler, yapılarına kuvvetli etkileşimlerle veya kovalent olarak bağlı flavin nükleotidi (FMN veya FAD) içerirler.",
+        "correctAnswer": true,
+        "hint": "Elektron aktarımında görev alan ve prostetik grup içeren proteinlerdir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "$Fe^{3+}$ iyonunun $Fe^{2+}$ iyonuna indirgenmesi, elektronların doğrudan aktarımına bir örnektir.",
+        "correctAnswer": true,
+        "hint": "Yük değişimi sadece elektronun doğrudan bir atomdan diğerine geçmesiyle oluşur.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Ubikinon (CoQ), yapısında demir-kükürt merkezi bulunduran protein yapılı bir sitokrom zinciri üyesidir.",
+        "correctAnswer": false,
+        "hint": "Ubikinon protein olmayan, hidrofobik küçük bir kinon türevidir.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Solunum zincirinde Kompleks I kompleksinden çıkan elektronlar hiçbir aracı molekül olmadan doğrudan Kompleks IV'e iletilir.",
+        "correctAnswer": false,
+        "hint": "Elektronlar ardışık olarak Ubikinon ve Sitokrom c gibi mobil taşıyıcılardan geçmek zorundadır.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Solunum zinciri boyunca elektron aktarımı gerçekleşirken protonlar ($H^+$) mitokondri iç zarından matrise doğru aktif olarak pompalanır.",
+        "correctAnswer": false,
+        "hint": "Proton pompalanmasının yönü iç zardan zarlar arası alana doğrudur.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "true_false",
+        "questionText": "NADPH molekülü katabolik tepkimelerden taşıdığı elektronları solunum zincirinin giriş noktası olan Kompleks I'e doğrudan verir.",
+        "correctAnswer": false,
+        "hint": "Katabolik elektronları solunum zincirine sokan temel molekül NADH'tır.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "Glukoz 6-fosfat dehidrogenaz enzimi NADP-bağımlı olarak çalışan ve sitozolde yer alan bir enzimdir.",
+        "correctAnswer": true,
+        "hint": "Çizelge 19-1'de ilgili enzimin karşısındaki reaksiyon yerini inceleyin.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "true_false",
+        "questionText": "ATP Sentaz enzimi mitokondri iç zarında elektron taşıma zincirinin Kompleks II elemanının diğer adıdır.",
+        "correctAnswer": false,
+        "hint": "ATP sentaz elektron taşımaz, proton sızıntısı enerjisiyle ATP sentezler.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Karbonhidratlar, yağlar ve amino asitlerin yıkımıyla ilgili tüm oksidatif adımlar hücresel solunumun son aşaması olan ___ fosforillenme basamağında birleşir.",
+        "correctAnswer": "oksidatif",
+        "hint": "Oksijen varlığında mitokondride gerçekleşen ana ATP üretim yoludur.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Solunum zincirindeki elektron akışı sırasında protein kompleksleri matris bölgesinden zarlar arası boşluğa ___ iyonları pompalayarak elektrokimyasal potansiyel oluşturur.",
+        "correctAnswer": "proton",
+        "hint": "Hidrojen atomunun elektron kaybetmiş pozitif yüklü halidir ($H^+$).",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Sitokromlar ve demir-kükürt proteinleri, elektron taşınmasında görev alan ve yapılarında fonksiyonel olarak ___ elementi bulunduran proteinlerdir.",
+        "correctAnswer": "demir",
+        "hint": "Simgesi Fe olan ve indirgenip yükseltgenebilen metalik elementtir.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Mitokondriyal solunum zinciri reaksiyonları boyunca taşınan elektronların aktarıldığı nihai son elektron alıcısı ___ gazıdır.",
+        "correctAnswer": "oksijen",
+        "hint": "Aerobik solunumun gerçekleşmesi için dışarıdan solunum yoluyla alınan temel maddedir.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "fill_in_the_blank",
+        "questionText": "Suda çözünebilen bir elektron taşıyıcısı olan ___ molekülü mitokondri iç zarından doğrudan geçemez ancak taşıdığı elektronları zincire aktarabilir.",
+        "correctAnswer": "NADH",
+        "hint": "Nikotinamit adenin dinükleotit molekülünün indirgenmiş formudur.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "matching",
+        "questionText": "Aşağıda verilen solunum zinciri bileşenlerini kimyasal özellikleri ve yapısal tanımlarıyla eşleştiriniz.",
+        "pairs": [
+          {
+            "left": "Ubikinon (CoQ)",
+            "right": "Lipit zarda çözünen mobil hidrofobik kinon yapısı"
+          },
+          {
+            "left": "Sitokromlar",
+            "right": "Yapısında demir içeren elektron taşıyıcı proteinler"
+          },
+          {
+            "left": "NADH",
+            "right": "Suda çözünen katabolik elektron taşıyıcı nükleotit koenzim"
+          },
+          {
+            "left": "ATP Sentaz",
+            "right": "Proton motif kuvveti mekanizmasıyla ATP üreten protein kompleksi"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Bileşenlerin hidrofobiklik, metal içeriği ve enzim fonksiyonlarına dikkat ediniz.",
+        "source": "fosforillenme.pdf s.1-s.2"
+      },
+      {
+        "type": "matching",
+        "questionText": "Oksidatif fosforillenme sürecinde gözlenen elektron aktarım türlerini uygun kimyasal gösterim veya tanımlarıyla eşleştiriniz.",
+        "pairs": [
+          {
+            "left": "Doğrudan elektron aktarımı",
+            "right": "$Fe^{3+} \rightarrow Fe^{2+}$ dönüşümü gibi tekil yük değişimi"
+          },
+          {
+            "left": "Hidrojen atomu şeklinde aktarım",
+            "right": "Bir proton ve bir elektron içeren ($H^+ + e^-$) yapısı"
+          },
+          {
+            "left": "Hidrür iyonu şeklinde aktarım",
+            "right": "İki elektron taşıyan negatif yüklü iyon ($:H^-$)"
+          },
+          {
+            "left": "İndirgeyici eşdeğer",
+            "right": "Redoks tepkimelerinde aktarılan tek bir elektronun karşılığı"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Metindeki 'üç tip elektron aktarımı gerçekleşir' başlığı altındaki maddeleri inceleyiniz.",
+        "source": "fosforillenme.pdf s.1-s.2"
+      },
+      {
+        "type": "matching",
+        "questionText": "Metindeki Çizelge 19-1'e göre dehidrogenaz enzimlerini hücre içinde aktif olarak görev yaptıkları konumlarla eşleştiriniz.",
+        "pairs": [
+          { "left": "Laktat dehidrogenaz", "right": "Sadece Sitozol (S)" },
+          { "left": "Piruvat dehidrogenaz", "right": "Sadece Mitokondri (M)" },
+          {
+            "left": "L-Malat dehidrogenaz",
+            "right": "Hem Mitokondri hem Sitozol (M ve S)"
+          },
+          {
+            "left": "Glukoz 6-fosfat dehidrogenaz",
+            "right": "NADP-bağımlı olarak sadece Sitozol (S)"
+          }
+        ],
+        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "hint": "Tablodaki 'Gerçekleştiği yer' sütunundaki M ve S kısaltmalarının dağılımına bakınız.",
+        "source": "fosforillenme.pdf s.1"
+      }
+    ]
+  },
+  {
+    "subject": "Biyokimya",
+    "topic": "Fosforillenme",
+    "category": "flashcard",
+    "questions": [
+      {
+        "type": "flashcard",
+        "front": "Oksidatif fosforillenme reaksiyonları hücresel düzeyde hangi organelde gerçekleşir?",
+        "back": "Mitokondride gerçekleşir.",
+        "hint": "Glikoliz sitozolde olurken, hücresel solunumun bu son adımı oksijenli solunum organelinde yürütülür.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Fotosentez yapan organizmaların güneş ışığı yardımıyla ATP sentezlemesi sürecine ne ad verilir?",
+        "back": "Fotofosforillenme denir.",
+        "hint": "Işık (foto) ve fosfat ekleme reaksiyonunun birleşimidir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Suda çözünebilen ve dehidrogenazlar tarafından elektron alıcısı olarak kullanılan iki temel nikotinamit nükleotiti hangileridir?",
+        "back": "NAD+ ve NADP+ nükleotitleridir.",
+        "hint": "Niasin (B3 vitamini) içeren ve koenzim yapısında olan moleküllerdir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "NADH ve NADPH koenzimleri mitokondri iç zarından doğrudan geçiş yapabilir mi?",
+        "back": "Hayır, zardan doğrudan geçemezler; ancak taşıdıkları elektronlar geçebilir.",
+        "hint": "Mitokondri iç zarı yüklü ve büyük moleküllere karşı seçici geçirgendir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Flavoproteinlerin yapısında yer alan ve protein zincirine kuvvetli ya da kovalent olarak bağlı olan flavin nükleotitleri nelerdir?",
+        "back": "FMN veya FAD nükleotitleridir.",
+        "hint": "Riboflamin (B2 vitamini) türevi olan prostetik gruplardır.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Solunum zincirinde protein yapısında olmayan, lipit tabakada çözünmüş hidrofobik mobil taşıyıcının adı nedir?",
+        "back": "Ubikinon (Coenzyme Q / CoQ) molekülüdür.",
+        "hint": "Kinon halkasına sahip hidrofobik bir elektron taşıyıcısıdır.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "flashcard",
+        "front": "Biyokimyada redoks reaksiyonlarında aktarılan tek bir elektron eşdeğerini tanımlayan terim nedir?",
+        "back": "İndirgeyici eşdeğerdir.",
+        "hint": "Elektron transfer potansiyel birimlerini adlandırmak için kullanılır.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "flashcard",
+        "front": "Solunum zincirindeki elektron akışının en son basamağında elektronları kabul eden molekül hangisidir?",
+        "back": "Moleküler Oksijen ($O_2$) molekülüdür.",
+        "hint": "İndirgendiğinde canlılık için kritik öneme sahip olan suyu ($H_2O$) oluşturur.",
+        "source": "fosforillenme.pdf s.2"
+      },
+      {
+        "type": "flashcard",
+        "front": "Kompleks I (NADH dehidrogenaz) kompleksi elektronları hangi molekülden teslim alır?",
+        "back": "NADH molekülünden teslim alır.",
+        "hint": "Katabolik yollardan toplanan indirgenmiş nikotinamit koenzimidir.",
+        "source": "fosforillenme.pdf s.1"
+      },
+      {
+        "type": "flashcard",
+        "front": "Solunum zinciri boyunca elektronların taşınmasıyla yaratılan proton gradienti, hangi enzim mekanizmasıyla nihai olarak ATP sentezine dönüştürülür?",
+        "back": "ATP Sentaz (ATP Synthase) enzimi ile.",
+        "hint": "Görsellerde en sağda yer alan ve kemiosmozis prensibiyle çalışan komplekstir.",
+        "source": "fosforillenme.pdf s.2"
+      }
+    ]
+  }
+]

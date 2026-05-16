@@ -1,0 +1,12 @@
+{
+  "files": [
+    "questions/english_yokdil_fen_kelimeleri_onemli_kelime_listesi.json",
+    "questions/biyokimya_hucre_zarindan_madde_gecisi.json",
+    "questions/biyokimya_fermantasyon.json",
+    "questions/biyokimya_fosforillenme.json",
+    "questions/biyokimya_fotosentez.json",
+    "questions/biyokimya_glukoneogenez.json",
+    "questions/biyokimya_pentozasityolagi.json",
+    "questions/biyokimya_sitrikasitcevrimi.json"
+  ]
+}
