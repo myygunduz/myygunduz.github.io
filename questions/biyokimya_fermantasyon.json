@@ -290,73 +290,73 @@
     "questions": [
       {
         "type": "flashcard",
-        "questionText": "Aerobik (oksijenli) şartlar altında glikoliz sonucu oluşan piruvatın akıbeti nedir?",
-        "correctAnswer": "Asetata yükseltgenir. Sitrik asit çevrimine girerek CO2 ve H2O'ya yükseltgenir. [cite: 236]",
         "hint": "Oksijen varlığında girdiği çevrimi düşünün.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Aerobik (oksijenli) şartlar altında glikoliz sonucu oluşan piruvatın akıbeti nedir?",
+        "back": "Asetata yükseltgenir. Sitrik asit çevrimine girerek CO2 ve H2O'ya yükseltgenir. [cite: 236]"
       },
       {
         "type": "flashcard",
-        "questionText": "Anaerobik koşullarda glikolizin devam edebilmesi (enerji üreten tepkimelerin durmaması) için hangi molekülün sürekli olarak yeniden oluşturulması gerekir?",
-        "correctAnswer": "NAD+ [cite: 240, 241]",
         "hint": "Gliseraldehit-3-fosfatın yükseltgenmesi için gerekli olan elektron alıcısıdır.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Anaerobik koşullarda glikolizin devam edebilmesi (enerji üreten tepkimelerin durmaması) için hangi molekülün sürekli olarak yeniden oluşturulması gerekir?",
+        "back": "NAD+ [cite: 240, 241]"
       },
       {
         "type": "flashcard",
-        "questionText": "Laktik asit fermentasyonunda son elektron alıcısı hangi moleküldür?",
-        "correctAnswer": "Piruvat [cite: 242]",
         "hint": "Laktata indirgenen molekülün kendisidir.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Laktik asit fermentasyonunda son elektron alıcısı hangi moleküldür?",
+        "back": "Piruvat [cite: 242]"
       },
       {
         "type": "flashcard",
-        "questionText": "Piruvatın laktata indirgenmesini (izomerini oluşturmasını) katalizleyen enzimin adı nedir?",
-        "correctAnswer": "Laktat dehidrogenaz [cite: 245]",
         "hint": "Oluşan ürünün adını ve katalizlediği tepkimenin türünü (hidrojen transferi) içerir.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Piruvatın laktata indirgenmesini (izomerini oluşturmasını) katalizleyen enzimin adı nedir?",
+        "back": "Laktat dehidrogenaz [cite: 245]"
       },
       {
         "type": "flashcard",
-        "questionText": "Eritrositler ve bazı dokular aerobik koşullar altında bile neden piruvatı CO2'ye yükseltgeyemeyip laktat oluştururlar?",
-        "correctAnswer": "Mitokondrileri olmadığı için. [cite: 244]",
         "hint": "Oksijenli solunumun gerçekleştiği hücre organelinden yoksundurlar.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Eritrositler ve bazı dokular aerobik koşullar altında bile neden piruvatı CO2'ye yükseltgeyemeyip laktat oluştururlar?",
+        "back": "Mitokondrileri olmadığı için. [cite: 244]"
       },
       {
         "type": "flashcard",
-        "questionText": "Aktif iskelet kaslarında veya eritrositlerde oluşan laktat, yeniden çevrime sokulmak üzere kan yoluyla nereye gider?",
-        "correctAnswer": "Karaciğere gider ve burada glukoza dönüşür. [cite: 259]",
         "hint": "Vücudun ana metabolizma ve detoks merkezidir.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Aktif iskelet kaslarında veya eritrositlerde oluşan laktat, yeniden çevrime sokulmak üzere kan yoluyla nereye gider?",
+        "back": "Karaciğere gider ve burada glukoza dönüşür. [cite: 259]"
       },
       {
         "type": "flashcard",
-        "questionText": "Fermentasyon tepkimelerinde tepken ve ürünlerin H:C (Hidrojen:Karbon) oranında net bir değişim olur mu?",
-        "correctAnswer": "Hayır, karbonun yükseltgenme durumunda net bir değişim yoktur ve H:C oranı sabit kalır. [cite: 260, 285]",
         "hint": "Fermentasyonda net bir oksidasyon veya redüksiyon kaybı/kazancı olup olmadığını düşünün.",
-        "source": "Biyokimya Notları - Sayfa 1 ve 2"
+        "source": "Biyokimya Notları - Sayfa 1 ve 2",
+        "front": "Fermentasyon tepkimelerinde tepken ve ürünlerin H:C (Hidrojen:Karbon) oranında net bir değişim olur mu?",
+        "back": "Hayır, karbonun yükseltgenme durumunda net bir değişim yoktur ve H:C oranı sabit kalır. [cite: 260, 285]"
       },
       {
         "type": "flashcard",
-        "questionText": "Oksijen tüketmeden veya NAD+ veya NADH derişiminde bir değişiklik olmadan enerji (ATP) kazancı sağlayan işlemlere genel olarak ne ad verilir?",
-        "correctAnswer": "Fermentasyon [cite: 261]",
         "hint": "Mayalanma olarak da bilinen metabolik yolun bilimsel adıdır.",
-        "source": "Biyokimya Notları - Sayfa 1"
+        "source": "Biyokimya Notları - Sayfa 1",
+        "front": "Oksijen tüketmeden veya NAD+ veya NADH derişiminde bir değişiklik olmadan enerji (ATP) kazancı sağlayan işlemlere genel olarak ne ad verilir?",
+        "back": "Fermentasyon [cite: 261]"
       },
       {
         "type": "flashcard",
-        "questionText": "Etanol fermentasyonunda piruvatı asetaldehite dönüştüren tepkimenin (dekarboksillenme) bağımlı olduğu koenzim ve iyon hangileridir?",
-        "correctAnswer": "Mg2+ ve koenzim tiyamin pirofosfat (TPP). [cite: 265]",
         "hint": "Piruvat dekarboksilaz enziminin çalışması için gereken iki temel kofaktördür.",
-        "source": "Biyokimya Notları - Sayfa 2"
+        "source": "Biyokimya Notları - Sayfa 2",
+        "front": "Etanol fermentasyonunda piruvatı asetaldehite dönüştüren tepkimenin (dekarboksillenme) bağımlı olduğu koenzim ve iyon hangileridir?",
+        "back": "Mg2+ ve koenzim tiyamin pirofosfat (TPP). [cite: 265]"
       },
       {
         "type": "flashcard",
-        "questionText": "Etanol fermentasyonunda asetaldehitin etanole indirgenmesi tepkimesi tersinir (geri dönüşlü) midir?",
-        "correctAnswer": "Evet, indirgenme tepkimesi tersinirdir. [cite: 280]",
         "hint": "İlk basamaktaki dekarboksillenme (tersinmez) tepkimesinin aksine, bu basamak farklı bir özelliğe sahiptir.",
-        "source": "Biyokimya Notları - Sayfa 2"
+        "source": "Biyokimya Notları - Sayfa 2",
+        "front": "Etanol fermentasyonunda asetaldehitin etanole indirgenmesi tepkimesi tersinir (geri dönüşlü) midir?",
+        "back": "Evet, indirgenme tepkimesi tersinirdir. [cite: 280]"
       }
     ]
   }

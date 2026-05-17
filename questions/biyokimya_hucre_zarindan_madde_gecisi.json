@@ -17,8 +17,8 @@
             "explanation": "Doğru! Proteinlerin ve lipitlerin hareketli bir yapı oluşturduğunu tanımlar."
           },
           {
-            "OptionText": "Birim Zar Modeli",
-            "explanation": "Zarın sadece statik bir yapısını ifade eder."
+            "explanation": "Zarın sadece statik bir yapısını ifade eder.",
+            "optionText": "Birim Zar Modeli"
           },
           {
             "optionText": "Lipit Tabaka Modeli",
@@ -708,101 +708,101 @@
     "questions": [
       {
         "type": "flashcard",
-        "questionText": "Sıvı-mozaik modeli nedir?",
-        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
         "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
-        "source": "Biyokimya s.2 [cite: 31, 37]"
+        "source": "Biyokimya s.2 [cite: 31, 37]",
+        "front": "Sıvı-mozaik modeli nedir?",
+        "back": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır."
       },
       {
         "type": "flashcard",
-        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
-        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
         "hint": "Bu proteinler tabakaya gömülüdür.",
-        "source": "Biyokimya s.2 [cite: 66, 67]"
+        "source": "Biyokimya s.2 [cite: 66, 67]",
+        "front": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "back": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle."
       },
       {
         "type": "flashcard",
-        "questionText": "Sıvı-mozaik modeli nedir?",
-        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
         "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
-        "source": "Biyokimya s.2 [cite: 31, 37]"
+        "source": "Biyokimya s.2 [cite: 31, 37]",
+        "front": "Sıvı-mozaik modeli nedir?",
+        "back": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır."
       },
       {
         "type": "flashcard",
-        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
-        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
         "hint": "Bu proteinler tabakaya gömülüdür.",
-        "source": "Biyokimya s.2 [cite: 66, 67]"
+        "source": "Biyokimya s.2 [cite: 66, 67]",
+        "front": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "back": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle."
       },
       {
         "type": "flashcard",
-        "questionText": "Sıvı-mozaik modeli nedir?",
-        "correctAnswer": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır.",
         "hint": "Zarın hem sıvı hem mozaik özelliklerini düşünün.",
-        "source": "Biyokimya s.2 [cite: 31, 37]"
+        "source": "Biyokimya s.2 [cite: 31, 37]",
+        "front": "Sıvı-mozaik modeli nedir?",
+        "back": "Proteinlerin fosfolipit çift tabakası içine gömülü olduğu ve yanal olarak hareket edebildiği dinamik zar yapısıdır."
       },
       {
         "type": "flashcard",
-        "questionText": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
-        "correctAnswer": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle.",
         "hint": "Bu proteinler tabakaya gömülüdür.",
-        "source": "Biyokimya s.2 [cite: 66, 67]"
+        "source": "Biyokimya s.2 [cite: 66, 67]",
+        "front": "İntegral zar proteinleri zardan nasıl ayrılabilir?",
+        "back": "Deterjanlar, organik çözücüler veya denatüre edici ajanlar gibi hidrofobik etkileşimleri bozan yöntemlerle."
       },
       {
         "type": "flashcard",
-        "questionText": "Zar akışkanlığını etkileyen üç temel faktör nedir?",
-        "correctAnswer": "Sıcaklık, yağ asitlerinin doymuşluk/uzunluk derecesi ve sterol (kolesterol) içeriği.",
         "hint": "Fiziksel ve kimyasal özellikleri birleştirin.",
-        "source": "Biyokimya s.3 [cite: 73, 84, 88]"
+        "source": "Biyokimya s.3 [cite: 73, 84, 88]",
+        "front": "Zar akışkanlığını etkileyen üç temel faktör nedir?",
+        "back": "Sıcaklık, yağ asitlerinin doymuşluk/uzunluk derecesi ve sterol (kolesterol) içeriği."
       },
       {
         "type": "flashcard",
-        "questionText": "İkincil aktif taşıma mekanizması nasıl çalışır?",
-        "correctAnswer": "Bir iyonun elektrokimyasal farkı yönünde aşağı akışı (egzergonik), başka bir maddenin farka karşı yukarı taşınmasıyla (endergonik) eşleşir.",
         "hint": "Taşımanın 'dolaylı' enerjisini düşünün.",
-        "source": "Biyokimya s.5 [cite: 163]"
+        "source": "Biyokimya s.5 [cite: 163]",
+        "front": "İkincil aktif taşıma mekanizması nasıl çalışır?",
+        "back": "Bir iyonun elektrokimyasal farkı yönünde aşağı akışı (egzergonik), başka bir maddenin farka karşı yukarı taşınmasıyla (endergonik) eşleşir."
       },
       {
         "type": "flashcard",
-        "questionText": "SNARE proteinlerinin temel görevi nedir?",
-        "correctAnswer": "İki zarın birbirini tanımasını, yaklaşmasını ve dış yaprakçıkların birleşerek füzyonun gerçekleşmesini sağlamaktır.",
         "hint": "Hücre içi trafik ve ekzositozu düşünün.",
-        "source": "Biyokimya s.4 [cite: 113, 115]"
+        "source": "Biyokimya s.4 [cite: 113, 115]",
+        "front": "SNARE proteinlerinin temel görevi nedir?",
+        "back": "İki zarın birbirini tanımasını, yaklaşmasını ve dış yaprakçıkların birleşerek füzyonun gerçekleşmesini sağlamaktır."
       },
       {
         "type": "flashcard",
-        "questionText": "Misel ve Çift Tabaka (Bilayer) arasındaki yapısal fark nedir?",
-        "correctAnswer": "Misel küresel ve tek tabakalıdır; Çift Tabaka ise iki lipit tabakasının karşılıklı gelmesiyle oluşan 2 boyutlu bir düzlemdir.",
         "hint": "Birim moleküllerin geometrisini (kama vs. silindir) düşünün.",
-        "source": "Biyokimya s.2 [cite: 40, 46]"
+        "source": "Biyokimya s.2 [cite: 40, 46]",
+        "front": "Misel ve Çift Tabaka (Bilayer) arasındaki yapısal fark nedir?",
+        "back": "Misel küresel ve tek tabakalıdır; Çift Tabaka ise iki lipit tabakasının karşılıklı gelmesiyle oluşan 2 boyutlu bir düzlemdir."
       },
       {
         "type": "flashcard",
-        "questionText": "Zar 'taraflılığı' (asimetri) ne anlama gelir?",
-        "correctAnswer": "Zarın bir tarafındaki protein ve lipit bileşiminin diğer taraftan farklı olması ve dolayısıyla iki yüzeyin farklı işlevler görmesidir.",
         "hint": "İç ve dış yaprakçıkları kıyaslayın.",
-        "source": "Biyokimya s.2 [cite: 36]"
+        "source": "Biyokimya s.2 [cite: 36]",
+        "front": "Zar 'taraflılığı' (asimetri) ne anlama gelir?",
+        "back": "Zarın bir tarafındaki protein ve lipit bileşiminin diğer taraftan farklı olması ve dolayısıyla iki yüzeyin farklı işlevler görmesidir."
       },
       {
         "type": "flashcard",
-        "questionText": "İyonofor nedir?",
-        "correctAnswer": "İyonların yüklerini maskeleyerek onların lipit çift tabakası içinden geçmesine izin veren küçük hidrofobik moleküllerdir.",
         "hint": "İyonları taşıyan bir kılıf gibi hayal edin.",
-        "source": "Biyokimya s.4 [cite: 128]"
+        "source": "Biyokimya s.4 [cite: 128]",
+        "front": "İyonofor nedir?",
+        "back": "İyonların yüklerini maskeleyerek onların lipit çift tabakası içinden geçmesine izin veren küçük hidrofobik moleküllerdir."
       },
       {
         "type": "flashcard",
-        "questionText": "Zar dinamiklerinde 'parakristal hal' neyi ifade eder?",
-        "correctAnswer": "Normal fizyolojik sıcaklıkların altında lipit hareketliliğinin kısıtlandığı yarı-katı jel fazıdır.",
         "hint": "Düşük sıcaklıktaki zar durumunu düşünün.",
-        "source": "Biyokimya s.3 [cite: 74, 76]"
+        "source": "Biyokimya s.3 [cite: 74, 76]",
+        "front": "Zar dinamiklerinde 'parakristal hal' neyi ifade eder?",
+        "back": "Normal fizyolojik sıcaklıkların altında lipit hareketliliğinin kısıtlandığı yarı-katı jel fazıdır."
       },
       {
         "type": "flashcard",
-        "questionText": "Endositoz ve Ekzositoz olaylarında zarın hangi fiziksel özelliği kritik rol oynar?",
-        "correctAnswer": "Zarın kırılma ve tekrar kapanabilme (kendiliğinden kapanma) yeteneği.",
         "hint": "Zar bütünlüğünün sızıntı olmadan korunmasını düşünün.",
-        "source": "Biyokimya s.1 [cite: 15, 16]"
+        "source": "Biyokimya s.1 [cite: 15, 16]",
+        "front": "Endositoz ve Ekzositoz olaylarında zarın hangi fiziksel özelliği kritik rol oynar?",
+        "back": "Zarın kırılma ve tekrar kapanabilme (kendiliğinden kapanma) yeteneği."
       }
     ]
   }

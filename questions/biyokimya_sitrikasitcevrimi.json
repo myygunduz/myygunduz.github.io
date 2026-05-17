@@ -8,10 +8,18 @@
         "type": "multiple_choice",
         "questionText": "Pirüvat dehidrogenaz kompleksi tarafından gerçekleştirilen reaksiyonda aşağıdakilerden hangisi bir koenzim veya prostetik grup olarak görev almaz?",
         "options": [
-          "Tiyamin Pirofosfat (TPP)",
-          "Flavin Adenin Dinükleotit (FAD)",
-          "Piridoksal Fosfat (PLP)",
-          "Koenzim A (CoA-SH)"
+          {
+            "optionText": "Tiyamin Pirofosfat (TPP)"
+          },
+          {
+            "optionText": "Flavin Adenin Dinükleotit (FAD)"
+          },
+          {
+            "optionText": "Piridoksal Fosfat (PLP)"
+          },
+          {
+            "optionText": "Koenzim A (CoA-SH)"
+          }
         ],
         "correctAnswer": 2,
         "hint": "Pirüvat dehidrogenaz kompleksi reaksiyon için 5 özel koenzime ihtiyaç duyar; amin grubu transferlerinde rol oynayan vitamin türevleri bu grupta yer almaz.",
@@ -20,7 +28,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Sitrik asit çevriminin ilk basamağında Asetil-KoA ile birleşerek sitratı oluşturan dört karbonlu bileşik hangisidir?",
-        "options": ["Malat", "Oksaloasetat", "Süksinat", "Fumarat"],
+        "options": [
+          {
+            "optionText": "Malat"
+          },
+          {
+            "optionText": "Oksaloasetat"
+          },
+          {
+            "optionText": "Süksinat"
+          },
+          {
+            "optionText": "Fumarat"
+          }
+        ],
         "correctAnswer": 1,
         "hint": "Bu molekül çevrimin son basamağında dehidrojenasyon ile tekrar üretilerek döngünün devamlılığını sağlar.",
         "source": "Sitrik Asit Çevrimi s.2"
@@ -29,10 +50,18 @@
         "type": "multiple_choice",
         "questionText": "Sitrik asit çevriminde substrat düzeyinde fosforilasyonla doğrudan ATP veya GTP üretimini sağlayan enzim hangisidir?",
         "options": [
-          "Sitrat sentaz",
-          "İzositrat dehidrogenaz",
-          "Süksinil-KoA sentetaz",
-          "Fumaraz"
+          {
+            "optionText": "Sitrat sentaz"
+          },
+          {
+            "optionText": "İzositrat dehidrogenaz"
+          },
+          {
+            "optionText": "Süksinil-KoA sentetaz"
+          },
+          {
+            "optionText": "Fumaraz"
+          }
         ],
         "correctAnswer": 2,
         "hint": "Bu enzim, yüksek enerjili tiyoester bağının kırılmasıyla açığa çıkan enerjiyi nükleotit sentezinde kullanır.",
@@ -42,10 +71,18 @@
         "type": "multiple_choice",
         "questionText": "Çevrimde flavin nükleotit indirgenmesi (FADH2 oluşumu) hangi basamakta gerçekleşir?",
         "options": [
-          "Süksinat -> Fumarat",
-          "Malat -> Oksaloasetat",
-          "İzositrat -> a-Ketoglutarat",
-          "Sitrat -> İzositrat"
+          {
+            "optionText": "Süksinat -> Fumarat"
+          },
+          {
+            "optionText": "Malat -> Oksaloasetat"
+          },
+          {
+            "optionText": "İzositrat -> a-Ketoglutarat"
+          },
+          {
+            "optionText": "Sitrat -> İzositrat"
+          }
         ],
         "correctAnswer": 0,
         "hint": "Bu reaksiyonu katalizleyen enzim aynı zamanda elektron taşıma zincirinin Kompleks II elemanıdır.",
@@ -54,7 +91,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Oksidatif fosforilasyonda bir çift elektronun NADH üzerinden O2'ye geçmesiyle yaklaşık kaç molekül ATP üretilir?",
-        "options": ["1.5", "2.5", "3.0", "4.0"],
+        "options": [
+          {
+            "optionText": "1.5"
+          },
+          {
+            "optionText": "2.5"
+          },
+          {
+            "optionText": "3.0"
+          },
+          {
+            "optionText": "4.0"
+          }
+        ],
         "correctAnswer": 1,
         "hint": "NADH solunum zincirine birinci kompleksten dahil olduğu için FADH2'ye kıyasla daha fazla ATP verimine sahiptir.",
         "source": "Sitrik Asit Çevrimi s.1"
@@ -63,10 +113,18 @@
         "type": "multiple_choice",
         "questionText": "İzositrat dehidrogenaz reaksiyonu ile ilgili aşağıdakilerden hangisi doğrudur?",
         "options": [
-          "Çevrimin ilk oksidatif dekarboksillenme adımıdır.",
-          "Tersinmez bir hidrasyon reaksiyonudur.",
-          "Sadece FADH2 üretimiyle sonuçlanır.",
-          "Dört karbonlu bir ara ürün oluşturur."
+          {
+            "optionText": "Çevrimin ilk oksidatif dekarboksillenme adımıdır."
+          },
+          {
+            "optionText": "Tersinmez bir hidrasyon reaksiyonudur."
+          },
+          {
+            "optionText": "Sadece FADH2 üretimiyle sonuçlanır."
+          },
+          {
+            "optionText": "Dört karbonlu bir ara ürün oluşturur."
+          }
         ],
         "correctAnswer": 0,
         "hint": "Bu basamakta altı karbonlu bir molekülden ilk kez karbon ayrılır ve beş karbonlu bir molekül üretilir.",
@@ -76,10 +134,18 @@
         "type": "multiple_choice",
         "questionText": "Sitrik asit çevriminde gerçekleşen reaksiyon türlerinden hangisi fumaratın malata dönüşümünü açıklar?",
         "options": [
-          "Oksidatif dekarboksillenme",
-          "Kondensasyon",
-          "Hidrasyon",
-          "Dehidrojenasyon"
+          {
+            "optionText": "Oksidatif dekarboksillenme"
+          },
+          {
+            "optionText": "Kondensasyon"
+          },
+          {
+            "optionText": "Hidrasyon"
+          },
+          {
+            "optionText": "Dehidrojenasyon"
+          }
         ],
         "correctAnswer": 2,
         "hint": "Katalizör enzim çift bağa net bir su molekülü ekleyerek hidroksil grubu kazandırır.",
@@ -88,7 +154,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Tam aerobik koşullarda, 1 molekül glukozun tamamen CO2 ve H2O'ya yükseltgenmesiyle net olarak yaklaşık kaç ATP elde edilir?",
-        "options": ["10-12", "20-22", "30-32", "36-38"],
+        "options": [
+          {
+            "optionText": "10-12"
+          },
+          {
+            "optionText": "20-22"
+          },
+          {
+            "optionText": "30-32"
+          },
+          {
+            "optionText": "36-38"
+          }
+        ],
         "correctAnswer": 2,
         "hint": "Glikoliz, pirüvat dehidrogenaz ve sitrik asit döngüsünün tüm basamaklarının stoichiometry tablosundaki toplam net verimidir.",
         "source": "Sitrik Asit Çevrimi s.4"
@@ -97,10 +176,18 @@
         "type": "multiple_choice",
         "questionText": "Sitrik asit çevrimi gibi hem katabolik yıkım hem de anabolik yapım süreçlerinde ortak olarak görev alan yolaklara ne ad verilir?",
         "options": [
-          "Katabolik yolak",
-          "Anabolik yolak",
-          "Amfibolik yolak",
-          "Anaplerotik yolak"
+          {
+            "optionText": "Katabolik yolak"
+          },
+          {
+            "optionText": "Anabolik yolak"
+          },
+          {
+            "optionText": "Amfibolik yolak"
+          },
+          {
+            "optionText": "Anaplerotik yolak"
+          }
         ],
         "correctAnswer": 2,
         "hint": "Yunanca 'her iki taraflı' anlamına gelen bir ön ek içeren terim metabolik merkezleri tanımlar.",
@@ -109,7 +196,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Koenzim A molekülünün yapısında yer alan ve 'Vitamin B5' olarak da adlandırılan bileşen hangisidir?",
-        "options": ["Pantotenik asit", "Riboflavin", "Tiyamin", "Niasin"],
+        "options": [
+          {
+            "optionText": "Pantotenik asit"
+          },
+          {
+            "optionText": "Riboflavin"
+          },
+          {
+            "optionText": "Tiyamin"
+          },
+          {
+            "optionText": "Niasin"
+          }
+        ],
         "correctAnswer": 0,
         "hint": "Koenzim A'nın merkezindeki asil taşıyıcı yapıyı oluşturan vitamin bileşenidir.",
         "source": "Sitrik Asit Çevrimi s.1"
@@ -223,12 +323,29 @@
         "type": "matching",
         "questionText": "Aşağıda verilen sitrik asit çevrimi enzimlerini reaksiyonları sonucu oluşan doğrudan ana ürünleri ile eşleştiriniz.",
         "pairs": [
-          { "left": "Sitrat sentaz", "right": "Sitrat" },
-          { "left": "İzositrat dehidrogenaz", "right": "a-Ketoglutarate" },
-          { "left": "Süksinat dehidrogenaz", "right": "Fumarat" },
-          { "left": "Malat dehidrogenaz", "right": "Oksaloasetat" }
+          {
+            "left": "Sitrat sentaz",
+            "right": "Sitrat"
+          },
+          {
+            "left": "İzositrat dehidrogenaz",
+            "right": "a-Ketoglutarate"
+          },
+          {
+            "left": "Süksinat dehidrogenaz",
+            "right": "Fumarat"
+          },
+          {
+            "left": "Malat dehidrogenaz",
+            "right": "Oksaloasetat"
+          }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Her enzimin etki ettiği substratın bir sonraki basamakta dönüştüğü metabolit adını düşününüz.",
         "source": "Sitrik Asit Çevrimi s.2-3"
       },
@@ -253,7 +370,12 @@
             "right": "Vitamin B3 (Niasin)"
           }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Notlarda yapı formüllerinin altında pembe el yazısı ile belirtilen vitamin eşleştirmelerini hatırlayınız.",
         "source": "Sitrik Asit Çevrimi s.1"
       },
@@ -265,11 +387,25 @@
             "left": "Oksaloasetat / Süksinat",
             "right": "4 Karbonlu bileşikler"
           },
-          { "left": "a-Ketoglutarate", "right": "5 Karbonlu bileşikler" },
-          { "left": "Sitrat / İzositrat", "right": "6 Karbonlu bileşikler" },
-          { "left": "Asetil Grubu", "right": "2 Karbonlu birim" }
+          {
+            "left": "a-Ketoglutarate",
+            "right": "5 Karbonlu bileşikler"
+          },
+          {
+            "left": "Sitrat / İzositrat",
+            "right": "6 Karbonlu bileşikler"
+          },
+          {
+            "left": "Asetil Grubu",
+            "right": "2 Karbonlu birim"
+          }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Karbondioksit çıkış basamaklarını dikkate alarak moleküllerin küçülme sırasını takip ediniz.",
         "source": "Sitrik Asit Çevrimi s.2"
       }

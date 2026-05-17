@@ -463,73 +463,73 @@
     "questions": [
       {
         "type": "flashcard",
-        "questionText": "Ağır egzersiz sonrası iskelet kasında anaerobik glikolizle oluşan laktatın karaciğere giderek glukoza çevrilmesi ve tekrar kasa dönmesi döngüsüne ne ad verilir?",
-        "correctAnswer": "Cori Çevrimi.",
         "hint": "Kas ve karaciğer arasındaki bu döngü, laktatın geri kazanımını sağlar.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 1"
+        "source": "Biyokimya Notları 2(1) - Sayfa 1",
+        "front": "Ağır egzersiz sonrası iskelet kasında anaerobik glikolizle oluşan laktatın karaciğere giderek glukoza çevrilmesi ve tekrar kasa dönmesi döngüsüne ne ad verilir?",
+        "back": "Cori Çevrimi."
       },
       {
         "type": "flashcard",
-        "questionText": "Glikolizde yer alan ve in vivo koşullarda tersinmez olduğu için glukoneogenezde doğrudan kullanılamayan (baypas edilmesi gereken) 3 enzim hangileridir?",
-        "correctAnswer": "Heksokinaz, Fosfofruktokinaz-1 ve Piruvat kinaz.",
         "hint": "Glikolizde ATP harcanan ilk iki basamak ile ATP üretilen son basamağın enzimleri.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 1"
+        "source": "Biyokimya Notları 2(1) - Sayfa 1",
+        "front": "Glikolizde yer alan ve in vivo koşullarda tersinmez olduğu için glukoneogenezde doğrudan kullanılamayan (baypas edilmesi gereken) 3 enzim hangileridir?",
+        "back": "Heksokinaz, Fosfofruktokinaz-1 ve Piruvat kinaz."
       },
       {
         "type": "flashcard",
-        "questionText": "Glukoneogenezin ilk düzenleyici enzimi olan, piruvatı oksaloasetata dönüştüren ve aktivitesi için biyotin ile asetil-KoA'ya ihtiyaç duyan enzimin adı nedir?",
-        "correctAnswer": "Piruvat karboksilaz.",
         "hint": "Piruvata karbondioksit ekleyerek 4 karbonlu bir molekül oluşturan enzim.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 1"
+        "source": "Biyokimya Notları 2(1) - Sayfa 1",
+        "front": "Glukoneogenezin ilk düzenleyici enzimi olan, piruvatı oksaloasetata dönüştüren ve aktivitesi için biyotin ile asetil-KoA'ya ihtiyaç duyan enzimin adı nedir?",
+        "back": "Piruvat karboksilaz."
       },
       {
         "type": "flashcard",
-        "questionText": "Mitokondride üretilen oksaloasetatın sitozole geçebilmesi için mitokondri zarından geçebilen hangi moleküle indirgenmesi gerekir?",
-        "correctAnswer": "Malat (L-malat).",
         "hint": "Malat dehidrogenaz enzimi yardımıyla NADH harcanarak oluşturulan ara ürün.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 2"
+        "source": "Biyokimya Notları 2(1) - Sayfa 2",
+        "front": "Mitokondride üretilen oksaloasetatın sitozole geçebilmesi için mitokondri zarından geçebilen hangi moleküle indirgenmesi gerekir?",
+        "back": "Malat (L-malat)."
       },
       {
         "type": "flashcard",
-        "questionText": "Sitozolde oluşan oksaloasetat, PEP karboksikinaz enzimi ile Fosfoenolpiruvata (PEP) dönüştürülür. Bu tepkimede fosforil grubu vericisi olarak hangi molekül kullanılır?",
-        "correctAnswer": "GTP (Guanozin trifosfat).",
         "hint": "ATP'ye benzeyen, guanin bazı içeren yüksek enerjili bir nükleotittir.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 2"
+        "source": "Biyokimya Notları 2(1) - Sayfa 2",
+        "front": "Sitozolde oluşan oksaloasetat, PEP karboksikinaz enzimi ile Fosfoenolpiruvata (PEP) dönüştürülür. Bu tepkimede fosforil grubu vericisi olarak hangi molekül kullanılır?",
+        "back": "GTP (Guanozin trifosfat)."
       },
       {
         "type": "flashcard",
-        "questionText": "Glukoneogenezde laktat öncül olarak kullanıldığında, oksaloasetatın sitozole malat olarak taşınmasına gerek kalmaz. Bunun nedeni nedir?",
-        "correctAnswer": "Laktatın piruvata dönüşümü sırasında glukoneogenez için gerekli olan sitozolik NADH'ın zaten üretilmiş olmasıdır.",
         "hint": "Sitozolde gliseraldehit 3-fosfat dehidrogenaz için gereken indirgen gücün nasıl sağlandığını düşünün.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 2"
+        "source": "Biyokimya Notları 2(1) - Sayfa 2",
+        "front": "Glukoneogenezde laktat öncül olarak kullanıldığında, oksaloasetatın sitozole malat olarak taşınmasına gerek kalmaz. Bunun nedeni nedir?",
+        "back": "Laktatın piruvata dönüşümü sırasında glukoneogenez için gerekli olan sitozolik NADH'ın zaten üretilmiş olmasıdır."
       },
       {
         "type": "flashcard",
-        "questionText": "Glukoneogenezin ikinci tersinmez yan geçiş (baypas) adımını oluşturan ve Fruktoz 1,6-bisfosfatı Fruktoz 6-fosfata dönüştüren enzimin adı nedir?",
-        "correctAnswer": "Fruktoz 1,6-bisfosfataz-1.",
         "hint": "Birinci karbondaki fosfatı su kullanarak (hidroliz) ayıran enzimdir.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 3"
+        "source": "Biyokimya Notları 2(1) - Sayfa 3",
+        "front": "Glukoneogenezin ikinci tersinmez yan geçiş (baypas) adımını oluşturan ve Fruktoz 1,6-bisfosfatı Fruktoz 6-fosfata dönüştüren enzimin adı nedir?",
+        "back": "Fruktoz 1,6-bisfosfataz-1."
       },
       {
         "type": "flashcard",
-        "questionText": "İki molekül piruvattan bir molekül glukoz sentezlenirken toplamda kaç adet yüksek enerjili fosfat bağı (ATP ve GTP) harcanır?",
-        "correctAnswer": "Toplam 6 adet (4 ATP ve 2 GTP) harcanır.",
         "hint": "Glikolizin ürettiği enerjiden çok daha fazlası bu süreçte tüketilir.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 3"
+        "source": "Biyokimya Notları 2(1) - Sayfa 3",
+        "front": "İki molekül piruvattan bir molekül glukoz sentezlenirken toplamda kaç adet yüksek enerjili fosfat bağı (ATP ve GTP) harcanır?",
+        "back": "Toplam 6 adet (4 ATP ve 2 GTP) harcanır."
       },
       {
         "type": "flashcard",
-        "questionText": "Memeliler neden yağ asitlerini doğrudan glukoz sentezi (glukoneogenez) için kullanamazlar?",
-        "correctAnswer": "Çünkü piruvat dehidrogenaz tepkimesi tersinmezdir ve memelilerde piruvatı asetil-KoA'dan geri oluşturacak başka bir yol bulunmaz.",
         "hint": "Asetil-KoA'nın geriye dönüşü olmayan bir yıkım ürünü olmasından dolayıdır.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 4"
+        "source": "Biyokimya Notları 2(1) - Sayfa 4",
+        "front": "Memeliler neden yağ asitlerini doğrudan glukoz sentezi (glukoneogenez) için kullanamazlar?",
+        "back": "Çünkü piruvat dehidrogenaz tepkimesi tersinmezdir ve memelilerde piruvatı asetil-KoA'dan geri oluşturacak başka bir yol bulunmaz."
       },
       {
         "type": "flashcard",
-        "questionText": "Memelilerde trigliseritlerin (yağların) yıkımı sonucu ortaya çıkan ve küçük bir miktarı glukoneogenez için kullanılabilen karbon iskeleti molekülü nedir?",
-        "correctAnswer": "Gliserol.",
         "hint": "Yağ asitlerini birbirine bağlayan üç karbonlu alkol yapısındaki omurga molekülüdür.",
-        "source": "Biyokimya Notları 2(1) - Sayfa 4"
+        "source": "Biyokimya Notları 2(1) - Sayfa 4",
+        "front": "Memelilerde trigliseritlerin (yağların) yıkımı sonucu ortaya çıkan ve küçük bir miktarı glukoneogenez için kullanılabilen karbon iskeleti molekülü nedir?",
+        "back": "Gliserol."
       }
     ]
   }

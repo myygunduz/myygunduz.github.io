@@ -8,10 +8,18 @@
         "type": "multiple_choice",
         "questionText": "Fotosentez reaksiyonları kimyasal açıdan incelendiğinde, karbondioksit ve su arasında gerçekleşen ne tür bir tepkimedir?",
         "options": [
-          "Yükseltgenme-indirgenme (Redoks)",
-          "Asit-baz nötrleşmesi",
-          "Hidroliz",
-          "Polimerizasyon"
+          {
+            "optionText": "Yükseltgenme-indirgenme (Redoks)"
+          },
+          {
+            "optionText": "Asit-baz nötrleşmesi"
+          },
+          {
+            "optionText": "Hidroliz"
+          },
+          {
+            "optionText": "Polimerizasyon"
+          }
         ],
         "correctAnswer": 0,
         "hint": "Bir molekül elektron veya hidrojen kazanırken diğeri bunları kaybeder.",
@@ -20,7 +28,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Aşağıdaki klorofil tiplerinden hangisi mavi-yeşil, kahverengi ve kırmızı alglerde bulunmaz?",
-        "options": ["Klorofil a", "Klorofil b", "Klorofil c", "Klorofil d"],
+        "options": [
+          {
+            "optionText": "Klorofil a"
+          },
+          {
+            "optionText": "Klorofil b"
+          },
+          {
+            "optionText": "Klorofil c"
+          },
+          {
+            "optionText": "Klorofil d"
+          }
+        ],
         "correctAnswer": 1,
         "hint": "Genellikle yüksek yapılı bitkilerde ve yeşil alglerde klorofil a ile birlikte bulunan ikincil pigmenttir.",
         "source": "fotosentez.pdf s.2"
@@ -28,7 +49,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Çözeltide mavi-siyah renkte gözüken klorofil pigmenti aşağıdakilerden hangisidir?",
-        "options": ["Klorofil d", "Klorofil c", "Klorofil b", "Klorofil a"],
+        "options": [
+          {
+            "optionText": "Klorofil d"
+          },
+          {
+            "optionText": "Klorofil c"
+          },
+          {
+            "optionText": "Klorofil b"
+          },
+          {
+            "optionText": "Klorofil a"
+          }
+        ],
         "correctAnswer": 3,
         "hint": "Fotosentezdeki en temel klorofil pigmentidir ve çözeltideki rengi klorofil b'den daha koyudur.",
         "source": "fotosentez.pdf s.2"
@@ -36,7 +70,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Klorofilin yapısında bulunmayan, ancak karotenoidlerin 'Ksantofil' grubunda mutlaka yer alan element hangisidir?",
-        "options": ["Oksijen", "Magnezyum", "Azot", "Karbon"],
+        "options": [
+          {
+            "optionText": "Oksijen"
+          },
+          {
+            "optionText": "Magnezyum"
+          },
+          {
+            "optionText": "Azot"
+          },
+          {
+            "optionText": "Karbon"
+          }
+        ],
         "correctAnswer": 0,
         "hint": "Sadece hidrojen ve karbon içeren karotenoidlerden farkı bu elementi içermesidir.",
         "source": "fotosentez.pdf s.2"
@@ -45,10 +92,18 @@
         "type": "multiple_choice",
         "questionText": "Fotosentezin ışık reaksiyonları kloroplastın tam olarak hangi bölgesinde gerçekleşir?",
         "options": [
-          "Stroma",
-          "Lümen boşluğu",
-          "Granum (Tilakoit membran)",
-          "Dış zar"
+          {
+            "optionText": "Stroma"
+          },
+          {
+            "optionText": "Lümen boşluğu"
+          },
+          {
+            "optionText": "Granum (Tilakoit membran)"
+          },
+          {
+            "optionText": "Dış zar"
+          }
         ],
         "correctAnswer": 2,
         "hint": "Pigment paketlerinin yer aldığı ve suyun fotolizinin yapıldığı sandviç şeklindeki yapılardır.",
@@ -57,7 +112,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Klorofilin sentezlenebilmesi için Krebs çemberinin ara aşamalarında oluşan hangi molekülün amino asit ile birleşmesi gerekir?",
-        "options": ["Oksaloasetat", "Sitrat", "Suksinil-KoA", "Malat"],
+        "options": [
+          {
+            "optionText": "Oksaloasetat"
+          },
+          {
+            "optionText": "Sitrat"
+          },
+          {
+            "optionText": "Suksinil-KoA"
+          },
+          {
+            "optionText": "Malat"
+          }
+        ],
         "correctAnswer": 2,
         "hint": "Klorofil sentezinin başlangıç maddesi olan ve solunum zinciriyle bağlantılı olan ara bileşiktir.",
         "source": "fotosentez.pdf s.2"
@@ -66,10 +134,18 @@
         "type": "multiple_choice",
         "questionText": "Fotosentezde karotenoidlerin fotooksidasyonu önleme görevi neyi ifade eder?",
         "options": [
-          "Klorofilin ışık ve oksijen karşısında parçalanmasını engellemek",
-          "Daha fazla su molekülünü fotoliz etmek",
-          "Karbondioksit sabitleme hızını artırmak",
-          "ATP sentaz enzimini aktive etmek"
+          {
+            "optionText": "Klorofilin ışık ve oksijen karşısında parçalanmasını engellemek"
+          },
+          {
+            "optionText": "Daha fazla su molekülünü fotoliz etmek"
+          },
+          {
+            "optionText": "Karbondioksit sabitleme hızını artırmak"
+          },
+          {
+            "optionText": "ATP sentaz enzimini aktive etmek"
+          }
         ],
         "correctAnswer": 0,
         "hint": "Kendilerini feda ederek temel pigmenti koruma mekanizmasıdır.",
@@ -79,10 +155,18 @@
         "type": "multiple_choice",
         "questionText": "Fotosentez esnasında klorofil molekülleri tarafından hangi renk bandındaki ışıklar en yüksek oranda absorbe edilir?",
         "options": [
-          "Yeşil ve Sarı",
-          "Mavi ve Kırmızı",
-          "Turuncu ve Yeşil",
-          "Kızılötesi ve Morötesi"
+          {
+            "optionText": "Yeşil ve Sarı"
+          },
+          {
+            "optionText": "Mavi ve Kırmızı"
+          },
+          {
+            "optionText": "Turuncu ve Yeşil"
+          },
+          {
+            "optionText": "Kızılötesi ve Morötesi"
+          }
         ],
         "correctAnswer": 1,
         "hint": "Bitkiler yansıttıkları rengi absorbe etmezler, bu yüzden yeşil ışık dışındaki uç renkleri çekerler.",
@@ -91,7 +175,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Işık reaksiyonlarında üretilen ve karanlık reaksiyonlarda CO₂'den karbohidrat üretimi için kullanılan indirgeyici güç (koenzim) aşağıdakilerden hangisidir?",
-        "options": ["NADH", "FADH2", "NADPH", "FMNH2"],
+        "options": [
+          {
+            "optionText": "NADH"
+          },
+          {
+            "optionText": "FADH2"
+          },
+          {
+            "optionText": "NADPH"
+          },
+          {
+            "optionText": "FMNH2"
+          }
+        ],
         "correctAnswer": 2,
         "hint": "NADP+ molekülünün suyun fotolizinden gelen elektron ve protonları alarak indirgenmiş halidir.",
         "source": "fotosentez.pdf s.2"
@@ -99,7 +196,20 @@
       {
         "type": "multiple_choice",
         "questionText": "Kloroplastın içini dolduran, amorf yapıda, jelimsi ve enzimlerce zengin olan sıvıya ne ad verilir?",
-        "options": ["Stroma", "Granum", "Lümen", "Matriks"],
+        "options": [
+          {
+            "optionText": "Stroma"
+          },
+          {
+            "optionText": "Granum"
+          },
+          {
+            "optionText": "Lümen"
+          },
+          {
+            "optionText": "Matriks"
+          }
+        ],
         "correctAnswer": 0,
         "hint": "Karanlık evre tepkimelerinin yani karbon sabitlemesinin gerçekleştiği yerdir.",
         "source": "fotosentez.pdf s.2"
@@ -221,13 +331,21 @@
             "left": "Granum",
             "right": "Işık tepkimeleri ve fotofosforilasyon"
           },
-          { "left": "Lümen", "right": "Çözünmüş tuzları içeren su dolu çukur" },
+          {
+            "left": "Lümen",
+            "right": "Çözünmüş tuzları içeren su dolu çukur"
+          },
           {
             "left": "Klorofil a ve b",
             "right": "Mavi ve kırmızı ışığın absorpsiyonu"
           }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Sıvı kısım stroma iken, tilakoit paketleri granumu oluşturur.",
         "source": "fotosentez.pdf s.2"
       },
@@ -235,12 +353,29 @@
         "type": "matching",
         "questionText": "Fotosentez aşamaları ile bu aşamalarda görev alan girdi/çıktı maddelerini eşleştiriniz.",
         "pairs": [
-          { "left": "Işık Tepkimesi Girdisi", "right": "Işık ve H₂O" },
-          { "left": "Işık Tepkimesi Çıktısı", "right": "O₂, ATP ve NADPH" },
-          { "left": "Karanlık Tepkime Girdisi", "right": "CO₂, ATP ve NADPH" },
-          { "left": "Karanlık Tepkime Çıktısı", "right": "CH₂O (Şeker) ve H₂O" }
+          {
+            "left": "Işık Tepkimesi Girdisi",
+            "right": "Işık ve H₂O"
+          },
+          {
+            "left": "Işık Tepkimesi Çıktısı",
+            "right": "O₂, ATP ve NADPH"
+          },
+          {
+            "left": "Karanlık Tepkime Girdisi",
+            "right": "CO₂, ATP ve NADPH"
+          },
+          {
+            "left": "Karanlık Tepkime Çıktısı",
+            "right": "CH₂O (Şeker) ve H₂O"
+          }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Suyun parçalanması ilk aşamada, karbondioksitin yakalanması ikinci aşamadadır.",
         "source": "fotosentez.pdf s.3"
       },
@@ -248,12 +383,29 @@
         "type": "matching",
         "questionText": "Pigment türleri ile çözeltide veya yapıda gösterdikleri renk özelliklerini eşleştiriniz.",
         "pairs": [
-          { "left": "Klorofil a", "right": "Mavi-siyah renk" },
-          { "left": "Klorofil b", "right": "Yeşilimsi-siyah renk" },
-          { "left": "Beta-karoten", "right": "Portakal-sarı renk" },
-          { "left": "Likopen", "right": "Kırmızı renk" }
+          {
+            "left": "Klorofil a",
+            "right": "Mavi-siyah renk"
+          },
+          {
+            "left": "Klorofil b",
+            "right": "Yeşilimsi-siyah renk"
+          },
+          {
+            "left": "Beta-karoten",
+            "right": "Portakal-sarı renk"
+          },
+          {
+            "left": "Likopen",
+            "right": "Kırmızı renk"
+          }
         ],
-        "correctAnswer": { "0": 0, "1": 1, "2": 2, "3": 3 },
+        "correctAnswer": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        },
         "hint": "Domates ve kırmızı bibere rengini veren likopendir.",
         "source": "fotosentez.pdf s.2"
       }
